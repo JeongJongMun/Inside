@@ -65,11 +65,6 @@ public class Inventory : MonoBehaviour
 
     public void AcquireItem(Item _item)
     {
-        //Debug.LogFormat("Acquired Item Name: {0}", _item.itemName);
-        //foreach (InventorySlot slot in inventory)
-        //{
-        //    Debug.Log("1");
-        //}
 
         if (!inventory.IsContainsItem(_item.itemName))
         {

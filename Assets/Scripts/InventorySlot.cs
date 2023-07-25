@@ -4,23 +4,29 @@ using UnityEngine.UI;
 public class InventorySlot : MonoBehaviour
 {
     public Item item = null; // 획득한 아이템
-    public Image currentItemImage = null; // 현재 획득한 아이템의 이미지
+    public Image itemImage;  // 아이템의 이미지
 
-    private void Start()
+
+    // 아이템 이미지의 투명도 조절
+    private void SetColor(float _alpha)
     {
-        currentItemImage = this.transform.GetChild(2).transform.GetComponent<Image>();
+        Color color = itemImage.color;
+        color.a = _alpha;
+        itemImage.color = color;
     }
 
     public void AddItem(Item _item)
     {
         item = _item;
-        currentItemImage = item.itemImage;
+        itemImage.sprite = item.itemSprite;
+        SetColor(1);
         Debug.LogFormat("InventorySlot - AddItem - 아이템 이름: {0}", item.itemName);
     }
-    public void RemoveItem(Item _item)
+    public void RemoveItem()
     {
         item = null;
-        currentItemImage = null;
+        itemImage.sprite = null;
+        SetColor(0);
     }
     public string GetItemName()
     {

@@ -4,12 +4,12 @@ using UnityEngine.UI;
 public class Item : MonoBehaviour
 {
     public string itemName;
-    public Image itemImage;
+    public Sprite itemSprite;
 
     private void Start()
     {
         itemName = transform.name;
-        itemImage = GetComponent<Image>();
+        itemSprite = GetComponent<Image>().sprite;
         Debug.LogFormat("Item : {0}", itemName);
     }
 }
