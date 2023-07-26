@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/KidRoom.unity
     guid: e34e68e6616e0244c8a52f242315bc79
+  - enabled: 1
+    path: Assets/Scenes/TestScene.unity
+    guid: 66d7a8efe0c74bb448e80843a5324921
   m_configObjects: {}

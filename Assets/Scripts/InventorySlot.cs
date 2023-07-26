@@ -1,10 +1,13 @@
+using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class InventorySlot : MonoBehaviour
 {
-    public Item item = null; // 획득한 아이템
+    public Item item; // 획득한 아이템
     public Image itemImage;  // 아이템의 이미지
+
+
 
 
     // 아이템 이미지의 투명도 조절
@@ -17,7 +20,7 @@ public class InventorySlot : MonoBehaviour
 
     public void AddItem(Item _item)
     {
-        item = _item;
+        item = _item.DeepCopy();
         itemImage.sprite = item.itemSprite;
         SetColor(1);
         Debug.LogFormat("InventorySlot - AddItem - 아이템 이름: {0}", item.itemName);

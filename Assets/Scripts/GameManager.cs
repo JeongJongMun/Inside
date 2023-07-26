@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -38,13 +39,13 @@ public class GameManager : MonoBehaviour
 
      
      */
+
+
     public GameObject[] wallPanel;
     private int currentWallPanel = 0;
-    private void Start()
-    {
-        
-    }
 
+
+    // 아이템 클릭 시
     public void OnClickItem(Item _item)
     {
         Inventory.Instance.AcquireItem(_item);
@@ -81,6 +82,13 @@ public class GameManager : MonoBehaviour
         wallPanel[currentWallPanel].SetActive(true);
     }
 
-
+    public void OnClickTestBtn()
+    {
+        SceneManager.LoadScene("TestScene");
+    }
+    public void OnClickTestBackBtn()
+    {
+        SceneManager.LoadScene("KidRoom");
+    }
 
 }
