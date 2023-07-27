@@ -1,13 +1,12 @@
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UI;
 static class ExtensionMethods
 {
     public static bool IsContainsItem(this List<InventorySlot> list, string itemName)
     {
         foreach(InventorySlot slot in list)
         {
+            if (slot == null) continue;
             if (slot.item == null) continue;
             if (slot.GetItemName() ==  itemName) return true;
         }
@@ -44,6 +43,7 @@ public class Inventory : MonoBehaviour
         }
     }
 
+    // 인벤토리 슬롯 객체 배열
     public List<InventorySlot> inventory = new List<InventorySlot>();
 
     public bool HasItem(string itemName)
@@ -58,20 +58,16 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    public void RemoveItem(Item _item)
-    {
-
-    }
-
     public void AcquireItem(Item _item)
     {
-
+        // 아이템이 인벤토리에 없다면
         if (!inventory.IsContainsItem(_item.itemName))
         {
-            foreach(InventorySlot slot in inventory)
+            foreach (InventorySlot slot in inventory)
             {
                 if (slot.item == null)
                 {
+                    // 비어있는 인벤토리 슬롯에 아이템 객체 추가
                     slot.AddItem(_item);
                     break;
                 }
@@ -82,6 +78,14 @@ public class Inventory : MonoBehaviour
             Debug.LogFormat("이미 {0} 아이템이 인벤토리에 존재하여 추가하지 못함", _item.itemName);
         }
     }
+
+
+    public void RemoveItem(Item _item)
+    {
+
+    }
+
+
 
     public void IsClicked(Item _item)
     {

@@ -4,32 +4,23 @@ using UnityEngine.UI;
 
 public class InventorySlot : MonoBehaviour
 {
-    public Item item; // 획득한 아이템
-    public Image itemImage;  // 아이템의 이미지
-
-
-
-
-    // 아이템 이미지의 투명도 조절
-    private void SetColor(float _alpha)
-    {
-        Color color = itemImage.color;
-        color.a = _alpha;
-        itemImage.color = color;
-    }
+    public Item item = null; // 획득한 아이템
 
     public void AddItem(Item _item)
     {
-        item = _item.DeepCopy();
-        itemImage.sprite = item.itemSprite;
-        SetColor(1);
-        Debug.LogFormat("InventorySlot - AddItem - 아이템 이름: {0}", item.itemName);
+        GameObject addedItem = Resources.Load<GameObject>("Prefabs/Items/" +  _item.itemName);
+        item = Instantiate(addedItem, gameObject.transform.position, Quaternion.identity, gameObject.transform).GetComponent<Item>();
+
+        // (Clone) 지우기
+        int index = item.name.IndexOf("(Clone)");
+        if (index > 0) item.name = item.name.Substring(0, index);
+
+
+        Debug.LogFormat("{0} added in slot", item.itemName);
     }
     public void RemoveItem()
     {
         item = null;
-        itemImage.sprite = null;
-        SetColor(0);
     }
     public string GetItemName()
     {

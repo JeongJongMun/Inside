@@ -46,9 +46,12 @@ public class GameManager : MonoBehaviour
 
 
     // 아이템 클릭 시
-    public void OnClickItem(Item _item)
+    public void OnClickItem(GameObject _item)
     {
-        Inventory.Instance.AcquireItem(_item);
+        // 인벤토리에 추가
+        Inventory.Instance.AcquireItem(_item.GetComponent<Item>());
+        // 화면에 있는 아이템 삭제
+        Destroy(_item);
     }
 
     // 왼쪽 화살표 클릭 시
