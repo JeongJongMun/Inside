@@ -44,6 +44,8 @@ public class GameManager : MonoBehaviour
     public GameObject[] wallPanel;
     private int currentWallPanel = 0;
 
+    public GameObject settingPanel;
+
 
     // 아이템 클릭 시
     public void OnClickItem(GameObject _item)
@@ -58,14 +60,7 @@ public class GameManager : MonoBehaviour
     public void OnClickLeftArrow()
     {
         wallPanel[currentWallPanel].SetActive(false);
-        if (currentWallPanel == 0)
-        {
-            currentWallPanel = 3;
-        }
-        else
-        {        
-            currentWallPanel--;
-        }
+        currentWallPanel = (currentWallPanel + 3) % 4;
         wallPanel[currentWallPanel].SetActive(true);
 
     }
@@ -74,15 +69,15 @@ public class GameManager : MonoBehaviour
     public void OnClickRightArrow()
     {
         wallPanel[currentWallPanel].SetActive(false);
-        if (currentWallPanel == 3)
-        {
-            currentWallPanel = 0;
-        }
-        else
-        {
-            currentWallPanel++;
-        }
+        currentWallPanel = (currentWallPanel + 1) % 4;
         wallPanel[currentWallPanel].SetActive(true);
+    }
+    public void OnClickSettingBtn()
+    {
+        // 설정창이 활성화 상태라면 비활성화
+        if (settingPanel.activeSelf) settingPanel.SetActive(false);
+        // 설정창이 비활성화 상태라면 활성화
+        else settingPanel.SetActive(true);
     }
 
     public void OnClickTestBtn()

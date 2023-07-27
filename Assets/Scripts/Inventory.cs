@@ -46,9 +46,9 @@ public class Inventory : MonoBehaviour
     // ¿Œ∫•≈‰∏Æ ΩΩ∑‘ ∞¥√º πËø≠
     public List<InventorySlot> inventory = new List<InventorySlot>();
 
-    public bool HasItem(string itemName)
+    public bool HasItem(string _item)
     {
-        if (inventory.IsContainsItem(itemName))
+        if (inventory.IsContainsItem(_item))
         {
             return true;
         }
