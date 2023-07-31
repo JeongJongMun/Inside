@@ -4,12 +4,15 @@ using UnityEngine.UI;
 
 public class InventorySlot : MonoBehaviour
 {
+    public GameObject itmeObject; // 삭제를 위한 오브젝트 참조
     public Item item = null; // 획득한 아이템
 
     public void AddItem(Item _item)
     {
+        Debug.Log(_item.itemName);
         GameObject addedItem = Resources.Load<GameObject>("Prefabs/Items/" +  _item.itemName);
-        item = Instantiate(addedItem, gameObject.transform.position, Quaternion.identity, gameObject.transform).GetComponent<Item>();
+        itmeObject = Instantiate(addedItem, gameObject.transform.position, Quaternion.identity, gameObject.transform);
+        item = itmeObject.GetComponent<Item>();
 
         // (Clone) 지우기
         int index = item.name.IndexOf("(Clone)");
@@ -20,6 +23,8 @@ public class InventorySlot : MonoBehaviour
     }
     public void RemoveItem()
     {
+        Debug.LogFormat("{0} 아이템 삭제", item.itemName);
+        Destroy(itmeObject);
         item = null;
     }
     public string GetItemName()

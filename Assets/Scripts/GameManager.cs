@@ -41,11 +41,15 @@ public class GameManager : MonoBehaviour
      */
 
 
-    public GameObject[] wallPanel;
-    private int currentWallPanel = 0;
-
     public GameObject settingPanel;
 
+    public void OnClickSettingBtn()
+    {
+        // 설정창이 활성화 상태라면 비활성화
+        if (settingPanel.activeSelf) settingPanel.SetActive(false);
+        // 설정창이 비활성화 상태라면 활성화
+        else settingPanel.SetActive(true);
+    }
 
     // 아이템 클릭 시
     public void OnClickItem(GameObject _item)
@@ -55,31 +59,6 @@ public class GameManager : MonoBehaviour
         // 화면에 있는 아이템 삭제
         Destroy(_item);
     }
-
-    // 왼쪽 화살표 클릭 시
-    public void OnClickLeftArrow()
-    {
-        wallPanel[currentWallPanel].SetActive(false);
-        currentWallPanel = (currentWallPanel + 3) % 4;
-        wallPanel[currentWallPanel].SetActive(true);
-
-    }
-
-    // 오른쪽 화살표 클릭 시
-    public void OnClickRightArrow()
-    {
-        wallPanel[currentWallPanel].SetActive(false);
-        currentWallPanel = (currentWallPanel + 1) % 4;
-        wallPanel[currentWallPanel].SetActive(true);
-    }
-    public void OnClickSettingBtn()
-    {
-        // 설정창이 활성화 상태라면 비활성화
-        if (settingPanel.activeSelf) settingPanel.SetActive(false);
-        // 설정창이 비활성화 상태라면 활성화
-        else settingPanel.SetActive(true);
-    }
-
     public void OnClickTestBtn()
     {
         SceneManager.LoadScene("TestScene");

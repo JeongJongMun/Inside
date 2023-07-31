@@ -31,6 +31,7 @@ public class Inventory : MonoBehaviour
     }
 
     // Inventory 인스턴스에 접근하는 프로퍼티
+    // 다른 스크립트에서 접근 방법 : Inventory.Instanace.메소드()
     public static Inventory Instance
     {
         get
@@ -80,9 +81,43 @@ public class Inventory : MonoBehaviour
     }
 
 
-    public void RemoveItem(Item _item)
+    public void RemoveItem(string itemName)
     {
-
+        // 아이템이 인벤토리에 있다면
+        if (inventory.IsContainsItem(itemName))
+        {
+            
+            foreach (InventorySlot slot in inventory)
+            {
+                if (slot.item.itemName == itemName)
+                {
+                    // 슬롯에서 아이템 삭제
+                    slot.RemoveItem();
+                    // 아이템 정렬
+                    SortItem();
+                    break;
+                }
+            }
+        }
+        else
+        {
+            Debug.LogFormat("{0} 아이템이 인벤토리에 존재하지 않아 삭제하지 못함", itemName);
+        }
+    }
+    public void SortItem()
+    {
+        for (int i = 0; i < inventory.Count; i++)
+        {
+            if (inventory[i].item == null) 
+            { 
+                for (int j = i; j < inventory.Count - 1; j++)
+                {
+                    if (inventory[j + 1].item == null) break;
+                    inventory[j].AddItem(inventory[j + 1].item);
+                    inventory[j + 1].RemoveItem();
+                }
+            }
+        }
     }
 
 

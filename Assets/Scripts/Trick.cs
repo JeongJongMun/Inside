@@ -1,7 +1,19 @@
+using System;
 using UnityEngine;
 
 // 트릭들의 추상 클래스
 public abstract class Trick : MonoBehaviour
 {
-    public abstract void SolveOrNotSolve();
+    private bool isSolved = false;
+
+    public void Solve()
+    {
+        this.isSolved = true;
+    }
+    public bool IsSolved()
+    {
+        return this.isSolved;
+    }
+
+    public abstract void SolveOrNotSolve(GameObject obj);
 }
