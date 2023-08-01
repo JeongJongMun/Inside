@@ -8,16 +8,20 @@ public class KidRoomSafe : Trick
     public TMP_Text display;
     public override void SolveOrNotSolve(GameObject obj)
     {
-        if (obj.name == "Safe" && display.text == "0710")
+        if (obj.name == "Safe")
         {
-            Solve();
-            gameObject.SetActive(false);
-            Debug.Log("Safe Solved");
+            if (display.text == "0710")
+            {
+                Solve();
+                gameObject.SetActive(false);
+                Debug.Log("Safe Solved");
+            }
+            else
+            {
+                Debug.Log("Safe Not Solved");
+            }
         }
-        else if (obj.name == "Safe")
-        {
-            Debug.Log("Safe Not Solved");
-        }
+
     }
 
     public void OnClickKeypad(GameObject keypad)

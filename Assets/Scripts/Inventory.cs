@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 static class ExtensionMethods
 {
     public static bool IsContainsItem(this List<InventorySlot> list, string itemName)
@@ -44,9 +46,31 @@ public class Inventory : MonoBehaviour
         }
     }
 
+    // 토글 참조를 위한 배열
+    public List<Toggle> toggles = new List<Toggle>();
     // 인벤토리 슬롯 객체 배열
     public List<InventorySlot> inventory = new List<InventorySlot>();
 
+
+    // 해당 아이템의 토클이 클릭되어 있나 확인
+    public bool IsClicked(string _item)
+    {
+        if (inventory.IsContainsItem(_item))
+        {
+            foreach (Toggle toggle in toggles) 
+            { 
+                // childCount == 3 일때 (아이템이 먹어져 있을때) 만 접근
+                if (toggle.transform.childCount == 3 && toggle.transform.GetChild(2).GetComponent<Item>().itemName == _item && toggle.isOn)
+                {
+                    toggle.isOn = false;
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    // 아이템을 가지고 있나 확인
     public bool HasItem(string _item)
     {
         if (inventory.IsContainsItem(_item))
@@ -59,6 +83,7 @@ public class Inventory : MonoBehaviour
         }
     }
 
+    // 아이템 획득
     public void AcquireItem(Item _item)
     {
         // 아이템이 인벤토리에 없다면
@@ -119,13 +144,4 @@ public class Inventory : MonoBehaviour
             }
         }
     }
-
-
-
-    public void IsClicked(Item _item)
-    {
-
-    }
-
-
 }

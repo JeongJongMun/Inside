@@ -1,18 +1,24 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class KidRoomWorldMap : Trick
 {
+    public Sprite worldMapTorn;
     public override void SolveOrNotSolve(GameObject obj)
     {
-        if (Inventory.Instance.HasItem("Cutter"))
+        if (obj.name == "WorldMap")
         {
-            Debug.Log("WorldMap Solved");
+            if (Inventory.Instance.IsClicked("Cutter"))
+            {
+                Debug.Log("WorldMap Solved");
+                gameObject.GetComponent<Image>().sprite = worldMapTorn;
+            }
+            else
+            {
+                Debug.Log("WorldMap Not Sloved");
+            }
+
         }
-        else
-        {
-            Debug.Log("WorldMap Not Sloved");
-        }
+
     }
 }

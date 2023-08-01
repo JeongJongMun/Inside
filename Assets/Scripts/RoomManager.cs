@@ -9,7 +9,7 @@ public class RoomManager : MonoBehaviour
 
     public GameObject[] wallPanelZoom;
 
-    public GameObject[] arrow; // 순서대로 왼쪽, 오른쪽, 아래쪽 화살표
+    public GameObject[] arrows; // 순서대로 왼쪽, 오른쪽, 아래쪽 화살표
 
     public List<Trick> tricks = new List<Trick>();
 
@@ -57,16 +57,17 @@ public class RoomManager : MonoBehaviour
         }
     }
 
+    // 트릭 클릭 시 트릭들에게 알림
     public void OnClickTrick(GameObject obj)
     {
         NotifyTricks(obj);
     }
     public void SetActiveArrow()
     {
-        foreach (GameObject a in arrow)
+        foreach (GameObject arrow in arrows)
         {
-            if (a.activeSelf) a.SetActive(false);
-            else a.SetActive(true);
+            if (arrow.activeSelf) arrow.SetActive(false);
+            else arrow.SetActive(true);
         }
     }
 }

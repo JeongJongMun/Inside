@@ -7,17 +7,21 @@ public class KidRoomCurtain : Trick
     private bool isOpened = false;
     public override void SolveOrNotSolve(GameObject obj)
     {
-        if (obj.name == "Curtain" && !isOpened)
+        if (obj.name == "Curtain")
         {
-            Debug.Log("Curtain Opened");
-            gameObject.GetComponent<Image>().sprite = curtains[1];
-            isOpened = true;
+            if (!isOpened)
+            {
+                Debug.Log("Curtain Opened");
+                gameObject.GetComponent<Image>().sprite = curtains[1];
+                isOpened = true;
+            }
+            else
+            {
+                Debug.Log("Curtain Closed");
+                gameObject.GetComponent<Image>().sprite = curtains[0];
+                isOpened = false;
+            }
         }
-        else if (obj.name == "Curtain" && isOpened)
-        {
-            Debug.Log("Curtain Closed");
-            gameObject.GetComponent<Image>().sprite = curtains[0];
-            isOpened = false;
-        }
+
     }
 }
