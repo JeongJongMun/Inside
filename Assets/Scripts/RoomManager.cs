@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using UnityEditor.Tilemaps;
 using UnityEngine;
 
 public class RoomManager : MonoBehaviour
@@ -13,6 +12,9 @@ public class RoomManager : MonoBehaviour
 
     public List<Trick> tricks = new List<Trick>();
 
+    // 패널 스택
+    public Stack<GameObject> panels = new Stack<GameObject>();
+
 
 
     // 왼쪽 화살표 클릭 시
@@ -21,7 +23,6 @@ public class RoomManager : MonoBehaviour
         wallPanel[currentWallPanel].SetActive(false);
         currentWallPanel = (currentWallPanel + 3) % 4;
         wallPanel[currentWallPanel].SetActive(true);
-
     }
 
     // 오른쪽 화살표 클릭 시
@@ -31,24 +32,21 @@ public class RoomManager : MonoBehaviour
         currentWallPanel = (currentWallPanel + 1) % 4;
         wallPanel[currentWallPanel].SetActive(true);
     }
-    // 확대
-    public void OnZoom()
+    // 오브젝트 클릭 시 확대 OR 슬라이딩 퍼즐 패널 켜기
+    public void ZoomIn(GameObject panel)
     {
+        panels.Push(panel);
+        panel.SetActive(true);
         SetActiveArrow();
-        wallPanel[currentWallPanel].SetActive(false);
-        if (currentWallPanel == 3) 
-            wallPanelZoom[2].SetActive(true);
-        else wallPanelZoom[currentWallPanel].SetActive(true);
     }
-    // 아래쪽 화살표 클릭 시
-    public void OnClickBottomArrow()
+    // 아래쪽 화살표 클릭 시 축소 OR 슬라이딩 패널 끄기
+    public void ZoomOut()
     {
+        GameObject panel = panels.Pop();
+        panel.SetActive(false);
         SetActiveArrow();
-        wallPanel[currentWallPanel].SetActive(true);
-        if (currentWallPanel == 3)
-            wallPanelZoom[2].SetActive(false);
-        else wallPanelZoom[currentWallPanel].SetActive(false);
     }
+
     void NotifyTricks(GameObject obj)
     {
         foreach (Trick trick in tricks)
@@ -62,12 +60,22 @@ public class RoomManager : MonoBehaviour
     {
         NotifyTricks(obj);
     }
+
+    // 좌우 화살표와 아래 화살표 활성화 관리
     public void SetActiveArrow()
     {
-        foreach (GameObject arrow in arrows)
+        // 패널 스택에 1개라도 있다면 (좌우 화살표는 없고 아래쪽 화살표만 있어야 함)
+        if (panels.Count > 0)
         {
-            if (arrow.activeSelf) arrow.SetActive(false);
-            else arrow.SetActive(true);
+            arrows[0].SetActive(false);
+            arrows[1].SetActive(false);
+            arrows[2].SetActive(true);
+        }
+        else
+        {
+            arrows[0].SetActive(true);
+            arrows[1].SetActive(true);
+            arrows[2].SetActive(false);
         }
     }
 }

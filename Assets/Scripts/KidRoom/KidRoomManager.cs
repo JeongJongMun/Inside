@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class KidRoomManager : RoomManager
 {
+    public GameObject slidingPuzzlePanel;
 
     public void AddTrick(Trick trick)
     {
@@ -27,8 +28,6 @@ public class KidRoomManager : RoomManager
             Debug.Log("해당 트릭이 리스트에 존재하지 않아서 제거하지 못함.");
         }
     }
-
-
 
     /*
     아이방 트릭
