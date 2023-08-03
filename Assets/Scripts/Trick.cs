@@ -9,6 +9,8 @@ public abstract class Trick : MonoBehaviour
     public void Solve()
     {
         this.isSolved = true;
+        StartCoroutine(GameManager.Instance.FadeInOut());
+
     }
     public bool IsSolved()
     {

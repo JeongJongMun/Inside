@@ -17,7 +17,6 @@ public class KidRoomClock : Trick
                 Debug.Log("Clock Solved");
                 Solve();
 
-                // 시침 한시간 이동
                 TicTok();
 
                 // 시계 덜렁
@@ -28,12 +27,12 @@ public class KidRoomClock : Trick
             {
                 Debug.Log("Clock Not Sloved");
 
-                // 시침 한시간 이동
                 TicTok();
             }
         }
     }
 
+    // 시침 한 시간 이동
     void TicTok()
     {
         hourAngle -= 30f;

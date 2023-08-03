@@ -17,8 +17,6 @@ public class Board : MonoBehaviour
 	private	float		neighborTileDistance = 242;				// 인접한 타일 사이의 거리. 별도로 계산할 수도 있다.
 
 	public	Vector3		EmptyTilePosition { set; get; }			// 빈 타일의 위치
-	public	int			Playtime { private set; get; } = 0;		// 게임 플레이 시간
-	public	int			MoveCount { private set; get; } = 0;    // 이동 횟수
 
 	public GameObject	slidingPuzzlePanel;						// 슬라이딩 퍼즐 패널
 	public GameObject	bookShelf;								// 성공 시 책장 이동
@@ -29,7 +27,7 @@ public class Board : MonoBehaviour
 
 		SpawnTiles();
 
-		UnityEngine.UI.LayoutRebuilder.ForceRebuildLayoutImmediate(tilesParent.GetComponent<RectTransform>());
+        LayoutRebuilder.ForceRebuildLayoutImmediate(tilesParent.GetComponent<RectTransform>());
 
 		// 현재 프레임이 종료될 때까지 대기
 		yield return new WaitForEndOfFrame();
@@ -39,7 +37,6 @@ public class Board : MonoBehaviour
 
 		StartCoroutine("OnSuffle");
 		// 게임시작과 동시에 플레이시간 초 단위 연산
-		StartCoroutine("CalculatePlaytime");
 	}
 
 	private void SpawnTiles()
@@ -89,9 +86,6 @@ public class Board : MonoBehaviour
 			EmptyTilePosition = tile.GetComponent<RectTransform>().localPosition;
 
 			tile.OnMoveTo(goalPosition);
-
-			// 타일을 이동할 때마다 이동 횟수 증가
-			MoveCount ++;
 		}
 	}
 
@@ -103,28 +97,14 @@ public class Board : MonoBehaviour
 		if ( tiles.Count == puzzleSize.x * puzzleSize.y - 1 )
 		{
 			Debug.Log("GameClear");
-			// 게임 클리어했을 때 시간계산 중지
-			StopCoroutine("CalculatePlaytime");
-			// Board 오브젝트에 컴포넌트로 설정하기 때문에
-			// 그리고 한번만 호출하기 때문에 변수를 만들지 않고 바로 호출..
-			GetComponent<UIController>().OnResultPanel();
+			OnSuccess();
 		}
 	}
 
-	private IEnumerator CalculatePlaytime()
-	{
-		while ( true )
-		{
-			Playtime ++;
-
-			yield return new WaitForSeconds(1);
-		}
-	}
 
 	// 성공 시 책장 이동
 	public void OnSuccess()
 	{
-		slidingPuzzlePanel.SetActive(false);
 		bookShelf.transform.position += Vector3.left * 500;
 		bookShelf.GetComponent<Image>().raycastTarget = false;
 	}

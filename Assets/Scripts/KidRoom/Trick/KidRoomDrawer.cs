@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class KidRoomDrawer : Trick
 {
@@ -11,7 +12,11 @@ public class KidRoomDrawer : Trick
                 Debug.Log("Drawer Solved");
                 Solve();
                 Inventory.Instance.RemoveItem("KidRoomKey");
-                gameObject.SetActive(false);
+
+                Color color = GetComponent<Image>().color;
+                color.a = 0;
+                GetComponent<Image>().color = color;
+                GetComponent<Image>().raycastTarget = false;
             }
             else
             {

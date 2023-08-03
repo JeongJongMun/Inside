@@ -15,6 +15,7 @@ public class KidRoomBear : Trick
             {
                 Debug.Log("Bear Solved");
                 Solve();
+
                 gameObject.GetComponent<Image>().sprite = bearBody;
                 gameObject.GetComponent<Image>().raycastTarget = false;
                 bearHead.SetActive(true);

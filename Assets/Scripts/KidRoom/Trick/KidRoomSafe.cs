@@ -2,19 +2,38 @@ using System.Linq;
 using TMPro;
 using UnityEditor.Search;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class KidRoomSafe : Trick
 {
     public TMP_Text display;
+
+    [Header("벽면2 금고 열린거 스프라이트")]
+    public Sprite safeOpen;
+
+    [Header("벽면2 금고")]
+    public GameObject safe;
+
+    [Header("벽면2 확대 금고 열린거")]
+    public GameObject safeOpenZoomIn;
+
+    [Header("아이템")]
+    public GameObject latch1;
+    public GameObject lego3;
+
     public override void SolveOrNotSolve(GameObject obj)
     {
         if (obj.name == "Safe")
         {
             if (display.text == "0710")
             {
-                Solve();
-                gameObject.SetActive(false);
                 Debug.Log("Safe Solved");
+                Solve();
+
+                safe.GetComponent<Image>().sprite = safeOpen;
+                safeOpenZoomIn.SetActive(true);
+                latch1.SetActive(true);
+                lego3.SetActive(true);
             }
             else
             {

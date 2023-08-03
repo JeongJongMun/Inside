@@ -11,6 +11,8 @@ public class KidRoomWorldMap : Trick
             if (Inventory.Instance.IsClicked("Cutter"))
             {
                 Debug.Log("WorldMap Solved");
+                Solve();
+
                 gameObject.GetComponent<Image>().sprite = worldMapTorn;
             }
             else

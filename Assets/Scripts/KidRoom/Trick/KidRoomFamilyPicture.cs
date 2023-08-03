@@ -11,6 +11,8 @@ public class KidRoomFamilyPicture : Trick
             if (Inventory.Instance.IsClicked("Cutter"))
             {
                 Debug.Log("FamilyPicture Solved");
+                Solve();
+
                 gameObject.GetComponent<Image>().sprite = familyPictureTorn;
                 gameObject.GetComponent<Image>().raycastTarget = false;
             }

@@ -1,19 +1,20 @@
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using UnityEngine;
 
 public class RoomManager : MonoBehaviour
 {
+    // 4면 벽 패널
     public GameObject[] wallPanel;
     private int currentWallPanel = 0;
 
-    public GameObject[] wallPanelZoom;
-
-    public GameObject[] arrows; // 순서대로 왼쪽, 오른쪽, 아래쪽 화살표
+    // 순서대로 왼쪽, 오른쪽, 아래쪽 화살표
+    public GameObject[] arrows; 
 
     public List<Trick> tricks = new List<Trick>();
 
-    // 패널 스택
-    public Stack<GameObject> panels = new Stack<GameObject>();
+    // 줌&슬라이딩 게임 패널 스택
+    private Stack<GameObject> panels = new Stack<GameObject>();
 
 
 

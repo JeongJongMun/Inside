@@ -1,7 +1,7 @@
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using System.Collections;
 
 public class GameManager : MonoBehaviour
 {
@@ -43,6 +43,11 @@ public class GameManager : MonoBehaviour
 
     public GameObject settingPanel;
 
+    public Image fadeImage; // 트릭을 풀때 이펙트 이미지
+    [SerializeField]
+    [Range(0.01f, 10f)]
+    private float fadeTime;
+
     public void OnClickSettingBtn()
     {
         // 설정창이 활성화 상태라면 비활성화
@@ -67,5 +72,27 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene("KidRoom");
     }
+    public IEnumerator FadeInOut()
+    {
+        yield return StartCoroutine(Fade(0, 1));
 
+        yield return StartCoroutine(Fade(1, 0));
+
+    }
+    private IEnumerator Fade(float start, float end)
+    {
+        float currentTime = 0.0f;
+        float percent = 0.0f;
+
+        while (percent < 1)
+        {
+            currentTime += Time.deltaTime;
+            percent = currentTime / fadeTime;
+
+            Color color = fadeImage.color;
+            color.a = Mathf.Lerp(start, end, percent);
+            fadeImage.color = color;
+            yield return null;
+        }
+    }
 }
