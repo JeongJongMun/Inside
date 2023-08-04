@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 // 트릭들의 추상 클래스
@@ -10,7 +9,6 @@ public abstract class Trick : MonoBehaviour
     {
         this.isSolved = true;
         StartCoroutine(GameManager.Instance.FadeInOut());
-
     }
     public bool IsSolved()
     {

@@ -46,9 +46,10 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    // 토글 참조를 위한 배열
+    [Header("아이템 토글 배열")]
     public List<Toggle> toggles = new List<Toggle>();
-    // 인벤토리 슬롯 객체 배열
+
+    [Header("인벤토리 슬롯 배열")]
     public List<InventorySlot> inventory = new List<InventorySlot>();
 
 
@@ -106,12 +107,12 @@ public class Inventory : MonoBehaviour
     }
 
 
+    // 아이템 삭제
     public void RemoveItem(string itemName)
     {
         // 아이템이 인벤토리에 있다면
         if (inventory.IsContainsItem(itemName))
         {
-            
             foreach (InventorySlot slot in inventory)
             {
                 if (slot.item.itemName == itemName)
@@ -129,6 +130,8 @@ public class Inventory : MonoBehaviour
             Debug.LogFormat("{0} 아이템이 인벤토리에 존재하지 않아 삭제하지 못함", itemName);
         }
     }
+
+    // 아이템 사용/삭제 시 정렬
     public void SortItem()
     {
         for (int i = 0; i < inventory.Count; i++)

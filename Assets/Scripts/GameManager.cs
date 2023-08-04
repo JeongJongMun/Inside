@@ -2,6 +2,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System.Collections;
+using System.Runtime.InteropServices;
+using System.Runtime.ExceptionServices;
 
 public class GameManager : MonoBehaviour
 {
@@ -40,11 +42,20 @@ public class GameManager : MonoBehaviour
      
      */
 
+    [Header("정신력 포인트")]
+    public int mentalPoint = 3;
 
+    [Header("정신력 포인트 이미지 배열")]
+    public GameObject[] mentalImage;
+
+    [Header("설정창 패널")]
     public GameObject settingPanel;
 
-    public Image fadeImage; // 트릭을 풀때 이펙트 이미지
+    [Header("트릭 성공 이펙트")]
+    public Image fadeImage;
+
     [SerializeField]
+    [Header("이펙트 속도")]
     [Range(0.01f, 10f)]
     private float fadeTime;
 
@@ -64,14 +75,16 @@ public class GameManager : MonoBehaviour
         // 화면에 있는 아이템 삭제
         Destroy(_item);
     }
+
     public void OnClickTestBtn()
     {
-        SceneManager.LoadScene("TestScene");
+        if (SceneManager.GetActiveScene().name == "KidRoom")
+            SceneManager.LoadScene("IdolRoom");
+        else if (SceneManager.GetActiveScene().name == "IdolRoom")
+            SceneManager.LoadScene("KidRoom");
     }
-    public void OnClickTestBackBtn()
-    {
-        SceneManager.LoadScene("KidRoom");
-    }
+
+    // 트릭 성공 시 이펙트
     public IEnumerator FadeInOut()
     {
         yield return StartCoroutine(Fade(0, 1));
@@ -94,5 +107,19 @@ public class GameManager : MonoBehaviour
             fadeImage.color = color;
             yield return null;
         }
+    }
+
+    // 멘탈 포인트 -1
+    public void MentalBreak()
+    {
+        mentalPoint--;
+        for (int i = 0; i < 3; i++)
+        {
+            if (i < mentalPoint)
+                mentalImage[i].SetActive(true);
+            else 
+                mentalImage[i].SetActive(false);
+        }
+
     }
 }

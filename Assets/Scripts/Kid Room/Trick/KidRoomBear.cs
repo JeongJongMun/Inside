@@ -15,6 +15,7 @@ public class KidRoomBear : Trick
             {
                 Debug.Log("Bear Solved");
                 Solve();
+                VoiceManager.Instance.ScreamingMode();
 
                 gameObject.GetComponent<Image>().sprite = bearBody;
                 gameObject.GetComponent<Image>().raycastTarget = false;
