@@ -1,6 +1,4 @@
-using System.Linq;
 using TMPro;
-using UnityEditor.Search;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -21,19 +19,16 @@ public class KidRoomSafe : Trick
     public GameObject latch1;
     public GameObject lego3;
 
-    public override void SolveOrNotSolve(GameObject obj)
+    public override void TrySolve(GameObject obj)
     {
         if (obj.name == "Safe")
         {
             if (display.text == "0710")
             {
                 Debug.Log("Safe Solved");
-                Solve();
-
-                safe.GetComponent<Image>().sprite = safeOpen;
-                safeOpenZoomIn.SetActive(true);
-                latch1.SetActive(true);
-                lego3.SetActive(true);
+                Inventory.Instance.RemoveItem("Password");
+                Solved();
+                SolvedAction();
             }
             else
             {
@@ -41,6 +36,13 @@ public class KidRoomSafe : Trick
             }
         }
 
+    }
+    public override void SolvedAction()
+    {
+        safe.GetComponent<Image>().sprite = safeOpen;
+        safeOpenZoomIn.SetActive(true);
+        latch1.SetActive(true);
+        lego3.SetActive(true);
     }
 
     public void OnClickKeypad(GameObject keypad)

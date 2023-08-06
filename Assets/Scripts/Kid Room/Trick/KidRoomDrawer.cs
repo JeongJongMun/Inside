@@ -3,25 +3,28 @@ using UnityEngine.UI;
 
 public class KidRoomDrawer : Trick
 {
-    public override void SolveOrNotSolve(GameObject obj)
+    public override void TrySolve(GameObject obj)
     {
-        if (obj.name == "Drawer")
+        if (obj.name == "DrawerZoom")
         {
             if (Inventory.Instance.IsClicked("KidRoomKey"))
             {
                 Debug.Log("Drawer Solved");
-                Solve();
                 Inventory.Instance.RemoveItem("KidRoomKey");
-
-                Color color = GetComponent<Image>().color;
-                color.a = 0;
-                GetComponent<Image>().color = color;
-                GetComponent<Image>().raycastTarget = false;
+                Solved();
+                SolvedAction();
             }
             else
             {
                 Debug.Log("Drawer Not Sloved");
             }
         }
+    }
+    public override void SolvedAction()
+    {
+        Color color = GetComponent<Image>().color;
+        color.a = 0;
+        GetComponent<Image>().color = color;
+        GetComponent<Image>().raycastTarget = false;
     }
 }

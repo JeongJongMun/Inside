@@ -61,7 +61,7 @@ public class Inventory : MonoBehaviour
             foreach (Toggle toggle in toggles) 
             { 
                 // childCount == 3 일때 (아이템이 먹어져 있을때) 만 접근
-                if (toggle.transform.childCount == 3 && toggle.transform.GetChild(2).GetComponent<Item>().itemName == _item && toggle.isOn)
+                if (toggle.transform.childCount == 3 && toggle.transform.GetChild(2).GetComponent<Item>().objectName == _item && toggle.isOn)
                 {
                     toggle.isOn = false;
                     return true;
@@ -88,7 +88,7 @@ public class Inventory : MonoBehaviour
     public void AcquireItem(Item _item)
     {
         // 아이템이 인벤토리에 없다면
-        if (!inventory.IsContainsItem(_item.itemName))
+        if (!inventory.IsContainsItem(_item.objectName))
         {
             foreach (InventorySlot slot in inventory)
             {
@@ -96,13 +96,15 @@ public class Inventory : MonoBehaviour
                 {
                     // 비어있는 인벤토리 슬롯에 아이템 객체 추가
                     slot.AddItem(_item);
+                    // 아이템 획득 정보 저장
+                    GameManager.Instance.SetItemAcquired(_item.roomName, _item.itemName);
                     break;
                 }
             }
         }
         else
         {
-            Debug.LogFormat("이미 {0} 아이템이 인벤토리에 존재하여 추가하지 못함", _item.itemName);
+            Debug.LogFormat("이미 {0} 아이템이 인벤토리에 존재하여 추가하지 못함", _item.objectName);
         }
     }
 
@@ -115,7 +117,7 @@ public class Inventory : MonoBehaviour
         {
             foreach (InventorySlot slot in inventory)
             {
-                if (slot.item.itemName == itemName)
+                if (slot.item.objectName == itemName)
                 {
                     // 슬롯에서 아이템 삭제
                     slot.RemoveItem();

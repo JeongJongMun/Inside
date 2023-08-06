@@ -18,8 +18,8 @@ public class Board : MonoBehaviour
 
 	public	Vector3		EmptyTilePosition { set; get; }			// 빈 타일의 위치
 
-	public GameObject	slidingPuzzlePanel;						// 슬라이딩 퍼즐 패널
-	public GameObject	bookShelf;								// 성공 시 책장 이동
+	public GameObject	slidingPuzzlePanel;                     // 슬라이딩 퍼즐 패널
+	public GameObject	kidRoomConsole;
 
 	private IEnumerator Start()
 	{
@@ -97,15 +97,8 @@ public class Board : MonoBehaviour
 		if ( tiles.Count == puzzleSize.x * puzzleSize.y - 1 )
 		{
 			Debug.Log("GameClear");
-			OnSuccess();
+			kidRoomConsole.GetComponent<KidRoomConsole>().isGameWin = true;
+			kidRoomConsole.GetComponent<KidRoomConsole>().TrySolve(kidRoomConsole);
 		}
-	}
-
-
-	// 성공 시 책장 이동
-	public void OnSuccess()
-	{
-		bookShelf.transform.position += Vector3.left * 500;
-		bookShelf.GetComponent<Image>().raycastTarget = false;
 	}
 }

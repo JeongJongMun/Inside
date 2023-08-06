@@ -4,23 +4,27 @@ using UnityEngine.UI;
 public class KidRoomLamp : Trick
 {
     public Sprite[] lamps; // 0 : lampOn, 1 : lampOff
-    private bool isOn = true;
-    public override void SolveOrNotSolve(GameObject obj)
+
+    public override void TrySolve(GameObject obj)
     {
-        if (obj.name == "Lamp")
+        if (obj.name == "LampZoom" || obj.name == "Lamp")
         {
-            if (isOn)
+            if (!isSolved)
             {
                 Debug.Log("Lamp Off");
-                gameObject.GetComponent<Image>().sprite = lamps[1];
-                isOn = false;
+                SolvedAction();
             }
             else
             {
                 Debug.Log("Lamp On");
                 gameObject.GetComponent<Image>().sprite = lamps[0];
-                isOn = true;
+                isSolved = false;
             }
         }
+    }
+    public override void SolvedAction()
+    {
+        gameObject.GetComponent<Image>().sprite = lamps[1];
+        isSolved = true;
     }
 }

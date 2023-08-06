@@ -23,7 +23,7 @@ public class RoomManager : MonoBehaviour
     [Header("벽면 위에 쌓이는 패널 스택 ex) 줌, 슬라이딩 트릭")]
     private Stack<GameObject> panels = new Stack<GameObject>();
 
-    private void Start()
+    private void Awake()
     {
         leftArrow = GameObject.Find("UICanvas").transform.GetChild(0).gameObject;
         rightArrow = GameObject.Find("UICanvas").transform.GetChild(1).gameObject;
@@ -32,6 +32,30 @@ public class RoomManager : MonoBehaviour
         leftArrow.GetComponent<Button>().onClick.AddListener(OnClickLeftArrow);
         rightArrow.GetComponent<Button>().onClick.AddListener(OnClickRightArrow);
         bottomArrow.GetComponent<Button>().onClick.AddListener(ZoomOut);
+    }
+    internal void Initialize(List<string> trickNames)
+    {
+        // 부모 오브젝트 찾기
+        GameObject canvas = GameObject.Find("Canvas");
+
+        foreach (var trick in trickNames)
+        {
+            GameObject childObject = FindDeepChild(canvas, trick);
+
+            if (childObject != null)
+            {
+                Trick[] tricks = childObject.GetComponents<Trick>();
+                foreach (Trick t in tricks)
+                {
+                    AddTrick(t);
+                    Debug.LogFormat("Found Trick: {0}", childObject.name);
+                }
+            }
+            else
+            {
+                Debug.LogFormat("{0} Trick Not Founded", childObject.name);
+            }
+        }
     }
 
     // 왼쪽 화살표 클릭 시
@@ -68,7 +92,7 @@ public class RoomManager : MonoBehaviour
     {
         foreach (Trick trick in tricks)
         {
-            trick.SolveOrNotSolve(obj);
+            trick.TrySolve(obj);
         }
     }
 
@@ -94,5 +118,47 @@ public class RoomManager : MonoBehaviour
             rightArrow.SetActive(true);
             bottomArrow.SetActive(false);
         }   
+    }
+    // 트릭을 재귀적으로 찾기
+    internal GameObject FindDeepChild(GameObject parent, string name)
+    {
+        Transform parentTransform = parent.transform;
+
+        if (parent.name == name)
+        {
+            return parent;
+        }
+
+        foreach (Transform child in parentTransform)
+        {
+            GameObject result = FindDeepChild(child.gameObject, name);
+            if (result != null)
+                return result;
+        }
+
+        return null;
+    }
+
+    internal void AddTrick(Trick trick)
+    {
+        if (tricks.Contains(trick))
+        {
+            Debug.Log("이미 해당 트릭이 리스트에 존재하고 있음.");
+        }
+        else
+        {
+            tricks.Add(trick);
+        }
+    }
+    internal void RemoveTrick(Trick trick)
+    {
+        if (tricks.Contains(trick))
+        {
+            tricks.Remove(trick);
+        }
+        else
+        {
+            Debug.Log("해당 트릭이 리스트에 존재하지 않아서 제거하지 못함.");
+        }
     }
 }

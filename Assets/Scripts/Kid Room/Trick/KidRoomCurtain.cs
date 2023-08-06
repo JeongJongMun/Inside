@@ -4,24 +4,27 @@ using UnityEngine.UI;
 public class KidRoomCurtain : Trick
 {
     public Sprite[] curtains;
-    private bool isOpened = false;
-    public override void SolveOrNotSolve(GameObject obj)
+
+    public override void TrySolve(GameObject obj)
     {
         if (obj.name == "Curtain")
         {
-            if (!isOpened)
+            if (!isSolved)
             {
                 Debug.Log("Curtain Opened");
-                gameObject.GetComponent<Image>().sprite = curtains[1];
-                isOpened = true;
+                SolvedAction();
             }
             else
             {
                 Debug.Log("Curtain Closed");
                 gameObject.GetComponent<Image>().sprite = curtains[0];
-                isOpened = false;
+                isSolved = false;
             }
         }
-
+    }
+    public override void SolvedAction()
+    {
+        gameObject.GetComponent<Image>().sprite = curtains[1];
+        isSolved = true;
     }
 }

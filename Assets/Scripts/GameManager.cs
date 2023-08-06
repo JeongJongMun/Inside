@@ -2,8 +2,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System.Collections;
-using System.Runtime.InteropServices;
-using System.Runtime.ExceptionServices;
+using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour
 {
@@ -33,14 +32,7 @@ public class GameManager : MonoBehaviour
             return instance;
         }
     }
-    /*
-    필요한 전역 변수
-    정신력 포인트
-    게임 진척도(어떤 트릭을 풀었는지)
-    
 
-     
-     */
 
     [Header("정신력 포인트")]
     public int mentalPoint = 3;
@@ -122,4 +114,111 @@ public class GameManager : MonoBehaviour
         }
 
     }
+
+    // 아이방 트릭 진행 상황
+    private Dictionary<string, bool> isTrickSolved_Kid = new Dictionary<string, bool>()
+    {
+        { "DrawerZoom",     false},
+        { "Bear",           false },
+        { "Clock",          false },
+        { "Curtain",        false },
+        { "FamilyPicture",  false },
+        { "Safe",           false },
+        { "WorldMap",       false },
+        { "Lamp",           false },
+        { "LampZoom",       false },
+        { "LegoHole",       false },
+        { "LegoHole1",      false },
+        { "LegoHole2",      false },
+        { "LegoHole3",      false },
+        { "ConsoleHole",    false },
+        { "Console",        false },
+        { "Door",           false },
+        { "Switch",         false },
+    };
+
+    // 아이돌방 트릭 진행 상황
+    private Dictionary<string, bool> isTrickSolved_Idol = new Dictionary<string, bool>()
+    {
+        { "Closet",     false},
+    };
+    // 트릭이 풀렸는가 확인
+    public bool IsTrickSolved(string roomName, string trickName)
+    {
+        switch (roomName) 
+        {
+            case "Kid":
+                return isTrickSolved_Kid[trickName];
+            case "Idol":
+                return isTrickSolved_Idol[trickName];
+            default:
+                return false;
+        }
+    }
+    // 트릭을 풀었다고 설정
+    public void SetTrickSolved(string roomName, string trickName)
+    {
+        switch (roomName)
+        {
+            case "Kid":
+                isTrickSolved_Kid[trickName] = true;
+                Debug.LogFormat("{0} 방의 {1} 트릭이 해결되었다고 저장", roomName, trickName);
+                break;
+            case "Idol":
+                isTrickSolved_Idol[trickName] = true;
+                Debug.LogFormat("{0} 방의 {1} 트릭이 해결되었다고 저장", roomName, trickName);
+                break;
+            default:
+                break;
+        }
+    }
+
+    // 아이방 아이템 획득 상황
+    private Dictionary<ItemName, bool> isItemAcquired_Kid = new Dictionary<ItemName, bool>()
+    {
+        {ItemName.Console,     false},
+        {ItemName.Cutter,      false},
+        {ItemName.KidRoomKey,  false},
+        {ItemName.Latch1,      false},
+        {ItemName.Lego1,       false},
+        {ItemName.Lego2,       false},
+        {ItemName.Lego3,       false},
+        {ItemName.Password,    false},
+    };
+    // 아이돌방 아이템 획득 상황
+    private Dictionary<ItemName, bool> isItemAcquired_Idol = new Dictionary<ItemName, bool>()
+    {
+        {ItemName.Broom,     false},
+    };
+
+    public bool IsItemAcquired(string roomName, ItemName itemName)
+    {
+        switch (roomName)
+        {
+            case "Kid":
+                return isItemAcquired_Kid[itemName];
+            case "Idol":
+                return isItemAcquired_Idol[itemName];
+            default: 
+                return false;
+        }
+    }
+    public void SetItemAcquired(string roomName, ItemName itemName)
+    {
+        switch (roomName)
+        {
+            case "Kid":
+                isItemAcquired_Kid[itemName] = true;
+                Debug.LogFormat("{0} 방의 {1} 아이템을 획득하였다고 저장", roomName, itemName);
+                break;
+            case "Idol":
+                isItemAcquired_Idol[itemName] = true;
+                Debug.LogFormat("{0} 방의 {1} 아이템을 획득하였다고 저장", roomName, itemName);
+                break;
+            default:
+                break;
+        }
+    }
+
+
 }

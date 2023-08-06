@@ -1,6 +1,5 @@
-using PlayFab.MultiplayerModels;
-using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class KidRoomClock : Trick
 {
@@ -8,28 +7,34 @@ public class KidRoomClock : Trick
 
     [SerializeField]
     private float hourAngle = -90f;
-    public override void SolveOrNotSolve(GameObject obj)
+    public override void TrySolve(GameObject obj)
     {
         if (obj.name == "Clock")
         {
             if (hourAngle == -330f)
             {
                 Debug.Log("Clock Solved");
-                Solve();
-
-                TicTok();
-
-                // ½Ã°è ´ú··
-                gameObject.transform.position += Vector3.down * 70;
-                gameObject.transform.Rotate(0, 0, 30);
+                Solved();
+                SolvedAction();
             }
             else if (!IsSolved())
             {
-                Debug.Log("Clock Not Sloved");
+                Debug.Log("Clock Not Solved");
 
                 TicTok();
             }
         }
+    }
+    public override void SolvedAction()
+    {
+        hourAngle = -360f;
+        hour.transform.localEulerAngles = new Vector3(0f, 0f, hourAngle);
+
+        GetComponent<Image>().raycastTarget = false;
+
+        // ½Ã°è ´ú··
+        gameObject.transform.position += Vector3.down * 70;
+        gameObject.transform.Rotate(0, 0, 30);
     }
 
     // ½ÃÄ§ ÇÑ ½Ã°£ ÀÌµ¿
