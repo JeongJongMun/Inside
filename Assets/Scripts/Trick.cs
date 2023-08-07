@@ -5,12 +5,12 @@ public abstract class Trick : MonoBehaviour
 {
     internal bool isSolved = false;
     internal string roomName;
-    void Start()
+    private void Start()
     {
         // 현재 트릭이 속한 방 이름 가져오기
         roomName = GameObject.FindWithTag("RoomManager").name.Substring(11);
         // 씬 로드시에 트릭을 푼 적이 있다면 적용
-        if (GameManager.Instance.IsTrickSolved(roomName, this.name))
+        if (DatabaseManager.Instance.IsTrickSolved(roomName, this.name))
             SolvedAction();
     }
 
@@ -18,7 +18,7 @@ public abstract class Trick : MonoBehaviour
     public void Solved()
     {
         this.isSolved = true;
-        GameManager.Instance.SetTrickSolved(roomName, this.name);
+        DatabaseManager.Instance.SetTrickStatus(roomName, this.name, true);
         StartCoroutine(GameManager.Instance.FadeInOut());
     }
     // 트릭이 풀렸는가 확인

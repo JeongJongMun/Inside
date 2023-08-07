@@ -97,7 +97,7 @@ public class Inventory : MonoBehaviour
                     // 비어있는 인벤토리 슬롯에 아이템 객체 추가
                     slot.AddItem(_item);
                     // 아이템 획득 정보 저장
-                    GameManager.Instance.SetItemAcquired(_item.roomName, _item.itemName);
+                    DatabaseManager.Instance.SetItemAcquired(_item.roomName, _item.itemName);
                     break;
                 }
             }

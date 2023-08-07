@@ -25,8 +25,11 @@ public class KidRoomLegoHole1 : Trick
     }
     public override void SolvedAction()
     {
-        legoHole.GetComponent<KidRoomLegoHole>().legoCount++;
-        legoHole.GetComponent<KidRoomLegoHole>().TrySolve(legoHole);
-        lego1.SetActive(true);
+        if (!DatabaseManager.Instance.IsTrickSolved(roomName, "LegoHole"))
+        {
+            legoHole.GetComponent<KidRoomLegoHole>().legoCount++;
+            legoHole.GetComponent<KidRoomLegoHole>().TrySolve(legoHole);
+            lego1.SetActive(true);
+        }
     }
 }

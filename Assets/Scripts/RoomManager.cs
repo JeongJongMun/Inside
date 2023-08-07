@@ -4,6 +4,14 @@ using UnityEngine.UI;
 
 public class RoomManager : MonoBehaviour
 {
+    /// <summary>
+    /// 각 방 매니저 역할
+    /// 1. 벽 전환 및 확대
+    /// 2. 방 시작 시 모든 화살표 참조
+    /// 3. 현재 방의 모든 트릭 참조 (트릭 오브젝트에 tag를 Trick으로 설정하여야 함)
+    /// 4. 모든 트릭 참조하면서 Database Manager에 트릭 자동 추가
+    /// 5. 트릭 클릭 시 모든 트릭에게 알림 (옵저버 패턴)
+    /// </summary>
     [Header("1~4번 벽면")]
     public GameObject[] wallPanel;
 
@@ -16,12 +24,19 @@ public class RoomManager : MonoBehaviour
     internal GameObject rightArrow;
     internal GameObject bottomArrow;
 
+    [SerializeField]
+    [Header("현재 방의 트릭 오브젝트들")]
+    private HashSet<GameObject> trickObjects = new HashSet<GameObject>();
+
     [Header("현재 방의 트릭들")]
     public List<Trick> tricks = new List<Trick>();
 
     [SerializeField]
     [Header("벽면 위에 쌓이는 패널 스택 ex) 줌, 슬라이딩 트릭")]
     private Stack<GameObject> panels = new Stack<GameObject>();
+
+    [SerializeField]
+    private string roomName;
 
     private void Awake()
     {
@@ -33,28 +48,53 @@ public class RoomManager : MonoBehaviour
         rightArrow.GetComponent<Button>().onClick.AddListener(OnClickRightArrow);
         bottomArrow.GetComponent<Button>().onClick.AddListener(ZoomOut);
     }
-    internal void Initialize(List<string> trickNames)
+    private void Start()
+    {
+        roomName = this.name.Substring(11);
+        Initialize("Trick");
+    }
+
+    // 트릭을 재귀적으로 찾기
+    internal void FindDeepChild(GameObject parent, string _tag)
+    {
+        Transform parentTransform = parent.transform;
+
+        if (parent.tag == _tag && !trickObjects.Contains(parent))
+        {
+            trickObjects.Add(parent);
+        }
+
+        foreach (Transform child in parentTransform)
+        {
+            FindDeepChild(child.gameObject, _tag);
+        }
+    }
+
+    // 방 시작 시 방 안의 모든 트릭을 tag로 찾음
+    internal void Initialize(string tag)
     {
         // 부모 오브젝트 찾기
         GameObject canvas = GameObject.Find("Canvas");
 
-        foreach (var trick in trickNames)
-        {
-            GameObject childObject = FindDeepChild(canvas, trick);
+        FindDeepChild(canvas, tag);
 
-            if (childObject != null)
+        if (trickObjects != null)
+        {
+            foreach (GameObject obj in trickObjects)
             {
-                Trick[] tricks = childObject.GetComponents<Trick>();
-                foreach (Trick t in tricks)
+                // DatabaseManger에 트릭 추가 
+                if (!DatabaseManager.Instance.IsTrickExist(roomName, obj.name))
                 {
-                    AddTrick(t);
-                    Debug.LogFormat("Found Trick: {0}", childObject.name);
+                    DatabaseManager.Instance.SetTrickStatus(roomName, obj.name, false);
+
                 }
+                AddTrick(obj.GetComponent<Trick>());
+                Debug.LogFormat("Found Trick: {0}", obj.name);
             }
-            else
-            {
-                Debug.LogFormat("{0} Trick Not Founded", childObject.name);
-            }
+        }
+        else
+        {
+            Debug.LogFormat("Trick Not Founded");
         }
     }
 
@@ -119,25 +159,7 @@ public class RoomManager : MonoBehaviour
             bottomArrow.SetActive(false);
         }   
     }
-    // 트릭을 재귀적으로 찾기
-    internal GameObject FindDeepChild(GameObject parent, string name)
-    {
-        Transform parentTransform = parent.transform;
 
-        if (parent.name == name)
-        {
-            return parent;
-        }
-
-        foreach (Transform child in parentTransform)
-        {
-            GameObject result = FindDeepChild(child.gameObject, name);
-            if (result != null)
-                return result;
-        }
-
-        return null;
-    }
 
     internal void AddTrick(Trick trick)
     {

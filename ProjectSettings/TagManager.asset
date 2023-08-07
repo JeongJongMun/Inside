@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Trick
   - RoomManager
+  - Item
   layers:
   - Default
   - TransparentFX

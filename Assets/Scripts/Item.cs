@@ -17,6 +17,7 @@ public enum ItemName
 
     // Idol
     Broom,
+    Latch2,
 }
 
 public class Item : MonoBehaviour
@@ -39,7 +40,7 @@ public class Item : MonoBehaviour
         roomName = GameObject.FindWithTag("RoomManager").name.Substring(11);
 
         // 씬 로드시에 아이템을 획득한 적이 있다면 파괴
-        if (GameManager.Instance.IsItemAcquired(roomName, itemName) && !isInInventory)
+        if (DatabaseManager.Instance.IsItemAcquired(roomName, itemName) && !isInInventory)
         {
             Destroy(gameObject);
         }
