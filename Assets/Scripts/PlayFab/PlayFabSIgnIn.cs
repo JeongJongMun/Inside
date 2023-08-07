@@ -1,6 +1,8 @@
 using UnityEngine;
 using PlayFab;
 using PlayFab.ClientModels;
+using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine.SceneManagement;
 
@@ -9,8 +11,11 @@ public class PlayFabSignIn : MonoBehaviour
     public TMP_InputField emailInputField;
     public TMP_InputField passwordInputField;
 
+    public AudioClip buttonClip; // íš¨ê³¼ìŒ ë‚¼ ì†Œë¦¬
+
     public void SignIn()
     {
+        SoundManager.instance.SFXPlay("Button", buttonClip); // íš¨ê³¼ìŒ
         var emailRequest = new LoginWithEmailAddressRequest
         {
             Email = emailInputField.text,
@@ -20,17 +25,24 @@ public class PlayFabSignIn : MonoBehaviour
     }
     private void OnSignInSuccess(LoginResult result)
     {
-        Debug.LogFormat("·Î±×ÀÎ ¼º°ø");
-        SceneManager.LoadScene("MainScene");
+        Debug.LogFormat("ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
+        SceneManager.LoadScene("Main");
     }
     private void OnSignInFailure(PlayFabError error)
     {
-        Debug.LogWarning("·Î±×ÀÎ ½ÇÆĞ");
+        Debug.LogWarning("ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
         Debug.LogWarning(error);
     }
     public void ClickSignUpBtn()
     {
-        SceneManager.LoadScene("SignUpScene");
+        SoundManager.instance.SFXPlay("Button", buttonClip); // íš¨ê³¼ìŒ
+        StartCoroutine(_ClickSignUpBtn());
+    }
+
+    private IEnumerator _ClickSignUpBtn()
+    {
+        yield return new WaitForSeconds(buttonClip.length);
+        SceneManager.LoadScene("SignUp");
     }
 
 }

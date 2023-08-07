@@ -1,6 +1,8 @@
 using PlayFab;
 using PlayFab.ClientModels;
 using System.Net.Mail;
+using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -11,12 +13,15 @@ public class PlayFabSignUp : MonoBehaviour
     public TMP_InputField passwordInputField;
     public TMP_InputField passwordCheckInputField;
 
+    public AudioClip buttonClip; // íš¨ê³¼ìŒ ë‚¼ ì†Œë¦¬
+
     public void SignUp()
     {
-        // @¸¦ ±âÁØÀ¸·Î ¿ŞÂÊ ¹®ÀÚ¿­¸¸ ³²±è
+        SoundManager.instance.SFXPlay("Button", buttonClip); // íš¨ê³¼ìŒ
+        // @ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ú¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         string username = emailInputField.text.Split(new[] { '@' })[0];
 
-        // È¸¿ø°¡ÀÔ¿¡ ÇÊ¿äÇÑ Á¤º¸ ÀÔ·Â
+        // È¸ï¿½ï¿½ï¿½ï¿½ï¿½Ô¿ï¿½ ï¿½Ê¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½
         var emailRequest = new RegisterPlayFabUserRequest
         {
             Username = username,
@@ -24,37 +29,51 @@ public class PlayFabSignUp : MonoBehaviour
             Password = passwordInputField.text
         };
 
-        // ºñ¹Ğ¹øÈ£ È®ÀÎ
+        // ï¿½ï¿½Ğ¹ï¿½È£ È®ï¿½ï¿½
         if (passwordInputField.text != passwordCheckInputField.text)
         {
-            Debug.LogWarning("ºñ¹Ğ¹øÈ£°¡ ÀÏÄ¡ÇÏÁö ¾Ê½À´Ï´Ù.");
+            Debug.LogWarning("ï¿½ï¿½Ğ¹ï¿½È£ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ï¿½ï¿½ ï¿½Ê½ï¿½ï¿½Ï´ï¿½.");
             return;
         }
-        // ºñ¹Ğ¹øÈ£ ÀÚ¸®¼ö Ã¼Å©
+        // ï¿½ï¿½Ğ¹ï¿½È£ ï¿½Ú¸ï¿½ï¿½ï¿½ Ã¼Å©
         if (passwordInputField.text.Length < 8)
         {
-            Debug.LogWarning("ºñ¹Ğ¹øÈ£¸¦ 8ÀÚ¸® ÀÌ»ó ÀÔ·ÂÇÏ¼¼¿ä.");
+            Debug.LogWarning("ï¿½ï¿½Ğ¹ï¿½È£ï¿½ï¿½ 8ï¿½Ú¸ï¿½ ï¿½Ì»ï¿½ ï¿½Ô·ï¿½ï¿½Ï¼ï¿½ï¿½ï¿½.");
             return;
         }
 
-        // È¸¿ø°¡ÀÔ
+        // È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         PlayFabClientAPI.RegisterPlayFabUser(emailRequest, OnSignUpSuccess, OnSignUpFailire);
     }
 
     private void OnSignUpSuccess(RegisterPlayFabUserResult result)
     {
-        Debug.Log("È¸¿ø°¡ÀÔ ¼º°ø");
-        SceneManager.LoadScene("SignInScene");
+        Debug.Log("È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
+        SoundManager.instance.SFXPlay("Button", buttonClip); // íš¨ê³¼ìŒ
+        StartCoroutine(_ClickBackBtn());
     }
+
+    private IEnumerator _OnSignUpSuccess()
+    {
+        yield return new WaitForSeconds(buttonClip.length);
+        SceneManager.LoadScene("SignIn");
+    }
+
     private void OnSignUpFailire(PlayFabError error)
     {
-        Debug.LogWarning("È¸¿ø°¡ÀÔ ½ÇÆĞ");
+        Debug.LogWarning("È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
         Debug.LogWarning(error);
     }
     public void ClickBackBtn()
     {
-        SceneManager.LoadScene("SignInScene");
+        SoundManager.instance.SFXPlay("Button", buttonClip); // íš¨ê³¼ìŒ
+        StartCoroutine(_ClickBackBtn());
     }
 
+    private IEnumerator _ClickBackBtn()
+    {
+        yield return new WaitForSeconds(buttonClip.length);
+        SceneManager.LoadScene("SignIn");
+    }
 
 }
