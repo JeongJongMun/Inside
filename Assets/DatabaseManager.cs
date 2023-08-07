@@ -120,6 +120,7 @@ public class DatabaseManager : MonoBehaviour
     {
         {ItemName.Broom,       false},
         {ItemName.Latch2,      false},
+        {ItemName.MusicBox,    false},
     };
 
     public bool IsItemAcquired(string roomName, ItemName itemName)

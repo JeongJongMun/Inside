@@ -23,7 +23,7 @@ public class InventorySlot : MonoBehaviour
         int index = item.name.IndexOf("(Clone)");
         if (index > 0) item.name = item.name.Substring(0, index);
 
-        Debug.LogFormat("{0} added in slot", item.objectName);
+        Debug.LogFormat("{0} added in slot", _item.objectName);
     }
     public void RemoveItem()
     {

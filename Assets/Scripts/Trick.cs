@@ -11,16 +11,19 @@ public abstract class Trick : MonoBehaviour
         roomName = GameObject.FindWithTag("RoomManager").name.Substring(11);
         // 씬 로드시에 트릭을 푼 적이 있다면 적용
         if (DatabaseManager.Instance.IsTrickSolved(roomName, this.name))
+        {
             SolvedAction();
+        }
     }
 
     // 트릭이 풀렸을때 모든 트릭이 공통으로 호출
-    public void Solved()
+    public void SetIsSolved(bool _isSolved)
     {
-        this.isSolved = true;
-        DatabaseManager.Instance.SetTrickStatus(roomName, this.name, true);
-        StartCoroutine(GameManager.Instance.FadeInOut());
+        this.isSolved = _isSolved;
+        DatabaseManager.Instance.SetTrickStatus(roomName, this.name, _isSolved);
+        GameManager.Instance.FadeInOut();
     }
+
     // 트릭이 풀렸는가 확인
     public bool IsSolved()
     {

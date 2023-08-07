@@ -40,7 +40,7 @@ public class IdolRoomDressingTableZoom : Trick
             if (brokenTime < 0f)
             {
                 Debug.LogFormat("{0} Solved", this.name);
-                Solved();
+                SetIsSolved(true);
                 SolvedAction();
             }
             else

@@ -11,7 +11,7 @@ public class KidRoomDrawer : Trick
             {
                 Debug.Log("Drawer Solved");
                 Inventory.Instance.RemoveItem("KidRoomKey");
-                Solved();
+                SetIsSolved(true);
                 SolvedAction();
             }
             else

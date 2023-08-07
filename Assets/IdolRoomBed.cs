@@ -8,16 +8,12 @@ public class IdolRoomBed : Trick
         if (obj.name == this.name)
         {
             Debug.LogFormat("{0} Solved", this.name);
-            Solved();
+            SetIsSolved(true);
             SolvedAction();
         }
     }
     public override void SolvedAction()
     {
-        Image image = GetComponent<Image>();
-        Color color = image.color;
-        color.a = 0;
-        image.color = color;
-        image.raycastTarget = false;
+        this.gameObject.SetActive(false);
     }
 }

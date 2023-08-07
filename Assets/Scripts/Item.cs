@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,14 +19,27 @@ public enum ItemName
     // Idol
     Broom,
     Latch2,
+    MusicBox,
 }
 
 public class Item : MonoBehaviour
 {
+    [Header("객체 이름")]
     public string objectName;
+
+    [Header("열거형 이름")]
     public ItemName itemName;
+
+    [Header("아이템 소속 방 이름")]
     public string roomName;
+
+    [Header("인벤토리에 있는가")]
     public bool isInInventory = false;
+
+    private List<ItemName> need_other_item_to_acquired = new List<ItemName>()
+    {
+        ItemName.MusicBox,
+    };
 
     private void Start()
     {
@@ -45,10 +59,14 @@ public class Item : MonoBehaviour
             Destroy(gameObject);
         }
 
-        // 씬 로드시에 OnClick 적용 (인자가 있는 경우 람다 식 사용)
-        GetComponent<Button>().onClick.AddListener(() => GameManager.Instance.OnClickItem(gameObject));
+        // 현재 아이템을 획득하는데 다른 아이템이 필요한게 아니라면 씬 로드시에 OnClick 적용 (인자가 있는 경우 람다 식 사용)
+        if (!need_other_item_to_acquired.Contains(itemName))
+        {
+            Debug.LogFormat("{0} Item Added OnClickItem Listener", itemName);
+            GetComponent<Button>().onClick.AddListener(() => GameManager.Instance.OnClickItem(gameObject));
+        }
     }
-    // Enum 값을 이름으로 변환하는 함수
+    // 이름을 Enum 값으로 변환하는 함수
     private ItemName GetEnumFromName(string name)
     {
         ItemName enumValue = ItemName.None;

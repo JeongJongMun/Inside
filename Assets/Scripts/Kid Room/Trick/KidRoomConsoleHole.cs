@@ -12,7 +12,7 @@ public class KidRoomConsoleHole : Trick
             {
                 Debug.LogFormat("{0} Solved", obj.name);
                 Inventory.Instance.RemoveItem("Console");
-                Solved();
+                SetIsSolved(true);
                 SolvedAction();
             }
             else

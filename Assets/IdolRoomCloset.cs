@@ -8,7 +8,7 @@ public class IdolRoomCloset : Trick
         if (obj.name == name)
         {
             Debug.LogFormat("{0} Solved", name);
-            Solved();
+            SetIsSolved(true);
             SolvedAction();
         }
     }

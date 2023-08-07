@@ -17,7 +17,7 @@ public class IdolRoomSafe : Trick
             if (P[0].text + P[1].text + P[2].text + P[3].text == "1004")
             {
                 Debug.LogFormat("{0} Solved", this.name);
-                Solved();
+                SetIsSolved(true);
                 SolvedAction();
             }
             else

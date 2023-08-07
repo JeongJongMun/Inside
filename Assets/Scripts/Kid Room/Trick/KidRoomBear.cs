@@ -14,7 +14,7 @@ public class KidRoomBear : Trick
             if (Inventory.Instance.IsClicked("Cutter"))
             {
                 Debug.Log("Bear Solved");
-                Solved();
+                SetIsSolved(true);
                 SolvedAction();
                 VoiceManager.Instance.ScreamingMode();
             }

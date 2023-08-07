@@ -27,7 +27,7 @@ public class KidRoomSafe : Trick
             {
                 Debug.Log("Safe Solved");
                 Inventory.Instance.RemoveItem("Password");
-                Solved();
+                SetIsSolved(true);
                 SolvedAction();
             }
             else

@@ -11,7 +11,7 @@ public class KidRoomFamilyPicture : Trick
             if (Inventory.Instance.IsClicked("Cutter"))
             {
                 Debug.Log("FamilyPicture Solved");
-                Solved();
+                SetIsSolved(true);
                 SolvedAction();
             }
             else

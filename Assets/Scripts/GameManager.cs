@@ -77,7 +77,12 @@ public class GameManager : MonoBehaviour
     }
 
     // 트릭 성공 시 이펙트
-    public IEnumerator FadeInOut()
+
+    public void FadeInOut()
+    {
+        StartCoroutine(DoFadeInOut());
+    }
+    private IEnumerator DoFadeInOut()
     {
         yield return StartCoroutine(Fade(0, 1));
 

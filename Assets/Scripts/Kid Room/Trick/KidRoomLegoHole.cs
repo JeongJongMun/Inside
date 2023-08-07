@@ -19,7 +19,7 @@ public class KidRoomLegoHole : Trick
             {
                 Debug.LogFormat("LegoHole Solved");
 
-                Solved();
+                SetIsSolved(true);
                 SolvedAction();
             }
             else

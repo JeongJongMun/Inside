@@ -14,7 +14,7 @@ public class KidRoomLegoHole1 : Trick
             {
                 Debug.LogFormat("{0} is Solved", name);
                 Inventory.Instance.RemoveItem("Lego1");
-                Solved();
+                SetIsSolved(true);
                 SolvedAction();
             }
             else

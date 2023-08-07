@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 1b23c5d1740ec7b41937f7ed2349077a
+guid: eba66be3b49248d4ea22cd3d98cab920
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -119,123 +119,47 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: music_button_0
+      name: Latch2_0
       rect:
         serializedVersion: 2
-        x: 8
-        y: 14
-        width: 132
-        height: 134
+        x: 1
+        y: 140
+        width: 314
+        height: 204
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6173a86ef361f0540a9bee3401c00544
-      internalID: 607987129
+      spriteID: 2ed1ce55853cf5840b774b1e879a7a6c
+      internalID: -1189299206
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: music_button_1
+      name: Latch2_1
       rect:
         serializedVersion: 2
-        x: 169
-        y: 13
-        width: 132
-        height: 134
+        x: 0
+        y: 0
+        width: 315
+        height: 344
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d758520b03dd9204dafbea8e490c379d
-      internalID: 242312972
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: music_button_2
-      rect:
-        serializedVersion: 2
-        x: 337
-        y: 12
-        width: 131
-        height: 135
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a5a669c13cd24234ba478fd11a78e470
-      internalID: 534712095
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: music_button_3
-      rect:
-        serializedVersion: 2
-        x: 506
-        y: 12
-        width: 131
-        height: 135
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 690e1a9b1168dc14091ff0668ab16170
-      internalID: -1284726497
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: music_button_4
-      rect:
-        serializedVersion: 2
-        x: 673
-        y: 13
-        width: 131
-        height: 134
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9803534dce3bafd478af5ebb13503f93
-      internalID: 1786725355
+      spriteID: ce9b3be0ef52a4c4fb87706973da6755
+      internalID: -471150378
       vertices: []
       indices: 
       edges: []
@@ -251,11 +175,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      music_button_0: 607987129
-      music_button_1: 242312972
-      music_button_2: 534712095
-      music_button_3: -1284726497
-      music_button_4: 1786725355
+      Latch2_0: -1189299206
+      Latch2_1: -471150378
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

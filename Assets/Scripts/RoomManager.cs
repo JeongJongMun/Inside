@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -174,6 +175,12 @@ public class RoomManager : MonoBehaviour
     }
     internal void RemoveTrick(Trick trick)
     {
+        StartCoroutine(DoRemoveTrick(trick));
+    }
+    private IEnumerator DoRemoveTrick(Trick trick)
+    {
+        yield return new WaitForSeconds(0.5f);
+
         if (tricks.Contains(trick))
         {
             tricks.Remove(trick);
@@ -182,5 +189,7 @@ public class RoomManager : MonoBehaviour
         {
             Debug.Log("해당 트릭이 리스트에 존재하지 않아서 제거하지 못함.");
         }
+
+        yield return null;
     }
 }

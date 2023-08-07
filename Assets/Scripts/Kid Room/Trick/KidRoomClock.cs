@@ -14,7 +14,7 @@ public class KidRoomClock : Trick
             if (hourAngle == -330f)
             {
                 Debug.Log("Clock Solved");
-                Solved();
+                SetIsSolved(true);
                 SolvedAction();
             }
             else if (!IsSolved())

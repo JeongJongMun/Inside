@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2911437645002692301
+--- !u!1 &1282798931610641630
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,25 +8,26 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8917729201758736710}
-  - component: {fileID: 3406308388056262674}
-  - component: {fileID: 4241726756992981250}
-  - component: {fileID: 7253639084403008947}
-  - component: {fileID: 3245303906235062241}
+  - component: {fileID: 2871138756692592517}
+  - component: {fileID: 7012579364633432101}
+  - component: {fileID: 4280665931968630079}
+  - component: {fileID: 2655398993609479879}
+  - component: {fileID: 8846433574390999894}
+  - component: {fileID: 7830616545716342089}
   m_Layer: 5
-  m_Name: Latch2
-  m_TagString: Item
+  m_Name: MusicBox
+  m_TagString: Trick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!224 &8917729201758736710
+--- !u!224 &2871138756692592517
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2911437645002692301}
+  m_GameObject: {fileID: 1282798931610641630}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -37,24 +38,24 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -78.01697, y: -144.1995}
-  m_SizeDelta: {x: 158.9661, y: 173.601}
+  m_AnchoredPosition: {x: 164, y: -363}
+  m_SizeDelta: {x: 183, y: 146}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &3406308388056262674
+--- !u!222 &7012579364633432101
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2911437645002692301}
+  m_GameObject: {fileID: 1282798931610641630}
   m_CullTransparentMesh: 1
---- !u!114 &4241726756992981250
+--- !u!114 &4280665931968630079
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2911437645002692301}
+  m_GameObject: {fileID: 1282798931610641630}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
@@ -68,7 +69,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -471150378, guid: eba66be3b49248d4ea22cd3d98cab920, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b596db07769afdd438088289e1a9922a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -78,13 +79,13 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &7253639084403008947
+--- !u!114 &2655398993609479879
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2911437645002692301}
+  m_GameObject: {fileID: 1282798931610641630}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
@@ -118,17 +119,17 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 4241726756992981250}
+  m_TargetGraphic: {fileID: 4280665931968630079}
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &3245303906235062241
+--- !u!114 &8846433574390999894
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2911437645002692301}
+  m_GameObject: {fileID: 1282798931610641630}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 58fcfadeca72f43418fab408b7707ab4, type: 3}
@@ -138,3 +139,15 @@ MonoBehaviour:
   itemName: 0
   roomName: 
   isInInventory: 0
+--- !u!114 &7830616545716342089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1282798931610641630}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c0e2c35dddce1946b09adf7b45b976e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

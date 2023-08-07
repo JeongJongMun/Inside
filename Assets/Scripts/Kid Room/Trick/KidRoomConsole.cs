@@ -12,7 +12,7 @@ public class KidRoomConsole : Trick
             if (isGameWin)
             {
                 Debug.LogFormat("{0} is Solved", name);
-                Solved();
+                SetIsSolved(true);
                 SolvedAction();
             }
             else
