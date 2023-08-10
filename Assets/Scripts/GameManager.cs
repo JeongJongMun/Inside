@@ -51,12 +51,23 @@ public class GameManager : MonoBehaviour
     [Range(0.01f, 10f)]
     private float fadeTime;
 
+    [Header("UI Canvas")]
+    public GameObject uiCanvas;
+
+    // 설정 버튼 클릭 시
     public void OnClickSettingBtn()
     {
         // 설정창이 활성화 상태라면 비활성화
         if (settingPanel.activeSelf) settingPanel.SetActive(false);
         // 설정창이 비활성화 상태라면 활성화
         else settingPanel.SetActive(true);
+    }
+    // 설정 창의 게임종료 버튼 클릭 시
+    public void OnClickExitBtn()
+    {
+        SceneManager.LoadScene("Main");
+        settingPanel.SetActive(false);
+        uiCanvas.SetActive(false);
     }
 
     // 아이템 클릭 시

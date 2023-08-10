@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 28b8d4a5d8ae09a4c91173ba312b7d83
+guid: ed7be40d6d501254cb189f9302bd7d71
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -43,7 +43,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -134,28 +134,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: Laptop_1
-      rect:
-        serializedVersion: 2
-        x: 9
-        y: 24
-        width: 293
-        height: 172
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5ebb47037eb822a47bdad63c7d20f924
-      internalID: 1161264434
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
+    sprites: []
     outline: []
     physicsShape: []
     bones: []
@@ -166,13 +145,7 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable:
-      Laptop_0: -1483585292
-      Laptop_1: 1161264434
-      Laptop_2: 1090837342
-      Laptop_3: -627067818
-      Laptop_4: 877309874
-      Laptop_5: -94428662
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
