@@ -1,6 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static Define;
 
 public class DatabaseManager : MonoBehaviour
 {
@@ -32,71 +32,113 @@ public class DatabaseManager : MonoBehaviour
     }
 
     // 아이방 트릭 진행 상황
-    private Dictionary<string, bool> trickStatus_Kid = new Dictionary<string, bool>()
+    private Dictionary<TrickName, bool> trickStatus_Kid = new Dictionary<TrickName, bool>()
     {
-        //{ "DrawerZoom",     false},
-        //{ "Bear",           false },
-        //{ "Clock",          false },
-        //{ "Curtain",        false },
-        //{ "FamilyPicture",  false },
-        //{ "Safe",           false },
-        //{ "WorldMap",       false },
-        //{ "Lamp",           false },
-        //{ "LampZoom",       false },
-        //{ "LegoHole",       false },
-        //{ "LegoHole1",      false },
-        //{ "LegoHole2",      false },
-        //{ "LegoHole3",      false },
-        //{ "ConsoleHole",    false },
-        //{ "Console",        false },
-        //{ "Door",           false },
-        //{ "Switch",         false },
+        { TrickName.Bear,           false },
+        { TrickName.Clock,          false },
+        { TrickName.Console,        false },
+        { TrickName.ConsoleHole,    false },
+        { TrickName.Curtain,        false },
+        { TrickName.Door,           false },
+        { TrickName.DrawerZoom,     false },
+        { TrickName.FamilyPicture,  false },
+        { TrickName.Lamp,           false },
+        { TrickName.LegoHole,       false },
+        { TrickName.LegoHole1,      false },
+        { TrickName.LegoHole2,      false },
+        { TrickName.LegoHole3,      false },
+        { TrickName.Safe,           false },
+        { TrickName.Switch,         false },
+        { TrickName.WorldMap,       false },
     };
 
     // 아이돌방 트릭 진행 상황
-    private Dictionary<string, bool> trickStatus_Idol = new Dictionary<string, bool>()
+    private Dictionary<TrickName, bool> trickStatus_Idol = new Dictionary<TrickName, bool>()
     {
-        //{ "Closet",     false},
+        { TrickName.Bed,                false },
+        { TrickName.Closet,             false },
+        { TrickName.DressingTableZoom,  false },
+        { TrickName.LaptopBackground,   false },
+        { TrickName.LaptopPassword,     false },
+        { TrickName.MusicBox,           false },
+        { TrickName.MusicPlateZoom,     false },
+        { TrickName.Locker,             false },
+        { TrickName.Table,              false },
+    };
+
+    // 거실 트릭 진행 상황
+    private Dictionary<TrickName, bool> trickStatus_Living = new Dictionary<TrickName, bool>()
+    {
+        { TrickName.CardReader,         false },
+        { TrickName.Carpet,             false },
+        { TrickName.Hatch,              false },
+        { TrickName.CoinMachine,        false },
+    };
+
+    // 연구원방 트릭 진행 상황
+    private Dictionary<TrickName, bool> trickStatus_Researcher = new Dictionary<TrickName, bool>()
+    {
+        { TrickName.Cabinet,            false },
+        { TrickName.DrawerLocker1,      false },
+        { TrickName.DrawerLocker2,      false },
+        { TrickName.Stand,              false },
+        { TrickName.RCloset,            false },
+
     };
 
     // Dictionary에 트릭이 존재하나 확인
-    public bool IsTrickExist(string roomName, string trickName)
+    public bool IsTrickExist(RoomName roomName, TrickName trickName)
     {
         switch (roomName)
         {
-            case "Kid":
+            case RoomName.Kid:
                 return trickStatus_Kid.ContainsKey(trickName);
-            case "Idol":
+            case RoomName.Idol:
                 return trickStatus_Idol.ContainsKey(trickName);
+            case RoomName.Living:
+                return trickStatus_Living.ContainsKey(trickName);
+            case RoomName.Researcher:
+                return trickStatus_Researcher.ContainsKey(trickName);
             default:
                 return true;
         }
     }
     // 트릭이 풀렸는가 확인
-    public bool IsTrickSolved(string roomName, string trickName)
+    public bool IsTrickSolved(RoomName roomName, TrickName trickName)
     {
         switch (roomName)
         {
-            case "Kid":
+            case RoomName.Kid:
                 return trickStatus_Kid[trickName];
-            case "Idol":
+            case RoomName.Idol:
                 return trickStatus_Idol[trickName];
+            case RoomName.Living:
+                return trickStatus_Living[trickName];
+            case RoomName.Researcher:
+                return trickStatus_Researcher[trickName];
             default:
                 return false;
         }
     }
-    // 트릭을 상태 설정
-    public void SetTrickStatus(string roomName, string trickName, bool status)
+
+    // 트릭의 상태 설정
+    public void SetTrickStatus(RoomName roomName, TrickName trickName, bool status)
     {
         Debug.LogFormat("{0} 방의 {1} 트릭이 {2} 되었다고 저장", roomName, trickName, status);
 
         switch (roomName)
         {
-            case "Kid":
+            case RoomName.Kid:
                 trickStatus_Kid[trickName] = status;
                 break;
-            case "Idol":
+            case RoomName.Idol:
                 trickStatus_Idol[trickName] = status;
+                break;
+            case RoomName.Living:
+                trickStatus_Living[trickName] = status;
+                break;            
+            case RoomName.Researcher:
+                trickStatus_Researcher[trickName] = status;
                 break;
             default:
                 break;
@@ -106,46 +148,73 @@ public class DatabaseManager : MonoBehaviour
     // 아이방 아이템 획득 상황
     private Dictionary<ItemName, bool> isItemAcquired_Kid = new Dictionary<ItemName, bool>()
     {
-        {ItemName.Console,     false},
-        {ItemName.Cutter,      false},
-        {ItemName.KidRoomKey,  false},
-        {ItemName.Latch1,      false},
-        {ItemName.Lego1,       false},
-        {ItemName.Lego2,       false},
-        {ItemName.Lego3,       false},
-        {ItemName.Password,    false},
+        {ItemName.Console,      false},
+        {ItemName.Cutter,       false},
+        {ItemName.KidRoomKey,   false},
+        {ItemName.Latch1,       false},
+        {ItemName.Lego1,        false},
+        {ItemName.Lego2,        false},
+        {ItemName.Lego3,        false},
+        {ItemName.Password,     false},
     };
     // 아이돌방 아이템 획득 상황
     private Dictionary<ItemName, bool> isItemAcquired_Idol = new Dictionary<ItemName, bool>()
     {
-        {ItemName.Broom,       false},
-        {ItemName.Latch2,      false},
-        {ItemName.MusicBox,    false},
+        {ItemName.Broom,        false},
+        {ItemName.Latch2,       false},
+        {ItemName.MusicBox,     false},
     };
 
-    public bool IsItemAcquired(string roomName, ItemName itemName)
+    // 거실 아이템 획득 상황
+    private Dictionary<ItemName, bool> isItemAcquired_Living = new Dictionary<ItemName, bool>()
+    {
+        {ItemName.AccessCard,   false},
+    };
+
+    // 연구원방 아이템 획득 상황
+    private Dictionary<ItemName, bool> isItemAcquired_Researcher = new Dictionary<ItemName, bool>()
+    {
+        {ItemName.TestTubeRed,      false},
+        {ItemName.TestTubeYellow,   false},
+        {ItemName.TestTubeBlue,     false},
+        {ItemName.GoldKey,          false},
+        {ItemName.Magnifier,        false},
+
+    };
+
+    public bool IsItemAcquired(RoomName roomName, ItemName itemName)
     {
         switch (roomName)
         {
-            case "Kid":
+            case RoomName.Kid:
                 return isItemAcquired_Kid[itemName];
-            case "Idol":
+            case RoomName.Idol:
                 return isItemAcquired_Idol[itemName];
+            case RoomName.Living:
+                return isItemAcquired_Living[itemName];
+            case RoomName.Researcher:
+                return isItemAcquired_Researcher[itemName];
             default:
                 return false;
         }
     }
-    public void SetItemAcquired(string roomName, ItemName itemName)
+    public void SetItemAcquired(RoomName roomName, ItemName itemName)
     {
+        Debug.LogFormat("{0} 방의 {1} 아이템을 획득하였다고 저장", roomName, itemName);
+
         switch (roomName)
         {
-            case "Kid":
+            case RoomName.Kid:
                 isItemAcquired_Kid[itemName] = true;
-                Debug.LogFormat("{0} 방의 {1} 아이템을 획득하였다고 저장", roomName, itemName);
                 break;
-            case "Idol":
+            case RoomName.Idol:
                 isItemAcquired_Idol[itemName] = true;
-                Debug.LogFormat("{0} 방의 {1} 아이템을 획득하였다고 저장", roomName, itemName);
+                break;
+            case RoomName.Living:
+                isItemAcquired_Living[itemName] = true;
+                break;            
+            case RoomName.Researcher:
+                isItemAcquired_Researcher[itemName] = true;
                 break;
             default:
                 break;

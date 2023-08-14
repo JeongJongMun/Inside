@@ -5,8 +5,11 @@ public class IdolRoomDressingTableZoom : Trick
 {
     private float brokenTime = 3.0f;
 
-    [Header("부서진 화장대 이미지")]
+    [Header("확대 시 부서진 화장대 이미지")]
     public Sprite brokenDressingTable;
+
+    [Header("확대 안했을 때 부서진 화장대 이미지")]
+    public GameObject dressingTableBroken;
 
     [Header("실루엣")]
     public GameObject silhouette;
@@ -54,11 +57,11 @@ public class IdolRoomDressingTableZoom : Trick
     {
         GetComponent<Image>().sprite = brokenDressingTable;
         silhouette.SetActive(false);
+        dressingTableBroken.SetActive(true);
     }
 
     private void SilhouetteAnimation()
     {
-        Debug.Log("실루엣 애니메이션 중");
         float t = (Mathf.Sin((Time.time + timeOffset) * pulseSpeed) + 1) * 0.5f * pulseAmplitude + 0.5f;
         Color targetColor = Color.Lerp(Color.clear, Color.white, t);
         silhouetteImage.color = targetColor;

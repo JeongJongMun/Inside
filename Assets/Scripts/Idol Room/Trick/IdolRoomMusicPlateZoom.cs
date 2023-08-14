@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -65,32 +66,49 @@ public class IdolRoomMusicPlateZoom : Trick
     }
     public override void SolvedAction()
     {
-        throw new System.NotImplementedException();
+        for (int i = 0; i < notes.Length; i++)
+        {
+            // 음표 활성화
+            notes[i].SetActive(true);
+
+            // 음 별 y값 설정
+            Vector3 _transform = notes[i].GetComponent<RectTransform>().anchoredPosition;
+            _transform.y = notesPosition[answer[i]];
+            notes[i].GetComponent<RectTransform>().anchoredPosition = _transform;
+        }
     }
 
     public void OnClickNoteButton(GameObject noteButton)
     {
-        // 음표 오브젝트의 이름을 Enum으로 변환
-        Notes _note = (Notes)Enum.Parse(typeof(Notes), noteButton.name);
-
-        // 음표 활성화
-        notes[currentNoteNumber].SetActive(true);
-
-        // 음 별 y값 설정
-        Vector3 _transform = notes[currentNoteNumber].GetComponent<RectTransform>().anchoredPosition;
-        _transform.y = notesPosition[_note];
-        notes[currentNoteNumber].GetComponent<RectTransform>().anchoredPosition = _transform;
-
-        // 입력 기록
-        input.Add(_note);
-
-        // 다음 음표로 이동
-        currentNoteNumber++;
-
-        // 음표를 모두 입력했을 시
-        if (currentNoteNumber == notes.Length)
+        if (currentNoteNumber < 6)
         {
-            TrySolve(gameObject);
+            // 음표 오브젝트의 이름을 Enum으로 변환
+            Notes _note = (Notes)Enum.Parse(typeof(Notes), noteButton.name);
+
+            // 음표 활성화
+            notes[currentNoteNumber].SetActive(true);
+
+            // 음 별 y값 설정
+            Vector3 _transform = notes[currentNoteNumber].GetComponent<RectTransform>().anchoredPosition;
+            _transform.y = notesPosition[_note];
+            notes[currentNoteNumber].GetComponent<RectTransform>().anchoredPosition = _transform;
+
+            // 입력 기록
+            input.Add(_note);
+
+            // 다음 음표로 이동
+            currentNoteNumber++;
+
+            // 음표를 모두 입력했을 시 0.5초 보여주고 문제 풀기
+            if (currentNoteNumber == notes.Length)
+            {
+                StartCoroutine(DoTrySolve());
+            }
         }
+    }
+    public IEnumerator DoTrySolve()
+    {
+        yield return new WaitForSeconds(0.5f);
+        TrySolve(gameObject);
     }
 }

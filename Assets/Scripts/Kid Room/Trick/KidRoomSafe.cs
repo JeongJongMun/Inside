@@ -1,6 +1,8 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using static Define;
+
 
 public class KidRoomSafe : Trick
 {
@@ -26,7 +28,7 @@ public class KidRoomSafe : Trick
             if (display.text == "0710")
             {
                 Debug.Log("Safe Solved");
-                Inventory.Instance.RemoveItem("Password");
+                Inventory.Instance.RemoveItem(ItemName.Password);
                 SetIsSolved(true);
                 SolvedAction();
             }

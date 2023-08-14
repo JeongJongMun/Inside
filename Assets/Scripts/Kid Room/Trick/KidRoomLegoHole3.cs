@@ -1,4 +1,5 @@
 using UnityEngine;
+using static Define;
 
 public class KidRoomLegoHole3 : Trick
 {
@@ -10,10 +11,10 @@ public class KidRoomLegoHole3 : Trick
     {
         if (obj.name == name)
         {
-            if (Inventory.Instance.IsClicked("Lego3"))
+            if (Inventory.Instance.IsClicked(ItemName.Lego3))
             {
                 Debug.LogFormat("{0} is Solved", name);
-                Inventory.Instance.RemoveItem("Lego3");
+                Inventory.Instance.RemoveItem(ItemName.Lego3);
                 SetIsSolved(true);
                 SolvedAction();
             }

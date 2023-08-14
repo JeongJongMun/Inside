@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using static Define;
 
 public class RoomManager : MonoBehaviour
 {
@@ -37,7 +38,8 @@ public class RoomManager : MonoBehaviour
     private Stack<GameObject> panels = new Stack<GameObject>();
 
     [SerializeField]
-    private string roomName;
+    [Header("방 이름")]
+    private RoomName roomName;
 
     private void Awake()
     {
@@ -51,7 +53,7 @@ public class RoomManager : MonoBehaviour
     }
     private void Start()
     {
-        roomName = this.name.Substring(11);
+        roomName = Item.GetEnumFromName<RoomName>(this.name.Substring(11));
         Initialize("Trick");
     }
 
@@ -83,14 +85,16 @@ public class RoomManager : MonoBehaviour
         {
             foreach (GameObject obj in trickObjects)
             {
-                // DatabaseManger에 트릭 추가 
-                if (!DatabaseManager.Instance.IsTrickExist(roomName, obj.name))
-                {
-                    DatabaseManager.Instance.SetTrickStatus(roomName, obj.name, false);
+                //TrickName _trickName = obj.GetComponent<Trick>().trickName;
+                //// DatabaseManger에 트릭 추가 
+                //if (!DatabaseManager.Instance.IsTrickExist(roomName, _trickName))
+                //{
+                //    DatabaseManager.Instance.SetTrickStatus(roomName, _trickName, false);
 
-                }
+                //}
+                //Debug.LogFormat("Found Trick: {0}", _trickName);
+
                 AddTrick(obj.GetComponent<Trick>());
-                Debug.LogFormat("Found Trick: {0}", obj.name);
             }
         }
         else
@@ -100,19 +104,38 @@ public class RoomManager : MonoBehaviour
     }
 
     // 왼쪽 화살표 클릭 시
-    public void OnClickLeftArrow()
+    private void OnClickLeftArrow()
     {
-        wallPanel[currentWallPanel].SetActive(false);
-        currentWallPanel = (currentWallPanel + 3) % 4;
-        wallPanel[currentWallPanel].SetActive(true);
+        if (roomName == RoomName.Living)
+        {
+            wallPanel[currentWallPanel].SetActive(false);
+            currentWallPanel = (currentWallPanel + 1) % 2;
+            wallPanel[currentWallPanel].SetActive(true);
+        }
+        else
+        {
+            wallPanel[currentWallPanel].SetActive(false);
+            currentWallPanel = (currentWallPanel + 3) % 4;
+            wallPanel[currentWallPanel].SetActive(true);
+        }
+
     }
 
     // 오른쪽 화살표 클릭 시
-    public void OnClickRightArrow()
+    private void OnClickRightArrow()
     {
-        wallPanel[currentWallPanel].SetActive(false);
-        currentWallPanel = (currentWallPanel + 1) % 4;
-        wallPanel[currentWallPanel].SetActive(true);
+        if (roomName == RoomName.Living)
+        {
+            wallPanel[currentWallPanel].SetActive(false);
+            currentWallPanel = (currentWallPanel + 1) % 2;
+            wallPanel[currentWallPanel].SetActive(true);
+        }
+        else
+        {
+            wallPanel[currentWallPanel].SetActive(false);
+            currentWallPanel = (currentWallPanel + 1) % 4;
+            wallPanel[currentWallPanel].SetActive(true);
+        }
     }
     // 오브젝트 클릭 시 확대 OR 슬라이딩 퍼즐 패널 켜기
     public void ZoomIn(GameObject panel)
@@ -144,7 +167,7 @@ public class RoomManager : MonoBehaviour
     }
 
     // 좌우 화살표와 아래 화살표 활성화 관리
-    public void SetActiveArrow()
+    private void SetActiveArrow()
     {
         // 패널 스택에 1개라도 있다면 (좌우 화살표는 없고 아래쪽 화살표만 있어야 함)
         if (panels.Count > 0)
@@ -179,7 +202,8 @@ public class RoomManager : MonoBehaviour
     }
     private IEnumerator DoRemoveTrick(Trick trick)
     {
-        yield return new WaitForSeconds(0.5f);
+        // NotifyTricks() 함수가 실행되고 있는 와중에 삭제가 되어버려 에러가 발생할 수 있음. -> 0.3초 뒤에 삭제
+        yield return new WaitForSeconds(0.3f);
 
         if (tricks.Contains(trick))
         {

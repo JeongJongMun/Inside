@@ -52,3 +52,4 @@ MonoBehaviour:
   settingPanel: {fileID: 0}
   fadeImage: {fileID: 0}
   fadeTime: 0.1
+  uiCanvas: {fileID: 0}

@@ -1,8 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 using System.Collections;
-using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour
 {
@@ -44,7 +42,7 @@ public class GameManager : MonoBehaviour
     public GameObject settingPanel;
 
     [Header("트릭 성공 이펙트")]
-    public Image fadeImage;
+    public UnityEngine.UI.Image fadeImage;
 
     [SerializeField]
     [Header("이펙트 속도")]
@@ -130,4 +128,61 @@ public class GameManager : MonoBehaviour
         }
 
     }
+
+    /// <summary>
+    /// 디버그 로그 화면에 출력 코드
+    /// </summary>
+    string myLog;
+    Queue myLogQueue = new Queue();
+    GUIStyle guiStyle = new GUIStyle();
+
+    // 설정할 로그 출력 영역의 위치와 크기
+    Rect logArea = new Rect(10, Screen.height - 200, 1000, 400); // 왼쪽 아래 위치
+
+    void OnEnable()
+    {
+        Application.logMessageReceived += HandleLog;
+    }
+
+    void OnDisable()
+    {
+        Application.logMessageReceived -= HandleLog;
+    }
+
+    void HandleLog(string logString, string stackTrace, LogType type)
+    {
+        myLog = logString;
+        string newString = "\n [" + type + "] : " + myLog;
+        myLogQueue.Enqueue(newString);
+
+        // 큐가 최대 줄 수를 초과하면 첫 줄을 제거합니다.
+        if (myLogQueue.Count > 4)
+        {
+            myLogQueue.Dequeue();
+        }
+
+        if (type == LogType.Exception)
+        {
+            newString = "\n" + stackTrace;
+            myLogQueue.Enqueue(newString);
+        }
+
+        myLog = string.Empty;
+        foreach (string mylog in myLogQueue)
+        {
+            myLog += mylog;
+        }
+    }
+
+    void OnGUI()
+    {
+        guiStyle.normal.textColor = Color.white;
+        guiStyle.wordWrap = true;
+        guiStyle.fontSize = 30; // 큰 글씨 크기 설정
+
+        GUILayout.BeginArea(logArea);
+        GUILayout.Label(myLog, guiStyle);
+        GUILayout.EndArea();
+    }
+
 }

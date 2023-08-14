@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using static Define;
 
 public class KidRoomWorldMap : Trick
 {
@@ -8,7 +9,7 @@ public class KidRoomWorldMap : Trick
     {
         if (obj.name == "WorldMap")
         {
-            if (Inventory.Instance.IsClicked("Cutter"))
+            if (Inventory.Instance.IsClicked(ItemName.Cutter))
             {
                 Debug.Log("WorldMap Solved");
                 SetIsSolved(true);

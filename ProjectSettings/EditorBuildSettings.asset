@@ -20,4 +20,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/IdolRoom.unity
     guid: afd4ef492bba6e148b369f2d4f1d7897
+  - enabled: 1
+    path: Assets/Scenes/Hallway.unity
+    guid: d53081a20251d5a478499b797422b287
+  - enabled: 1
+    path: Assets/Scenes/LivingRoom.unity
+    guid: 000d5655573259e46bea7ff88ddfa699
+  - enabled: 1
+    path: Assets/Scenes/ResearcherRoom.unity
+    guid: 285ced391274e024bba629d2826d3235
   m_configObjects: {}

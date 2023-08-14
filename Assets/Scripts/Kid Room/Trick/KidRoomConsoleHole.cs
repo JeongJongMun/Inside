@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using static Define;
 
 public class KidRoomConsoleHole : Trick
 {
@@ -8,10 +9,10 @@ public class KidRoomConsoleHole : Trick
     {
         if (obj.name == "ConsoleHole")
         {
-            if (Inventory.Instance.IsClicked("Console"))
+            if (Inventory.Instance.IsClicked(ItemName.Console))
             {
                 Debug.LogFormat("{0} Solved", obj.name);
-                Inventory.Instance.RemoveItem("Console");
+                Inventory.Instance.RemoveItem(ItemName.Console);
                 SetIsSolved(true);
                 SolvedAction();
             }

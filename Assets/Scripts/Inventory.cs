@@ -1,10 +1,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using static Define;
 
 static class ExtensionMethods
 {
-    public static bool IsContainsItem(this List<InventorySlot> list, string itemName)
+    public static bool IsContainsItem(this List<InventorySlot> list, ItemName itemName)
     {
         foreach(InventorySlot slot in list)
         {
@@ -54,14 +55,14 @@ public class Inventory : MonoBehaviour
 
 
     // 해당 아이템의 토클이 클릭되어 있나 확인
-    public bool IsClicked(string _item)
+    public bool IsClicked(ItemName _item)
     {
         if (inventory.IsContainsItem(_item))
         {
             foreach (Toggle toggle in toggles) 
             { 
                 // childCount == 3 일때 (아이템이 먹어져 있을때) 만 접근
-                if (toggle.transform.childCount == 3 && toggle.transform.GetChild(2).GetComponent<Item>().objectName == _item && toggle.isOn)
+                if (toggle.transform.childCount == 3 && toggle.transform.GetChild(2).GetComponent<Item>().itemName == _item && toggle.isOn)
                 {
                     toggle.isOn = false;
                     return true;
@@ -72,7 +73,7 @@ public class Inventory : MonoBehaviour
     }
 
     // 아이템을 가지고 있나 확인
-    public bool HasItem(string _item)
+    public bool HasItem(ItemName _item)
     {
         if (inventory.IsContainsItem(_item))
         {
@@ -88,7 +89,7 @@ public class Inventory : MonoBehaviour
     public void AcquireItem(Item _item)
     {
         // 아이템이 인벤토리에 없다면
-        if (!inventory.IsContainsItem(_item.objectName))
+        if (!inventory.IsContainsItem(_item.itemName))
         {
             foreach (InventorySlot slot in inventory)
             {
@@ -104,20 +105,20 @@ public class Inventory : MonoBehaviour
         }
         else
         {
-            Debug.LogFormat("이미 {0} 아이템이 인벤토리에 존재하여 추가하지 못함", _item.objectName);
+            Debug.LogFormat("이미 {0} 아이템이 인벤토리에 존재하여 추가하지 못함", _item.itemName);
         }
     }
 
 
     // 아이템 삭제
-    public void RemoveItem(string itemName)
+    public void RemoveItem(ItemName itemName)
     {
         // 아이템이 인벤토리에 있다면
         if (inventory.IsContainsItem(itemName))
         {
             foreach (InventorySlot slot in inventory)
             {
-                if (slot.item.objectName == itemName)
+                if (slot.item.itemName == itemName)
                 {
                     // 슬롯에서 아이템 삭제
                     slot.RemoveItem();

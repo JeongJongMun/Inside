@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using static Define;
 
 public class KidRoomDrawer : Trick
 {
@@ -7,16 +8,16 @@ public class KidRoomDrawer : Trick
     {
         if (obj.name == "DrawerZoom")
         {
-            if (Inventory.Instance.IsClicked("KidRoomKey"))
+            if (Inventory.Instance.IsClicked(ItemName.KidRoomKey))
             {
-                Debug.Log("Drawer Solved");
-                Inventory.Instance.RemoveItem("KidRoomKey");
+                Debug.LogFormat("{0} Solved", this.name);
+                Inventory.Instance.RemoveItem(ItemName.KidRoomKey);
                 SetIsSolved(true);
                 SolvedAction();
             }
             else
             {
-                Debug.Log("Drawer Not Sloved");
+                Debug.LogFormat("{0} Not Sloved", this.name);
             }
         }
     }

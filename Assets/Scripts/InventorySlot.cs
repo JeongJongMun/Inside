@@ -9,7 +9,7 @@ public class InventorySlot : MonoBehaviour
     public void AddItem(Item _item)
     {
         // 에셋 로드
-        GameObject addedItem = Resources.Load<GameObject>("Prefabs/Items/" +  _item.objectName);
+        GameObject addedItem = Resources.Load<GameObject>("Prefabs/Items/" +  _item.itemName);
         // 인벤토리에 아이템 생성
         itemObject = Instantiate(addedItem, gameObject.transform.position, Quaternion.identity, gameObject.transform);
         // 인벤토리에선 생성 시 삭제 X
@@ -23,16 +23,16 @@ public class InventorySlot : MonoBehaviour
         int index = item.name.IndexOf("(Clone)");
         if (index > 0) item.name = item.name.Substring(0, index);
 
-        Debug.LogFormat("{0} added in slot", _item.objectName);
+        Debug.LogFormat("{0} 아이템 획득", _item.itemName);
     }
     public void RemoveItem()
     {
-        Debug.LogFormat("{0} 아이템 삭제", item.objectName);
+        Debug.LogFormat("{0} 아이템 삭제", item.itemName);
         Destroy(itemObject);
         item = null;
     }
-    public string GetItemName()
+    public Define.ItemName GetItemName()
     {
-        return item.objectName;
+        return item.itemName;
     }
 }

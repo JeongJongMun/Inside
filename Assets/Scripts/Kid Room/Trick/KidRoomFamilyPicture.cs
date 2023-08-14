@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using static Define;
 
 public class KidRoomFamilyPicture : Trick
 {
@@ -8,7 +9,7 @@ public class KidRoomFamilyPicture : Trick
     {
         if (obj.name == "FamilyPicture")
         {
-            if (Inventory.Instance.IsClicked("Cutter"))
+            if (Inventory.Instance.IsClicked(ItemName.Cutter))
             {
                 Debug.Log("FamilyPicture Solved");
                 SetIsSolved(true);

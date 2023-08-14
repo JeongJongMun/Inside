@@ -1,6 +1,6 @@
-using System.Collections;
-using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
+using static Define;
+
 
 public class IdolRoomMusicBox : Trick
 {
@@ -8,7 +8,7 @@ public class IdolRoomMusicBox : Trick
     {
         if (obj.name == this.name)
         {
-            if (Inventory.Instance.IsClicked("Broom"))
+            if (Inventory.Instance.IsClicked(ItemName.Broom))
             {
                 Debug.LogFormat("{0} Solved", this.name);
                 GameManager.Instance.OnClickItem(this.gameObject);

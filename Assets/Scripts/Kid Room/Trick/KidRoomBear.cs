@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using static Define;
 
 
 public class KidRoomBear : Trick
@@ -11,7 +12,7 @@ public class KidRoomBear : Trick
     {
         if (obj.name == "Bear")
         {
-            if (Inventory.Instance.IsClicked("Cutter"))
+            if (Inventory.Instance.IsClicked(ItemName.Cutter))
             {
                 Debug.Log("Bear Solved");
                 SetIsSolved(true);

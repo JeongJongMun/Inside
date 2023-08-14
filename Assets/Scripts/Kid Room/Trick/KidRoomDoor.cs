@@ -6,7 +6,7 @@ public class KidRoomDoor : Trick
     {
         if (obj.name == gameObject.name)
         {
-            throw new System.NotImplementedException();
+            Debug.Log("문 잠김 사운드 재생");
         }
     }
     public override void SolvedAction()

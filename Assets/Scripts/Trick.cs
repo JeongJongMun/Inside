@@ -1,16 +1,35 @@
 using UnityEngine;
+using static Define;
 
 // 트릭들의 추상 클래스
 public abstract class Trick : MonoBehaviour
 {
+    [SerializeField]
     internal bool isSolved = false;
-    internal string roomName;
+
+    [SerializeField]
+    [Header("트릭 소속 방 이름")]
+    internal RoomName roomName;
+
+    [SerializeField]
+    [Header("트릭 이름")]
+    internal TrickName trickName;
+
     private void Start()
     {
         // 현재 트릭이 속한 방 이름 가져오기
-        roomName = GameObject.FindWithTag("RoomManager").name.Substring(11);
+        roomName = Item.GetEnumFromName<RoomName>(GameObject.FindWithTag("RoomManager").name.Substring(11));
+        // 현재 트릭의 열거형 이름 가져오기
+        // Instantiate 된 오브젝트라면
+        if (name.Contains("(Clone)"))
+        {
+            int cloneIdx = name.IndexOf("(Clone)");
+            trickName = Item.GetEnumFromName<TrickName>(name.Substring(0, cloneIdx));
+        }
+        else trickName = Item.GetEnumFromName<TrickName>(this.name);
+
         // 씬 로드시에 트릭을 푼 적이 있다면 적용
-        if (DatabaseManager.Instance.IsTrickSolved(roomName, this.name))
+        if (DatabaseManager.Instance.IsTrickSolved(roomName, trickName))
         {
             SolvedAction();
         }
@@ -20,7 +39,7 @@ public abstract class Trick : MonoBehaviour
     public void SetIsSolved(bool _isSolved)
     {
         this.isSolved = _isSolved;
-        DatabaseManager.Instance.SetTrickStatus(roomName, this.name, _isSolved);
+        DatabaseManager.Instance.SetTrickStatus(roomName, trickName, _isSolved);
         GameManager.Instance.FadeInOut();
     }
 
