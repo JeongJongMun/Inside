@@ -1,15 +1,21 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class IdolRoomDressingTableZoom : Trick
+public class IdolRoomDressingTable : Trick
 {
     private float brokenTime = 3.0f;
 
+    [Header("화장대 확대 패널")]
+    public GameObject dressingTableZoomPanel;
+
+    [Header("트릭 풀면 확대 시 화장대 이미지 변경할 이미지")]
+    public Image dressingTableZoom;
+
     [Header("확대 시 부서진 화장대 이미지")]
-    public Sprite brokenDressingTable;
+    public Sprite brokenDressingTableZoom;
 
     [Header("확대 안했을 때 부서진 화장대 이미지")]
-    public GameObject dressingTableBroken;
+    public GameObject brokenDressingTable;
 
     [Header("실루엣")]
     public GameObject silhouette;
@@ -23,15 +29,16 @@ public class IdolRoomDressingTableZoom : Trick
     private Image silhouetteImage;
     private float timeOffset;
 
-    private void Start()
+    public override void Start()
     {
+        base.Start();
         silhouetteImage = silhouette.GetComponent<Image>();
         timeOffset = Random.Range(0f, 10f); // To avoid all objects pulsating in sync
     }
 
     private void Update()
     {
-        if (!IsSolved())
+        if (!IsSolved() && dressingTableZoomPanel.activeSelf)
         {
             TrySolve(this.gameObject);
         }
@@ -55,9 +62,10 @@ public class IdolRoomDressingTableZoom : Trick
     }
     public override void SolvedAction()
     {
-        GetComponent<Image>().sprite = brokenDressingTable;
+        dressingTableZoom.sprite = brokenDressingTableZoom;
         silhouette.SetActive(false);
-        dressingTableBroken.SetActive(true);
+        brokenDressingTable.SetActive(true);
+        Debug.Log("화장대 SolvedAction");
     }
 
     private void SilhouetteAnimation()

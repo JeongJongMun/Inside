@@ -30,10 +30,11 @@ public class IdolRoomLocker : Trick
     public override void SolvedAction()
     {
         lockerOpen.SetActive(true);
-        Color color = gameObject.GetComponent<Image>().color;
-        color.a = 0;
-        gameObject.GetComponent<Image>().color = color;
-        gameObject.GetComponent<Image>().raycastTarget = false;
+        gameObject.SetActive(false);
+        //Color color = gameObject.GetComponent<Image>().color;
+        //color.a = 0;
+        //gameObject.GetComponent<Image>().color = color;
+        //gameObject.GetComponent<Image>().raycastTarget = false;
     }
     public void OnClickPassword(TMP_Text tmp_text)
     {

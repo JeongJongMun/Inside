@@ -57,7 +57,7 @@ public class DatabaseManager : MonoBehaviour
     {
         { TrickName.Bed,                false },
         { TrickName.Closet,             false },
-        { TrickName.DressingTableZoom,  false },
+        { TrickName.DressingTable,      false },
         { TrickName.LaptopBackground,   false },
         { TrickName.LaptopPassword,     false },
         { TrickName.MusicBox,           false },
@@ -83,6 +83,7 @@ public class DatabaseManager : MonoBehaviour
         { TrickName.DrawerLocker2,      false },
         { TrickName.Stand,              false },
         { TrickName.RCloset,            false },
+        { TrickName.Clothes,            false },
 
     };
 

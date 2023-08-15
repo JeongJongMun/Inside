@@ -25,6 +25,7 @@ public class KidRoomConsole : Trick
     {
         bookShelf.transform.position += Vector3.left * 500;
         bookShelf.GetComponent<Image>().raycastTarget = false;
+        this.GetComponent<Image>().raycastTarget = false;
     }
     public void OnClickSkipBtn()
     {

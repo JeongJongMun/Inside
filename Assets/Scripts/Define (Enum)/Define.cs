@@ -64,7 +64,7 @@ public class Define
         // Idol
         Bed,
         Closet,
-        DressingTableZoom,
+        DressingTable,
         LaptopBackground,
         LaptopPassword,
         MusicBox,
@@ -80,6 +80,7 @@ public class Define
 
         // Researher
         RCloset,
+        Clothes,
         Cabinet,
         DrawerLocker1,
         DrawerLocker2,

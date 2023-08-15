@@ -5,6 +5,7 @@ using static Define;
 
 static class ExtensionMethods
 {
+    // 아이템을 가지고 있나 확인
     public static bool IsContainsItem(this List<InventorySlot> list, ItemName itemName)
     {
         foreach(InventorySlot slot in list)
@@ -72,18 +73,6 @@ public class Inventory : MonoBehaviour
         return false;
     }
 
-    // 아이템을 가지고 있나 확인
-    public bool HasItem(ItemName _item)
-    {
-        if (inventory.IsContainsItem(_item))
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
 
     // 아이템 획득
     public void AcquireItem(Item _item)

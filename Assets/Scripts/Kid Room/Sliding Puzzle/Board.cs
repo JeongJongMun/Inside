@@ -94,7 +94,7 @@ public class Board : MonoBehaviour
 		List<Tile> tiles = tileList.FindAll(x => x.IsCorrected == true);
 
 		Debug.Log("Correct Count : "+tiles.Count);
-		if ( tiles.Count == puzzleSize.x * puzzleSize.y - 1 )
+		if ( tiles.Count == puzzleSize.x * puzzleSize.y - 1  && !kidRoomConsole.GetComponent<KidRoomConsole>().IsSolved())
 		{
 			Debug.Log("GameClear");
 			kidRoomConsole.GetComponent<KidRoomConsole>().isGameWin = true;

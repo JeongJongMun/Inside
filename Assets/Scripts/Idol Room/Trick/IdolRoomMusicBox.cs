@@ -11,10 +11,12 @@ public class IdolRoomMusicBox : Trick
             if (Inventory.Instance.IsClicked(ItemName.Broom))
             {
                 Debug.LogFormat("{0} Solved", this.name);
-                GameManager.Instance.OnClickItem(this.gameObject);
+                Inventory.Instance.RemoveItem(ItemName.Broom);
                 SetIsSolved(true);
                 SolvedAction();
+                GameManager.Instance.OnClickItem(this.gameObject);
                 GameObject.FindWithTag("RoomManager").GetComponent<RoomManagerIdol>().RemoveTrick(this);
+
             }
             else
             {

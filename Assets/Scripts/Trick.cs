@@ -15,7 +15,8 @@ public abstract class Trick : MonoBehaviour
     [Header("트릭 이름")]
     internal TrickName trickName;
 
-    private void Start()
+    // 몇몇 트릭에선 Start 함수에서 해줘야 하는 작업이 있기에 virtual
+    public virtual void Start()
     {
         // 현재 트릭이 속한 방 이름 가져오기
         roomName = Item.GetEnumFromName<RoomName>(GameObject.FindWithTag("RoomManager").name.Substring(11));

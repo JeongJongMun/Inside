@@ -134,6 +134,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58fcfadeca72f43418fab408b7707ab4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: 0
-  roomName: 0
+  itemName: 13
+  roomName: 4
   isInInventory: 0
