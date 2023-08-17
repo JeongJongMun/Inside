@@ -46,10 +46,11 @@ public class SoundManager : MonoBehaviour
         GameObject go = new GameObject(sfxName + "Sound");
         AudioSource audiosource = go.AddComponent<AudioSource>();
         audiosource.clip = clip;
-        audiosource.Play();
+        audiosource.PlayOneShot(clip);
 
         Destroy(go, clip.length);
     }
+
 
     // 배경음악 재생
     public void BgmSoundPlay(AudioClip clip)

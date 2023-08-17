@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+guid: c73fcc47edda9cd49970596b21a07efb
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - drawerClip: {fileID: 8300000, guid: a9b7f244fa99eae42b59685c532e00bc, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

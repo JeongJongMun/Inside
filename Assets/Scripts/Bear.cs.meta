@@ -3,7 +3,11 @@ guid: 21dfad08bfb992843b5f2c722a417fca
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - bearBody: {instanceID: 0}
+  - bearHead: {instanceID: 0}
+  - password: {instanceID: 0}
+  - bearCutClip: {fileID: 8300000, guid: 7b19dc5926902ac488e69799bc918f09, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

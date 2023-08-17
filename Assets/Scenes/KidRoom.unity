@@ -1300,7 +1300,46 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 356268492}
   m_CullTransparentMesh: 1
+<<<<<<< Updated upstream
 --- !u!1 &392088418
+=======
+--- !u!114 &408065246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 408065240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d2e8392bd13618418521547ad6a3ec6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isSolved: 0
+  roomName: 0
+  trickName: 0
+  lampClip: {fileID: 8300000, guid: 915041babf23f4c44b1759992d224f69, type: 3}
+  lamps:
+  - {fileID: 21300000, guid: 43df7296f60369d4cac41e10287774b2, type: 3}
+  - {fileID: 21300000, guid: f3d6dc334e14f2645bb9aa6cccdbe455, type: 3}
+--- !u!1 &415836907 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5253242293819285051, guid: 42c99e9e62da31b4383b0e40ea686b6e, type: 3}
+  m_PrefabInstance: {fileID: 1601343806862283015}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &427107005 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4904344601171851891, guid: 42c99e9e62da31b4383b0e40ea686b6e, type: 3}
+  m_PrefabInstance: {fileID: 1601343806862283015}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &485926900
+>>>>>>> Stashed changes
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2208,6 +2247,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< Updated upstream
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
@@ -2273,6 +2313,16 @@ RectTransform:
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &610977217
+=======
+  isSolved: 0
+  roomName: 0
+  trickName: 0
+  lampClip: {fileID: 8300000, guid: 915041babf23f4c44b1759992d224f69, type: 3}
+  lamps:
+  - {fileID: 21300000, guid: 6092004b915d9ff419f085b917e7c75e, type: 3}
+  - {fileID: 21300000, guid: 59460729494edf04eb9e4b6ae200e89d, type: 3}
+--- !u!114 &645745951
+>>>>>>> Stashed changes
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2628,7 +2678,31 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 665926617}
   m_CullTransparentMesh: 1
+<<<<<<< Updated upstream
 --- !u!1 &685599976
+=======
+--- !u!114 &665926623
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 665926617}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21dfad08bfb992843b5f2c722a417fca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isSolved: 0
+  roomName: 0
+  trickName: 0
+  bearBody: {fileID: 21300000, guid: ffea2c9d9e16eb54bbccfce13f3b6d69, type: 3}
+  bearHead: {fileID: 1965713091}
+  password: {fileID: 1615790125}
+  bearCutClip: {fileID: 8300000, guid: 7b19dc5926902ac488e69799bc918f09, type: 3}
+  kidLaughClip: {fileID: 8300000, guid: 42b43184dbb693f4080027f39f8d30b4, type: 3}
+--- !u!1 &670032103
+>>>>>>> Stashed changes
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4998,6 +5072,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9085046f02f69544eb97fd06b6048fe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< Updated upstream
   m_Navigation:
     m_Mode: 3
     m_WrapAround: 0
@@ -5124,6 +5199,81 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1516798961}
   m_CullTransparentMesh: 1
+=======
+  isSolved: 0
+  roomName: 0
+  trickName: 0
+  doorClip: {fileID: 8300000, guid: 60dccae38f7e9a3488c900b66f51fc8f, type: 3}
+--- !u!1001 &1474893375
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 684559847725123869, guid: 645cbe4e63bea4a46a33fca9f35de87a, type: 3}
+      propertyPath: bgmList.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 684559847725123869, guid: 645cbe4e63bea4a46a33fca9f35de87a, type: 3}
+      propertyPath: bgmList.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 3c6716e5586946a4783399f17e18ca77, type: 3}
+    - target: {fileID: 1942962149628959666, guid: 645cbe4e63bea4a46a33fca9f35de87a, type: 3}
+      propertyPath: m_Name
+      value: soundManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 7937689257346551210, guid: 645cbe4e63bea4a46a33fca9f35de87a, type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7937689257346551210, guid: 645cbe4e63bea4a46a33fca9f35de87a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1400.5927
+      objectReference: {fileID: 0}
+    - target: {fileID: 7937689257346551210, guid: 645cbe4e63bea4a46a33fca9f35de87a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 447.31186
+      objectReference: {fileID: 0}
+    - target: {fileID: 7937689257346551210, guid: 645cbe4e63bea4a46a33fca9f35de87a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 6.157384
+      objectReference: {fileID: 0}
+    - target: {fileID: 7937689257346551210, guid: 645cbe4e63bea4a46a33fca9f35de87a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7937689257346551210, guid: 645cbe4e63bea4a46a33fca9f35de87a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7937689257346551210, guid: 645cbe4e63bea4a46a33fca9f35de87a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7937689257346551210, guid: 645cbe4e63bea4a46a33fca9f35de87a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7937689257346551210, guid: 645cbe4e63bea4a46a33fca9f35de87a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7937689257346551210, guid: 645cbe4e63bea4a46a33fca9f35de87a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7937689257346551210, guid: 645cbe4e63bea4a46a33fca9f35de87a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 645cbe4e63bea4a46a33fca9f35de87a, type: 3}
+>>>>>>> Stashed changes
 --- !u!1 &1544981328
 GameObject:
   m_ObjectHideFlags: 0
@@ -5538,7 +5688,39 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1651991596}
   m_CullTransparentMesh: 1
+<<<<<<< Updated upstream
 --- !u!1 &1677898737
+=======
+--- !u!114 &1651991601
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1651991596}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47a32fddaf6e2a445a4f08d6205499f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isSolved: 0
+  roomName: 0
+  trickName: 0
+  mapCutterClip: {fileID: 8300000, guid: 7c3966933f2ac9f4186e78c2e39ad972, type: 3}
+  worldMapTorn: {fileID: 21300000, guid: 70065dfb506f5e4479f4d5923aa857ec, type: 3}
+--- !u!114 &1757332313 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7835407681675295108, guid: 42c99e9e62da31b4383b0e40ea686b6e, type: 3}
+  m_PrefabInstance: {fileID: 1601343806862283015}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &1763452994
+>>>>>>> Stashed changes
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -6889,7 +7071,29 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1973054110}
   m_CullTransparentMesh: 1
+<<<<<<< Updated upstream
 --- !u!1 &1981275041
+=======
+--- !u!114 &1973054115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1973054110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00077647dfafc0f45a8eddfeecd59a1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isSolved: 0
+  roomName: 0
+  trickName: 0
+  hour: {fileID: 123548979}
+  clockClip: {fileID: 8300000, guid: 78113b6fcc16f754f900e6511fa2ad86, type: 3}
+  hourAngle: -90
+--- !u!1 &1977456893
+>>>>>>> Stashed changes
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
