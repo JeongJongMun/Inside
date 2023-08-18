@@ -4,6 +4,8 @@ using static Define;
 
 public class KidRoomWorldMap : Trick
 {
+    public AudioClip mapClip;
+
     public Sprite worldMapTorn;
     public override void TrySolve(GameObject obj)
     {
@@ -11,6 +13,7 @@ public class KidRoomWorldMap : Trick
         {
             if (Inventory.Instance.IsClicked(ItemName.Cutter))
             {
+                SoundManager.instance.SFXPlay("Map", mapClip);
                 Debug.Log("WorldMap Solved");
                 SetIsSolved(true);
                 SolvedAction();

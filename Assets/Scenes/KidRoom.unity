@@ -1558,6 +1558,8 @@ MonoBehaviour:
   isSolved: 0
   roomName: 0
   trickName: 0
+  drawerClosedClip: {fileID: 8300000, guid: aaebe8e3c6d65d14abb73986b4c4d426, type: 3}
+  drawerOpenedClip: {fileID: 8300000, guid: ddc28e9a95934f9479c0a3b1aa85b764, type: 3}
 --- !u!114 &287621455
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1936,6 +1938,7 @@ MonoBehaviour:
   isSolved: 0
   roomName: 0
   trickName: 0
+  lampClip: {fileID: 8300000, guid: 70c661db1c62a6d42beae2f098464e7f, type: 3}
   lamps:
   - {fileID: 21300000, guid: 43df7296f60369d4cac41e10287774b2, type: 3}
   - {fileID: 21300000, guid: f3d6dc334e14f2645bb9aa6cccdbe455, type: 3}
@@ -3030,6 +3033,7 @@ MonoBehaviour:
   isSolved: 0
   roomName: 0
   trickName: 0
+  lampClip: {fileID: 8300000, guid: 70c661db1c62a6d42beae2f098464e7f, type: 3}
   lamps:
   - {fileID: 21300000, guid: 6092004b915d9ff419f085b917e7c75e, type: 3}
   - {fileID: 21300000, guid: 59460729494edf04eb9e4b6ae200e89d, type: 3}
@@ -7055,6 +7059,7 @@ MonoBehaviour:
   isSolved: 0
   roomName: 0
   trickName: 0
+  doorClosedClip: {fileID: 8300000, guid: dfe0269bf8967f2449600259d322547f, type: 3}
 --- !u!1 &1544981328
 GameObject:
   m_ObjectHideFlags: 0
@@ -7706,6 +7711,7 @@ MonoBehaviour:
   isSolved: 0
   roomName: 0
   trickName: 0
+  mapClip: {fileID: 8300000, guid: 8b3bd4befbddf214fb2efeef75c84dc6, type: 3}
   worldMapTorn: {fileID: 21300000, guid: 70065dfb506f5e4479f4d5923aa857ec, type: 3}
 --- !u!114 &1757332313 stripped
 MonoBehaviour:

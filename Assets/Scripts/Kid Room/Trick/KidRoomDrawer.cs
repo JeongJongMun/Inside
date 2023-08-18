@@ -4,12 +4,16 @@ using static Define;
 
 public class KidRoomDrawer : Trick
 {
+    public AudioClip drawerClosedClip;
+    public AudioClip drawerOpenedClip;
+
     public override void TrySolve(GameObject obj)
     {
         if (obj.name == "DrawerZoom")
         {
             if (Inventory.Instance.IsClicked(ItemName.KidRoomKey))
             {
+                SoundManager.instance.SFXPlay("DrawerOpened", drawerOpenedClip);
                 Debug.LogFormat("{0} Solved", this.name);
                 Inventory.Instance.RemoveItem(ItemName.KidRoomKey);
                 SetIsSolved(true);
@@ -17,6 +21,7 @@ public class KidRoomDrawer : Trick
             }
             else
             {
+                SoundManager.instance.SFXPlay("DrawerClosed", drawerClosedClip);
                 Debug.LogFormat("{0} Not Sloved", this.name);
             }
         }
