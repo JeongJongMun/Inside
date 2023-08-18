@@ -272,6 +272,7 @@ MonoBehaviour:
   isSolved: 0
   roomName: 0
   trickName: 0
+  switchClip: {fileID: 8300000, guid: bc1f7f4c55e61d84ba101c01366eafc5, type: 3}
   switchSprite:
   - {fileID: 21300000, guid: 3c77ee690f6fcfc4f832212f1ea7fa46, type: 3}
   - {fileID: 21300000, guid: 489e163e8f9f1d042b6e2ef7bf0ebe00, type: 3}
@@ -3280,6 +3281,8 @@ MonoBehaviour:
   isSolved: 0
   roomName: 0
   trickName: 0
+  cutterClip: {fileID: 8300000, guid: addf4c428b23bc3459c8c42d7c04f956, type: 3}
+  kidLaughClip: {fileID: 8300000, guid: a9513029cf46f0f439576bd03745c3f5, type: 3}
   bearBody: {fileID: 21300000, guid: ffea2c9d9e16eb54bbccfce13f3b6d69, type: 3}
   bearHead: {fileID: 1965713091}
   password: {fileID: 1615790125}

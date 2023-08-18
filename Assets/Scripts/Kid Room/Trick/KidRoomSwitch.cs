@@ -4,6 +4,8 @@ using UnityEngine.UI;
 
 public class KidRoomSwitch : Trick
 {
+    public AudioClip switchClip;
+
     [Header("스위치 이미지 ([0] = On, [1] = Off)")]
     public Sprite[] switchSprite;
 
@@ -17,6 +19,7 @@ public class KidRoomSwitch : Trick
     {
         if (obj.name == "Switch")
         {
+            SoundManager.instance.SFXPlay("Switch", switchClip);
             if (!IsSolved())
             {
                 Debug.Log("Switch Off");
