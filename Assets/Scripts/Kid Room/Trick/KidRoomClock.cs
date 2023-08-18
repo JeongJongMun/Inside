@@ -5,6 +5,8 @@ public class KidRoomClock : Trick
 {
     public GameObject hour;
 
+    public AudioClip clockClip;
+
     [SerializeField]
     private float hourAngle = -90f;
     public override void TrySolve(GameObject obj)
@@ -32,14 +34,15 @@ public class KidRoomClock : Trick
 
         GetComponent<Image>().raycastTarget = false;
 
-        // ½Ã°è ´ú··
+        // ï¿½Ã°ï¿½ ï¿½ï¿½ï¿½ï¿½
         gameObject.transform.position += Vector3.down * 70;
         gameObject.transform.Rotate(0, 0, 30);
     }
 
-    // ½ÃÄ§ ÇÑ ½Ã°£ ÀÌµ¿
+    // ï¿½ï¿½Ä§ ï¿½ï¿½ ï¿½Ã°ï¿½ ï¿½Ìµï¿½
     void TicTok()
     {
+        SoundManager.instance.SFXPlay("Clock", clockClip);
         hourAngle -= 30f;
         hour.transform.localEulerAngles = new Vector3(0f, 0f, hourAngle);
     }
