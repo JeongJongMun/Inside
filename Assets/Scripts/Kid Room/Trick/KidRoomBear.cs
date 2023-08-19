@@ -19,7 +19,7 @@ public class KidRoomBear : Trick
                 Debug.Log("Bear Solved");
                 SetIsSolved(true);
                 SolvedAction();
-                VoiceManager.Instance.ScreamingMode();
+                VoiceManager.Instance.ScreamingMode(RoomName.Kid);
             }
             else
             {

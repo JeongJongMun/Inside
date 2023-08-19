@@ -31,7 +31,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &377941199919905273
 MonoBehaviour:
@@ -51,6 +51,12 @@ MonoBehaviour:
   loudness: 0
   mode: 0
   timer: 5
+  sprites:
+  - {fileID: 21300000, guid: cfdaedca7d7faff4bbd5cb95128edfd2, type: 3}
+  - {fileID: 21300000, guid: 5b4ff5b68b791f04e9dc973aa2c540af, type: 3}
+  - {fileID: 21300000, guid: df3dcdc3a647c304886c45181f43faa4, type: 3}
+  - {fileID: 21300000, guid: e27c1b73c9069db49957e61adf6f7c44, type: 3}
+  image: {fileID: 0}
 --- !u!82 &5083033308730800610
 AudioSource:
   m_ObjectHideFlags: 0

@@ -896,7 +896,7 @@ GameObject:
   - component: {fileID: 107718132}
   - component: {fileID: 107718131}
   m_Layer: 5
-  m_Name: DrawerLockHolder2
+  m_Name: Drawer Lock Holder 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1808,7 +1808,7 @@ GameObject:
   - component: {fileID: 237770960}
   - component: {fileID: 237770959}
   m_Layer: 5
-  m_Name: DrawerLockerHolder2Zoom
+  m_Name: Drawer Locker Holder 2 Zoom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1880,6 +1880,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 377941199919905273, guid: 9ad1048a053882d4aa282360083c0be7, type: 3}
+      propertyPath: image
+      value: 
+      objectReference: {fileID: 459259056}
     - target: {fileID: 377941199919905273, guid: 9ad1048a053882d4aa282360083c0be7, type: 3}
       propertyPath: voicePanel
       value: 
@@ -3404,7 +3408,7 @@ GameObject:
   - component: {fileID: 444470537}
   - component: {fileID: 444470536}
   m_Layer: 5
-  m_Name: Wall3FlowerZoom
+  m_Name: Wall3 Flower Zoom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3555,6 +3559,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 452979923}
   m_CullTransparentMesh: 1
+--- !u!114 &459259056 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8787144356357030276, guid: 42c99e9e62da31b4383b0e40ea686b6e, type: 3}
+  m_PrefabInstance: {fileID: 1731427583}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &469143183
 GameObject:
   m_ObjectHideFlags: 0
@@ -4232,7 +4247,7 @@ GameObject:
   - component: {fileID: 532591403}
   - component: {fileID: 532591402}
   m_Layer: 5
-  m_Name: Wall3DrawerLocker1Zoom
+  m_Name: Wall3 Drawer Locker 1 Zoom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5463,7 +5478,7 @@ GameObject:
   - component: {fileID: 801791881}
   - component: {fileID: 801791880}
   m_Layer: 5
-  m_Name: DrawerLockHolder1
+  m_Name: Drawer Lock Holder 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5692,7 +5707,7 @@ GameObject:
   - component: {fileID: 848962553}
   - component: {fileID: 848962552}
   m_Layer: 5
-  m_Name: DrawerZoom
+  m_Name: Drawer Zoom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9413,7 +9428,7 @@ GameObject:
   - component: {fileID: 1362165816}
   - component: {fileID: 1362165815}
   m_Layer: 5
-  m_Name: DrawerLockerHolder1Zoom
+  m_Name: Drawer Locker Holder 1 Zoom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10454,7 +10469,7 @@ GameObject:
   - component: {fileID: 1519064560}
   m_Layer: 5
   m_Name: DrawerLocker1
-  m_TagString: Untagged
+  m_TagString: Trick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10546,6 +10561,8 @@ MonoBehaviour:
   inputs: []
   drawerZoom: {fileID: 848962552}
   drawer1Open: {fileID: 21300000, guid: 434127387a7209d4880d7550bc2f7d8b, type: 3}
+  drawerLocker1Zoom: {fileID: 2125326227}
+  drawerLocker1ZoomOpen: {fileID: 21300000, guid: 5d75b57e79faff9469ceb31998fb45c4, type: 3}
   coins: {fileID: 8808032684554042329}
   latch3: {fileID: 3999667914207592544}
   drawerZoomLocker1: {fileID: 1553900248}
@@ -10726,7 +10743,7 @@ GameObject:
   - component: {fileID: 1553900251}
   - component: {fileID: 1553900250}
   m_Layer: 5
-  m_Name: DrawerZoomLocker1
+  m_Name: Drawer Zoom Locker 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11067,7 +11084,7 @@ GameObject:
   - component: {fileID: 1566893929}
   - component: {fileID: 1566893928}
   m_Layer: 5
-  m_Name: Wall3NoteZoom
+  m_Name: Wall3 Note Zoom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12736,7 +12753,7 @@ GameObject:
   - component: {fileID: 1811135803}
   - component: {fileID: 1811135802}
   m_Layer: 5
-  m_Name: Wall3DrawerZoom
+  m_Name: Wall3 Drawer Zoom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13957,7 +13974,7 @@ GameObject:
   - component: {fileID: 1941166298}
   - component: {fileID: 1941166297}
   m_Layer: 5
-  m_Name: DrawerZoomLocker2
+  m_Name: Drawer Zoom Locker 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15201,7 +15218,7 @@ GameObject:
   - component: {fileID: 2125326228}
   - component: {fileID: 2125326227}
   m_Layer: 5
-  m_Name: DrawerLocker1Zoom
+  m_Name: Drawer Locker 1 Zoom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

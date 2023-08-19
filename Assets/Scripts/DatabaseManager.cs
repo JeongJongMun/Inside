@@ -64,6 +64,7 @@ public class DatabaseManager : MonoBehaviour
         { TrickName.MusicPlateZoom,     false },
         { TrickName.Locker,             false },
         { TrickName.Table,              false },
+        { TrickName.Poster,             false },
     };
 
     // 거실 트릭 진행 상황
@@ -87,6 +88,19 @@ public class DatabaseManager : MonoBehaviour
 
     };
 
+    // CEO방 트릭 진행 상황
+    private Dictionary<TrickName, bool> trickStatus_CEO = new Dictionary<TrickName, bool>()
+    {
+        { TrickName.Deer,               false },
+        { TrickName.DrawerCEO,          false },
+        { TrickName.SafeCEO,            false },
+        { TrickName.CubePuzzle,         false },
+        { TrickName.Parrot,             false },
+        { TrickName.Sofa,               false },
+        { TrickName.Lion,               false },
+        { TrickName.Book,               false },
+    };
+
     // Dictionary에 트릭이 존재하나 확인
     public bool IsTrickExist(RoomName roomName, TrickName trickName)
     {
@@ -100,6 +114,8 @@ public class DatabaseManager : MonoBehaviour
                 return trickStatus_Living.ContainsKey(trickName);
             case RoomName.Researcher:
                 return trickStatus_Researcher.ContainsKey(trickName);
+            case RoomName.CEO:
+                return trickStatus_CEO.ContainsKey(trickName);
             default:
                 return true;
         }
@@ -117,6 +133,8 @@ public class DatabaseManager : MonoBehaviour
                 return trickStatus_Living[trickName];
             case RoomName.Researcher:
                 return trickStatus_Researcher[trickName];
+            case RoomName.CEO:
+                return trickStatus_CEO[trickName];
             default:
                 return false;
         }
@@ -140,6 +158,9 @@ public class DatabaseManager : MonoBehaviour
                 break;            
             case RoomName.Researcher:
                 trickStatus_Researcher[trickName] = status;
+                break;
+            case RoomName.CEO:
+                trickStatus_CEO[trickName] = status;
                 break;
             default:
                 break;
@@ -180,9 +201,20 @@ public class DatabaseManager : MonoBehaviour
         {ItemName.TestTubeBlue,     false},
         {ItemName.GoldKey,          false},
         {ItemName.Magnifier,        false},
-        {ItemName.Coins,        false},
-        {ItemName.Latch3,        false},
+        {ItemName.Coins,            false},
+        {ItemName.Latch3,           false},
+    };
 
+    // CEO방 아이템 획득 상황
+    private Dictionary<ItemName, bool> isItemAcquired_CEO = new Dictionary<ItemName, bool>()
+    {
+        {ItemName.Gun,              false},
+        {ItemName.CubeBlack,        false},
+        {ItemName.CubeBlue,         false},
+        {ItemName.CubeRed,          false},
+        {ItemName.CubeYellow,       false},
+        {ItemName.Latch4,           false},
+        {ItemName.DeadParrot,       false},
     };
 
     public bool IsItemAcquired(RoomName roomName, ItemName itemName)
@@ -197,6 +229,8 @@ public class DatabaseManager : MonoBehaviour
                 return isItemAcquired_Living[itemName];
             case RoomName.Researcher:
                 return isItemAcquired_Researcher[itemName];
+            case RoomName.CEO:
+                return isItemAcquired_CEO[itemName];
             default:
                 return false;
         }
@@ -218,6 +252,9 @@ public class DatabaseManager : MonoBehaviour
                 break;            
             case RoomName.Researcher:
                 isItemAcquired_Researcher[itemName] = true;
+                break;
+            case RoomName.CEO:
+                isItemAcquired_CEO[itemName] = true;
                 break;
             default:
                 break;

@@ -51,7 +51,7 @@ public class RoomManager : MonoBehaviour
         rightArrow.GetComponent<Button>().onClick.AddListener(OnClickRightArrow);
         bottomArrow.GetComponent<Button>().onClick.AddListener(ZoomOut);
     }
-    private void Start()
+    public virtual void Start()
     {
         roomName = Item.GetEnumFromName<RoomName>(this.name.Substring(11));
         Initialize("Trick");

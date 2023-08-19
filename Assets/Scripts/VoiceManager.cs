@@ -1,6 +1,6 @@
-using PlayFab.MultiplayerModels;
 using UnityEngine;
 using UnityEngine.UI;
+using static Define;
 
 public enum VoiceMode
 {
@@ -63,6 +63,12 @@ public class VoiceManager : MonoBehaviour
     [Header("타이머")]
     private float timer;
 
+    [Header("환청 이미지들 [0]: 곰돌이, [1]: 나비, [2]: 쥐, [3]:사슴")]
+    public Sprite[] sprites;
+
+    [Header("환청 이미지")]
+    public Image image;
+
     void Start()
     {
         _audio = GetComponent<AudioSource>();
@@ -113,9 +119,10 @@ public class VoiceManager : MonoBehaviour
                 break;
         }
     }
-    public void ScreamingMode()
+    public void ScreamingMode(RoomName roomName)
     {
         mode = VoiceMode.Screaming;
+        image.sprite = sprites[(int)roomName];
     }
     float GetAveragedVolume()
     {

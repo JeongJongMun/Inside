@@ -17,7 +17,7 @@ public class ResearcherRoomRCloset : Trick
                 Debug.LogFormat("{0} Solved", this.name);
                 SetIsSolved(true);
                 SolvedAction();
-                VoiceManager.Instance.ScreamingMode();
+                VoiceManager.Instance.ScreamingMode(Define.RoomName.Researcher);
             }
             else
             {

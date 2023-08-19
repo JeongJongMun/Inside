@@ -2,11 +2,12 @@ public class Define
 {
     public enum RoomName
     {
-        None,
         Kid,
         Idol,
-        Living,
         Researcher,
+        CEO,
+        Living,
+        None,
 
     }
     public enum ItemName
@@ -38,9 +39,21 @@ public class Define
         GoldKey,
         Magnifier,
         Coins,
-        Latch3
+        Latch3,
+
+        // CEO
+        Gun,
+        CubeBlack,
+        CubeBlue,
+        CubeGreen,
+        CubeRed,
+        CubeYellow,
+        Latch4,
+        DeadParrot,
+
 
     }
+
     public enum TrickName
     {
         None,
@@ -73,6 +86,7 @@ public class Define
         MusicPlateZoom,
         Locker,
         Table,
+        Poster,
 
         // Living
         CardReader,
@@ -88,6 +102,15 @@ public class Define
         DrawerLocker2,
         Stand,
 
+        // CEO
+        Deer,
+        DrawerCEO,
+        SafeCEO,
+        CubePuzzle,
+        Parrot,
+        Sofa,
+        Lion,
+        Book,
 
     }
 }

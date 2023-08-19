@@ -20,6 +20,11 @@ public class ResearcherRoomDrawerLocker1 : Trick
     [Header("DrawerZoom 이미지가 바뀔 Drawer1Open 이미지")]
     public Sprite drawer1Open;
 
+    [Header("Drawer Locker 1 Zoom 이미지")]
+    public Image drawerLocker1Zoom;
+
+    [Header("Drawer Locker 1 Zoom 이미지가 바뀔 열린 이미지")]
+    public Sprite drawerLocker1ZoomOpen;
 
     [Header("자물쇠1 트릭 성공 시 On")]
     public GameObject coins;
@@ -49,6 +54,7 @@ public class ResearcherRoomDrawerLocker1 : Trick
     public override void SolvedAction()
     {
         drawerZoom.sprite = drawer1Open;
+        drawerLocker1Zoom.sprite = drawerLocker1ZoomOpen;
         drawerZoomLocker1.SetActive(false);
         drawerLockerHolder1Zoom.SetActive(false);
         coins.SetActive(true);

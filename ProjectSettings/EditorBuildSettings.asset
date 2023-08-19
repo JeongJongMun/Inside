@@ -29,4 +29,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ResearcherRoom.unity
     guid: 285ced391274e024bba629d2826d3235
+  - enabled: 1
+    path: Assets/Scenes/CEORoom.unity
+    guid: 273a952aa8c4e05428d6a09f4e33d281
   m_configObjects: {}
