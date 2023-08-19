@@ -17,7 +17,7 @@ public class ResearcherRoomDrawerLocker2 : Trick
     public GameObject drawerLock2Zoom;
     [Header("ÀÚ¹°¼è2 °É¼è È®´ë")]
     public GameObject drawerLocker2HolderZoom;
-    [Header("ÀÚ¹°¼è2")]
+    [Header("ÀÚ¹°¼è2 È®´ë")]
     public GameObject locker2;
 
     [Header("## ÀÚ¹°¼è 2¹ø ÇØÁ¦ ½Ã ON °´Ã¼ ##")]
@@ -35,6 +35,7 @@ public class ResearcherRoomDrawerLocker2 : Trick
             if (toggleGroupLimit.selectedNumbers.Contains(9) && toggleGroupLimit.selectedNumbers.Contains(3) && toggleGroupLimit.selectedNumbers.Contains(0))
             {
                 Debug.LogFormat("{0} Solved", this.name);
+                drawer.sprite = drawer2Opened;
                 SetIsSolved(true);
                 SolvedAction();
             }
@@ -55,7 +56,6 @@ public class ResearcherRoomDrawerLocker2 : Trick
         locker2.SetActive(false);
         drawerLock2ZoomOpened.SetActive(true);
         goldKey.SetActive(true);
-        drawer.sprite = drawer2Opened;
         gameObject.SetActive(false);
     }
 }

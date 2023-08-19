@@ -180,6 +180,8 @@ public class DatabaseManager : MonoBehaviour
         {ItemName.TestTubeBlue,     false},
         {ItemName.GoldKey,          false},
         {ItemName.Magnifier,        false},
+        {ItemName.Coins,        false},
+        {ItemName.Latch3,        false},
 
     };
 

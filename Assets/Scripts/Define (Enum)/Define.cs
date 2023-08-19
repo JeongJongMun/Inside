@@ -37,6 +37,8 @@ public class Define
         TestTubeBlue,
         GoldKey,
         Magnifier,
+        Coins,
+        Latch3
 
     }
     public enum TrickName
