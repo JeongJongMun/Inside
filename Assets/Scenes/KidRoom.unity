@@ -7778,6 +7778,17 @@ MonoBehaviour:
   roomName: 0
   trickName: 0
   worldMapTorn: {fileID: 21300000, guid: 70065dfb506f5e4479f4d5923aa857ec, type: 3}
+--- !u!114 &1730517936 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8787144356357030276, guid: 42c99e9e62da31b4383b0e40ea686b6e, type: 3}
+  m_PrefabInstance: {fileID: 1601343806862283015}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1757332313 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7835407681675295108, guid: 42c99e9e62da31b4383b0e40ea686b6e, type: 3}
@@ -10988,6 +10999,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 377941199919905273, guid: 9ad1048a053882d4aa282360083c0be7, type: 3}
+      propertyPath: image
+      value: 
+      objectReference: {fileID: 1730517936}
     - target: {fileID: 377941199919905273, guid: 9ad1048a053882d4aa282360083c0be7, type: 3}
       propertyPath: voicePanel
       value: 
