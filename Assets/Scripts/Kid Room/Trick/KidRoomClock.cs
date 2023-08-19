@@ -5,7 +5,12 @@ public class KidRoomClock : Trick
 {
     public GameObject hour;
 
-    public AudioClip clockClip;
+    SoundManager soundManager;
+
+    private void Awake()
+    {
+        soundManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<SoundManager>();
+    }
 
     [SerializeField]
     private float hourAngle = -90f;
@@ -42,7 +47,7 @@ public class KidRoomClock : Trick
     // ��ħ �� �ð� �̵�
     void TicTok()
     {
-        SoundManager.instance.SFXPlay("Clock", clockClip);
+        SoundManager.instance.SFXPlay("clock");
         hourAngle -= 30f;
         hour.transform.localEulerAngles = new Vector3(0f, 0f, hourAngle);
     }

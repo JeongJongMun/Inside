@@ -7,6 +7,7 @@ TagManager:
   - Trick
   - RoomManager
   - Item
+  - Audio
   layers:
   - Default
   - TransparentFX

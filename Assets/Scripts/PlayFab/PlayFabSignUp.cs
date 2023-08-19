@@ -13,11 +13,17 @@ public class PlayFabSignUp : MonoBehaviour
     public TMP_InputField passwordInputField;
     public TMP_InputField passwordCheckInputField;
 
-    public AudioClip buttonClip; // 효과음 낼 소리
+    SoundManager soundManager;
+
+    private void Awake()
+    {
+        soundManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<SoundManager>();
+    }
+
 
     public void SignUp()
     {
-        SoundManager.instance.SFXPlay("Button", buttonClip); // 효과음
+        soundManager.SFXPlay("buttonSound");
         // @�� �������� ���� ���ڿ��� ����
         string username = emailInputField.text.Split(new[] { '@' })[0];
 
@@ -49,13 +55,14 @@ public class PlayFabSignUp : MonoBehaviour
     private void OnSignUpSuccess(RegisterPlayFabUserResult result)
     {
         Debug.Log("ȸ������ ����");
-        SoundManager.instance.SFXPlay("Button", buttonClip); // 효과음
+        //SoundManager.instance.SFXPlay("Button", buttonClip); // 효과음
         StartCoroutine(_ClickBackBtn());
     }
 
     private IEnumerator _OnSignUpSuccess()
     {
-        yield return new WaitForSeconds(buttonClip.length);
+        
+        yield return new WaitForSeconds(0.5f);
         SceneManager.LoadScene("SignIn");
     }
 
@@ -66,13 +73,13 @@ public class PlayFabSignUp : MonoBehaviour
     }
     public void ClickBackBtn()
     {
-        SoundManager.instance.SFXPlay("Button", buttonClip); // 효과음
+        //SoundManager.instance.SFXPlay("Button", buttonClip); // 효과음
         StartCoroutine(_ClickBackBtn());
     }
 
     private IEnumerator _ClickBackBtn()
     {
-        yield return new WaitForSeconds(buttonClip.length);
+        yield return new WaitForSeconds(0.5f);
         SceneManager.LoadScene("SignIn");
     }
 
