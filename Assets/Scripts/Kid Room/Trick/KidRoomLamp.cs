@@ -3,7 +3,6 @@ using UnityEngine.UI;
 
 public class KidRoomLamp : Trick
 {
-    public AudioClip lampClip;
 
     public Sprite[] lamps; // 0 : lampOn, 1 : lampOff
 
@@ -11,7 +10,6 @@ public class KidRoomLamp : Trick
     {
         if (obj.name == "LampZoom" || obj.name == "Lamp")
         {
-            SoundManager.instance.SFXPlay("Lamp", lampClip);
             if (!isSolved)
             {
                 Debug.Log("Lamp Off");

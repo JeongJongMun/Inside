@@ -5,6 +5,7 @@ public class KidRoomCurtain : Trick
 {
     public Sprite[] curtains;
 
+
     public override void TrySolve(GameObject obj)
     {
         if (obj.name == "Curtain")

@@ -5,8 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class SoundManager : MonoBehaviour
 {
-    public AudioSource bgmSound;
+    [Header("---------Audio Source----------")]
+    [SerializeField] AudioSource bgmSound;
+    [SerializeField] AudioSource SFXSource;
+
+    [Header("---------Audio Clip----------")]
     public AudioClip[] bgmList;
+    public AudioClip[] SFXList;
     
 
     public static SoundManager instance = null;
@@ -40,12 +45,19 @@ public class SoundManager : MonoBehaviour
     }
 
     // 효과음 재생
-    public void SFXPlay(string sfxName, AudioClip clip)
+    public void SFXPlay(string sfxName)
+    {
+        for(int i=0;i<SFXList.Length;i++) {
+            if(sfxName == SFXList[i].name)
+                toSFXPlay(sfxName, SFXList[i]);
+        }
+    }
+
+    public void toSFXPlay(string sfxName, AudioClip clip)
     {
         GameObject go = new GameObject(sfxName + "Sound");
-        AudioSource audiosource = go.AddComponent<AudioSource>();
-        audiosource.clip = clip;
-        audiosource.Play();
+        SFXSource.clip = clip;
+        SFXSource.PlayOneShot(clip);
 
         Destroy(go, clip.length);
     }
@@ -55,7 +67,6 @@ public class SoundManager : MonoBehaviour
     {
         bgmSound.clip = clip;
         bgmSound.loop = true;
-        bgmSound.volume = 0.1f;
         bgmSound.Play();
     }
 }

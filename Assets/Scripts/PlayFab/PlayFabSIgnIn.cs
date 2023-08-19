@@ -11,11 +11,16 @@ public class PlayFabSignIn : MonoBehaviour
     public TMP_InputField emailInputField;
     public TMP_InputField passwordInputField;
 
-    public AudioClip buttonClip; // 효과음 낼 소리
+    SoundManager soundManager;
+
+    private void Awake()
+    {
+        soundManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<SoundManager>();
+    }
 
     public void SignIn()
     {
-        SoundManager.instance.SFXPlay("Button", buttonClip); // 효과음
+        SoundManager.instance.SFXPlay("buttonSound"); // 효과음
         var emailRequest = new LoginWithEmailAddressRequest
         {
             Email = emailInputField.text,
@@ -35,13 +40,13 @@ public class PlayFabSignIn : MonoBehaviour
     }
     public void ClickSignUpBtn()
     {
-        SoundManager.instance.SFXPlay("Button", buttonClip); // 효과음
+        SoundManager.instance.SFXPlay("buttonSound"); // 효과음
         StartCoroutine(_ClickSignUpBtn());
     }
 
     private IEnumerator _ClickSignUpBtn()
     {
-        yield return new WaitForSeconds(buttonClip.length);
+        yield return new WaitForSeconds(0.5f);
         SceneManager.LoadScene("SignUp");
     }
 
