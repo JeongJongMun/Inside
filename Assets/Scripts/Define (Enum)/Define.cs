@@ -43,7 +43,7 @@ public class Define
 
         // CEO
         Gun,
-        CubeBlack,
+        CubePurple,
         CubeBlue,
         CubeGreen,
         CubeRed,
@@ -107,6 +107,9 @@ public class Define
         DrawerCEO,
         SafeCEO,
         CubePuzzle,
+        EmptySlot0,
+        EmptySlot1,
+        EmptySlot2,
         Parrot,
         Sofa,
         Lion,

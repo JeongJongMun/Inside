@@ -95,6 +95,9 @@ public class DatabaseManager : MonoBehaviour
         { TrickName.DrawerCEO,          false },
         { TrickName.SafeCEO,            false },
         { TrickName.CubePuzzle,         false },
+        { TrickName.EmptySlot0,         false },
+        { TrickName.EmptySlot1,         false },
+        { TrickName.EmptySlot2,         false },
         { TrickName.Parrot,             false },
         { TrickName.Sofa,               false },
         { TrickName.Lion,               false },
@@ -209,7 +212,7 @@ public class DatabaseManager : MonoBehaviour
     private Dictionary<ItemName, bool> isItemAcquired_CEO = new Dictionary<ItemName, bool>()
     {
         {ItemName.Gun,              false},
-        {ItemName.CubeBlack,        false},
+        {ItemName.CubePurple,        false},
         {ItemName.CubeBlue,         false},
         {ItemName.CubeRed,          false},
         {ItemName.CubeYellow,       false},

@@ -1,9 +1,18 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LivingRoomCoinMachine : Trick
 {
+    [Header("투입된 동전")]
     public TMP_Text money;
+
+    [Header("CEO방 문")]
+    public Image CEODoor;
+
+    [Header("CEO방 문 열린 이미지")]
+    public Sprite CEODoorOpen;
+
     public override void TrySolve(GameObject obj)
     {
         if (obj.name == this.name)
@@ -24,5 +33,6 @@ public class LivingRoomCoinMachine : Trick
     public override void SolvedAction()
     {
         Debug.Log("CEO방 문 열리는 소리 재생");
+        CEODoor.sprite = CEODoorOpen;
     }
 }

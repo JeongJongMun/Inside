@@ -1,6 +1,7 @@
 using UnityEngine.SceneManagement;
 using UnityEngine;
 using TMPro;
+using static Define;
 
 public class LivingRoomManager : RoomManager
 {
@@ -28,11 +29,13 @@ public class LivingRoomManager : RoomManager
     }
     public void OnClick500Button(TMP_Text money)
     {
-        money.text = (int.Parse(money.text) + 500).ToString();
+        if (Inventory.Instance.IsClicked(ItemName.Coins))
+            money.text = (int.Parse(money.text) + 500).ToString();
     }
     public void OnClick100Button(TMP_Text money)
     {
-        money.text = (int.Parse(money.text) + 100).ToString();
+        if (Inventory.Instance.IsClicked(ItemName.Coins))
+            money.text = (int.Parse(money.text) + 100).ToString();
     }
     public void OnClickReturnButton(TMP_Text money)
     {

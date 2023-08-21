@@ -10,6 +10,12 @@ public class LivingRoomCardReader : Trick
     [Header("카드 리더기 열린 상태")]
     public Sprite statusGreen;
 
+    [Header("연구원 방 문")]
+    public Image researcherDoor;
+
+    [Header("연구원 방 문 열린 이미지")]
+    public Sprite researcherDoorOpen;
+
     public override void TrySolve(GameObject obj)
     {
         if (obj.name == "CardReader")
@@ -30,7 +36,7 @@ public class LivingRoomCardReader : Trick
 
     public override void SolvedAction()
     {
-        Debug.Log("연구원 방 문 열림");
         status.sprite = statusGreen;
+        researcherDoor.sprite = researcherDoorOpen;
     }
 }
