@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
+using UnityEngine;  
 
 public class KidRoomConsole : Trick
 {
@@ -12,8 +14,10 @@ public class KidRoomConsole : Trick
             if (isGameWin)
             {
                 Debug.LogFormat("{0} is Solved", name);
-                SetIsSolved(true);
-                SolvedAction();
+
+                SoundManager.instance.SFXPlay("gameClear");
+                StartCoroutine(ForDelay());
+                
             }
             else
             {
@@ -21,6 +25,15 @@ public class KidRoomConsole : Trick
             }
         }
     }
+
+    private IEnumerator ForDelay()
+    {
+        SetIsSolved(true);
+        yield return new WaitForSeconds(2.0f);
+        SoundManager.instance.SFXPlay("doorSlide");
+        SolvedAction();
+    }
+
     public override void SolvedAction()
     {
         bookShelf.transform.position += Vector3.left * 500;
@@ -29,6 +42,7 @@ public class KidRoomConsole : Trick
     }
     public void OnClickSkipBtn()
     {
+        SoundManager.instance.SFXPlay("buttonSound");
         isGameWin = true;
         TrySolve(gameObject);
     }

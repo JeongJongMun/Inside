@@ -21,6 +21,15 @@ public class Board : MonoBehaviour
 	public GameObject	slidingPuzzlePanel;                     // 슬라이딩 퍼즐 패널
 	public GameObject	kidRoomConsole;
 
+	// 사운드 매니저
+	SoundManager soundManager;
+
+    private void Awake()
+    {
+        soundManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<SoundManager>();
+    }
+
+
 	private IEnumerator Start()
 	{
 		tileList = new List<Tile>();
@@ -81,6 +90,8 @@ public class Board : MonoBehaviour
 	{
 		if ( Vector3.Distance(EmptyTilePosition, tile.GetComponent<RectTransform>().localPosition) == neighborTileDistance)
 		{
+			SoundManager.instance.SFXPlay("dragslide");
+
 			Vector3 goalPosition = EmptyTilePosition;
 
 			EmptyTilePosition = tile.GetComponent<RectTransform>().localPosition;

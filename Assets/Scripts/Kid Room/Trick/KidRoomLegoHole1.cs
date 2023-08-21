@@ -14,6 +14,8 @@ public class KidRoomLegoHole1 : Trick
             if (Inventory.Instance.IsClicked(ItemName.Lego1))
             {
                 Debug.LogFormat("{0} is Solved", name);
+                
+                SoundManager.instance.SFXPlay("lego");
                 Inventory.Instance.RemoveItem(ItemName.Lego1);
                 SetIsSolved(true);
                 SolvedAction();

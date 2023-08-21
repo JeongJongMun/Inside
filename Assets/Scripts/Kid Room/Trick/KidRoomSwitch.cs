@@ -18,6 +18,7 @@ public class KidRoomSwitch : Trick
     {
         if (obj.name == "Switch")
         {
+            SoundManager.instance.SFXPlay("lightswitch");
             if (!IsSolved())
             {
                 Debug.Log("Switch Off");

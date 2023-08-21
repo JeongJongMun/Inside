@@ -19,6 +19,7 @@ public class KidRoomLegoHole : Trick
             {
                 Debug.LogFormat("LegoHole Solved");
 
+                SoundManager.instance.SFXPlay("bookdrop");
                 SetIsSolved(true);
                 SolvedAction();
             }

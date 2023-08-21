@@ -12,6 +12,8 @@ public class KidRoomConsoleHole : Trick
             if (Inventory.Instance.IsClicked(ItemName.Console))
             {
                 Debug.LogFormat("{0} Solved", obj.name);
+
+                SoundManager.instance.SFXPlay("consoleInsert");
                 Inventory.Instance.RemoveItem(ItemName.Console);
                 SetIsSolved(true);
                 SolvedAction();

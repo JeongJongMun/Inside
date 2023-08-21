@@ -11,6 +11,7 @@ public class KidRoomFamilyPicture : Trick
         {
             if (Inventory.Instance.IsClicked(ItemName.Cutter))
             {
+                SoundManager.instance.SFXPlay("cutter");
                 Debug.Log("FamilyPicture Solved");
                 SetIsSolved(true);
                 SolvedAction();
