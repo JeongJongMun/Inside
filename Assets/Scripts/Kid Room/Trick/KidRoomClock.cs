@@ -5,13 +5,6 @@ public class KidRoomClock : Trick
 {
     public GameObject hour;
 
-    SoundManager soundManager;
-
-    private void Awake()
-    {
-        soundManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<SoundManager>();
-    }
-
     [SerializeField]
     private float hourAngle = -90f;
     public override void TrySolve(GameObject obj)

@@ -11,6 +11,7 @@ public class KidRoomDrawer : Trick
         {
             if (Inventory.Instance.IsClicked(ItemName.KidRoomKey))
             {
+                SoundManager.instance.SFXPlay("drawerOpened");
                 Debug.LogFormat("{0} Solved", this.name);
                 Inventory.Instance.RemoveItem(ItemName.KidRoomKey);
                 SetIsSolved(true);
@@ -18,6 +19,7 @@ public class KidRoomDrawer : Trick
             }
             else
             {
+                SoundManager.instance.SFXPlay("drawerLocked");
                 Debug.LogFormat("{0} Not Sloved", this.name);
             }
         }

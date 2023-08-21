@@ -10,6 +10,7 @@ public class KidRoomCurtain : Trick
     {
         if (obj.name == "Curtain")
         {
+            SoundManager.instance.SFXPlay("curtain");
             if (!isSolved)
             {
                 Debug.Log("Curtain Opened");

@@ -28,6 +28,8 @@ public class KidRoomSafe : Trick
             if (display.text == "0710")
             {
                 Debug.Log("Safe Solved");
+
+                SoundManager.instance.SFXPlay("electricOKButton");
                 Inventory.Instance.RemoveItem(ItemName.Password);
                 SetIsSolved(true);
                 SolvedAction();
@@ -35,6 +37,7 @@ public class KidRoomSafe : Trick
             else
             {
                 Debug.Log("Safe Not Solved");
+                SoundManager.instance.SFXPlay("electricFail");
             }
         }
 
@@ -49,6 +52,7 @@ public class KidRoomSafe : Trick
 
     public void OnClickKeypad(GameObject keypad)
     {
+        SoundManager.instance.SFXPlay("electricButton");
         if (display.text.Length < 4)
         {
             display.text += keypad.name;
@@ -56,6 +60,7 @@ public class KidRoomSafe : Trick
     }
     public void OnClickDelete()
     {
+        SoundManager.instance.SFXPlay("electricButton");
         string currentText = display.text;
 
         if (currentText.Length > 0)

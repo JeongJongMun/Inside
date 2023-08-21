@@ -10,6 +10,7 @@ public class KidRoomLamp : Trick
     {
         if (obj.name == "LampZoom" || obj.name == "Lamp")
         {
+            SoundManager.instance.SFXPlay("lampswitch");
             if (!isSolved)
             {
                 Debug.Log("Lamp Off");

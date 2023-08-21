@@ -13,6 +13,8 @@ public class KidRoomWorldMap : Trick
             if (Inventory.Instance.IsClicked(ItemName.Cutter))
             {
                 Debug.Log("WorldMap Solved");
+                
+                SoundManager.instance.SFXPlay("cutter");
                 SetIsSolved(true);
                 SolvedAction();
             }

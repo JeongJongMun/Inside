@@ -5,7 +5,6 @@ using static Define;
 
 public class KidRoomBear : Trick
 {
-
     public Sprite bearBody;
     public GameObject bearHead;
     public GameObject password;
@@ -15,7 +14,7 @@ public class KidRoomBear : Trick
         {
             if (Inventory.Instance.IsClicked(ItemName.Cutter))
             {
-
+                SoundManager.instance.SFXPlay("bearCut");
                 Debug.Log("Bear Solved");
                 SetIsSolved(true);
                 SolvedAction();
