@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 using static Define;
 
 public class IdolRoomTable : Trick
@@ -12,9 +13,9 @@ public class IdolRoomTable : Trick
             if (Inventory.Instance.IsClicked(ItemName.MusicBox))
             {
                 Debug.LogFormat("{0} Solved", this.name);
+                Inventory.Instance.RemoveItem(ItemName.MusicBox);
                 SetIsSolved(true);
                 SolvedAction();
-                Inventory.Instance.RemoveItem(ItemName.MusicBox);
             }
             else
             {
@@ -25,5 +26,6 @@ public class IdolRoomTable : Trick
     public override void SolvedAction()
     {
         musicBoxOnTable.SetActive(true);
+        GetComponent<Image>().raycastTarget = false;
     }
 }

@@ -2,10 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CEORoomDrawerCEO : Trick
 {
+    [Header("비밀번호들")]
     public TMP_Text[] passwords;
+
+    [Header("비밀번호 버튼")]
+    public Image[] passwordButtons;
+
     public override void TrySolve(GameObject obj)
     {
         if (obj.name == this.name)
@@ -24,6 +30,12 @@ public class CEORoomDrawerCEO : Trick
     }
     public override void SolvedAction()
     {
-        throw new System.NotImplementedException();
+        passwords[0].text = "1";
+        passwords[1].text = "5";
+        passwords[2].text = "0";
+        foreach (Image button in passwordButtons)
+        {
+            button.raycastTarget = false;
+        }
     }
 }

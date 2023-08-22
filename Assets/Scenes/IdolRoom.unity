@@ -334,11 +334,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 17573018}
   m_CullTransparentMesh: 1
---- !u!1 &52971646 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1282798931610641630, guid: d378857bd9824cd479697a92f4017fbb, type: 3}
-  m_PrefabInstance: {fileID: 4300972662026177868}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &52971647 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2871138756692592517, guid: d378857bd9824cd479697a92f4017fbb, type: 3}
@@ -1488,7 +1483,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: 0
-  roomName: 0
   isInInventory: 0
 --- !u!114 &160846373
 MonoBehaviour:
@@ -2284,7 +2278,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isSolved: 0
-  roomName: 0
   trickName: 0
 --- !u!114 &273000870
 MonoBehaviour:
@@ -3273,7 +3266,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isSolved: 0
-  roomName: 0
   trickName: 0
   musicBoxOnTable: {fileID: 1568366725}
 --- !u!114 &518078462
@@ -3782,7 +3774,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 633597364}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a07c5d6c629cdde49a4e9e947a79bc93, type: 3}
+  m_Script: {fileID: 11500000, guid: 8f8af462667bb924d8c0d12903b221ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   isEyesMoving: 0
@@ -3791,7 +3783,7 @@ MonoBehaviour:
   - {fileID: 778911862}
   - {fileID: 104888859}
   positions: []
-  timer: 0
+  timer: -0.5
   startVector: []
   destinationVector: []
 --- !u!1 &641681295
@@ -4574,7 +4566,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isSolved: 0
-  roomName: 0
   trickName: 0
   P:
   - {fileID: 1261763210}
@@ -6300,7 +6291,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isSolved: 0
-  roomName: 0
   trickName: 0
 --- !u!114 &925265163
 MonoBehaviour:
@@ -6767,7 +6757,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isSolved: 0
-  roomName: 2
   trickName: 19
   dressingTableZoomPanel: {fileID: 1546153243}
   dressingTableZoom: {fileID: 1882917289}
@@ -7119,7 +7108,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isSolved: 0
-  roomName: 0
   trickName: 0
   passwordInputField: {fileID: 161015001}
   script: {fileID: 633597368}
@@ -9099,7 +9087,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isSolved: 0
-  roomName: 0
   trickName: 0
 --- !u!114 &1644959088
 MonoBehaviour:
@@ -10171,7 +10158,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isSolved: 0
-  roomName: 0
   trickName: 0
   notes:
   - {fileID: 552750420}
@@ -10182,6 +10168,12 @@ MonoBehaviour:
   - {fileID: 839073929}
   currentNoteNumber: 0
   input: 
+  noteButtons:
+  - {fileID: 1383027315}
+  - {fileID: 1982743190}
+  - {fileID: 816740844}
+  - {fileID: 961248683}
+  - {fileID: 1551827792}
 --- !u!1 &1938992960
 GameObject:
   m_ObjectHideFlags: 0
@@ -10566,7 +10558,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: 0
-  roomName: 0
   isInInventory: 0
 --- !u!114 &1987897399
 MonoBehaviour:
@@ -11556,37 +11547,9 @@ PrefabInstance:
       value: MusicBox
       objectReference: {fileID: 0}
     - target: {fileID: 2655398993609479879, guid: d378857bd9824cd479697a92f4017fbb, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2655398993609479879, guid: d378857bd9824cd479697a92f4017fbb, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2655398993609479879, guid: d378857bd9824cd479697a92f4017fbb, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 951373942}
-    - target: {fileID: 2655398993609479879, guid: d378857bd9824cd479697a92f4017fbb, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2655398993609479879, guid: d378857bd9824cd479697a92f4017fbb, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnClickTrick
-      objectReference: {fileID: 0}
-    - target: {fileID: 2655398993609479879, guid: d378857bd9824cd479697a92f4017fbb, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: RoomManager, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 2655398993609479879, guid: d378857bd9824cd479697a92f4017fbb, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
-      value: 
-      objectReference: {fileID: 52971646}
-    - target: {fileID: 2655398993609479879, guid: d378857bd9824cd479697a92f4017fbb, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.GameObject, UnityEngine
-      objectReference: {fileID: 0}
     - target: {fileID: 2871138756692592517, guid: d378857bd9824cd479697a92f4017fbb, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

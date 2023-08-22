@@ -117,7 +117,7 @@ public class Inventory : MonoBehaviour
                     slot.AddItem(name);
                     // æ∆¿Ã≈€ »πµÊ ¡§∫∏ ¿˙¿Â
                     if (_item != null)
-                        DatabaseManager.Instance.SetItemAcquired(_item.roomName, name);
+                        DatabaseManager.Instance.SetItemAcquired(name);
                     break;
                 }
             }

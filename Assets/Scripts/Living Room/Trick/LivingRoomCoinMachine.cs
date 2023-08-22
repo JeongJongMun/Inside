@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using static Define;
 
 public class LivingRoomCoinMachine : Trick
 {
@@ -20,6 +21,7 @@ public class LivingRoomCoinMachine : Trick
             if (money.text == "2200")
             {
                 Debug.LogFormat("{0} Solved", this.name);
+                Inventory.Instance.RemoveItem(ItemName.Coins);
                 SetIsSolved(true);
                 SolvedAction();
             }

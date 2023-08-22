@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
+
 public enum Notes
 {
     C,
@@ -41,6 +43,10 @@ public class IdolRoomMusicPlateZoom : Trick
         Notes.G, Notes.E, Notes.E, Notes.F, Notes.D, Notes.D
     };
 
+
+    [Header("음표 버튼들")]
+    public Image[] noteButtons;
+
     public override void TrySolve(GameObject obj)
     {
         if (obj.name == this.name)
@@ -76,6 +82,11 @@ public class IdolRoomMusicPlateZoom : Trick
             _transform.y = notesPosition[answer[i]];
             notes[i].GetComponent<RectTransform>().anchoredPosition = _transform;
         }
+
+        foreach (Image button in noteButtons)
+        {
+            button.raycastTarget = false;
+        }
     }
 
     public void OnClickNoteButton(GameObject noteButton)
@@ -99,7 +110,7 @@ public class IdolRoomMusicPlateZoom : Trick
             // 다음 음표로 이동
             currentNoteNumber++;
 
-            // 음표를 모두 입력했을 시 0.5초 보여주고 문제 풀기
+            // 음표를 모두 입력했을 시 0.2초 보여주고 TrySolve
             if (currentNoteNumber == notes.Length)
             {
                 StartCoroutine(DoTrySolve());
@@ -108,7 +119,7 @@ public class IdolRoomMusicPlateZoom : Trick
     }
     public IEnumerator DoTrySolve()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.2f);
         TrySolve(gameObject);
     }
 }

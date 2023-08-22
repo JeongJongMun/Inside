@@ -51,6 +51,10 @@ public class Define
         Latch3,
         DeadParrot,
 
+        // Killer
+        Hanger,
+        ClosetKey,
+        Medicine,
 
     }
 
@@ -80,7 +84,6 @@ public class Define
         Bed,
         Closet,
         DressingTable,
-        LaptopBackground,
         LaptopPassword,
         MusicBox,
         MusicPlateZoom,
@@ -114,6 +117,12 @@ public class Define
         Sofa,
         Lion,
         Book,
+        
+        // Killer
+        Keybox,
+        CabinetKiller,
+        HangerHole,
+
 
     }
 }

@@ -8,10 +8,13 @@ public class IdolRoomPoster : Trick
     {
         if (obj.name == this.name)
         {
-            Debug.LogFormat("{0} Solved", this.name);
-            VoiceManager.Instance.ScreamingMode(RoomName.Idol);
-            SetIsSolved(true);
-            SolvedAction();
+            if (Inventory.Instance.IsClicked(ItemName.Cutter))
+            {
+                Debug.LogFormat("{0} Solved", this.name);
+                VoiceManager.Instance.ScreamingMode(RoomName.Idol);
+                SetIsSolved(true);
+                SolvedAction();
+            }
         }
     }
     public override void SolvedAction()

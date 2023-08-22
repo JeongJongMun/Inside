@@ -8,18 +8,12 @@ public abstract class Trick : MonoBehaviour
     internal bool isSolved = false;
 
     [SerializeField]
-    [Header("트릭 소속 방 이름")]
-    internal RoomName roomName;
-
-    [SerializeField]
     [Header("트릭 이름")]
     internal TrickName trickName;
 
     // 몇몇 트릭에선 Start 함수에서 해줘야 하는 작업이 있기에 virtual
     public virtual void Start()
     {
-        // 현재 트릭이 속한 방 이름 가져오기
-        roomName = Item.GetEnumFromName<RoomName>(GameObject.FindWithTag("RoomManager").name.Substring(11));
         // 현재 트릭의 열거형 이름 가져오기
         // Instantiate 된 오브젝트라면
         if (name.Contains("(Clone)"))
@@ -30,8 +24,9 @@ public abstract class Trick : MonoBehaviour
         else trickName = Item.GetEnumFromName<TrickName>(this.name);
 
         // 씬 로드시에 트릭을 푼 적이 있다면 적용
-        if (DatabaseManager.Instance.IsTrickSolved(roomName, trickName))
+        if (DatabaseManager.Instance.IsTrickSolved(trickName))
         {
+            isSolved = true;
             SolvedAction();
         }
     }
@@ -40,7 +35,7 @@ public abstract class Trick : MonoBehaviour
     public void SetIsSolved(bool _isSolved)
     {
         this.isSolved = _isSolved;
-        DatabaseManager.Instance.SetTrickStatus(roomName, trickName, _isSolved);
+        DatabaseManager.Instance.SetTrickStatus(trickName, _isSolved);
         GameManager.Instance.FadeInOut();
     }
 
@@ -61,7 +56,7 @@ public abstract class Trick : MonoBehaviour
 
     private void Awake()
     {
-        soundManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<SoundManager>();
+        //soundManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<SoundManager>();
     }
 
 }

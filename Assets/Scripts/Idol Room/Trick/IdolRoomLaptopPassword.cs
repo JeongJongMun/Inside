@@ -7,7 +7,7 @@ public class IdolRoomLaptopPassword : Trick
     public TMP_InputField passwordInputField;
 
     [Header("곰돌이 배경화면 스크립트 참조")]
-    public IdolRoomLaptopBackground script;
+    public LaptopBackground script;
     public override void TrySolve(GameObject obj)
     {
         if (obj.name == this.name)

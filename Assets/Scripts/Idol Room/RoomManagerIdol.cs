@@ -15,7 +15,7 @@ public class RoomManagerIdol : RoomManager
     }
     public void OnClickDoor()
     {
-        if (DatabaseManager.Instance.IsTrickSolved(Define.RoomName.Idol, Define.TrickName.MusicPlateZoom))
+        if (DatabaseManager.Instance.IsTrickSolved(Define.TrickName.MusicPlateZoom))
         {
             SceneManager.LoadScene("Hallway");
         }

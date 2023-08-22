@@ -32,4 +32,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/CEORoom.unity
     guid: 273a952aa8c4e05428d6a09f4e33d281
+  - enabled: 1
+    path: Assets/Scenes/KillerRoom.unity
+    guid: 0e51f56e4d21563419bf2db35cfd01c4
   m_configObjects: {}

@@ -41,7 +41,7 @@ public class CEORoomCubePuzzle : Trick
             else
             {
                 Debug.LogFormat("{0} Not Solved", this.name);
-                // 큐브 원위치 및 활설화
+                // 큐브 원위치 및 활성화
                 foreach (GameObject cube in cubes)
                 {
                     cube.GetComponent<Cube>().ResetPositon();

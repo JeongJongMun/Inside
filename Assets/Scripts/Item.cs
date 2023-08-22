@@ -9,9 +9,6 @@ public class Item : MonoBehaviour
     [Header("열거형 아이템 이름")]
     public ItemName itemName;
 
-    [Header("열거형 소속 방 이름")]
-    public RoomName roomName;
-
     [Header("인벤토리에 있는가")]
     public bool isInInventory = false;
 
@@ -28,21 +25,15 @@ public class Item : MonoBehaviour
         if (index > 0) objectName = objectName.Substring(0, index);
         itemName = GetEnumFromName<ItemName>(objectName);
 
-        // 현재 아이템이 속한 방 이름 가져오기
-        string _roomName = GameObject.FindWithTag("RoomManager").name.Substring(11);
-
-        roomName = GetEnumFromName<RoomName>(_roomName);
-
         // 씬 로드시에 아이템을 획득한 적이 있다면 파괴
-        //if (DatabaseManager.Instance.IsItemAcquired(roomName, itemName) && !isInInventory)
-        //{
-        //    Destroy(gameObject);
-        //}
+        if (DatabaseManager.Instance.IsItemAcquired(itemName) && !isInInventory)
+        {
+            Destroy(gameObject);
+        }
 
         // 현재 아이템을 획득하는데 다른 아이템이 필요한게 아니라면 씬 로드시에 OnClick 적용 (인자가 있는 경우 람다 식 사용)
         if (!need_other_item_to_acquired.Contains(itemName))
         {
-            //Debug.LogFormat("{0} Item Added OnClickItem Listener", itemName);
             GetComponent<Button>().onClick.AddListener(() => GameManager.Instance.OnClickItem(gameObject));
         }
     }
@@ -56,7 +47,6 @@ public class Item : MonoBehaviour
             if (value.ToString() == name)
             {
                 return value;
-
             }
         }
 

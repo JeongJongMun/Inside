@@ -15,7 +15,6 @@ public class IdolRoomMusicBox : Trick
                 SetIsSolved(true);
                 SolvedAction();
                 GameManager.Instance.OnClickItem(this.gameObject);
-                GameObject.FindWithTag("RoomManager").GetComponent<RoomManagerIdol>().RemoveTrick(this);
 
             }
             else
@@ -28,6 +27,6 @@ public class IdolRoomMusicBox : Trick
 
     public override void SolvedAction()
     {
-
+        GameObject.FindWithTag("RoomManager").GetComponent<RoomManagerIdol>().RemoveTrick(this);
     }
 }
