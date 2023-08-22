@@ -161,7 +161,7 @@ Transform:
   - {fileID: 6622339417534889699}
   - {fileID: 5153228675838811588}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3639852581695555475
 MonoBehaviour:
@@ -180,6 +180,7 @@ MonoBehaviour:
   bgmList:
   - {fileID: 8300000, guid: 1815a56833e439a459888196ba902bf4, type: 3}
   - {fileID: 8300000, guid: 57f19239a0534d64a8ca0acc9247c8fc, type: 3}
+  - {fileID: 8300000, guid: 2f46d0339aecdff4cb06d56eba413526, type: 3}
   SFXList:
   - {fileID: 8300000, guid: ae4d5191c8a409740a573d23e7ebea3e, type: 3}
   - {fileID: 8300000, guid: bc1f7f4c55e61d84ba101c01366eafc5, type: 3}
@@ -192,6 +193,19 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 6c339f0892bde8141bd57c9b5e08a5f1, type: 3}
   - {fileID: 8300000, guid: addf4c428b23bc3459c8c42d7c04f956, type: 3}
   - {fileID: 8300000, guid: e106b4df9733b324183446415a399e02, type: 3}
+  - {fileID: 8300000, guid: dfe0269bf8967f2449600259d322547f, type: 3}
+  - {fileID: 8300000, guid: 15e60d424975a654aa9303e12a9a781d, type: 3}
+  - {fileID: 8300000, guid: cfddfeb4a38018e46bbcf7f18c27caba, type: 3}
+  - {fileID: 8300000, guid: 7e734e2b73a63c040b5ff2f11d513b0c, type: 3}
+  - {fileID: 8300000, guid: 3530dd77e28e55a4d84bc2c42d0ad798, type: 3}
+  - {fileID: 8300000, guid: 95113152100f8f246b3507972d0d0014, type: 3}
+  - {fileID: 8300000, guid: 35dec9dc7800965419194f11de1adaef, type: 3}
+  - {fileID: 8300000, guid: c65755d6c25abdd47b4b5f127ff667ec, type: 3}
+  - {fileID: 8300000, guid: 5fbd7f95142a98d4395a8acfae91cbaa, type: 3}
+  - {fileID: 8300000, guid: ac7ce3bc6953c634390fd1b22b37f9ef, type: 3}
+  - {fileID: 8300000, guid: 34177f7894f52c441a884fafafc363bb, type: 3}
+  - {fileID: 8300000, guid: 00fb26dfbaef0df4ea50ec73616275ba, type: 3}
+  - {fileID: 8300000, guid: cd47d9d4e356f1a4da8136d93c89748d, type: 3}
 --- !u!82 &7173283360298780946
 AudioSource:
   m_ObjectHideFlags: 0

@@ -47,6 +47,7 @@ public class IdolRoomDressingTable : Trick
     {
         if (obj.name == this.name)
         {
+            SoundManager.instance.SFXPlay("deadheart");
             if (brokenTime < 0f)
             {
                 Debug.LogFormat("{0} Solved", this.name);
@@ -64,6 +65,7 @@ public class IdolRoomDressingTable : Trick
     {
         dressingTableZoom.sprite = brokenDressingTableZoom;
         silhouette.SetActive(false);
+        SoundManager.instance.SFXPlay("breakMirror"); // break Mirror Sound
         brokenDressingTable.SetActive(true);
         Debug.Log("È­Àå´ë SolvedAction");
     }

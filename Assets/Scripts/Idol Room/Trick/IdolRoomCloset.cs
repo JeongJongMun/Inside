@@ -7,6 +7,7 @@ public class IdolRoomCloset : Trick
     {
         if (obj.name == name)
         {
+            SoundManager.instance.SFXPlay("closet");
             Debug.LogFormat("{0} Solved", name);
             SetIsSolved(true);
             SolvedAction();
