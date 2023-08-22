@@ -76,6 +76,16 @@ public class DatabaseManager : MonoBehaviour
         { TrickName.CoinMachine,        false },
     };
 
+    // 거실 해치 걸쇠 꽂힌 번호
+    public Dictionary<ItemName, int> trickStatus_Hatch = new Dictionary<ItemName, int>()
+    { 
+        {ItemName.Latch0, -1 },
+        {ItemName.Latch1, -1 },
+        {ItemName.Latch2, -1 },
+        {ItemName.Latch3, -1 },
+
+    };
+
     // 연구원방 트릭 진행 상황
     private Dictionary<TrickName, bool> trickStatus_Researcher = new Dictionary<TrickName, bool>()
     {
@@ -176,7 +186,7 @@ public class DatabaseManager : MonoBehaviour
         {ItemName.Console,      false},
         {ItemName.Cutter,       false},
         {ItemName.KidRoomKey,   false},
-        {ItemName.Latch1,       false},
+        {ItemName.Latch0,       false},
         {ItemName.Lego1,        false},
         {ItemName.Lego2,        false},
         {ItemName.Lego3,        false},
@@ -186,7 +196,7 @@ public class DatabaseManager : MonoBehaviour
     private Dictionary<ItemName, bool> isItemAcquired_Idol = new Dictionary<ItemName, bool>()
     {
         {ItemName.Broom,        false},
-        {ItemName.Latch2,       false},
+        {ItemName.Latch1,       false},
         {ItemName.MusicBox,     false},
     };
 
@@ -205,7 +215,7 @@ public class DatabaseManager : MonoBehaviour
         {ItemName.GoldKey,          false},
         {ItemName.Magnifier,        false},
         {ItemName.Coins,            false},
-        {ItemName.Latch3,           false},
+        {ItemName.Latch2,           false},
     };
 
     // CEO방 아이템 획득 상황
@@ -216,7 +226,7 @@ public class DatabaseManager : MonoBehaviour
         {ItemName.CubeBlue,         false},
         {ItemName.CubeRed,          false},
         {ItemName.CubeYellow,       false},
-        {ItemName.Latch4,           false},
+        {ItemName.Latch3,           false},
         {ItemName.DeadParrot,       false},
     };
 

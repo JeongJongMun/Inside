@@ -6,9 +6,6 @@ using static Define;
 
 public class Item : MonoBehaviour
 {
-    [Header("객체 이름")]
-    //public string objectName;
-
     [Header("열거형 아이템 이름")]
     public ItemName itemName;
 
@@ -37,10 +34,10 @@ public class Item : MonoBehaviour
         roomName = GetEnumFromName<RoomName>(_roomName);
 
         // 씬 로드시에 아이템을 획득한 적이 있다면 파괴
-        if (DatabaseManager.Instance.IsItemAcquired(roomName, itemName) && !isInInventory)
-        {
-            Destroy(gameObject);
-        }
+        //if (DatabaseManager.Instance.IsItemAcquired(roomName, itemName) && !isInInventory)
+        //{
+        //    Destroy(gameObject);
+        //}
 
         // 현재 아이템을 획득하는데 다른 아이템이 필요한게 아니라면 씬 로드시에 OnClick 적용 (인자가 있는 경우 람다 식 사용)
         if (!need_other_item_to_acquired.Contains(itemName))

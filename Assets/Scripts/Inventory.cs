@@ -1,7 +1,9 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using static Define;
+using static UnityEditor.Timeline.Actions.MenuPriority;
 
 static class ExtensionMethods
 {
@@ -73,31 +75,58 @@ public class Inventory : MonoBehaviour
         return false;
     }
 
+    // 현재 클릭된 아이템 열거형 이름 반환
+    public ItemName GetClickedItemName()
+    {
+        for (int i = 0; i < inventory.Count; i++)
+        {
+            if (toggles[i].isOn)
+            {
+                toggles[i].isOn = false;
+                return inventory[i].GetItemName();
+            }
+        }
+        return ItemName.None;
+    }
+
 
     // 아이템 획득
-    public void AcquireItem(Item _item)
+    public void AcquireItem<T>(T item)
     {
+        ItemName name = ItemName.None;
+        Item _item = null;
+
+        if (typeof(T) == typeof(Item))
+        {
+            _item = item as Item;
+            name = _item.itemName;
+        }
+        else if (typeof(T) == typeof(ItemName))
+        {
+            name = (ItemName)(object)item;
+        }
+
         // 아이템이 인벤토리에 없다면
-        if (!inventory.IsContainsItem(_item.itemName))
+        if (!inventory.IsContainsItem(name))
         {
             foreach (InventorySlot slot in inventory)
             {
                 if (slot.item == null)
                 {
                     // 비어있는 인벤토리 슬롯에 아이템 객체 추가
-                    slot.AddItem(_item);
+                    slot.AddItem(name);
                     // 아이템 획득 정보 저장
-                    DatabaseManager.Instance.SetItemAcquired(_item.roomName, _item.itemName);
+                    if (_item != null)
+                        DatabaseManager.Instance.SetItemAcquired(_item.roomName, name);
                     break;
                 }
             }
         }
         else
         {
-            Debug.LogFormat("이미 {0} 아이템이 인벤토리에 존재하여 추가하지 못함", _item.itemName);
+            Debug.LogFormat("이미 {0} 아이템이 인벤토리에 존재하여 추가하지 못함", name);
         }
     }
-
 
     // 아이템 삭제
     public void RemoveItem(ItemName itemName)

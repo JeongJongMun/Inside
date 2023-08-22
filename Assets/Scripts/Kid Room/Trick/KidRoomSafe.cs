@@ -18,16 +18,16 @@ public class KidRoomSafe : Trick
     public GameObject safeOpenZoomIn;
 
     [Header("æ∆¿Ã≈€")]
-    public GameObject latch1;
+    public GameObject latch0;
     public GameObject lego3;
 
     public override void TrySolve(GameObject obj)
     {
-        if (obj.name == "Safe")
+        if (obj.name == this.name)
         {
             if (display.text == "0710")
             {
-                Debug.Log("Safe Solved");
+                Debug.LogFormat("{0} Solved", this.name);
 
                 SoundManager.instance.SFXPlay("electricOKButton");
                 Inventory.Instance.RemoveItem(ItemName.Password);
@@ -36,7 +36,7 @@ public class KidRoomSafe : Trick
             }
             else
             {
-                Debug.Log("Safe Not Solved");
+                Debug.LogFormat("{0} Not Solved", this.name);
                 SoundManager.instance.SFXPlay("electricFail");
             }
         }
@@ -46,7 +46,7 @@ public class KidRoomSafe : Trick
     {
         safe.GetComponent<Image>().sprite = safeOpen;
         safeOpenZoomIn.SetActive(true);
-        latch1.SetActive(true);
+        latch0.SetActive(true);
         lego3.SetActive(true);
     }
 

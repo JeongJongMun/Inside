@@ -18,7 +18,7 @@ public class Define
         Console,
         Cutter,
         KidRoomKey,
-        Latch1,
+        Latch0,
         Lego1,
         Lego2,
         Lego3,
@@ -26,7 +26,7 @@ public class Define
 
         // Idol
         Broom,
-        Latch2,
+        Latch1,
         MusicBox,
 
         // Hallway
@@ -39,7 +39,7 @@ public class Define
         GoldKey,
         Magnifier,
         Coins,
-        Latch3,
+        Latch2,
 
         // CEO
         Gun,
@@ -48,7 +48,7 @@ public class Define
         CubeGreen,
         CubeRed,
         CubeYellow,
-        Latch4,
+        Latch3,
         DeadParrot,
 
 
