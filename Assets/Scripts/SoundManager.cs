@@ -8,10 +8,12 @@ public class SoundManager : MonoBehaviour
     [Header("---------Audio Source----------")]
     [SerializeField] AudioSource bgmSound;
     [SerializeField] AudioSource SFXSource;
+    [SerializeField] AudioSource pianoSource;
 
     [Header("---------Audio Clip----------")]
     public AudioClip[] bgmList;
     public AudioClip[] SFXList;
+    public AudioClip[] pianoList;
     
 
     public static SoundManager instance = null;
@@ -42,6 +44,21 @@ public class SoundManager : MonoBehaviour
             if(arg0.name == bgmList[i].name)
                 BgmSoundPlay(bgmList[i]);
         }
+    }
+
+    // 피아노 재생
+    public void pianoPlay(string sfxName, int note)
+    {
+        toPianoPlay(sfxName, pianoList[note]);
+    }
+
+    public void toPianoPlay(string sfxName, AudioClip clip)
+    {
+        GameObject go = new GameObject(sfxName + "Sound");
+        pianoSource.clip = clip;
+        pianoSource.PlayOneShot(clip);
+
+        Destroy(go, clip.length);
     }
 
     // 효과음 재생
