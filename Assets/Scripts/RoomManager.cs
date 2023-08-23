@@ -41,6 +41,10 @@ public class RoomManager : MonoBehaviour
     [Header("방 이름")]
     private RoomName roomName;
 
+    // For SFXSound
+    SoundManager soundManager;
+
+
     private void Awake()
     {
         leftArrow = GameObject.Find("UICanvas").transform.GetChild(0).gameObject;
@@ -50,6 +54,8 @@ public class RoomManager : MonoBehaviour
         leftArrow.GetComponent<Button>().onClick.AddListener(OnClickLeftArrow);
         rightArrow.GetComponent<Button>().onClick.AddListener(OnClickRightArrow);
         bottomArrow.GetComponent<Button>().onClick.AddListener(ZoomOut);
+
+        soundManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<SoundManager>(); // sound Manager
     }
     public virtual void Start()
     {
@@ -106,6 +112,7 @@ public class RoomManager : MonoBehaviour
     // 왼쪽 화살표 클릭 시
     private void OnClickLeftArrow()
     {
+        SoundManager.instance.SFXPlay("arrowButton");
         if (roomName == RoomName.Living)
         {
             wallPanel[currentWallPanel].SetActive(false);
@@ -124,6 +131,7 @@ public class RoomManager : MonoBehaviour
     // 오른쪽 화살표 클릭 시
     private void OnClickRightArrow()
     {
+        SoundManager.instance.SFXPlay("arrowButton");
         if (roomName == RoomName.Living)
         {
             wallPanel[currentWallPanel].SetActive(false);
@@ -147,6 +155,7 @@ public class RoomManager : MonoBehaviour
     // 아래쪽 화살표 클릭 시 축소 OR 슬라이딩 패널 끄기
     public void ZoomOut()
     {
+        SoundManager.instance.SFXPlay("arrowButton");
         GameObject panel = panels.Pop();
         panel.SetActive(false);
         SetActiveArrow();
