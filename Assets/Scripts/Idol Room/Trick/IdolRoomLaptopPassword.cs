@@ -14,12 +14,14 @@ public class IdolRoomLaptopPassword : Trick
         {
             if (passwordInputField.text == "idol") 
             {
+                SoundManager.instance.SFXPlay("laptopSuccess");
                 Debug.LogFormat("{0} Solved", this.name);
                 SetIsSolved(true);
                 SolvedAction();
             }
             else
             {
+                SoundManager.instance.SFXPlay("laptopFail");
                 Debug.LogFormat("{0} Not Solved", this.name);
                 passwordInputField.text = "";
             }

@@ -7,6 +7,7 @@ public class IdolRoomBed : Trick
     {
         if (obj.name == this.name)
         {
+            SoundManager.instance.SFXPlay("bedFabric");
             Debug.LogFormat("{0} Solved", this.name);
             SetIsSolved(true);
             SolvedAction();

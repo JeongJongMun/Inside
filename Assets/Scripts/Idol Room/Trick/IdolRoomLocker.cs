@@ -14,9 +14,11 @@ public class IdolRoomLocker : Trick
     {
         if (obj.name == this.name)
         {
+            SoundManager.instance.SFXPlay("buttonSound");
             if (P[0].text + P[1].text + P[2].text + P[3].text == "1004")
             {
                 Debug.LogFormat("{0} Solved", this.name);
+                SoundManager.instance.SFXPlay("lockerOpen");
                 SetIsSolved(true);
                 SolvedAction();
             }

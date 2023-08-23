@@ -38,7 +38,7 @@ public class KidRoomClock : Trick
     }
 
     // ��ħ �� �ð� �̵�
-    void TicTok()
+    public void TicTok()
     {
         SoundManager.instance.SFXPlay("clock");
         hourAngle -= 30f;

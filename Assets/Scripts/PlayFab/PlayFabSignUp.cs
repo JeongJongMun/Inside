@@ -55,7 +55,7 @@ public class PlayFabSignUp : MonoBehaviour
     private void OnSignUpSuccess(RegisterPlayFabUserResult result)
     {
         Debug.Log("ȸ������ ����");
-        //SoundManager.instance.SFXPlay("Button", buttonClip); // 효과음
+        SoundManager.instance.SFXPlay("buttonSound");
         StartCoroutine(_ClickBackBtn());
     }
 
@@ -73,7 +73,7 @@ public class PlayFabSignUp : MonoBehaviour
     }
     public void ClickBackBtn()
     {
-        //SoundManager.instance.SFXPlay("Button", buttonClip); // 효과음
+        SoundManager.instance.SFXPlay("buttonSound");
         StartCoroutine(_ClickBackBtn());
     }
 
