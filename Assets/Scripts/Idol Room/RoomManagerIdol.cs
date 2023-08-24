@@ -31,6 +31,7 @@ public class RoomManagerIdol : RoomManager
 
     public void OnclickTable()
     {
+        if (DatabaseManager.Instance.IsTrickSolved(Define.TrickName.DressingTable)) return;
         // beep--- sound play
         SoundManager.instance.SFXPlay("deadheart");
     }

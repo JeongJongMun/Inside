@@ -1205,6 +1205,10 @@ PrefabInstance:
       value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 625768279914314738, guid: 1f62b7a052e7abe4a89fb91d3ae2991d, type: 3}
+      propertyPath: uiCanvas
+      value: 
+      objectReference: {fileID: 1661370229}
+    - target: {fileID: 625768279914314738, guid: 1f62b7a052e7abe4a89fb91d3ae2991d, type: 3}
       propertyPath: fadeImage
       value: 
       objectReference: {fileID: 862398912}
@@ -8871,7 +8875,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -1284726497, guid: 1b23c5d1740ec7b41937f7ed2349077a, type: 3}
+  m_Sprite: {fileID: 1786725355, guid: 1b23c5d1740ec7b41937f7ed2349077a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -9291,6 +9295,11 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!1 &1661370229 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5253242293819285051, guid: 42c99e9e62da31b4383b0e40ea686b6e, type: 3}
+  m_PrefabInstance: {fileID: 862398911}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1682070462
 GameObject:
   m_ObjectHideFlags: 0

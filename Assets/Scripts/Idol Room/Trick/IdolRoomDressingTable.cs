@@ -50,6 +50,7 @@ public class IdolRoomDressingTable : Trick
             if (brokenTime < 0f)
             {
                 Debug.LogFormat("{0} Solved", this.name);
+                SoundManager.instance.SFXPlay("breakMirror"); // break Mirror Sound
                 SetIsSolved(true);
                 SolvedAction();
             }
@@ -63,7 +64,6 @@ public class IdolRoomDressingTable : Trick
 
     public override void SolvedAction()
     {
-        SoundManager.instance.SFXPlay("breakMirror"); // break Mirror Sound
         dressingTableZoom.sprite = brokenDressingTableZoom;
         silhouette.SetActive(false);
         brokenDressingTable.SetActive(true);

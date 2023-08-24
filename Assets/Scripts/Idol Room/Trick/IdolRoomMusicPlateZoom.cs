@@ -109,6 +109,7 @@ public class IdolRoomMusicPlateZoom : Trick
 
             // 다음 음표로 이동
             currentNoteNumber++;
+            SoundManager.instance.pianoPlay("piano", (int)_note);
 
             // 음표를 모두 입력했을 시 0.2초 보여주고 TrySolve
             if (currentNoteNumber == notes.Length)
