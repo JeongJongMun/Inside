@@ -3,7 +3,8 @@ using UnityEngine.UI;
 
 public class LivingRoomHatch : Trick
 {
-    // Á¤´ä °É¼è ¹øÈ£ : 0 6 9 15
+    // Á¤´ä °É¼è ¹øÈ£ : 0 6 9 15 -> 9 0 6 15
+    //                 1 2 0 3
     [Header("Á¤´ä °É¼è")]
     public LatchHole[] latchHoles;
 

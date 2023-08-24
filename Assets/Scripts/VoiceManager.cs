@@ -1,3 +1,4 @@
+using System.Net;
 using UnityEngine;
 using UnityEngine.UI;
 using static Define;
@@ -63,11 +64,8 @@ public class VoiceManager : MonoBehaviour
     [Header("타이머")]
     private float timer;
 
-    [Header("환청 이미지들 [0]: 곰돌이, [1]: 나비, [2]: 쥐, [3]:사슴")]
-    public Sprite[] sprites;
-
-    [Header("환청 이미지")]
-    public Image image;
+    [Header("환청 이미지들 [0]: 아이방, [1]: 아이돌방, [2]: 연구원방, [3]: CEO방")]
+    public GameObject[] images;
 
     void Start()
     {
@@ -102,10 +100,12 @@ public class VoiceManager : MonoBehaviour
                     timer = 5.0f;
                     if (loudness > 10)
                     {
+                        ImageOff();
                         Debug.Log("환청 무찌르기 성공");
                     }
                     else
                     {
+                        ImageOff();
                         GameManager.Instance.MentalBreak();
                         Debug.Log("환청 무찌르기 실패 : 정신력 포인트 -1");
                     }
@@ -122,8 +122,16 @@ public class VoiceManager : MonoBehaviour
     public void ScreamingMode(RoomName roomName)
     {
         mode = VoiceMode.Screaming;
-        image.sprite = sprites[(int)roomName];
+        images[(int)roomName].SetActive(true);
     }
+    public void ImageOff()
+    {
+        foreach (GameObject image in images)
+        {
+            image.SetActive(false);
+        }
+    }
+
     float GetAveragedVolume()
     {
         float[] data = new float[256];

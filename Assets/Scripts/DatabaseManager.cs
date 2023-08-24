@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using static Define;
+using PlayFab;
+using PlayFab.ClientModels;
 
 public class DatabaseManager : MonoBehaviour
 {
@@ -93,6 +95,11 @@ public class DatabaseManager : MonoBehaviour
         // 살인자방
         { TrickName.Keybox,             false },
         { TrickName.CabinetKiller,      false },
+        { TrickName.HangerHole,         false },
+        { TrickName.HangerInput,        false },
+        { TrickName.PostIt1,            false },
+        { TrickName.PostIt2,            false },
+        { TrickName.LockerKiller,       false },
 
     };
 
@@ -168,6 +175,8 @@ public class DatabaseManager : MonoBehaviour
         {ItemName.Hanger,           false},
         {ItemName.ClosetKey,        false},
         {ItemName.Medicine,         false},
+        {ItemName.Pencil1,          false},
+        {ItemName.Pencil2,          false},
     };
 
     public bool IsItemAcquired(ItemName itemName)

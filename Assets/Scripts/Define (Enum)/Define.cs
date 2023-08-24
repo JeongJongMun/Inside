@@ -7,6 +7,7 @@ public class Define
         Researcher,
         CEO,
         Living,
+        Killer,
         None,
 
     }
@@ -55,6 +56,8 @@ public class Define
         Hanger,
         ClosetKey,
         Medicine,
+        Pencil1,
+        Pencil2,
 
     }
 
@@ -122,6 +125,10 @@ public class Define
         Keybox,
         CabinetKiller,
         HangerHole,
+        HangerInput,
+        PostIt1,
+        PostIt2,
+        LockerKiller,
 
 
     }

@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class KillerRoomHangerHole : Trick
 {
+    [Header("Hanger ²ÈÈù°Å")]
+    public GameObject hangerInput;
+
     public override void TrySolve(GameObject obj)
     {
         if (obj.name == this.name)
@@ -22,6 +25,6 @@ public class KillerRoomHangerHole : Trick
 
     public override void SolvedAction()
     {
-
+        hangerInput.SetActive(true);
     }
 }

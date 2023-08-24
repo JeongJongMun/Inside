@@ -11,7 +11,7 @@ public class DirectionButton : MonoBehaviour, IDragHandler, IBeginDragHandler, I
     private Vector2 offset;
     private bool isDragging;
 
-    [Header("자물쇠1 오브젝트")]
+    [Header("자물쇠 오브젝트")]
     public GameObject locker;
 
     [Header("화면에 보여줄 입력 텍스트")]
@@ -61,17 +61,36 @@ public class DirectionButton : MonoBehaviour, IDragHandler, IBeginDragHandler, I
         {
             if (collision.transform.name == directions[i])
             {
-                ResearcherRoomDrawerLocker1 lockerScript = locker.GetComponent<ResearcherRoomDrawerLocker1>();
-                lockerScript.inputs.Add(directions[i]);
-                inputText.text += directions[i] + " - ";
-                rectTransform.anchoredPosition = startPosition;
-                isDragging = false;
-
-                if (lockerScript.inputs.Count == lockerScript.answers.Count)
+                // 원하는 스크립트를 가져와서 사용합니다.
+                if (locker.TryGetComponent(out ResearcherRoomDrawerLocker1 lockerScript1))
                 {
-                    lockerScript.TrySolve(locker);
-                    lockerScript.inputs.Clear();
-                    inputText.text = "";
+                    lockerScript1.inputs.Add(directions[i]);
+                    inputText.text += directions[i] + " - ";
+                    rectTransform.anchoredPosition = startPosition;
+                    isDragging = false;
+                    if (lockerScript1.inputs.Count == lockerScript1.answers.Count)
+                    {
+                        lockerScript1.TrySolve(locker);
+                        lockerScript1.inputs.Clear();
+                        inputText.text = "";
+                    }
+                }
+                else if (locker.TryGetComponent(out KillerRoomLockerKiller lockerScript2))
+                {
+                    lockerScript2.inputs.Add(directions[i]);
+                    inputText.text += directions[i] + " - ";
+                    rectTransform.anchoredPosition = startPosition;
+                    isDragging = false;
+                    if (lockerScript2.inputs.Count == lockerScript2.answers.Count)
+                    {
+                        lockerScript2.TrySolve(locker);
+                        lockerScript2.inputs.Clear();
+                        inputText.text = "";
+                    }
+                }
+                else
+                {
+                    Debug.LogWarning("Locker 스크립트를 찾을 수 없습니다.");
                 }
             }
         }
