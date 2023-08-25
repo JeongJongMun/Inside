@@ -15,6 +15,7 @@ public class ResearcherRoomCabinet : Trick
             if (Inventory.Instance.IsClicked(Define.ItemName.GoldKey))
             {
                 Debug.LogFormat("{0} Solved", this.name);
+                SoundManager.instance.SFXPlay("closet");
                 Inventory.Instance.RemoveItem(Define.ItemName.GoldKey);
                 SetIsSolved(true);
                 SolvedAction();
@@ -22,6 +23,7 @@ public class ResearcherRoomCabinet : Trick
             else
             {
                 Debug.LogFormat("{0} Not Solved", this.name);
+                SoundManager.instance.SFXPlay("drawerLocked");
             }
 
         }

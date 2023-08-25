@@ -30,6 +30,7 @@ public class ToggleGroupLimit : MonoBehaviour
         {
             if (t.isOn)
             {
+                SoundManager.instance.SFXPlay("lego");
                 currentSelectedCount++;
                 if (!selectedNumbers.Contains(int.Parse(t.name)))
                 {

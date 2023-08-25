@@ -32,6 +32,7 @@ public class DirectionButton : MonoBehaviour, IDragHandler, IBeginDragHandler, I
         startMousePosition = eventData.position;
         offset = rectTransform.anchoredPosition - startMousePosition;
         isDragging = true;
+        SoundManager.instance.SFXPlay("directionLock");
     }
 
     public void OnDrag(PointerEventData eventData)
