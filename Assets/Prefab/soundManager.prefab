@@ -183,6 +183,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 1815a56833e439a459888196ba902bf4, type: 3}
   - {fileID: 8300000, guid: 57f19239a0534d64a8ca0acc9247c8fc, type: 3}
   - {fileID: 8300000, guid: 2f46d0339aecdff4cb06d56eba413526, type: 3}
+  - {fileID: 8300000, guid: 21ca75af8baea174a95a45024f065c2a, type: 3}
+  - {fileID: 8300000, guid: 5378b58bfcc8e8a418f61c1a508c21da, type: 3}
   SFXList:
   - {fileID: 8300000, guid: ae4d5191c8a409740a573d23e7ebea3e, type: 3}
   - {fileID: 8300000, guid: 6c40da1d6cad5844aa04fa5fcc80ea4d, type: 3}
@@ -214,9 +216,18 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 426d41f3f2d31e54da84ceade4067d43, type: 3}
   - {fileID: 8300000, guid: de03561464df1f041bf02372a61882ae, type: 3}
   - {fileID: 8300000, guid: 8a67667163106994f9e1ffefd14c6563, type: 3}
+<<<<<<< Updated upstream
   - {fileID: 8300000, guid: ea544ca0250c01b46a8df988955072ed, type: 3}
   - {fileID: 8300000, guid: 9abd65b37fee679418b8d516b36fd889, type: 3}
   - {fileID: 8300000, guid: 3d179c23a8814a44ca75528b5aa51ce3, type: 3}
+=======
+  - {fileID: 8300000, guid: 7d241e08a17fbd245a819f344e6f652d, type: 3}
+  - {fileID: 8300000, guid: 822289fee7aee434883326b639420632, type: 3}
+  - {fileID: 8300000, guid: 9abd65b37fee679418b8d516b36fd889, type: 3}
+  - {fileID: 8300000, guid: 129dbf68fb7d1124585f47b8efd834a5, type: 3}
+  - {fileID: 8300000, guid: 29d1d8b9de2cce54fabdea10c84409f1, type: 3}
+  - {fileID: 8300000, guid: 7ff2552894fb62547926b97249a395c4, type: 3}
+>>>>>>> Stashed changes
   pianoList:
   - {fileID: 8300000, guid: 2dc565b6946b37249a79dd64f4112d7c, type: 3}
   - {fileID: 8300000, guid: 4339772eee9163b46b4aba1ddbf00660, type: 3}
