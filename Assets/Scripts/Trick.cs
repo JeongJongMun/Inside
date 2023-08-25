@@ -56,6 +56,7 @@ public abstract class Trick : MonoBehaviour
     // 트릭이 풀렸을때 변화
     public abstract void SolvedAction();
 
+<<<<<<< Updated upstream
     // 사운드 매니저
     SoundManager soundManager;
 
@@ -64,4 +65,6 @@ public abstract class Trick : MonoBehaviour
         soundManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<SoundManager>();
     }
 
+=======
+>>>>>>> Stashed changes
 }
