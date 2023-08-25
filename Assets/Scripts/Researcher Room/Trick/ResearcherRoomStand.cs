@@ -50,6 +50,8 @@ public class ResearcherRoomStand : Trick
                     Inventory.Instance.RemoveItem(itemName);
                     // 시험관 활성화
                     testTubes[currentNumber].SetActive(true);
+                    // 효과음 출력
+                    SoundManager.instance.SFXPlay("glassBottle");
                     // 시험관 이미지 변경
                     testTubes[currentNumber].GetComponent<Image>().sprite = testTubeSprites[answer.IndexOf(itemName)];
                     currentNumber++;
@@ -62,6 +64,7 @@ public class ResearcherRoomStand : Trick
                         {
                             Debug.LogFormat("{0} Solved", this.name);
                             Debug.Log("옷장 열린 사운드 재생");
+                            SoundManager.instance.SFXPlay("lockerOpen");
                             SetIsSolved(true);
                             SolvedAction();
                         }

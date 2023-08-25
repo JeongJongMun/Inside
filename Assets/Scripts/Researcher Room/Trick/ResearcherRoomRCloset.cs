@@ -15,6 +15,7 @@ public class ResearcherRoomRCloset : Trick
             if (isStandSolved)
             {
                 Debug.LogFormat("{0} Solved", this.name);
+                SoundManager.instance.SFXPlay("closet");
                 SetIsSolved(true);
                 SolvedAction();
                 VoiceManager.Instance.ScreamingMode();
@@ -22,6 +23,7 @@ public class ResearcherRoomRCloset : Trick
             else
             {
                 Debug.LogFormat("{0} Not Solved", this.name);
+                SoundManager.instance.SFXPlay("drawerLocked");
             }
         }
     }

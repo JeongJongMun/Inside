@@ -35,11 +35,8 @@ public class ResearcherRoomDrawerLocker2 : Trick
             if (toggleGroupLimit.selectedNumbers.Contains(9) && toggleGroupLimit.selectedNumbers.Contains(3) && toggleGroupLimit.selectedNumbers.Contains(0))
             {
                 Debug.LogFormat("{0} Solved", this.name);
-<<<<<<< Updated upstream
-=======
                 SoundManager.instance.SFXPlay("lockerSuccess");
                 drawer.sprite = drawer2Opened;
->>>>>>> Stashed changes
                 SetIsSolved(true);
                 SolvedAction();
             }

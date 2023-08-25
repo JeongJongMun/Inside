@@ -1,11 +1,13 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class RoomManagerResearcher : RoomManager
 {
     public void OnClickDoor()
     {
-        SceneManager.LoadScene("LivingRoom");
+        SoundManager.instance.SFXPlay("doorOpen");
+        StartCoroutine(ForPlaySFX());
     }
     public void OnClickFlower(GameObject panel)
     {
@@ -13,5 +15,10 @@ public class RoomManagerResearcher : RoomManager
         {
             ZoomIn(panel);
         }
+    }
+    private IEnumerator ForPlaySFX()
+    {
+        yield return new WaitForSeconds(0.5f);
+        SceneManager.LoadScene("LivingRoom");
     }
 }
