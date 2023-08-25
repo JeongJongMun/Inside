@@ -13,6 +13,7 @@ public class ResearcherRoomClothes : Trick
         if (obj.name == this.name && !IsSolved())
         {
             Debug.LogFormat("{0} Solved", this.name);
+            SoundManager.instance.SFXPlay("closetSlide");
             SetIsSolved(true);
             SolvedAction();
         }
