@@ -2,6 +2,7 @@ using System.Collections;
 using System.Reflection;
 using UnityEngine;
 using UnityEngine.UI;
+using static Define;
 
 public class InventorySlot : MonoBehaviour
 {
@@ -12,14 +13,16 @@ public class InventorySlot : MonoBehaviour
     {
         // 에셋 로드
         GameObject addedItem = null;
-        if (typeof(T) == typeof(Item))
+        if (_item is Item)
         {
             Item item = _item as Item;
             addedItem = Resources.Load<GameObject>("Prefabs/Items/" + item.itemName);
+            DatabaseManager.Instance.SetInventoryData(item.itemName, true);
         }
-        else if (typeof(T) == typeof(Define.ItemName))
+        else if (_item is ItemName)
         {
             addedItem = Resources.Load<GameObject>("Prefabs/Items/" + _item);
+            DatabaseManager.Instance.SetInventoryData(_item, true);
         }
         // 인벤토리에 아이템 생성
         itemObject = Instantiate(addedItem, gameObject.transform.position, Quaternion.identity, gameObject.transform);
@@ -33,15 +36,17 @@ public class InventorySlot : MonoBehaviour
         // (Clone) 지우기
         int index = item.name.IndexOf("(Clone)");
         if (index > 0) item.name = item.name.Substring(0, index);
+
     }
 
     public void RemoveItem()
     {
         Debug.LogFormat("{0} 아이템 삭제", item.itemName);
+        DatabaseManager.Instance.SetInventoryData(item.itemName, false);
         Destroy(itemObject);
         item = null;
     }
-    public Define.ItemName GetItemName()
+    public ItemName GetItemName()
     {
         return item.itemName;
     }

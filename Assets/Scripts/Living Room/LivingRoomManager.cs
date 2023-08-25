@@ -11,14 +11,14 @@ public class LivingRoomManager : RoomManager
     }
     public void OnClickResearcherDoor()
     {
-        if (DatabaseManager.Instance.IsTrickSolved(TrickName.CardReader))
+        if (DatabaseManager.Instance.GetData(TrickName.CardReader))
             SceneManager.LoadScene("ResearcherRoom");
         else
             Debug.Log("문 잠김 소리 재생");
     }
     public void OnClickCEODoor()
     {
-        if (DatabaseManager.Instance.IsTrickSolved(TrickName.CoinMachine))
+        if (DatabaseManager.Instance.GetData(TrickName.CoinMachine))
             SceneManager.LoadScene("CEORoom");
         else
             Debug.Log("문 잠김 소리 재생");

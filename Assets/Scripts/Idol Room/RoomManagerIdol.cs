@@ -17,7 +17,7 @@ public class RoomManagerIdol : RoomManager
     }
     public void OnClickDoor()
     {
-        if (DatabaseManager.Instance.IsTrickSolved(Define.TrickName.MusicPlateZoom))
+        if (DatabaseManager.Instance.GetData(Define.TrickName.MusicPlateZoom))
         {
             SoundManager.instance.SFXPlay("doorOpened");
             StartCoroutine(toPlaySFX());
@@ -31,7 +31,7 @@ public class RoomManagerIdol : RoomManager
 
     public void OnclickTable()
     {
-        if (DatabaseManager.Instance.IsTrickSolved(Define.TrickName.DressingTable)) return;
+        if (DatabaseManager.Instance.GetData(Define.TrickName.DressingTable)) return;
         // beep--- sound play
         SoundManager.instance.SFXPlay("deadheart");
     }

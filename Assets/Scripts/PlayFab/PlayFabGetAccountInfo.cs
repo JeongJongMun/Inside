@@ -23,7 +23,10 @@ public class PlayFabGetAccountInfo : MonoBehaviour
     private void OnGetUserAccountSuccess(GetAccountInfoResult result)
     {
         Debug.Log("유저 계정 정보 가져오기 성공");
+        // 화면에 Username, Playfab ID 띄우기
         accountInfo.text = result.AccountInfo.Username + "\n" + result.AccountInfo.PlayFabId;
+        // Playfab ID 저장
+        DatabaseManager.Instance.playfabID = result.AccountInfo.PlayFabId;
     }
 
     // 유저 계정 정보 가져오기 실패 콜백

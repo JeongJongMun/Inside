@@ -113,11 +113,10 @@ public class Inventory : MonoBehaviour
                 {
                     // 비어있는 인벤토리 슬롯에 아이템 객체 추가
                     SoundManager.instance.SFXPlay("bedFabric");
-                    Debug.Log("???");
                     slot.AddItem(name);
                     // 아이템 획득 정보 저장
                     if (_item != null)
-                        DatabaseManager.Instance.SetItemAcquired(name);
+                        DatabaseManager.Instance.SetData(name);
                     break;
                 }
             }

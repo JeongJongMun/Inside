@@ -55,17 +55,20 @@ public class GameManager : MonoBehaviour
     // 설정 버튼 클릭 시
     public void OnClickSettingBtn()
     {
-        // 설정창이 활성화 상태라면 비활성화
-        if (settingPanel.activeSelf) settingPanel.SetActive(false);
-        // 설정창이 비활성화 상태라면 활성화
-        else settingPanel.SetActive(true);
+        settingPanel.SetActive(!settingPanel.activeSelf);
     }
     // 설정 창의 게임종료 버튼 클릭 시
     public void OnClickExitBtn()
     {
         SceneManager.LoadScene("Main");
         settingPanel.SetActive(false);
-        uiCanvas.SetActive(false);
+        UICanvasSetActive();
+    }
+
+    // UI Canvas On/Off
+    public void UICanvasSetActive()
+    {
+        uiCanvas.SetActive(!uiCanvas.activeSelf);
     }
 
     // 아이템 클릭 시
@@ -75,14 +78,6 @@ public class GameManager : MonoBehaviour
         Inventory.Instance.AcquireItem(_item.GetComponent<Item>());
         // 화면에 있는 아이템 삭제
         Destroy(_item);
-    }
-
-    public void OnClickTestBtn()
-    {
-        if (SceneManager.GetActiveScene().name == "KidRoom")
-            SceneManager.LoadScene("IdolRoom");
-        else if (SceneManager.GetActiveScene().name == "IdolRoom")
-            SceneManager.LoadScene("KidRoom");
     }
 
     // 트릭 성공 시 이펙트

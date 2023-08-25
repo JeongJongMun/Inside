@@ -29,22 +29,21 @@ public class LatchHole : MonoBehaviour
         GetComponent<Button>().onClick.AddListener(OnClickLatchHole);
 
         // 걸쇠가 꽂혀있었는지 확인
-        foreach (var kv in DatabaseManager.Instance.trickStatus_Hatch)
+        ItemName _name = DatabaseManager.Instance.GetHatchData(int.Parse(this.name));
+        if (_name != ItemName.None)
         {
-            if (kv.Value == int.Parse(this.name))
-            {
-                // 걸쇠 번호 구하기
-                string str = kv.Key.ToString();
-                int latchIdx = str[str.Length - 1] - '0';
-                // 걸쇠 번호에 맞는 이미지로 변경
-                image.sprite = latchInputs[latchIdx];
-                // 꽂힌 걸쇠 인덱스 수정
-                inputLatchNumber = latchIdx;
-                // 열거형 이름 설정
-                currentItemName = kv.Key;
-            }
+            // 걸쇠 번호 구하기
+            string str = _name.ToString();
+            int latchIdx = str[str.Length - 1] - '0';
+            // 걸쇠 번호에 맞는 이미지로 변경
+            image.sprite = latchInputs[latchIdx];
+            // 꽂힌 걸쇠 인덱스 수정
+            inputLatchNumber = latchIdx;
+            // 열거형 이름 설정
+            currentItemName = _name;
         }
     }
+
     // 정답 체크용 현재 꽂힌 걸쇠 번호 반환 함수
     public int GetInputLatchNumber()
     {
@@ -76,7 +75,7 @@ public class LatchHole : MonoBehaviour
         // 인벤토리에서 꽂은 걸쇠 삭제
         Inventory.Instance.RemoveItem(currentItemName);
         // 걸쇠가 꽂힌 구멍의 번호 저장
-        DatabaseManager.Instance.trickStatus_Hatch[currentItemName] = int.Parse(this.name);
+        DatabaseManager.Instance.SetHatchData(currentItemName, int.Parse(this.name));
         // 걸쇠 꽂힘 유무 수정
         inputLatchNumber = latchIdx;
         // TrySolve
@@ -90,7 +89,7 @@ public class LatchHole : MonoBehaviour
         // 걸쇠 아이템 회수
         Inventory.Instance.AcquireItem(currentItemName);
         // 걸쇠가 꽂힌 구멍의 번호 저장
-        DatabaseManager.Instance.trickStatus_Hatch[currentItemName] = -1;
+        DatabaseManager.Instance.SetHatchData(currentItemName, -1);
         // 걸쇠 꽂힘 유무 수정
         inputLatchNumber = -1;
     }

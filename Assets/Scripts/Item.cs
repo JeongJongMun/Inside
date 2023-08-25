@@ -26,7 +26,7 @@ public class Item : MonoBehaviour
         itemName = GetEnumFromName<ItemName>(objectName);
 
         // 씬 로드시에 아이템을 획득한 적이 있다면 파괴
-        if (DatabaseManager.Instance.IsItemAcquired(itemName) && !isInInventory)
+        if (!isInInventory && DatabaseManager.Instance.GetData(itemName))
         {
             Destroy(gameObject);
         }

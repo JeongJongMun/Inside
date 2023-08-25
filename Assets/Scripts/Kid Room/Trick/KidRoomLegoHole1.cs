@@ -19,6 +19,7 @@ public class KidRoomLegoHole1 : Trick
                 Inventory.Instance.RemoveItem(ItemName.Lego1);
                 SetIsSolved(true);
                 SolvedAction();
+                legoHole.GetComponent<KidRoomLegoHole>().TrySolve(legoHole);
             }
             else
             {
@@ -29,7 +30,6 @@ public class KidRoomLegoHole1 : Trick
     public override void SolvedAction()
     {
         legoHole.GetComponent<KidRoomLegoHole>().legoCount++;
-        legoHole.GetComponent<KidRoomLegoHole>().TrySolve(legoHole);
         lego1.SetActive(true);
     }
 }

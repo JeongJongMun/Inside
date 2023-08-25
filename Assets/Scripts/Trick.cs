@@ -24,7 +24,7 @@ public abstract class Trick : MonoBehaviour
         else trickName = Item.GetEnumFromName<TrickName>(this.name);
 
         // 씬 로드시에 트릭을 푼 적이 있다면 적용
-        if (DatabaseManager.Instance.IsTrickSolved(trickName))
+        if (DatabaseManager.Instance.GetData(trickName))
         {
             isSolved = true;
             SolvedAction();
@@ -35,7 +35,7 @@ public abstract class Trick : MonoBehaviour
     public void SetIsSolved(bool _isSolved)
     {
         this.isSolved = _isSolved;
-        DatabaseManager.Instance.SetTrickStatus(trickName, _isSolved);
+        DatabaseManager.Instance.SetData(trickName);
         GameManager.Instance.FadeInOut();
     }
 
