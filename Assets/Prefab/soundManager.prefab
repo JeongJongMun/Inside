@@ -215,6 +215,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: de03561464df1f041bf02372a61882ae, type: 3}
   - {fileID: 8300000, guid: 8a67667163106994f9e1ffefd14c6563, type: 3}
   - {fileID: 8300000, guid: ea544ca0250c01b46a8df988955072ed, type: 3}
+  - {fileID: 8300000, guid: 9abd65b37fee679418b8d516b36fd889, type: 3}
+  - {fileID: 8300000, guid: 3d179c23a8814a44ca75528b5aa51ce3, type: 3}
   pianoList:
   - {fileID: 8300000, guid: 2dc565b6946b37249a79dd64f4112d7c, type: 3}
   - {fileID: 8300000, guid: 4339772eee9163b46b4aba1ddbf00660, type: 3}

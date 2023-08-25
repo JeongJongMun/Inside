@@ -28,6 +28,7 @@ public class ToggleGroupLimit : MonoBehaviour
 
         foreach (var t in toggles)
         {
+            SoundManager.instance.SFXPlay("lego");
             if (t.isOn)
             {
                 currentSelectedCount++;
