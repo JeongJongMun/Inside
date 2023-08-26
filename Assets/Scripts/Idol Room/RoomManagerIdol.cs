@@ -20,7 +20,7 @@ public class RoomManagerIdol : RoomManager
         if (DatabaseManager.Instance.GetData(Define.TrickName.MusicPlateZoom))
         {
             SoundManager.instance.SFXPlay("doorOpened");
-            StartCoroutine(toPlaySFX());
+            StartCoroutine(LoadHallway());
         }
         else
         {
@@ -36,7 +36,7 @@ public class RoomManagerIdol : RoomManager
         SoundManager.instance.SFXPlay("deadheart");
     }
 
-    private IEnumerator toPlaySFX()
+    private IEnumerator LoadHallway()
     {
         yield return new WaitForSeconds(0.5f);
         SceneManager.LoadScene("Hallway");
