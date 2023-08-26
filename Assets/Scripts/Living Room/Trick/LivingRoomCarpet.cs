@@ -10,6 +10,7 @@ public class LivingRoomCarpet : Trick
         if (obj.name == this.name)
         {
             Debug.LogFormat("{0} Solved", this.name);
+            SoundManager.instance.SFXPlay("bedFabric");
             SetIsSolved(true);
             SolvedAction();
         }

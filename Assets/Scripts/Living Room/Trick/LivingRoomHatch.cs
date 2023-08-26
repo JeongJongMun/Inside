@@ -9,7 +9,17 @@ public class LivingRoomHatch : Trick
     {
         if (obj.name == this.name)
         {
-
+            for (int i = 0; i < latchHoles.Length; i++)
+            {
+                if (latchHoles[i].GetInputLatchNumber() != i)
+                {
+                    Debug.LogFormat("{0} Not Solved", this.name);
+                    return;
+                }
+            }
+            Debug.LogFormat("{0} Solved", this.name);
+            SetIsSolved(true);
+            SolvedAction();
         }
     }
 

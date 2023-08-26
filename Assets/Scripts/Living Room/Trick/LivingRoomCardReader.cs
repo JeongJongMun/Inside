@@ -17,6 +17,7 @@ public class LivingRoomCardReader : Trick
             if (Inventory.Instance.IsClicked(ItemName.AccessCard))
             {
                 Debug.LogFormat("{0} Solved", this.name);
+                SoundManager.instance.SFXPlay("electricDoorOpen");
                 SetIsSolved(true);
                 SolvedAction();
                 Inventory.Instance.RemoveItem(ItemName.AccessCard);
@@ -24,6 +25,7 @@ public class LivingRoomCardReader : Trick
             else
             {
                 Debug.LogFormat("{0} Not Solved", this.name);
+                // LivingRoom Manager에서 문잠김 효과음 처리했기 때문에 여기는 안 씀
             }
         }
     }

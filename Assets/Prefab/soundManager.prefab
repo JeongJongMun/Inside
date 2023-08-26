@@ -216,17 +216,13 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 426d41f3f2d31e54da84ceade4067d43, type: 3}
   - {fileID: 8300000, guid: de03561464df1f041bf02372a61882ae, type: 3}
   - {fileID: 8300000, guid: 8a67667163106994f9e1ffefd14c6563, type: 3}
-<<<<<<< Updated upstream
   - {fileID: 8300000, guid: ea544ca0250c01b46a8df988955072ed, type: 3}
   - {fileID: 8300000, guid: 9abd65b37fee679418b8d516b36fd889, type: 3}
   - {fileID: 8300000, guid: 3d179c23a8814a44ca75528b5aa51ce3, type: 3}
 =======
-  - {fileID: 8300000, guid: 7d241e08a17fbd245a819f344e6f652d, type: 3}
-  - {fileID: 8300000, guid: 822289fee7aee434883326b639420632, type: 3}
-  - {fileID: 8300000, guid: 9abd65b37fee679418b8d516b36fd889, type: 3}
-  - {fileID: 8300000, guid: 129dbf68fb7d1124585f47b8efd834a5, type: 3}
-  - {fileID: 8300000, guid: 29d1d8b9de2cce54fabdea10c84409f1, type: 3}
-  - {fileID: 8300000, guid: 7ff2552894fb62547926b97249a395c4, type: 3}
+  - {fileID: 8300000, guid: c91ed2aaaaaabf54b9ab25e13162ec38, type: 3}
+  - {fileID: 8300000, guid: 159d605cca2d840458d527e5486faff4, type: 3}
+  - {fileID: 8300000, guid: 935641704b593ab4d9e6abb595d3ccff, type: 3}
 >>>>>>> Stashed changes
   pianoList:
   - {fileID: 8300000, guid: 2dc565b6946b37249a79dd64f4112d7c, type: 3}
