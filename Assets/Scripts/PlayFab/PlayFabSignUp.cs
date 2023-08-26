@@ -16,10 +16,10 @@ public class PlayFabSignUp : MonoBehaviour
     public void SignUp()
     {
         SoundManager.instance.SFXPlay("buttonSound");
-        // @�� �������� ���� ���ڿ��� ����
+        // @?? ???????? ???? ??????? ????
         string username = emailInputField.text.Split(new[] { '@' })[0];
 
-        // ȸ�����Կ� �ʿ��� ���� �Է�
+        // ???????? ????? ???? ???
         var emailRequest = new RegisterPlayFabUserRequest
         {
             Username = username,
@@ -27,26 +27,26 @@ public class PlayFabSignUp : MonoBehaviour
             Password = passwordInputField.text
         };
 
-        // ��й�ȣ Ȯ��
+        // ??��?? ???
         if (passwordInputField.text != passwordCheckInputField.text)
         {
-            Debug.LogWarning("��й�ȣ�� ��ġ���� �ʽ��ϴ�.");
+            Debug.LogWarning("??��???? ??????? ??????.");
             return;
         }
-        // ��й�ȣ �ڸ��� üũ
+        // ??��?? ????? ??
         if (passwordInputField.text.Length < 8)
         {
-            Debug.LogWarning("��й�ȣ�� 8�ڸ� �̻� �Է��ϼ���.");
+            Debug.LogWarning("??��???? 8??? ??? ????????.");
             return;
         }
 
-        // ȸ������
+        // ???????
         PlayFabClientAPI.RegisterPlayFabUser(emailRequest, OnSignUpSuccess, OnSignUpFailire);
     }
 
     private void OnSignUpSuccess(RegisterPlayFabUserResult result)
     {
-        Debug.Log("ȸ������ ����");
+        Debug.Log("??????? ????");
          
         StartCoroutine(_ClickBackBtn());
     }
@@ -60,7 +60,7 @@ public class PlayFabSignUp : MonoBehaviour
 
     private void OnSignUpFailire(PlayFabError error)
     {
-        Debug.LogWarning("ȸ������ ����");
+        Debug.LogWarning("??????? ????");
         Debug.LogWarning(error);
     }
     public void ClickBackBtn()

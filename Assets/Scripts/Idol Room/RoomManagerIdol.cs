@@ -19,7 +19,7 @@ public class RoomManagerIdol : RoomManager
     {
         if (DatabaseManager.Instance.GetData(Define.TrickName.MusicPlateZoom))
         {
-            SoundManager.instance.SFXPlay("doorOpened");
+            SoundManager.instance.SFXPlay("doorOpen");
             StartCoroutine(LoadHallway());
         }
         else

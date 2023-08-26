@@ -8,7 +8,8 @@ public class LivingRoomManager : RoomManager
 {
     public void OnClickHallwayStair()
     {
-        SceneManager.LoadScene("Hallway");
+        SoundManager.instance.SFXPlay("stair");
+        StartCoroutine(LoadHallway());
     }
     public void OnClickResearcherDoor()
     {
@@ -62,6 +63,11 @@ public class LivingRoomManager : RoomManager
     }
 
     // For Play DoorOpen SFX
+    private IEnumerator LoadHallway()
+    {
+        yield return new WaitForSeconds(1.0f);
+        SceneManager.LoadScene("Hallway");
+    }
     private IEnumerator LoadResearcherRoom()
     {
         yield return new WaitForSeconds(0.5f);
