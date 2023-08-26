@@ -14,7 +14,8 @@ public class SoundManager : MonoBehaviour
     public AudioClip[] bgmList;
     public AudioClip[] SFXList;
     public AudioClip[] pianoList;
-    
+
+    private bool IsMusixbox = false;
 
     public static SoundManager instance = null;
 
@@ -38,7 +39,7 @@ public class SoundManager : MonoBehaviour
         
     }
     
-    private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
+    public void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
     {
         for(int i=0;i<bgmList.Length;i++) {
             if(arg0.name == bgmList[i].name)
@@ -69,21 +70,62 @@ public class SoundManager : MonoBehaviour
                 toSFXPlay(sfxName, SFXList[i]);
         }
     }
-
+    
     public void toSFXPlay(string sfxName, AudioClip clip)
     {
         GameObject go = new GameObject(sfxName + "Sound");
         SFXSource.clip = clip;
         SFXSource.PlayOneShot(clip);
-
+        
         Destroy(go, clip.length);
     }
 
+    // 아이돌방 오르골 재생
+    public void musixboxPlay()
+    {
+        bgmSound.Stop();
+        bgmSound.clip = bgmList[6];
+        IsMusixbox = true;
+        bgmSound.Play();
+    }
+
+    // 아이돌방 오르골 재생 후 아래화살표 눌렀을 때 오르골 정지, 배경음 재생
+    public void OnclickBottomArrow()
+    {
+        if(IsMusixbox)
+        {
+            bgmSound.Stop();
+            bgmSound.clip = bgmList[2];
+            bgmSound.Play();
+            IsMusixbox = false;
+        }
+    }
+
     // 배경음악 재생
-    public void BgmSoundPlay(AudioClip clip)
+    private void BgmSoundPlay(AudioClip clip)
     {
         bgmSound.clip = clip;
         bgmSound.loop = true;
         bgmSound.Play();
+    }
+
+    // 배경음악 뮤트 해제
+    public void BgmSoundRePlay(string bgmName)
+    {
+        for(int i=0;i<bgmList.Length;i++) {
+            if(bgmName == bgmList[i].name)
+                bgmSound.clip = bgmList[i];
+        }
+        bgmSound.mute = false;
+    }
+
+    // 배경음악 뮤트(=정지)
+    public void BgmSoundStop(string bgmName)
+    {
+        for(int i=0;i<bgmList.Length;i++) {
+            if(bgmName == bgmList[i].name)
+                bgmSound.clip = bgmList[i];
+        }
+        bgmSound.mute = true;
     }
 }

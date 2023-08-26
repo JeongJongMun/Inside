@@ -55,6 +55,7 @@ public class IdolRoomMusicPlateZoom : Trick
             if (Enumerable.SequenceEqual(input, answer))
             {
                 Debug.LogFormat("{0} Solved", this.name);
+                SoundManager.instance.SFXPlay("electricDoorOpen");
                 SetIsSolved(true);
                 SolvedAction();
             }
