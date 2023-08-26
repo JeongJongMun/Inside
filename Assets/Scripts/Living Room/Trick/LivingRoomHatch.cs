@@ -25,8 +25,8 @@ public class LivingRoomHatch : Trick
                     return;
                 }
             }
-
             Debug.LogFormat("{0} Solved", this.name);
+            SoundManager.instance.SFXPlay("hatchOpen");
             SetIsSolved(true);
             SolvedAction();
         }

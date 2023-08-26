@@ -72,6 +72,8 @@ public class LatchHole : MonoBehaviour
         int latchIdx = str[str.Length - 1] - '0';
         // 걸쇠 번호에 맞는 이미지로 변경
         image.sprite = latchInputs[latchIdx];
+        // 효과음 출력
+        SoundManager.instance.SFXPlay("consoleInsert");
         // 인벤토리에서 꽂은 걸쇠 삭제
         Inventory.Instance.RemoveItem(currentItemName);
         // 걸쇠가 꽂힌 구멍의 번호 저장
