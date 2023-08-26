@@ -23,6 +23,7 @@ public class LivingRoomCardReader : Trick
             if (Inventory.Instance.IsClicked(ItemName.AccessCard))
             {
                 Debug.LogFormat("{0} Solved", this.name);
+                SoundManager.instance.SFXPlay("electricDoorOpen");
                 SetIsSolved(true);
                 SolvedAction();
                 Inventory.Instance.RemoveItem(ItemName.AccessCard);
@@ -30,6 +31,7 @@ public class LivingRoomCardReader : Trick
             else
             {
                 Debug.LogFormat("{0} Not Solved", this.name);
+                // LivingRoom Manager 스크립트에서 효과음 추가했으므로 여기서는 추가 안 함
             }
         }
     }

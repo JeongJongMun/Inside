@@ -21,6 +21,7 @@ public class LivingRoomCoinMachine : Trick
             if (money.text == "2200")
             {
                 Debug.LogFormat("{0} Solved", this.name);
+                SoundManager.instance.SFXPlay("electricDoorOpen");
                 Inventory.Instance.RemoveItem(ItemName.Coins);
                 SetIsSolved(true);
                 SolvedAction();
@@ -28,13 +29,13 @@ public class LivingRoomCoinMachine : Trick
             else
             {
                 Debug.LogFormat("{0} Not Solved", this.name);
+                SoundManager.instance.SFXPlay("eletricFail");
                 money.text = "0";
             }
         }
     }
     public override void SolvedAction()
     {
-        Debug.Log("CEO规 巩 凯府绰 家府 犁积");
         CEODoor.sprite = CEODoorOpen;
     }
 }

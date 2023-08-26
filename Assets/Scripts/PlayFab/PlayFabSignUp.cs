@@ -13,17 +13,9 @@ public class PlayFabSignUp : MonoBehaviour
     public TMP_InputField passwordInputField;
     public TMP_InputField passwordCheckInputField;
 
-    SoundManager soundManager;
-
-    private void Awake()
-    {
-        soundManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<SoundManager>();
-    }
-
-
     public void SignUp()
     {
-        soundManager.SFXPlay("buttonSound");
+        SoundManager.instance.SFXPlay("buttonSound");
         // @�� �������� ���� ���ڿ��� ����
         string username = emailInputField.text.Split(new[] { '@' })[0];
 
@@ -55,7 +47,7 @@ public class PlayFabSignUp : MonoBehaviour
     private void OnSignUpSuccess(RegisterPlayFabUserResult result)
     {
         Debug.Log("ȸ������ ����");
-        SoundManager.instance.SFXPlay("buttonSound");
+         
         StartCoroutine(_ClickBackBtn());
     }
 
