@@ -228,6 +228,13 @@ MonoBehaviour:
   - {fileID: 8300000, guid: ac8a8bb3dbbc5ab4b9d064a29871397d, type: 3}
   - {fileID: 8300000, guid: 01860bab3e6f70d44b14bfd8ef619cdb, type: 3}
   - {fileID: 8300000, guid: cc35106027839e34c9d5df57bd2c796a, type: 3}
+  - {fileID: 8300000, guid: 40e036a20bfc53c47b747a5be84a9dea, type: 3}
+  - {fileID: 8300000, guid: 40e036a20bfc53c47b747a5be84a9dea, type: 3}
+  - {fileID: 8300000, guid: 2deac89e664aca240ae27e069444b1f3, type: 3}
+  - {fileID: 8300000, guid: 2101d0a6bf4b32541ab82525528a3d1c, type: 3}
+  - {fileID: 8300000, guid: 7d9fe9ba0a70b214f800a4124f5b282c, type: 3}
+  - {fileID: 8300000, guid: e01338191b84aeb47a37baa7c1fd2a89, type: 3}
+  - {fileID: 8300000, guid: 41e9f95f0f58bba42b937362ecec5897, type: 3}
   pianoList:
   - {fileID: 8300000, guid: 2dc565b6946b37249a79dd64f4112d7c, type: 3}
   - {fileID: 8300000, guid: 4339772eee9163b46b4aba1ddbf00660, type: 3}

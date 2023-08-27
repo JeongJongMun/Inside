@@ -9,6 +9,7 @@ public class CEORoomBook : Trick
         if (obj.name == this.name && !IsSolved())
         {
             Debug.LogFormat("{0} Solved", this.name);
+            SoundManager.instance.SFXPlay("bookSlide");
             SetIsSolved(true);
             SolvedAction();
         }

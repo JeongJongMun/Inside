@@ -10,12 +10,15 @@ public class CEORoomParrot : Trick
             if (Inventory.Instance.IsClicked(Define.ItemName.Gun))
             {
                 Debug.LogFormat("{0} Solved", this.name);
+                SoundManager.instance.SFXPlay("parrotDead");
+                SoundManager.instance.SFXPlay("gunshot");
                 SetIsSolved(true);
                 SolvedAction();
             }
             else
             {
                 Debug.LogFormat("{0} Not Solved", this.name);
+                SoundManager.instance.SFXPlay("parrot");
             }
         }
     }

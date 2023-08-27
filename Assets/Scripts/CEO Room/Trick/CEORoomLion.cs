@@ -16,6 +16,7 @@ public class CEORoomLion : Trick
             if (Inventory.Instance.IsClicked(ItemName.DeadParrot) && !IsSolved())
             {
                 Debug.LogFormat("{0} Solved", this.name);
+                SoundManager.instance.SFXPlay("lionRoar");
                 Inventory.Instance.RemoveItem(ItemName.DeadParrot);
                 SetIsSolved(true);
                 SolvedAction();
@@ -23,6 +24,7 @@ public class CEORoomLion : Trick
             else
             {
                 Debug.LogFormat("{0} Not Solved", this.name);
+                SoundManager.instance.SFXPlay("lionGrowl");
             }
         }
     }

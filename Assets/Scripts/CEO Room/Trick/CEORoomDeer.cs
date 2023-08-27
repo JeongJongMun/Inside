@@ -23,6 +23,7 @@ public class CEORoomDeer : Trick
             if (Inventory.Instance.IsClicked(ItemName.Gun) && !IsSolved())
             {
                 Debug.LogFormat("{0} Solved", this.name);
+                SoundManager.instance.SFXPlay("gunshot");
                 SetIsSolved(true);
                 SolvedAction();
                 VoiceManager.Instance.ScreamingMode(RoomName.CEO);

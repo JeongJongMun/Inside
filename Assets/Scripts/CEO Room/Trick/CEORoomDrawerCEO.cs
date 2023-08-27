@@ -19,6 +19,7 @@ public class CEORoomDrawerCEO : Trick
             if (passwords[0].text == "1" && passwords[1].text == "5" && passwords[2].text == "0")
             {
                 Debug.LogFormat("{0} Solved", this.name);
+                SoundManager.instance.SFXPlay("electricDoorOpen");
                 SetIsSolved(true);
                 SolvedAction();
             }
