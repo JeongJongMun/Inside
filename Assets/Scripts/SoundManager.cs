@@ -19,9 +19,12 @@ public class SoundManager : MonoBehaviour
 
     public static SoundManager instance = null;
 
+    private string sceneName = null;
+
     void Start()
     {
         DontDestroyOnLoad(transform.gameObject);
+        sceneName = SceneManager.GetActiveScene().name;
     }
 
     private void Awake() 
@@ -89,7 +92,25 @@ public class SoundManager : MonoBehaviour
         bgmSound.Play();
     }
 
-    // 아이돌방 오르골 재생 후 아래화살표 눌렀을 때 오르골 정지, 배경음 재생
+    // 환청 이벤트 BGM 재생
+    public void PlayEventBGM()
+    {
+        bgmSound.Stop();
+        bgmSound.clip = bgmList[9];
+        bgmSound.Play();
+    }
+    // 환청 이벤트 BGM 중지 후 원래 방 배경음 재생
+    public void StopEventBGM(string bgmName)
+    {
+        bgmSound.Stop();
+        for(int i=0;i<bgmList.Length;i++) {
+            if(bgmName == bgmList[i].name)
+                bgmSound.clip = bgmList[i];
+        }
+        bgmSound.Play();
+    }
+
+    // 오르골 효과음 재생 후 아래화살표 눌렀을 때 BGM 정지, 방 배경음 재생
     public void OnclickBottomArrow()
     {
         if(IsMusixbox)
@@ -107,25 +128,5 @@ public class SoundManager : MonoBehaviour
         bgmSound.clip = clip;
         bgmSound.loop = true;
         bgmSound.Play();
-    }
-
-    // 배경음악 뮤트 해제
-    public void BgmSoundRePlay(string bgmName)
-    {
-        for(int i=0;i<bgmList.Length;i++) {
-            if(bgmName == bgmList[i].name)
-                bgmSound.clip = bgmList[i];
-        }
-        bgmSound.mute = false;
-    }
-
-    // 배경음악 뮤트(=정지)
-    public void BgmSoundStop(string bgmName)
-    {
-        for(int i=0;i<bgmList.Length;i++) {
-            if(bgmName == bgmList[i].name)
-                bgmSound.clip = bgmList[i];
-        }
-        bgmSound.mute = true;
     }
 }

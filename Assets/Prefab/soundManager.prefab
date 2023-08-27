@@ -189,6 +189,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 528bb72127c0783429a57b697a015d1e, type: 3}
   - {fileID: 8300000, guid: 83c182ee0ba01b947bb0e8d23d263869, type: 3}
   - {fileID: 8300000, guid: faf789e7501a9c44194810e5b40f2af2, type: 3}
+  - {fileID: 8300000, guid: 07e9527c62ae64b488f4a80d74d7abba, type: 3}
   SFXList:
   - {fileID: 8300000, guid: ae4d5191c8a409740a573d23e7ebea3e, type: 3}
   - {fileID: 8300000, guid: 6c40da1d6cad5844aa04fa5fcc80ea4d, type: 3}
@@ -235,6 +236,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 7d9fe9ba0a70b214f800a4124f5b282c, type: 3}
   - {fileID: 8300000, guid: e01338191b84aeb47a37baa7c1fd2a89, type: 3}
   - {fileID: 8300000, guid: 41e9f95f0f58bba42b937362ecec5897, type: 3}
+  - {fileID: 8300000, guid: cdecb0286ae4b0f4fb0dbfb66c97e6fa, type: 3}
+  - {fileID: 8300000, guid: 832644593766bf64b9708233d17b3cbf, type: 3}
+  - {fileID: 8300000, guid: ace7eeb9ef43a524fa24ad618a187eb3, type: 3}
   pianoList:
   - {fileID: 8300000, guid: 2dc565b6946b37249a79dd64f4112d7c, type: 3}
   - {fileID: 8300000, guid: 4339772eee9163b46b4aba1ddbf00660, type: 3}
