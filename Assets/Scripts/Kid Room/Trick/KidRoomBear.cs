@@ -15,7 +15,6 @@ public class KidRoomBear : Trick
             if (Inventory.Instance.IsClicked(ItemName.Cutter))
             {
                 Debug.Log("Bear Solved");
-                SoundManager.instance.SFXPlay("bearCut");
                 SetIsSolved(true);
                 SolvedAction();
                 VoiceManager.Instance.ScreamingMode(RoomName.Kid);
