@@ -8,6 +8,8 @@ public class Define
         CEO,
         Living,
         Killer,
+        Ending,
+        Credit,
         None,
 
     }
@@ -80,7 +82,6 @@ public class Define
         LegoHole2,
         LegoHole3,
         Safe,
-        Switch,
         WorldMap,
 
         // Idol

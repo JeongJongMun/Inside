@@ -8,7 +8,7 @@ public class ResearcherRoomDrawerLocker1 : Trick
 
     [Header("정답")]
     public List<string> answers = new List<string>()
-    { "Left", "Right", "Right", "Down", "Down", "Right", "Left", "Left", "Left", "Down"};
+    { "Left", "Right", "Right", "Down", "Down", "Right", "Left", "Left", "Left", "Down", "Right", "Left"};
 
     [Header("입력 방향")]
     public List<string> inputs = new List<string>();

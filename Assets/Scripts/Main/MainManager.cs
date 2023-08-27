@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using PlayFab;
 
 public class MainManager : MonoBehaviour
 {
@@ -29,7 +30,7 @@ public class MainManager : MonoBehaviour
     // 로그아웃 버튼 클릭 시
     public void OnClickLogOutBtn()
     {
-
+        PlayFabClientAPI.ForgetAllCredentials(); // 로그인 자격 증명 지우기
+        SceneManager.LoadScene("SignIn");
     }
-
 }

@@ -1,17 +1,24 @@
 using PlayFab;
 using PlayFab.ClientModels;
-using System.Net.Mail;
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
+using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class PlayFabSignUp : MonoBehaviour
 {
+    [Header("이메일 입력창")]
     public TMP_InputField emailInputField;
+
+    [Header("비밀번호 입력창")]
     public TMP_InputField passwordInputField;
+
+    [Header("비밀번호 확인창")]
     public TMP_InputField passwordCheckInputField;
+
+    [Header("에러 메시지 UI")]
+    public TMP_Text errorMessageText;
 
     public void SignUp()
     {
@@ -27,16 +34,15 @@ public class PlayFabSignUp : MonoBehaviour
             Password = passwordInputField.text
         };
 
-        // ??й?? ???
         if (passwordInputField.text != passwordCheckInputField.text)
         {
-            Debug.LogWarning("??й???? ??????? ??????.");
+            errorMessageText.text = "비밀번호가 일치하지 않습니다. 다시 입력해주세요.";
             return;
         }
         // ??й?? ????? ??
         if (passwordInputField.text.Length < 8)
         {
-            Debug.LogWarning("??й???? 8??? ??? ????????.");
+            errorMessageText.text = "비밀번호는 최소 8자리 이상으로 설정해주세요.";
             return;
         }
 
@@ -46,7 +52,7 @@ public class PlayFabSignUp : MonoBehaviour
 
     private void OnSignUpSuccess(RegisterPlayFabUserResult result)
     {
-        Debug.Log("??????? ????");
+        Debug.Log("회원가입 성공");
          
         StartCoroutine(_ClickBackBtn());
     }
@@ -60,8 +66,8 @@ public class PlayFabSignUp : MonoBehaviour
 
     private void OnSignUpFailire(PlayFabError error)
     {
-        Debug.LogWarning("??????? ????");
         Debug.LogWarning(error);
+        errorMessageText.text = "회원가입에 실패하였습니다.\n" + error.ToString().Substring(29);
     }
     public void ClickBackBtn()
     {

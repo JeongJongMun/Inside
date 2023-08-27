@@ -3,12 +3,21 @@ using UnityEngine.SceneManagement;
 
 public class RoomManagerKiller : RoomManager
 {
+    public Canvas uiCanvas;
+
     public void OnClickLadder()
     {
         SceneManager.LoadScene("LivingRoom");
     }
     public void OnClickEndingRoomDoor()
     {
-        Debug.Log("엔딩방 입장");
+        // UICanvas를 화면에 보이지 않게함
+        uiCanvas.sortingOrder = -1;
+        SceneManager.LoadScene("EndingRoom");
+    }
+
+    public void OnClickMedicine(GameObject medicine)
+    {
+        medicine.SetActive(false);
     }
 }

@@ -138,7 +138,7 @@ GameObject:
   - component: {fileID: 3552089}
   m_Layer: 5
   m_Name: Switch
-  m_TagString: Trick
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -207,13 +207,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11610575}
-        m_TargetAssemblyTypeName: RoomManager, Assembly-CSharp
-        m_MethodName: OnClickTrick
-        m_Mode: 2
+      - m_Target: {fileID: 3552089}
+        m_TargetAssemblyTypeName: Switch, Assembly-CSharp
+        m_MethodName: OnClickSwitch
+        m_Mode: 1
         m_Arguments:
-          m_ObjectArgument: {fileID: 3552084}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -266,14 +266,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 3552084}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f61bbfb9f0946844691e77a2e83c4b26, type: 3}
+  m_Script: {fileID: 11500000, guid: 957f1350c50831b43bf65eb524508f43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isSolved: 0
-  trickName: 0
   switchSprite:
-  - {fileID: 21300000, guid: 3c77ee690f6fcfc4f832212f1ea7fa46, type: 3}
   - {fileID: 21300000, guid: 489e163e8f9f1d042b6e2ef7bf0ebe00, type: 3}
+  - {fileID: 21300000, guid: 3c77ee690f6fcfc4f832212f1ea7fa46, type: 3}
   lightPanel: {fileID: 1085871914}
   fluorescentTime: {fileID: 527119088}
 --- !u!1 &11610574
@@ -2039,11 +2037,6 @@ MonoBehaviour:
   lamps:
   - {fileID: 21300000, guid: 43df7296f60369d4cac41e10287774b2, type: 3}
   - {fileID: 21300000, guid: f3d6dc334e14f2645bb9aa6cccdbe455, type: 3}
---- !u!1 &415836907 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5253242293819285051, guid: 42c99e9e62da31b4383b0e40ea686b6e, type: 3}
-  m_PrefabInstance: {fileID: 1601343806862283015}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &425046401
 GameObject:
   m_ObjectHideFlags: 0
@@ -10437,6 +10430,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 42c99e9e62da31b4383b0e40ea686b6e, type: 3}
+--- !u!223 &1601343806862283017 stripped
+Canvas:
+  m_CorrespondingSourceObject: {fileID: 2814552299146178534, guid: 42c99e9e62da31b4383b0e40ea686b6e, type: 3}
+  m_PrefabInstance: {fileID: 1601343806862283015}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2480645331211606380
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10670,7 +10668,7 @@ PrefabInstance:
     - target: {fileID: 625768279914314738, guid: 1f62b7a052e7abe4a89fb91d3ae2991d, type: 3}
       propertyPath: uiCanvas
       value: 
-      objectReference: {fileID: 415836907}
+      objectReference: {fileID: 1601343806862283017}
     - target: {fileID: 625768279914314738, guid: 1f62b7a052e7abe4a89fb91d3ae2991d, type: 3}
       propertyPath: fadeImage
       value: 

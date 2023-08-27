@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using static Define;
 
@@ -35,7 +36,7 @@ public class RoomManager : MonoBehaviour
 
     [SerializeField]
     [Header("벽면 위에 쌓이는 패널 스택 ex) 줌, 슬라이딩 트릭")]
-    private Stack<GameObject> panels = new Stack<GameObject>();
+    internal Stack<GameObject> panels = new Stack<GameObject>();
 
     [SerializeField]
     [Header("방 이름")]
@@ -91,15 +92,6 @@ public class RoomManager : MonoBehaviour
         {
             foreach (GameObject obj in trickObjects)
             {
-                //TrickName _trickName = obj.GetComponent<Trick>().trickName;
-                //// DatabaseManger에 트릭 추가 
-                //if (!DatabaseManager.Instance.IsTrickExist(roomName, _trickName))
-                //{
-                //    DatabaseManager.Instance.SetTrickStatus(roomName, _trickName, false);
-
-                //}
-                //Debug.LogFormat("Found Trick: {0}", _trickName);
-
                 AddTrick(obj.GetComponent<Trick>());
             }
         }
@@ -125,17 +117,28 @@ public class RoomManager : MonoBehaviour
             currentWallPanel = (currentWallPanel + 3) % 4;
             wallPanel[currentWallPanel].SetActive(true);
         }
-
     }
 
     // 오른쪽 화살표 클릭 시
-    private void OnClickRightArrow()
+    internal void OnClickRightArrow()
     {
         SoundManager.instance.SFXPlay("arrowButton");
         if (roomName == RoomName.Living)
         {
             wallPanel[currentWallPanel].SetActive(false);
             currentWallPanel = (currentWallPanel + 1) % 2;
+            wallPanel[currentWallPanel].SetActive(true);
+        }
+        // 엔딩방 예외 처리
+        else if (roomName == RoomName.Ending)
+        {
+            if (currentWallPanel == 2)
+            {
+                SceneManager.LoadScene("Credit");
+                return;
+            }
+            wallPanel[currentWallPanel].SetActive(false);
+            currentWallPanel++;
             wallPanel[currentWallPanel].SetActive(true);
         }
         else
@@ -178,19 +181,12 @@ public class RoomManager : MonoBehaviour
     // 좌우 화살표와 아래 화살표 활성화 관리
     private void SetActiveArrow()
     {
-        // 패널 스택에 1개라도 있다면 (좌우 화살표는 없고 아래쪽 화살표만 있어야 함)
-        if (panels.Count > 0)
-        {
-            leftArrow.SetActive(false);
-            rightArrow.SetActive(false);
-            bottomArrow.SetActive(true);
-        }
-        else
-        {
-            leftArrow.SetActive(true);
-            rightArrow.SetActive(true);
-            bottomArrow.SetActive(false);
-        }   
+        // 패널 스택에 1개라도 있다면 좌우 화살표는 없고 아래쪽 화살표만 있어야 함
+        bool panelsExist = panels.Count > 0;
+
+        leftArrow.SetActive(!panelsExist);
+        rightArrow.SetActive(!panelsExist);
+        bottomArrow.SetActive(panelsExist);
     }
 
 

@@ -5,8 +5,6 @@ using PlayFab;
 using PlayFab.ClientModels;
 using System;
 using Newtonsoft.Json;
-using static UnityEditor.Progress;
-using static UnityEditor.Timeline.Actions.MenuPriority;
 
 public class DatabaseManager : MonoBehaviour
 {

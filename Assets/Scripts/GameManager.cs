@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -41,8 +42,11 @@ public class GameManager : MonoBehaviour
     [Header("설정창 패널")]
     public GameObject settingPanel;
 
+    [Header("게임오버 패널")]
+    public GameObject gameoverPanel;
+
     [Header("트릭 성공 이펙트")]
-    public UnityEngine.UI.Image fadeImage;
+    public Image fadeImage;
 
     [SerializeField]
     [Header("이펙트 속도")]
@@ -50,25 +54,40 @@ public class GameManager : MonoBehaviour
     private float fadeTime;
 
     [Header("UI Canvas")]
-    public GameObject uiCanvas;
+    public Canvas uiCanvas;
 
-    // 설정 버튼 클릭 시
-    public void OnClickSettingBtn()
+
+    // 설정 버튼 -> 설정 패널 ON
+    public void SettingPanelOnOff()
     {
         settingPanel.SetActive(!settingPanel.activeSelf);
     }
-    // 설정 창의 게임종료 버튼 클릭 시
-    public void OnClickExitBtn()
+    // 설정 패널 - 게임종료 & 게임오버 패널 - 메인으로
+    public void OnClickExitBtn(GameObject panel)
     {
-        SceneManager.LoadScene("Main");
-        settingPanel.SetActive(false);
+        panel.SetActive(false);
         UICanvasSetActive();
+        SceneManager.LoadScene("Main");
+    }
+
+    // 설정 패널 - 저장하기
+    public void OnClickSaveBtn()
+    {
+        DatabaseManager.Instance.SaveData();
+        settingPanel.SetActive(false);
     }
 
     // UI Canvas On/Off
     public void UICanvasSetActive()
     {
-        uiCanvas.SetActive(!uiCanvas.activeSelf);
+        if (uiCanvas.sortingOrder == 1)
+        {
+            uiCanvas.sortingOrder = -1;
+        }
+        else
+        {
+            uiCanvas.sortingOrder = 1;
+        }
     }
 
     // 아이템 클릭 시
@@ -121,7 +140,11 @@ public class GameManager : MonoBehaviour
             else 
                 mentalImage[i].SetActive(false);
         }
-
+        // Game Over
+        if (mentalPoint == 0)
+        {
+            gameoverPanel.SetActive(true);
+        }
     }
 
     /// <summary>
