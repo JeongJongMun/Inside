@@ -3,8 +3,14 @@ using UnityEngine.SceneManagement;
 
 public class RoomManagerKiller : RoomManager
 {
-    public Canvas uiCanvas;
+    [SerializeField]
+    private Canvas uiCanvas;
 
+    public override void Start()
+    {
+        base.Start();
+        uiCanvas = GameObject.Find("UICanvas").GetComponent<Canvas>();
+    }
     public void OnClickLadder()
     {
         SceneManager.LoadScene("LivingRoom");
