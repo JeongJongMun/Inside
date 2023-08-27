@@ -1,6 +1,7 @@
 using System.Net;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using static Define;
 
 public enum VoiceMode
@@ -15,6 +16,8 @@ public class VoiceManager : MonoBehaviour
     // 보안을 위해 private
     private static VoiceManager instance = null;
 
+    private string sceneName = null;
+    
     private void Awake()
     {
         if (instance == null)
@@ -23,6 +26,7 @@ public class VoiceManager : MonoBehaviour
             DontDestroyOnLoad(gameObject); // 씬 전환 시에 파괴 X
         }
         else Destroy(gameObject);
+        sceneName = SceneManager.GetActiveScene().name;
     }
 
     // VoiceManager 인스턴스에 접근하는 프로퍼티
@@ -78,6 +82,7 @@ public class VoiceManager : MonoBehaviour
         _audio.Play();
 
         mode = VoiceMode.Slient;
+        
     }
     void Update()
     {
@@ -109,6 +114,7 @@ public class VoiceManager : MonoBehaviour
                         GameManager.Instance.MentalBreak();
                         Debug.Log("환청 무찌르기 실패 : 정신력 포인트 -1");
                     }
+                    SoundManager.instance.BgmSoundRePlay(sceneName);
 
                 }
                 else
@@ -121,6 +127,7 @@ public class VoiceManager : MonoBehaviour
     }
     public void ScreamingMode(RoomName roomName)
     {
+        SoundManager.instance.BgmSoundStop(sceneName);
         mode = VoiceMode.Screaming;
         images[(int)roomName].SetActive(true);
     }
