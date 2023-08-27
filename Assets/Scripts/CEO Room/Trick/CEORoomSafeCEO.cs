@@ -15,6 +15,7 @@ public class CEORoomSafeCEO : Trick
             if (passwords[0].text == "3" && passwords[1].text == "1" && passwords[2].text == "7" && passwords[3].text == "9")
             {
                 Debug.LogFormat("{0} Solved", this.name);
+                SoundManager.instance.SFXPlay("lockerOpen");
                 SetIsSolved(true);
                 SolvedAction();
             }

@@ -13,6 +13,7 @@ public class CEORoomSofa : Trick
             if (Inventory.Instance.IsClicked(Define.ItemName.Cutter))
             {
                 Debug.LogFormat("{0} Solved", this.name);
+                SoundManager.instance.SFXPlay("cutter");
                 Inventory.Instance.RemoveItem(Define.ItemName.Cutter);
                 SetIsSolved(true);
                 SolvedAction();
