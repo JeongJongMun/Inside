@@ -130,6 +130,36 @@ public class VoiceManager : MonoBehaviour
         SoundManager.instance.BgmSoundStop(sceneName);
         mode = VoiceMode.Screaming;
         images[(int)roomName].SetActive(true);
+        switch (roomName)
+        {
+            case RoomName.Kid:
+            {
+                // 아이방 환청 사운드 재생
+                SoundManager.instance.SFXPlay("bearCut");
+                break;
+            }
+                
+            case RoomName.Idol:
+            {
+                // 아이돌방 환청 사운드 재생
+                SoundManager.instance.SFXPlay("posterEvent");
+                break;
+            }
+
+            case RoomName.Researcher:
+            {
+                // 연구원방 환청 사운드 재생
+                SoundManager.instance.SFXPlay("researcherEvent");
+                break;
+            }
+
+            case RoomName.CEO:
+            {
+                // CEO방 환청 사운드 재생
+                SoundManager.instance.SFXPlay("deerScream");
+                break;
+            }
+        }
     }
     public void ImageOff()
     {
