@@ -114,7 +114,7 @@ public class VoiceManager : MonoBehaviour
                         GameManager.Instance.MentalBreak();
                         Debug.Log("환청 무찌르기 실패 : 정신력 포인트 -1");
                     }
-                    SoundManager.instance.BgmSoundRePlay(sceneName);
+                    SoundManager.instance.StopEventBGM(sceneName);
 
                 }
                 else
@@ -127,9 +127,39 @@ public class VoiceManager : MonoBehaviour
     }
     public void ScreamingMode(RoomName roomName)
     {
-        SoundManager.instance.BgmSoundStop(sceneName);
+        SoundManager.instance.PlayEventBGM();
         mode = VoiceMode.Screaming;
         images[(int)roomName].SetActive(true);
+        switch (roomName)
+        {
+            case RoomName.Kid:
+            {
+                // 아이방 환청 사운드 재생
+                SoundManager.instance.SFXPlay("bearCut");
+                break;
+            }
+                
+            case RoomName.Idol:
+            {
+                // 아이돌방 환청 사운드 재생
+                SoundManager.instance.SFXPlay("posterEvent");
+                break;
+            }
+
+            case RoomName.Researcher:
+            {
+                // 연구원방 환청 사운드 재생
+                SoundManager.instance.SFXPlay("researcherEvent");
+                break;
+            }
+
+            case RoomName.CEO:
+            {
+                // CEO방 환청 사운드 재생
+                SoundManager.instance.SFXPlay("deerScream");
+                break;
+            }
+        }
     }
     public void ImageOff()
     {
