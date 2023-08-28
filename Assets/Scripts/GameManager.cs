@@ -38,12 +38,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    // for Audio Slider
-    private void Start()
-    {
-        // SetMusicVolume();
-    }
-
+    // for AudioMixer Slide
     public void SetMusicVolume(Slider slider)
     {
         float volume = slider.value;
@@ -74,6 +69,7 @@ public class GameManager : MonoBehaviour
     // 설정 버튼 -> 설정 패널 ON
     public void SettingPanelOnOff()
     {
+        SoundManager.instance.SFXPlay("buttonSound");
         settingPanel.SetActive(!settingPanel.activeSelf);
     }
     // 설정 패널 - 게임종료 & 게임오버 패널 - 메인으로
