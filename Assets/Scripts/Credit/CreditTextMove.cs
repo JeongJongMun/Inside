@@ -7,7 +7,7 @@ public class CreditTextMove : MonoBehaviour
 
     [SerializeField]
     [Header("农饭调 捞悼 加档")]
-    [Range(0.1f, 1f)]
+    [Range(0.1f, 3f)]
     private float speed = 1;
 
     void Start()
@@ -17,7 +17,7 @@ public class CreditTextMove : MonoBehaviour
 
     void Update()
     {
-        recttransform.position += Vector3.up * speed;
+        recttransform.anchoredPosition += Vector2.up * speed;
         Debug.LogFormat("农饭调 加档:{0}", speed);
         if (recttransform.anchoredPosition.y > 1500) SceneManager.LoadScene("Main");
     }
