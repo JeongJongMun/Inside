@@ -44,12 +44,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89d8b384bc10ee84b924ff6363c93b9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  masterMixer: {fileID: 24100000, guid: aefa9925f11911444bd795b6747e7384, type: 2}
+  audioSlider: {fileID: 0}
   mentalPoint: 3
   mentalImage:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   settingPanel: {fileID: 0}
+  gameoverPanel: {fileID: 0}
   fadeImage: {fileID: 0}
   fadeTime: 0.1
   uiCanvas: {fileID: 0}
