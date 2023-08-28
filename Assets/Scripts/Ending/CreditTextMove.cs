@@ -8,7 +8,7 @@ public class CreditTextMove : MonoBehaviour
     [SerializeField]
     [Header("크레딧 이동 속도")]
     [Range(0.1f, 1f)]
-    private float speed;
+    private float speed = 1;
 
     void Start()
     {
