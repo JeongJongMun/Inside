@@ -2,12 +2,18 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.Audio;
+using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour
 {
     // 게임 내에 GameManager 인스턴스는 이 instance에 담긴 녀석만 존재
     // 보안을 위해 private
     private static GameManager instance = null;
+
+    //For Audio volume Slider
+    [SerializeField] private AudioMixer masterMixer;
+    [SerializeField] private Slider audioSlider;
 
     private void Awake()
     {
@@ -30,6 +36,18 @@ public class GameManager : MonoBehaviour
             }
             return instance;
         }
+    }
+
+    // for Audio Slider
+    private void Start()
+    {
+        // SetMusicVolume();
+    }
+
+    public void SetMusicVolume(Slider slider)
+    {
+        float volume = slider.value;
+        masterMixer.SetFloat("BGM", Mathf.Log10(volume)*20);
     }
 
 
@@ -66,13 +84,15 @@ public class GameManager : MonoBehaviour
     public void OnClickExitBtn(GameObject panel)
     {
         panel.SetActive(false);
+        SoundManager.instance.SFXPlay("buttonSound");
         UICanvasSetActive();
-        SceneManager.LoadScene("Main");
+        StartCoroutine(LoadMain());
     }
 
     // 설정 패널 - 저장하기
     public void OnClickSaveBtn()
     {
+        SoundManager.instance.SFXPlay("buttonSound");
         DatabaseManager.Instance.SaveData();
         settingPanel.SetActive(false);
     }
@@ -97,6 +117,12 @@ public class GameManager : MonoBehaviour
         Inventory.Instance.AcquireItem(_item.GetComponent<Item>());
         // 화면에 있는 아이템 삭제
         Destroy(_item);
+    }
+
+    private IEnumerator LoadMain()
+    {
+        yield return new WaitForSeconds(0.5f);
+        SceneManager.LoadScene("Main");
     }
 
     // 트릭 성공 시 이펙트

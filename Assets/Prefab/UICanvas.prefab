@@ -2720,7 +2720,7 @@ GameObject:
   - component: {fileID: 4845108159179286968}
   - component: {fileID: 6226481190654997528}
   m_Layer: 5
-  m_Name: SaveBtn
+  m_Name: Save Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3191,7 +3191,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 1
+  m_SortingOrder: -1
   m_TargetDisplay: 0
 --- !u!114 &6173490925066085072
 MonoBehaviour:
@@ -4233,13 +4233,25 @@ MonoBehaviour:
   m_FillRect: {fileID: 4853235966642898759}
   m_HandleRect: {fileID: 294088068727941203}
   m_Direction: 0
-  m_MinValue: 0
+  m_MinValue: 0.0001
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 0.6
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 625768279914314738, guid: 1f62b7a052e7abe4a89fb91d3ae2991d, type: 3}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: SetMusicVolume
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6671689099413293785
 GameObject:
   m_ObjectHideFlags: 0
@@ -4691,7 +4703,7 @@ GameObject:
   - component: {fileID: 5336214504645532190}
   - component: {fileID: 8223266118473359141}
   m_Layer: 5
-  m_Name: ExitBtn
+  m_Name: Exit Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4803,10 +4815,10 @@ MonoBehaviour:
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: OnClickExitBtn
-        m_Mode: 1
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 8168892088429066775}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -5344,7 +5356,7 @@ GameObject:
   - component: {fileID: 1921243469121924981}
   - component: {fileID: 6763980997424956871}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Exit Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5452,7 +5464,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1921243469121924981}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: OnClickExitBtn
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 2443211943496281806}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &8841821280968425770
 GameObject:
   m_ObjectHideFlags: 0
