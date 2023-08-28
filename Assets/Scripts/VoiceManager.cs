@@ -26,7 +26,6 @@ public class VoiceManager : MonoBehaviour
             DontDestroyOnLoad(gameObject); // 씬 전환 시에 파괴 X
         }
         else Destroy(gameObject);
-        sceneName = SceneManager.GetActiveScene().name;
     }
 
     // VoiceManager 인스턴스에 접근하는 프로퍼티
@@ -86,6 +85,7 @@ public class VoiceManager : MonoBehaviour
     }
     void Update()
     {
+        sceneName = SceneManager.GetActiveScene().name;
         switch(mode)
         {
             case VoiceMode.Slient:

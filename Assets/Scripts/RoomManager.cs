@@ -42,10 +42,6 @@ public class RoomManager : MonoBehaviour
     [Header("πÊ ¿Ã∏ß")]
     private RoomName roomName;
 
-    // For SFXSound
-    SoundManager soundManager;
-
-
     private void Awake()
     {
         leftArrow = GameObject.Find("UICanvas").transform.GetChild(0).gameObject;
@@ -55,8 +51,6 @@ public class RoomManager : MonoBehaviour
         leftArrow.GetComponent<Button>().onClick.AddListener(OnClickLeftArrow);
         rightArrow.GetComponent<Button>().onClick.AddListener(OnClickRightArrow);
         bottomArrow.GetComponent<Button>().onClick.AddListener(ZoomOut);
-
-        soundManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<SoundManager>(); // sound Manager
     }
     public virtual void Start()
     {
