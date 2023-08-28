@@ -4,7 +4,6 @@ using static Define;
 
 public class KidRoomDrawer : Trick
 {
-
     public override void TrySolve(GameObject obj)
     {
         if (obj.name == "DrawerZoom")

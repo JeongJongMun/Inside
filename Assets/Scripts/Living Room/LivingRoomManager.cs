@@ -80,6 +80,7 @@ public class LivingRoomManager : RoomManager
     }
     private IEnumerator LoadKillerRoom()
     {
+        ZoomOut();
         yield return new WaitForSeconds(0.5f);
         SceneManager.LoadScene("KillerRoom");
     }
