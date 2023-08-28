@@ -190,6 +190,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 83c182ee0ba01b947bb0e8d23d263869, type: 3}
   - {fileID: 8300000, guid: faf789e7501a9c44194810e5b40f2af2, type: 3}
   - {fileID: 8300000, guid: 07e9527c62ae64b488f4a80d74d7abba, type: 3}
+  - {fileID: 8300000, guid: 1e3ce14d5ed73404a8e694ee3e65db35, type: 3}
   SFXList:
   - {fileID: 8300000, guid: ae4d5191c8a409740a573d23e7ebea3e, type: 3}
   - {fileID: 8300000, guid: 6c40da1d6cad5844aa04fa5fcc80ea4d, type: 3}
