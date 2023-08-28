@@ -4,14 +4,14 @@ using UnityEngine.UI;
 
 public class ToggleGroupLimit : MonoBehaviour
 {
-    [Header("ÀÚ¹°¼è ¼ýÀÚ ¹öÆ°µé")]
+    [Header("ï¿½Ú¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ°ï¿½ï¿½")]
     public Toggle[] toggles;
 
-    [Header("¹öÆ° ÃÖ´ë Å¬¸¯ Á¦ÇÑ")]
+    [Header("ï¿½ï¿½Æ° ï¿½Ö´ï¿½ Å¬ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½")]
     public int maxSelected = 3;
 
     [SerializeField]
-    [Header("ÇöÀç ÀÔ·Â ¼ýÀÚµé")]
+    [Header("ï¿½ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½ ï¿½ï¿½ï¿½Úµï¿½")]
     public List<int> selectedNumbers = new List<int>();
 
     private void Start()
@@ -26,11 +26,11 @@ public class ToggleGroupLimit : MonoBehaviour
     {
         int currentSelectedCount = 0;
 
+        SoundManager.instance.SFXPlay("lego");
         foreach (var t in toggles)
         {
             if (t.isOn)
             {
-                SoundManager.instance.SFXPlay("lego");
                 currentSelectedCount++;
                 if (!selectedNumbers.Contains(int.Parse(t.name)))
                 {
