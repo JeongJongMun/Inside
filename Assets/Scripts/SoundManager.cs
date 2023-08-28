@@ -99,6 +99,7 @@ public class SoundManager : MonoBehaviour
         bgmSound.clip = bgmList[9];
         bgmSound.Play();
     }
+    
     // 환청 이벤트 BGM 중지 후 원래 방 배경음 재생
     public void StopEventBGM(string bgmName)
     {
