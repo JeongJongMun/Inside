@@ -18,6 +18,7 @@ public class CreditTextMove : MonoBehaviour
     void Update()
     {
         recttransform.position += Vector3.up * speed;
+        Debug.LogFormat("Å©·¹µ÷ ¼Óµµ:{0}", speed);
         if (recttransform.anchoredPosition.y > 1500) SceneManager.LoadScene("Main");
     }
 }
