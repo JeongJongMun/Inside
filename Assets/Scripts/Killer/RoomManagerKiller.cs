@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class RoomManagerKiller : RoomManager
 {
@@ -13,17 +14,30 @@ public class RoomManagerKiller : RoomManager
     }
     public void OnClickLadder()
     {
-        SceneManager.LoadScene("LivingRoom");
+        SoundManager.instance.SFXPlay("stair");
+        StartCoroutine(LoadLivingRoom());
     }
     public void OnClickEndingRoomDoor()
     {
-        // UICanvas¸¦ È­¸é¿¡ º¸ÀÌÁö ¾Ê°ÔÇÔ
+        // UICanvasï¿½ï¿½ È­ï¿½é¿¡ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê°ï¿½ï¿½ï¿½
         uiCanvas.sortingOrder = -1;
-        SceneManager.LoadScene("EndingRoom");
+        StartCoroutine(LoadEndingRoom());
     }
 
     public void OnClickMedicine(GameObject medicine)
     {
         medicine.SetActive(false);
+    }
+    
+    private IEnumerator LoadLivingRoom()
+    {
+        yield return new WaitForSeconds(0.5f);
+        SceneManager.LoadScene("LivingRoom");
+    }
+
+    private IEnumerator LoadEndingRoom()
+    {
+        yield return new WaitForSeconds(1.0f);
+        SceneManager.LoadScene("EndingRoom");
     }
 }

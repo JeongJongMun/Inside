@@ -239,6 +239,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: cdecb0286ae4b0f4fb0dbfb66c97e6fa, type: 3}
   - {fileID: 8300000, guid: 832644593766bf64b9708233d17b3cbf, type: 3}
   - {fileID: 8300000, guid: ace7eeb9ef43a524fa24ad618a187eb3, type: 3}
+  - {fileID: 8300000, guid: 00aff3e744f356345b6ac15afd72e2bc, type: 3}
   pianoList:
   - {fileID: 8300000, guid: 2dc565b6946b37249a79dd64f4112d7c, type: 3}
   - {fileID: 8300000, guid: 4339772eee9163b46b4aba1ddbf00660, type: 3}
