@@ -17,8 +17,10 @@ public class KillerRoomHangerInput : Trick
         if (obj.name == this.name)
         {
             Debug.LogFormat("{0} Solved", this.name);
+            SoundManager.instance.SFXPlay("pulloverCloset");
             SetIsSolved(true);
             SolvedAction();
+            SoundManager.instance.SFXPlay("doorSlide");
         }
     }
 

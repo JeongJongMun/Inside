@@ -84,12 +84,24 @@ public class SoundManager : MonoBehaviour
     }
 
     // 아이돌방 오르골 재생
-    public void musixboxPlay()
+    public void OnclickMusicbox()
     {
         bgmSound.Stop();
         bgmSound.clip = bgmList[6];
-        IsMusixbox = true;
         bgmSound.Play();
+        IsMusixbox = true;
+    }
+
+    // 오르골 효과음 재생 후 아래화살표 눌렀을 때 BGM 정지, 방 배경음 재생
+    public void OnclickBottomArrow()
+    {
+        if(IsMusixbox)
+        {
+            bgmSound.Stop();
+            bgmSound.clip = bgmList[2];
+            bgmSound.Play();
+            IsMusixbox = false;
+        }
     }
 
     // 환청 이벤트 BGM 재생
@@ -109,18 +121,6 @@ public class SoundManager : MonoBehaviour
                 bgmSound.clip = bgmList[i];
         }
         bgmSound.Play();
-    }
-
-    // 오르골 효과음 재생 후 아래화살표 눌렀을 때 BGM 정지, 방 배경음 재생
-    public void OnclickBottomArrow()
-    {
-        if(IsMusixbox)
-        {
-            bgmSound.Stop();
-            bgmSound.clip = bgmList[2];
-            bgmSound.Play();
-            IsMusixbox = false;
-        }
     }
 
     // 배경음악 재생
