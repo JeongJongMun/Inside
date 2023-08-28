@@ -14,6 +14,7 @@ public class KillerRoomPostIt1 : Trick
             if (Inventory.Instance.IsClicked(ItemName.Pencil1))
             {
                 Debug.LogFormat("{0} Solved", this.name);
+                SoundManager.instance.SFXPlay("pencil");
                 Inventory.Instance.RemoveItem(ItemName.Pencil1);
                 SetIsSolved(true);
                 SolvedAction();

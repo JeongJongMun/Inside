@@ -12,6 +12,7 @@ public class KillerRoomCabinetKiller : Trick
             if (Inventory.Instance.IsClicked(ItemName.ClosetKey))
             {
                 Debug.LogFormat("{0} Solved", this.name);
+                SoundManager.instance.SFXPlay("lockerOpen");
                 Inventory.Instance.RemoveItem(ItemName.ClosetKey);
                 SetIsSolved(true);
                 SolvedAction();
@@ -19,6 +20,7 @@ public class KillerRoomCabinetKiller : Trick
             else
             {
                 Debug.LogFormat("{0} Not Solved", this.name);
+                SoundManager.instance.SFXPlay("drawerLocked");
             }
         }
     }

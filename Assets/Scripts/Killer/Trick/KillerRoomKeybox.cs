@@ -28,6 +28,7 @@ public class KillerRoomKeybox : Trick
             if (inputfields[0].text + inputfields[1].text + inputfields[2].text + inputfields[3].text == answer)
             {
                 Debug.LogFormat("{0} Solved", this.name);
+                SoundManager.instance.SFXPlay("electricButton");
                 SetIsSolved(true);
                 SolvedAction();
             }
