@@ -1416,11 +1416,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 274948668}
   m_CullTransparentMesh: 1
---- !u!1 &326520339 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5253242293819285051, guid: 42c99e9e62da31b4383b0e40ea686b6e, type: 3}
-  m_PrefabInstance: {fileID: 362715836}
-  m_PrefabAsset: {fileID: 0}
 --- !u!223 &326520343 stripped
 Canvas:
   m_CorrespondingSourceObject: {fileID: 2814552299146178534, guid: 42c99e9e62da31b4383b0e40ea686b6e, type: 3}
@@ -3276,7 +3271,7 @@ MonoBehaviour:
   currentWallPanel: 0
   tricks: []
   roomName: 0
-  uiCanvas: {fileID: 326520343}
+  uiCanvas: {fileID: 0}
 --- !u!1 &693880406
 GameObject:
   m_ObjectHideFlags: 0
@@ -5469,7 +5464,7 @@ PrefabInstance:
     - target: {fileID: 625768279914314738, guid: 1f62b7a052e7abe4a89fb91d3ae2991d, type: 3}
       propertyPath: uiCanvas
       value: 
-      objectReference: {fileID: 326520339}
+      objectReference: {fileID: 326520343}
     - target: {fileID: 625768279914314738, guid: 1f62b7a052e7abe4a89fb91d3ae2991d, type: 3}
       propertyPath: fadeImage
       value: 

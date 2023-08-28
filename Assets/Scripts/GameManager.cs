@@ -45,10 +45,6 @@ public class GameManager : MonoBehaviour
         masterMixer.SetFloat("BGM", Mathf.Log10(volume)*20);
     }
 
-
-    [Header("정신력 포인트")]
-    public int mentalPoint = 3;
-
     [Header("정신력 포인트 이미지 배열")]
     public GameObject[] mentalImage;
 
@@ -132,7 +128,6 @@ public class GameManager : MonoBehaviour
         yield return StartCoroutine(Fade(0, 1));
 
         yield return StartCoroutine(Fade(1, 0));
-
     }
     private IEnumerator Fade(float start, float end)
     {
@@ -151,21 +146,32 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    // 멘탈 포인트 -1
+    // 정신력 포인트 -1
     public void MentalBreak()
     {
-        mentalPoint--;
+        DatabaseManager.Instance.MentalPointData--;
+        
         for (int i = 0; i < 3; i++)
         {
-            if (i < mentalPoint)
+            if (i < DatabaseManager.Instance.MentalPointData)
                 mentalImage[i].SetActive(true);
             else 
                 mentalImage[i].SetActive(false);
         }
         // Game Over
-        if (mentalPoint == 0)
+        if (DatabaseManager.Instance.MentalPointData == 0)
         {
             gameoverPanel.SetActive(true);
+        }
+    }
+    // 정신력 포인트 = 3
+    public void MentalRecovery()
+    {
+        DatabaseManager.Instance.MentalPointData = 3;
+
+        for (int  i = 0; i < 3; i++)
+        {
+            mentalImage[i].SetActive(true);
         }
     }
 

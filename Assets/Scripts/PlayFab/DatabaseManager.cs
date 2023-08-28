@@ -61,6 +61,8 @@ public class DatabaseManager : MonoBehaviour
         new HData { name = ItemName.Latch3, number = -1 },
     };
     private List<ItemName> InventoryData = new List<ItemName>();
+    [HideInInspector]
+    public int MentalPointData = 3;
 
     private void DisplayPlayfabError(PlayFabError error) => Debug.LogError("error : " + error.GenerateErrorReport());
 
@@ -91,25 +93,28 @@ public class DatabaseManager : MonoBehaviour
             {
                 string key = eachData.Key;
 
-                if (eachData.Key.Contains("TrickContent"))
+                if (key.Contains("TrickContent"))
                 {
-                    List<Data<TrickName>> content = JsonConvert.DeserializeObject<List<Data<TrickName>>>(eachData.Value.Value);
-                    TrickData = content;
+                    TrickData = JsonConvert.DeserializeObject<List<Data<TrickName>>>(eachData.Value.Value);
                 }
-
-                if (eachData.Key.Contains("ItemContent"))
+                else if (key.Contains("ItemContent"))
                 {
-                    List<Data<ItemName>> content = JsonConvert.DeserializeObject<List<Data<ItemName>>>(eachData.Value.Value);
-                    ItemData = content;
+                    ItemData = JsonConvert.DeserializeObject<List<Data<ItemName>>>(eachData.Value.Value);
                 }
-
-                if (eachData.Key.Contains("HatchContent"))
+                else if (key.Contains("HatchContent"))
                 {
-                    List<HData> content = JsonConvert.DeserializeObject<List<HData>>(eachData.Value.Value);
-                    HatchData = content;
+                    HatchData = JsonConvert.DeserializeObject<List<HData>>(eachData.Value.Value);
                 }
-
-                if (eachData.Key.Contains("InventoryContent"))
+                else if (key.Contains("MentalContent"))
+                {
+                    MentalPointData = JsonConvert.DeserializeObject<int>(eachData.Value.Value);
+                    GameManager.Instance.MentalRecovery();
+                    for (int i = MentalPointData - 1; i < 3; i++)
+                    {
+                        GameManager.Instance.MentalBreak();
+                    }
+                }
+                else if (key.Contains("InventoryContent"))
                 {
                     List<ItemName> content = JsonConvert.DeserializeObject<List<ItemName>>(eachData.Value.Value);
                     // 인벤토리에 아이템 추가
@@ -118,8 +123,8 @@ public class DatabaseManager : MonoBehaviour
                         Inventory.Instance.AcquireItem(item);
                     }
                     InventoryData = content;
-
                 }
+
             }
 
         }, DisplayPlayfabError);
@@ -236,7 +241,7 @@ public class DatabaseManager : MonoBehaviour
         return false;
     }
 
-    // 데이터 저장히기 (저장 버튼 클릭 시)
+    // 데이터 저장하기 (저장 버튼 클릭 시)
     public void SaveData()
     {
         Dictionary<string, string> trickDic = new Dictionary<string, string>
@@ -266,6 +271,13 @@ public class DatabaseManager : MonoBehaviour
         };
 
         SetUserData(inventoryDic);
+
+        Dictionary<string, string> mentalDic = new Dictionary<string, string>
+        {
+            { "MentalContent", JsonConvert.SerializeObject(MentalPointData) }
+        };
+
+        SetUserData(mentalDic);
     }
 
     // 새로하기 시 데이터 초기화
@@ -274,6 +286,8 @@ public class DatabaseManager : MonoBehaviour
         TrickData.Clear();
         ItemData.Clear();
         InventoryData.Clear();
+        MentalPointData = 3;
+        GameManager.Instance.MentalRecovery();
         Dictionary<string, string> trickDic = new Dictionary<string, string>
         {
             { "TrickContent", "" }
@@ -291,6 +305,12 @@ public class DatabaseManager : MonoBehaviour
             { "InventoryContent", "" }
         };
         SetUserData(inventoryDic);
+
+        Dictionary<string, string> mentalDic = new Dictionary<string, string>
+        {
+            { "MentalContent", "3" }
+        };
+        SetUserData(mentalDic);
     }
 
 }

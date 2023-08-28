@@ -12,6 +12,7 @@ public class KillerRoomHangerHole : Trick
             if (Inventory.Instance.IsClicked(Define.ItemName.Hanger))
             {
                 Debug.LogFormat("{0} Solved", this.name);
+                Inventory.Instance.RemoveItem(Define.ItemName.Hanger);
                 SetIsSolved(true);
                 SolvedAction();
             }

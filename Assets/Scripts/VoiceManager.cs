@@ -70,6 +70,10 @@ public class VoiceManager : MonoBehaviour
     [Header("환청 이미지들 [0]: 아이방, [1]: 아이돌방, [2]: 연구원방, [3]: CEO방")]
     public GameObject[] images;
 
+    [SerializeField]
+    [Header("마이크 On/Off")]
+    private bool isOn = false;
+
     void Start()
     {
         _audio = GetComponent<AudioSource>();
@@ -78,11 +82,12 @@ public class VoiceManager : MonoBehaviour
         _audio.loop = true;
         _audio.mute = false;
         while (!(Microphone.GetPosition(null) > 0)) { }
-        _audio.Play();
+        _audio.Stop();
 
         mode = VoiceMode.Slient;
         
     }
+
     void Update()
     {
         sceneName = SceneManager.GetActiveScene().name;
@@ -97,7 +102,7 @@ public class VoiceManager : MonoBehaviour
                 loudness = GetAveragedVolume() * sensitivity;
                 voiceSlider.value = loudness / 10;
 
-                // 시간 초과 OR 환청 무찌르기 성공
+                // 시간 초과 OR 환청 이벤트 성공
                 if (timer < 0 || loudness > 10)
                 {
                     voicePanel.SetActive(false);
@@ -106,13 +111,15 @@ public class VoiceManager : MonoBehaviour
                     if (loudness > 10)
                     {
                         ImageOff();
-                        Debug.Log("환청 무찌르기 성공");
+                        Debug.Log("환청 이벤트 성공");
+                        ToggleMic();
                     }
                     else
                     {
                         ImageOff();
                         GameManager.Instance.MentalBreak();
-                        Debug.Log("환청 무찌르기 실패 : 정신력 포인트 -1");
+                        Debug.Log("환청 이벤트 실패 : 정신력 포인트 -1");
+                        ToggleMic();
                     }
                     SoundManager.instance.StopEventBGM(sceneName);
 
@@ -130,6 +137,8 @@ public class VoiceManager : MonoBehaviour
         SoundManager.instance.PlayEventBGM();
         mode = VoiceMode.Screaming;
         images[(int)roomName].SetActive(true);
+        // 마이크 On
+        ToggleMic();
         switch (roomName)
         {
             case RoomName.Kid:
@@ -179,5 +188,19 @@ public class VoiceManager : MonoBehaviour
             a += Mathf.Abs(s);
         }
         return a / 256;
+    }
+
+    public void ToggleMic()
+    {
+        isOn = !isOn; // 토글 마이크 상태 변경
+
+        if (isOn)
+        {
+            _audio.Play(); // 마이크를 켤 때 오디오 재생
+        }
+        else
+        {
+            _audio.Stop(); // 마이크를 끌 때 오디오 정지
+        }
     }
 }

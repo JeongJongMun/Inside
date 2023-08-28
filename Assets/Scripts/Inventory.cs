@@ -167,4 +167,16 @@ public class Inventory : MonoBehaviour
             }
         }
     }
+
+    // 인벤토리 비우기
+    public void ClearInventory()
+    {
+        for (int i = inventory.Count - 1; i >= 0; i--)
+        {
+            if (inventory[i].item != null)
+            {
+                inventory[i].RemoveItem();
+            }
+        }
+    }
 }
