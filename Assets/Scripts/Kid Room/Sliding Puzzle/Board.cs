@@ -8,9 +8,10 @@ public class Board : MonoBehaviour
 	[SerializeField]
 	private	GameObject	tilePrefab;								// 숫자 타일 프리팹
 	[SerializeField]
-	private	Transform	tilesParent;							// 타일이 배치되는 "Board" 오브젝트의 Transform
+	private	Transform	tilesParent;                            // 타일이 배치되는 "Board" 오브젝트의 Transform
 
-	private	List<Tile>	tileList;								// 생성한 타일 정보 저장
+	[SerializeField]
+	private List<Tile> tileList = new List<Tile>();				// 생성한 타일 정보 저장
 
 	private	Vector2Int	puzzleSize = new Vector2Int(4, 4);		// 4x4 퍼즐
 	//private	float		neighborTileDistance = 102;				// 인접한 타일 사이의 거리. 별도로 계산할 수도 있다.
@@ -29,24 +30,32 @@ public class Board : MonoBehaviour
         soundManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<SoundManager>();
     }
 
-
-	private IEnumerator Start()
+    // 콘솔 클릭 시 보드 트릭 시작
+    public void BoardStart()
 	{
-		tileList = new List<Tile>();
+		StartCoroutine(BStart());
+	}
 
-		SpawnTiles();
+	private IEnumerator BStart()
+	{
+		foreach (var tile in tileList)
+		{
+			Destroy(tile.gameObject);
+		}
+		tileList.Clear();
+
+        SpawnTiles();
 
         LayoutRebuilder.ForceRebuildLayoutImmediate(tilesParent.GetComponent<RectTransform>());
 
-		// 현재 프레임이 종료될 때까지 대기
-		yield return new WaitForEndOfFrame();
+        // 현재 프레임이 종료될 때까지 대기
+        yield return new WaitForEndOfFrame();
 
-		// tileList에 있는 모든 요소의 SetCorrectPosition() 메소드 호출
-		tileList.ForEach(x => x.SetCorrectPosition());
+        // tileList에 있는 모든 요소의 SetCorrectPosition() 메소드 호출
+        tileList.ForEach(x => x.SetCorrectPosition());
 
-		StartCoroutine("OnSuffle");
-		// 게임시작과 동시에 플레이시간 초 단위 연산
-	}
+        StartCoroutine("OnSuffle");
+    }
 
 	private void SpawnTiles()
 	{

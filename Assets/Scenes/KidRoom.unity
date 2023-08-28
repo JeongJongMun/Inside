@@ -2722,7 +2722,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 422.3, y: -72.7}
+  m_AnchoredPosition: {x: 357.7, y: -72.7}
   m_SizeDelta: {x: 590, y: 730}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &547969516
@@ -6781,6 +6781,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tilePrefab: {fileID: 2421775400587410863, guid: 05332a3488a7adf4583216f072bb1d83, type: 3}
   tilesParent: {fileID: 1379849748}
+  tileList: []
   slidingPuzzlePanel: {fileID: 1150734592}
   kidRoomConsole: {fileID: 1650822904}
 --- !u!114 &1379849752
@@ -7750,7 +7751,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2780699836908212818, guid: 3a3bf438a25a88c49b562d17e963b13f, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 251
+      value: 187
       objectReference: {fileID: 0}
     - target: {fileID: 2780699836908212818, guid: 3a3bf438a25a88c49b562d17e963b13f, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -7913,6 +7914,18 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 1150734592}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1379849751}
+        m_TargetAssemblyTypeName: Board, Assembly-CSharp
+        m_MethodName: BoardStart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 

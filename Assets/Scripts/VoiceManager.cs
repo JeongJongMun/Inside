@@ -102,7 +102,7 @@ public class VoiceManager : MonoBehaviour
                 loudness = GetAveragedVolume() * sensitivity;
                 voiceSlider.value = loudness / 10;
 
-                // 시간 초과 OR 환청 무찌르기 성공
+                // 시간 초과 OR 환청 이벤트 성공
                 if (timer < 0 || loudness > 10)
                 {
                     voicePanel.SetActive(false);
@@ -111,14 +111,14 @@ public class VoiceManager : MonoBehaviour
                     if (loudness > 10)
                     {
                         ImageOff();
-                        Debug.Log("환청 무찌르기 성공");
+                        Debug.Log("환청 이벤트 성공");
                         ToggleMic();
                     }
                     else
                     {
                         ImageOff();
                         GameManager.Instance.MentalBreak();
-                        Debug.Log("환청 무찌르기 실패 : 정신력 포인트 -1");
+                        Debug.Log("환청 이벤트 실패 : 정신력 포인트 -1");
                         ToggleMic();
                     }
                     SoundManager.instance.StopEventBGM(sceneName);
