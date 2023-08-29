@@ -7,7 +7,7 @@ public class KillerRoomLockerKiller : Trick
 {
     [Header("정답")]
     public List<string> answers = new List<string>()
-    { "Up", "Up", "Right", "Left",};
+    { "Up", "Up", "Left", "Right",};
 
     [Header("입력 방향")]
     public List<string> inputs = new List<string>();

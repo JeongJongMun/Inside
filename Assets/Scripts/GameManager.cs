@@ -185,50 +185,50 @@ public class GameManager : MonoBehaviour
     // 설정할 로그 출력 영역의 위치와 크기
     Rect logArea = new Rect(10, Screen.height - 200, 1000, 400); // 왼쪽 아래 위치
 
-    void OnEnable()
-    {
-        Application.logMessageReceived += HandleLog;
-    }
+    //void OnEnable()
+    //{
+    //    Application.logMessageReceived += HandleLog;
+    //}
 
-    void OnDisable()
-    {
-        Application.logMessageReceived -= HandleLog;
-    }
+    //void OnDisable()
+    //{
+    //    Application.logMessageReceived -= HandleLog;
+    //}
 
-    void HandleLog(string logString, string stackTrace, LogType type)
-    {
-        myLog = logString;
-        string newString = "\n [" + type + "] : " + myLog;
-        myLogQueue.Enqueue(newString);
+    //void HandleLog(string logString, string stackTrace, LogType type)
+    //{
+    //    myLog = logString;
+    //    string newString = "\n [" + type + "] : " + myLog;
+    //    myLogQueue.Enqueue(newString);
 
-        // 큐가 최대 줄 수를 초과하면 첫 줄을 제거합니다.
-        if (myLogQueue.Count > 4)
-        {
-            myLogQueue.Dequeue();
-        }
+    //    // 큐가 최대 줄 수를 초과하면 첫 줄을 제거합니다.
+    //    if (myLogQueue.Count > 4)
+    //    {
+    //        myLogQueue.Dequeue();
+    //    }
 
-        if (type == LogType.Exception)
-        {
-            newString = "\n" + stackTrace;
-            myLogQueue.Enqueue(newString);
-        }
+    //    if (type == LogType.Exception)
+    //    {
+    //        newString = "\n" + stackTrace;
+    //        myLogQueue.Enqueue(newString);
+    //    }
 
-        myLog = string.Empty;
-        foreach (string mylog in myLogQueue)
-        {
-            myLog += mylog;
-        }
-    }
+    //    myLog = string.Empty;
+    //    foreach (string mylog in myLogQueue)
+    //    {
+    //        myLog += mylog;
+    //    }
+    //}
 
-    void OnGUI()
-    {
-        guiStyle.normal.textColor = Color.white;
-        guiStyle.wordWrap = true;
-        guiStyle.fontSize = 30; // 큰 글씨 크기 설정
+    //void OnGUI()
+    //{
+    //    guiStyle.normal.textColor = Color.white;
+    //    guiStyle.wordWrap = true;
+    //    guiStyle.fontSize = 30; // 큰 글씨 크기 설정
 
-        GUILayout.BeginArea(logArea);
-        GUILayout.Label(myLog, guiStyle);
-        GUILayout.EndArea();
-    }
+    //    GUILayout.BeginArea(logArea);
+    //    GUILayout.Label(myLog, guiStyle);
+    //    GUILayout.EndArea();
+    //}
 
 }

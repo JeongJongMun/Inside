@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class SoundManager : MonoBehaviour
 {
     [Header("---------Audio Source----------")]
-    [SerializeField] AudioSource bgmSound;
+    [SerializeField] public AudioSource bgmSound;
     [SerializeField] AudioSource SFXSource;
     [SerializeField] AudioSource pianoSource;
 
@@ -14,8 +14,6 @@ public class SoundManager : MonoBehaviour
     public AudioClip[] bgmList;
     public AudioClip[] SFXList;
     public AudioClip[] pianoList;
-
-    private bool IsMusixbox = false;
 
     public static SoundManager instance = null;
 
@@ -82,26 +80,20 @@ public class SoundManager : MonoBehaviour
         
         Destroy(go, clip.length);
     }
-
-    // 아이돌방 오르골 재생
-    public void OnclickMusicbox()
+    // 아이돌방 오르골 브금 재생 및 배갱 브금 정지
+    public void OnMusicbox()
     {
         bgmSound.Stop();
         bgmSound.clip = bgmList[6];
         bgmSound.Play();
-        IsMusixbox = true;
     }
 
-    // 오르골 효과음 재생 후 아래화살표 눌렀을 때 BGM 정지, 방 배경음 재생
-    public void OnclickBottomArrow()
+    // 아이돌방 오르골 브금 정지 및 배경 브금 재생
+    public void OutMusicbox()
     {
-        if(IsMusixbox)
-        {
-            bgmSound.Stop();
-            bgmSound.clip = bgmList[2];
-            bgmSound.Play();
-            IsMusixbox = false;
-        }
+        bgmSound.Stop();
+        bgmSound.clip = bgmList[2];
+        bgmSound.Play();
     }
 
     // 환청 이벤트 BGM 재생

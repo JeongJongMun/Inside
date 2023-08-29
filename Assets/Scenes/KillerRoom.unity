@@ -393,7 +393,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 413, y: -241.1}
+  m_AnchoredPosition: {x: -320, y: -241.1}
   m_SizeDelta: {x: 117, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &104192341
@@ -8808,7 +8808,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -323, y: -241.1}
+  m_AnchoredPosition: {x: 418, y: -241.1}
   m_SizeDelta: {x: 117, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2017301099
@@ -9134,7 +9134,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -323, y: -121.19998}
+  m_AnchoredPosition: {x: 418, y: -121.19998}
   m_SizeDelta: {x: 117, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2042968716
@@ -9458,8 +9458,8 @@ MonoBehaviour:
   answers:
   - Up
   - Up
-  - Right
   - Left
+  - Right
   inputs: []
   lockerZoom: {fileID: 768704194}
   lockerZoomOpen: {fileID: 21300000, guid: eacf065556d5af64385251c9ed27cb8e, type: 3}
@@ -9500,7 +9500,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 413, y: -121.19998}
+  m_AnchoredPosition: {x: -320, y: -121.19998}
   m_SizeDelta: {x: 117, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2123855414
