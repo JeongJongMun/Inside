@@ -16,6 +16,10 @@ public class RoomManagerResearcher : RoomManager
             ZoomIn(panel);
         }
     }
+    public void OnclickBook()
+    {
+        SoundManager.instance.SFXPlay("turnThePage");
+    }
     private IEnumerator ForPlaySFX()
     {
         yield return new WaitForSeconds(0.5f);
