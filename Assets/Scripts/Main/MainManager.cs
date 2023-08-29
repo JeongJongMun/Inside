@@ -9,7 +9,7 @@ public class MainManager : MonoBehaviour
     public GameObject newgameHelpPanel;
 
     [Header("도움말이 뜨는 시간")]
-    public float helpTime = 3f;
+    public float helpTime;
 
 
     private void Start()

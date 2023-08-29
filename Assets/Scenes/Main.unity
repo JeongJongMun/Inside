@@ -214,7 +214,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   newgameHelpPanel: {fileID: 1902537190}
-  helpTime: 3
+  helpTime: 5
 --- !u!4 &97706684
 Transform:
   m_ObjectHideFlags: 0
@@ -2364,9 +2364,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "\uC774 \uAC8C\uC784\uC740 \uC74C\uC131 \uC0C1\uD638\uC791\uC6A9\uC774
-    \uD544\uC694\uD55C \uAC8C\uC784\uC785\uB2C8\uB2E4.\n\uB9C8\uC774\uD06C\uAC00
-    \uAC00\uB2A5\uD55C \uC774\uC5B4\uD3F0\uC744 \uCC29\uC6A9\uD558\uC5EC \uC8FC\uC138\uC694.\n\uB610\uD55C
-    \uC774\uC5B4\uD3F0\uC744 \uCC29\uC6A9\uD558\uBA74 \uAC8C\uC784\uC758 \uC74C\uD5A5
+    \uD544\uC694\uD55C \uAC8C\uC784\uC785\uB2C8\uB2E4.\n\n\uB9C8\uC774\uD06C\uAC00
+    \uAC00\uB2A5\uD55C \uC774\uC5B4\uD3F0\uC744 \uCC29\uC6A9\uD558\uC5EC \n\n\uC74C\uD5A5
     \uD6A8\uACFC\uB97C \uCD5C\uB300\uD55C \uB290\uB084 \uC218 \uC788\uC2B5\uB2C8\uB2E4."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5f897aa3fac4890429198ae6b4919fe2, type: 2}
@@ -2394,8 +2393,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 50
-  m_fontSizeBase: 50
+  m_fontSize: 70
+  m_fontSizeBase: 70
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

@@ -1457,22 +1457,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4131135806020660775, guid: 8c0ca3667f0f78c4099635baf31d101e, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4131135806020660775, guid: 8c0ca3667f0f78c4099635baf31d101e, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4407093253670878689, guid: 8c0ca3667f0f78c4099635baf31d101e, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4431374025556836471, guid: 8c0ca3667f0f78c4099635baf31d101e, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6170360303674059399, guid: 8c0ca3667f0f78c4099635baf31d101e, type: 3}
       propertyPath: m_Name
       value: VoiceManager
@@ -3507,7 +3491,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 363, y: 108}
+  m_AnchoredPosition: {x: 320, y: 130}
   m_SizeDelta: {x: 112, y: 278}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &645745950
@@ -4023,7 +4007,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 459, y: -216}
+  m_AnchoredPosition: {x: 416, y: -194}
   m_SizeDelta: {x: 415, y: 432}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &831468033

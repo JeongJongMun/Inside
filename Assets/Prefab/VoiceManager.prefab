@@ -825,7 +825,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -927,7 +927,7 @@ MonoBehaviour:
   sensitivity: 100
   loudness: 0
   mode: 0
-  timer: 5
+  timer: 10
   images:
   - {fileID: 8628937895142607258}
   - {fileID: 1132588976751308027}

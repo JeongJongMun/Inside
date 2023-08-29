@@ -27,9 +27,9 @@ public class KillerRoomHangerInput : Trick
     private IEnumerator ForPlaySFX()
     {
         SetIsSolved(true);
-        yield return new WaitForSeconds(2.0f);
-        SoundManager.instance.SFXPlay("doorSlide");
         SolvedAction();
+        yield return new WaitForSeconds(1.3f);
+        SoundManager.instance.SFXPlay("doorSlide");
     }
 
 

@@ -1,8 +1,8 @@
-using System.Net;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using static Define;
+using UnityEngine.Android;
 
 public enum VoiceMode
 {
@@ -77,15 +77,14 @@ public class VoiceManager : MonoBehaviour
     void Start()
     {
         _audio = GetComponent<AudioSource>();
-
-        _audio.clip = Microphone.Start(null, true, 10, 44100);
-        _audio.loop = true;
-        _audio.mute = false;
-        while (!(Microphone.GetPosition(null) > 0)) { }
-        _audio.Stop();
-
         mode = VoiceMode.Slient;
-        
+        Debug.Log("-----연결된 모든 디바이스-----");
+        foreach (string device in Microphone.devices)
+        {
+            Debug.Log(device);
+        }
+        Debug.Log("-----------------------------");
+
     }
 
     void Update()
@@ -107,33 +106,33 @@ public class VoiceManager : MonoBehaviour
                 {
                     voicePanel.SetActive(false);
                     mode = VoiceMode.Slient;
-                    timer = 5.0f;
+                    timer = 10.0f;
                     if (loudness > 10)
                     {
                         ImageOff();
                         Debug.Log("환청 이벤트 성공");
-                        ToggleMic();
                     }
                     else
                     {
                         ImageOff();
                         GameManager.Instance.MentalBreak();
                         Debug.Log("환청 이벤트 실패 : 정신력 포인트 -1");
-                        ToggleMic();
                     }
+                    GameManager.Instance.FadeInOut();
+                    ToggleMic();
                     SoundManager.instance.StopEventBGM(sceneName);
 
                 }
                 else
                 {
                     timer -= Time.deltaTime;
-                    Debug.Log("소리를 질러 환청을 무찌르세요");
                 }
                 break;
         }
     }
     public void ScreamingMode(RoomName roomName)
     {
+        GameManager.Instance.FadeInOut();
         SoundManager.instance.PlayEventBGM();
         mode = VoiceMode.Screaming;
         images[(int)roomName].SetActive(true);
@@ -190,16 +189,25 @@ public class VoiceManager : MonoBehaviour
         return a / 256;
     }
 
-    public void ToggleMic()
+    [ContextMenu("ToggleMicrophone")]
+    private void ToggleMic()
     {
         isOn = !isOn; // 토글 마이크 상태 변경
 
         if (isOn)
         {
-            _audio.Play(); // 마이크를 켤 때 오디오 재생
+            _audio.clip = Microphone.Start(null, true, 10, 44100);
+            _audio.loop = true;
+            _audio.mute = false;
+            //마이크가 사용 가능할 때까지 대기
+            while (!(Microphone.GetPosition(null) > 0)) { }
+            _audio.Play();
+
         }
         else
         {
+            Microphone.End(null);
+            _audio.clip = null;
             _audio.Stop(); // 마이크를 끌 때 오디오 정지
         }
     }
