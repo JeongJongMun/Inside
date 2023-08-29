@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 using UnityEngine.UI;
 
 public class KillerRoomHangerInput : Trick
@@ -18,10 +19,16 @@ public class KillerRoomHangerInput : Trick
         {
             Debug.LogFormat("{0} Solved", this.name);
             SoundManager.instance.SFXPlay("pulloverCloset");
-            SetIsSolved(true);
-            SolvedAction();
-            SoundManager.instance.SFXPlay("doorSlide");
+            StartCoroutine(ForPlaySFX());
         }
+    }
+
+    private IEnumerator ForPlaySFX()
+    {
+        SetIsSolved(true);
+        yield return new WaitForSeconds(2.0f);
+        SoundManager.instance.SFXPlay("doorSlide");
+        SolvedAction();
     }
 
 
