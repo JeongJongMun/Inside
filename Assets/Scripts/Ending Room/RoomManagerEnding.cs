@@ -21,6 +21,7 @@ public class RoomManagerEnding : RoomManager
         panels.Push(panel);
         panel.SetActive(true);
         zoomOutArrow.SetActive(true);
+        nextArrow.GetComponent<Button>().interactable = false;
     }
 
     // 엔딩 방에서 아래 화살표 클릭 시
@@ -30,6 +31,7 @@ public class RoomManagerEnding : RoomManager
         GameObject panel = panels.Pop();
         panel.SetActive(false);
         zoomOutArrow.SetActive(false);
+        nextArrow.GetComponent<Button>().interactable = true;
     }
 
 }

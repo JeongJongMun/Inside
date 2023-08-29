@@ -18,6 +18,7 @@ public class KillerRoomHangerInput : Trick
         if (obj.name == this.name)
         {
             Debug.LogFormat("{0} Solved", this.name);
+            GetComponent<Button>().interactable = false;
             SoundManager.instance.SFXPlay("pulloverCloset");
             StartCoroutine(ForPlaySFX());
         }
