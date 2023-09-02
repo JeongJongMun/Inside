@@ -18,3 +18,9 @@
 ## 프로젝트 소개
 - - -
 스토리, 개발 내용 등
+
+## Release Note
+---
+Bundle Code
+ 1: 첫 출시   
+ 2: Minify -> Release 설정 (앱 난독화?)
