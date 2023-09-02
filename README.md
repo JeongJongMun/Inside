@@ -21,6 +21,6 @@
 
 ## Release Note
 ---
-Bundle Code
+Bundle Code  
  1: 첫 출시   
  2: Minify -> Release 설정 (앱 난독화?)
