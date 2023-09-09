@@ -1,7 +1,10 @@
 # Inside (RoomEscape) : 내 안에 너 있다
-<p align="center">  
- <img src="https://drive.google.com/uc?export=view&id=1bSy41gmg6NHskdH1k8AkPJYUdOL0ClEf" alt="kingdom" width="75%" height="75%"/>  
+<p align="center">
+  <a href="https://play.google.com/store/apps/details?id=com.openthedoorandscream.inside&pcampaignid=web_share">
+    <img src="https://drive.google.com/uc?export=view&id=1bSy41gmg6NHskdH1k8AkPJYUdOL0ClEf" alt="kingdom" width="75%" height="75%"/>
+  </a>
 </p>
+
 
 ## 프로젝트 정보
 * 평소 게임 개발에 관심이 있던 친구들과 마음이 맞아 방학 중에 진행하게 된 프로젝트입니다.
@@ -30,6 +33,10 @@
 1.  **음성 상호작용이 필요하기에 마이크가 가능한 이어폰을 착용하고 플레이 하는 것을 권장합니다.**
 2.  **획득한 아이템을 선택한 상태로 특정 위치를 누르면 아이템 사용이 가능합니다.**
 3.  **설정 창을 누르면 게임 진행 상황을 저장하거나 소리 볼륨을 조절할 수 있습니다.**
+
+## 개발 환경
+* Unity 2022.3.4f1
+* MS Azure PlayFab
 
 ## Release Note
 Bundle Code  
