@@ -1,5 +1,7 @@
 # Inside (RoomEscape) : 내 안에 너 있다
-![썸네일](https://drive.google.com/uc?export=view&id=1bSy41gmg6NHskdH1k8AkPJYUdOL0ClEf)
+<p align="center">  
+ <img src="https://drive.google.com/uc?export=view&id=1bSy41gmg6NHskdH1k8AkPJYUdOL0ClEf" alt="kingdom" width="75%" height="75%"/>  
+</p>
 
 ## 프로젝트 정보
 * 평소 게임 개발에 관심이 있던 친구들과 마음이 맞아 방학 중에 진행하게 된 프로젝트입니다.
