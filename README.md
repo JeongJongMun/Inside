@@ -37,6 +37,9 @@
 ## <center> 게임 미리보기
 <p align="center">
     <img src="https://drive.google.com/uc?export=view&id=1FpNrE_GJkRhlCLpDh1ZPj9VOdBN4Q85M" />
+    <img src="https://drive.google.com/uc?export=view&id=1s5nvCfZItLSMAUL19pAHZbD1foeLrAxQ" />
+    <img src="https://drive.google.com/uc?export=view&id=1X9yTxkPfV6ZxsvkCqCPfKpe3fuNClWxd" />
+     <img src="https://drive.google.com/uc?export=view&id=1bBZJhVrMfdQi7uLS65Z6n6LsO7hfifOd" />
 </p>
 
 <br>
@@ -56,36 +59,27 @@
 <br>
 
 
-## <center> 개발 환경
-
-<style>
-  table {
-    width: 50%; /* 테이블의 너비를 조절합니다. */
-    height: 200px; /* 테이블의 높이를 조절합니다. */
-    border-collapse: collapse; /* 테이블 셀 사이의 간격을 조절합니다. */
-  }
-
-  table img {
-    max-width: 50%; /* 이미지 크기를 최대 테이블 너비에 맞게 조절합니다. */
-    height: auto; /* 이미지의 높이를 자동으로 조절합니다. */
-  }
-</style>
-<table>
-  <tr>
-    <td><img src="https://drive.google.com/uc?export=view&id=1wCMnfnGSZVn0tG52ZJPMU-suU4vx-Hpv" alt="이미지 1"></td>
-    <td><img src="https://drive.google.com/uc?export=view&id=1qPpvZj6kuRQmmIomP3lvJnBLRw0Y8OvH" alt="이미지 2"></td>
-  </tr>
-</table>
-
-![image.jpg1](https://steemitimages.com/0x0/https://static.tasteem.io/uploads/image/image/7289/content_994dbe3f-631b-4f76-9ee1-751c87c668dd.jpeg) |![image.jpg2](https://steemitimages.com/0x0/https://static.tasteem.io/uploads/image/image/7293/content_994dbe3f-631b-4f76-9ee1-751c87c668dd.jpeg) --- | --- |
-
-
-* Unity 2022.3.4f1
-* MS Azure PlayFab
+## <center> 개발 환경 
+<div align="center">
+<table style="font-weight : bold">
+      <tr>
+         <td align="center">
+                  <img alt="UnityIcon" src="https://drive.google.com/uc?export=view&id=1qPpvZj6kuRQmmIomP3lvJnBLRw0Y8OvH" width="200" />            
+          </td>
+          <td align="center">
+                  <img alt="MsAzurePlayFabIcon" src="https://drive.google.com/uc?export=view&id=1wCMnfnGSZVn0tG52ZJPMU-suU4vx-Hpv" width="200" />            
+          </td>
+      </tr>
+      <tr>
+          <td align="center">Unity 2022.3.4f1</td>
+          <td align="center">MS Azure PlayFab</td>
+      </tr>
+  </table>
+</div>
 
 <br>
 
 ## <center>Release Note
 Bundle Code  
  1: 첫 출시   
- 2: Minify -> Release 설정 (앱 난독화?)
+ 2: Minify -> Release 설정 (앱 난독화)
