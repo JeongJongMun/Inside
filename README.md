@@ -7,6 +7,10 @@
 </p>
 
 > 이미지 클릭 시 플레이스토어로 연결됩니다!
+>> 게임 트레일러 영상
+>> https://youtu.be/DLRBw4vGSyI
+>> 게임 플레이 영상
+>> https://youtu.be/8If-fynM8xM
 
 <br>
 
