@@ -39,6 +39,7 @@
     <img src="https://drive.google.com/uc?export=view&id=1FpNrE_GJkRhlCLpDh1ZPj9VOdBN4Q85M" />
 </p>
 
+<br>
 
 ## <center> 프로젝트 정보
 * 평소 게임 개발에 관심이 있던 친구들과 마음이 맞아 방학 중에 진행하게 된 프로젝트입니다.
@@ -56,6 +57,29 @@
 
 
 ## <center> 개발 환경
+
+<style>
+  table {
+    width: 50%; /* 테이블의 너비를 조절합니다. */
+    height: 200px; /* 테이블의 높이를 조절합니다. */
+    border-collapse: collapse; /* 테이블 셀 사이의 간격을 조절합니다. */
+  }
+
+  table img {
+    max-width: 50%; /* 이미지 크기를 최대 테이블 너비에 맞게 조절합니다. */
+    height: auto; /* 이미지의 높이를 자동으로 조절합니다. */
+  }
+</style>
+<table>
+  <tr>
+    <td><img src="https://drive.google.com/uc?export=view&id=1wCMnfnGSZVn0tG52ZJPMU-suU4vx-Hpv" alt="이미지 1"></td>
+    <td><img src="https://drive.google.com/uc?export=view&id=1qPpvZj6kuRQmmIomP3lvJnBLRw0Y8OvH" alt="이미지 2"></td>
+  </tr>
+</table>
+
+![image.jpg1](https://steemitimages.com/0x0/https://static.tasteem.io/uploads/image/image/7289/content_994dbe3f-631b-4f76-9ee1-751c87c668dd.jpeg) |![image.jpg2](https://steemitimages.com/0x0/https://static.tasteem.io/uploads/image/image/7293/content_994dbe3f-631b-4f76-9ee1-751c87c668dd.jpeg) --- | --- |
+
+
 * Unity 2022.3.4f1
 * MS Azure PlayFab
 
