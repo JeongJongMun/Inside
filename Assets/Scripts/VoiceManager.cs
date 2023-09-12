@@ -2,8 +2,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using static Define;
-using UnityEngine.Android;
-
 public enum VoiceMode
 {
     Slient,

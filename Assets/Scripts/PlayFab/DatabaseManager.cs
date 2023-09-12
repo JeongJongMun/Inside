@@ -311,6 +311,15 @@ public class DatabaseManager : MonoBehaviour
             { "MentalContent", "3" }
         };
         SetUserData(mentalDic);
+
+        foreach (HData hData in HatchData) hData.number = -1;
+        Dictionary<string, string> hatchDic = new Dictionary<string, string>
+        {
+            { "HatchContent", JsonConvert.SerializeObject(HatchData) }
+        };
+        SetUserData(hatchDic);
+
+
     }
 
 }
