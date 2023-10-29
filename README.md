@@ -85,8 +85,21 @@
 
 ## <center> 🗒️ Release Note
 Bundle Code  
- 1: 첫 출시 <br>
- 2: Project Setting -> Player -> Publishing Settings -> Minify -> Release 설정 (앱 난독화) <br>
- 3: 1) 거실 연구원 방 문 열면 공중에 살짝 떠있는 버그 수정 <br>
-    2) 게임을 클리어하고 새로 시작하면 해치 데이터가 초기화가 안되는 버그 수정 <br>
-    3) 중복 오브젝트 삭제로 최적화 <br>
+1: <br>
+첫 출시 <br>
+<br>
+<br>
+2: <br>
+Project Setting -> Player -> Publishing Settings -> Minify -> Release 설정 (앱 난독화) <br>
+<br>
+<br>
+3:<br>
+1. 거실 연구원 방 문 열면 공중에 살짝 떠있는 버그 수정 <br>
+2. 게임을 클리어하고 새로 시작하면 해치 데이터가 초기화가 안되는 버그 수정 <br>
+3. 중복 오브젝트 삭제로 최적화 <br>
+<br>
+<br>
+4: <br>
+1. 거실 연구원 방 문 열면 공중에 살짝 떠있는 버그 수정 <br>
+2. 게임을 클리어하고 새로 시작하면 해치 데이터가 초기화가 안되는 버그 수정 <br>
+3. 중복 오브젝트 삭제로 최적화 <br>
