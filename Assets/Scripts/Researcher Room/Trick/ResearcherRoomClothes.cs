@@ -22,5 +22,6 @@ public class ResearcherRoomClothes : Trick
     {
         GetComponent<Image>().sprite = clothesMove;
         hint.SetActive(true);
+        GetComponent<Button>().interactable = false;
     }
 }

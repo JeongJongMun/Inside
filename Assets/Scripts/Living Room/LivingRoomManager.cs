@@ -42,7 +42,7 @@ public class LivingRoomManager : RoomManager
     }
     public void OnClick500Button(TMP_Text money)
     {
-        if (Inventory.Instance.IsClicked(ItemName.Coins))
+        if (Inventory.Instance.inventory.IsContainsItem(ItemName.Coins))
         {
             SoundManager.instance.SFXPlay("insertCoin");
             money.text = (int.Parse(money.text) + 500).ToString();
@@ -50,7 +50,7 @@ public class LivingRoomManager : RoomManager
     }
     public void OnClick100Button(TMP_Text money)
     {
-        if (Inventory.Instance.IsClicked(ItemName.Coins))
+        if (Inventory.Instance.inventory.IsContainsItem(ItemName.Coins))
         {
             SoundManager.instance.SFXPlay("insertCoin");
             money.text = (int.Parse(money.text) + 100).ToString();

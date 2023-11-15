@@ -38,6 +38,7 @@ public class KidRoomSafe : Trick
             {
                 Debug.LogFormat("{0} Not Solved", this.name);
                 SoundManager.instance.SFXPlay("electricFail");
+                display.text = "";
             }
         }
 
