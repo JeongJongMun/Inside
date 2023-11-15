@@ -37,5 +37,6 @@ public class LivingRoomCoinMachine : Trick
     public override void SolvedAction()
     {
         CEODoor.sprite = CEODoorOpen;
+        GetComponent<Button>().interactable = false;
     }
 }
