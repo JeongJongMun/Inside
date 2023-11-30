@@ -4,14 +4,6 @@ using System.Collections;
 
 public class RoomManagerKiller : RoomManager
 {
-    [SerializeField]
-    private Canvas uiCanvas;
-
-    public override void Start()
-    {
-        base.Start();
-        uiCanvas = GameObject.Find("UICanvas").GetComponent<Canvas>();
-    }
     public void OnClickLadder()
     {
         SoundManager.instance.SFXPlay("stair");
@@ -19,8 +11,6 @@ public class RoomManagerKiller : RoomManager
     }
     public void OnClickEndingRoomDoor()
     {
-        // UICanvas�� ȭ�鿡 ������ �ʰ���
-        uiCanvas.sortingOrder = -1;
         StartCoroutine(LoadEndingRoom());
     }
 
