@@ -620,6 +620,7 @@ MonoBehaviour:
   roomName: 0
   nextArrow: {fileID: 603773848}
   zoomOutArrow: {fileID: 153599965}
+  uiCanvas: {fileID: 0}
 --- !u!4 &400606412
 Transform:
   m_ObjectHideFlags: 0
