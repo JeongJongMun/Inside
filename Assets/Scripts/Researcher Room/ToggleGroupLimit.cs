@@ -4,14 +4,11 @@ using UnityEngine.UI;
 
 public class ToggleGroupLimit : MonoBehaviour
 {
-    [Header("�ڹ��� ���� ��ư��")]
     public Toggle[] toggles;
 
-    [Header("��ư �ִ� Ŭ�� ����")]
     public int maxSelected = 3;
 
     [SerializeField]
-    [Header("���� �Է� ���ڵ�")]
     public List<int> selectedNumbers = new List<int>();
 
     private void Start()

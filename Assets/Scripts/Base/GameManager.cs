@@ -1,238 +1,95 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using System.Collections;
-using UnityEngine.UI;
-using UnityEngine.Audio;
-using System.Collections.Generic;
-
+/* GameManager.cs
+ * ê²Œì„ ìƒíƒœë¥¼ ê´€ë¦¬í•˜ëŠ” ìŠ¤í¬ë¦½íŠ¸
+ * ì „ëµ íŒ¨í„´ì„ ì‚¬ìš©í•˜ì—¬ ìƒíƒœì— ë”°ë¼ UIë¥¼ ë³€ê²½
+ */
+public interface IState
+{
+    void Enter();
+    void Exit();
+}
+public class LoginState : IState
+{
+    public void Enter()
+    {
+        AuthUI.instance.loginPanel.SetActive(true);
+        AuthUI.instance.ClearInputFields();
+    }
+    public void Exit()
+    {
+        AuthUI.instance.loginPanel.SetActive(false);
+    }
+}
+public class SignUpState : IState
+{
+    public void Enter()
+    {
+        AuthUI.instance.signUpPanel.SetActive(true);
+        AuthUI.instance.ClearInputFields();
+    }
+    public void Exit()
+    {
+        AuthUI.instance.signUpPanel.SetActive(false);
+    }
+}
+public class MainState : IState
+{
+    public void Enter()
+    {
+        MainUI.instance.mainPanel.SetActive(true);
+    }
+    public void Exit()
+    {
+        MainUI.instance.mainPanel.SetActive(false);
+    }
+}
+public class InGameState : IState
+{
+    public void Enter()
+    {
+    }
+    public void Exit()
+    {
+    }
+}
 public class GameManager : MonoBehaviour
 {
-    // °ÔÀÓ ³»¿¡ GameManager ÀÎ½ºÅÏ½º´Â ÀÌ instance¿¡ ´ã±ä ³à¼®¸¸ Á¸Àç
-    // º¸¾ÈÀ» À§ÇØ private
+#region Private Variables
     private static GameManager instance = null;
+    private IState gameState;
+#endregion
 
-    //For Audio volume Slider
-    [SerializeField] private AudioMixer masterMixer;
-    [SerializeField] private Slider audioSlider;
+#region Public Variables
+    public static GameManager Instance { get { return instance; } }
+#endregion
 
+#region Private Methods
     private void Awake()
     {
-        if (instance == null)
-        {
+        if (instance != null && instance != this) {
+            Destroy(gameObject);
+        }
+        else {
             instance = this;
-            DontDestroyOnLoad(gameObject); // ¾À ÀüÈ¯ ½Ã¿¡ ÆÄ±« X
-        }
-        else Destroy(gameObject);
-    }
-
-    // GameManager ÀÎ½ºÅÏ½º¿¡ Á¢±ÙÇÏ´Â ÇÁ·ÎÆÛÆ¼
-    public static GameManager Instance
-    {
-        get
-        {
-            if (instance == null)
-            {
-                return null;
-            }
-            return instance;
+            DontDestroyOnLoad(gameObject);
+            gameObject.AddComponent<OutGameManager>();
         }
     }
-
-    // for AudioMixer Slide
-    public void SetMusicVolume(Slider slider)
+    private void Start()
     {
-        float volume = slider.value;
-        masterMixer.SetFloat("BGM", Mathf.Log10(volume)*20);
+        ChangeState(new LoginState());
     }
+#endregion
 
-    [Header("Á¤½Å·Â Æ÷ÀÎÆ® ÀÌ¹ÌÁö ¹è¿­")]
-    public GameObject[] mentalImage;
-
-    [Header("¼³Á¤Ã¢ ÆĞ³Î")]
-    public GameObject settingPanel;
-
-    [Header("°ÔÀÓ¿À¹ö ÆĞ³Î")]
-    public GameObject gameoverPanel;
-
-    [Header("Æ®¸¯ ¼º°ø ÀÌÆåÆ®")]
-    public Image fadeImage;
-
-    [SerializeField]
-    [Header("ÀÌÆåÆ® ¼Óµµ")]
-    [Range(0.01f, 10f)]
-    private float fadeTime;
-
-    [Header("UI Canvas")]
-    public Canvas uiCanvas;
-
-
-    // ¼³Á¤ ¹öÆ° -> ¼³Á¤ ÆĞ³Î ON
-    public void SettingPanelOnOff()
+#region Public Methods
+    public void ChangeState(IState newState)
     {
-        SoundManager.instance.SFXPlay("buttonSound");
-        settingPanel.SetActive(!settingPanel.activeSelf);
-    }
-    // ¼³Á¤ ÆĞ³Î - °ÔÀÓÁ¾·á & °ÔÀÓ¿À¹ö ÆĞ³Î - ¸ŞÀÎÀ¸·Î
-    public void OnClickExitBtn(GameObject panel)
-    {
-        panel.SetActive(false);
-        SoundManager.instance.SFXPlay("buttonSound");
-        UICanvasSetActive();
-        StartCoroutine(LoadMain());
-    }
-
-    // ¼³Á¤ ÆĞ³Î - ÀúÀåÇÏ±â
-    public void OnClickSaveBtn()
-    {
-        SoundManager.instance.SFXPlay("buttonSound");
-        DatabaseManager.Instance.SaveData();
-        settingPanel.SetActive(false);
-    }
-    public void OnClickReviewBtn()
-    {
-        Application.OpenURL("https://play.google.com/store/apps/details?id=com.openthedoorandscream.inside");
-    }
-
-    // UI Canvas On/Off
-    public void UICanvasSetActive()
-    {
-        if (uiCanvas.sortingOrder == 1)
-        {
-            uiCanvas.sortingOrder = -1;
+        if (gameState != null) {
+            gameState.Exit();
         }
-        else
-        {
-            uiCanvas.sortingOrder = 1;
-        }
+        gameState = newState;
+        gameState.Enter();
+        Debug.Log($"í˜„ì¬ ìƒíƒœ: {gameState.GetType().Name}");
     }
-
-    // ¾ÆÀÌÅÛ Å¬¸¯ ½Ã
-    public void OnClickItem(GameObject _item)
-    {
-        // ÀÎº¥Åä¸®¿¡ Ãß°¡
-        Inventory.Instance.AcquireItem(_item.GetComponent<Item>());
-        // È­¸é¿¡ ÀÖ´Â ¾ÆÀÌÅÛ »èÁ¦
-        Destroy(_item);
-    }
-
-    private IEnumerator LoadMain()
-    {
-        yield return new WaitForSeconds(0.5f);
-        SceneManager.LoadScene("Main");
-    }
-
-    // Æ®¸¯ ¼º°ø ½Ã ÀÌÆåÆ®
-
-    public void FadeInOut()
-    {
-        StartCoroutine(DoFadeInOut());
-    }
-    private IEnumerator DoFadeInOut()
-    {
-        yield return StartCoroutine(Fade(0, 1));
-
-        yield return StartCoroutine(Fade(1, 0));
-    }
-    private IEnumerator Fade(float start, float end)
-    {
-        float currentTime = 0.0f;
-        float percent = 0.0f;
-
-        while (percent < 1)
-        {
-            currentTime += Time.deltaTime;
-            percent = currentTime / fadeTime;
-
-            Color color = fadeImage.color;
-            color.a = Mathf.Lerp(start, end, percent);
-            fadeImage.color = color;
-            yield return null;
-        }
-    }
-
-    // Á¤½Å·Â Æ÷ÀÎÆ® -1
-    public void MentalBreak()
-    {
-        DatabaseManager.Instance.MentalPointData--;
-        
-        for (int i = 0; i < 3; i++)
-        {
-            if (i < DatabaseManager.Instance.MentalPointData)
-                mentalImage[i].SetActive(true);
-            else 
-                mentalImage[i].SetActive(false);
-        }
-        // Game Over
-        if (DatabaseManager.Instance.MentalPointData == 0)
-        {
-            gameoverPanel.SetActive(true);
-        }
-    }
-    // Á¤½Å·Â Æ÷ÀÎÆ® = 3
-    public void MentalRecovery()
-    {
-        DatabaseManager.Instance.MentalPointData = 3;
-
-        for (int  i = 0; i < 3; i++)
-        {
-            mentalImage[i].SetActive(true);
-        }
-    }
-
-    /// <summary>
-    /// µğ¹ö±× ·Î±× È­¸é¿¡ Ãâ·Â ÄÚµå
-    /// </summary>
-    string myLog;
-    Queue myLogQueue = new Queue();
-    GUIStyle guiStyle = new GUIStyle();
-
-    // ¼³Á¤ÇÒ ·Î±× Ãâ·Â ¿µ¿ªÀÇ À§Ä¡¿Í Å©±â
-    Rect logArea = new Rect(10, Screen.height - 200, 1000, 400); // ¿ŞÂÊ ¾Æ·¡ À§Ä¡
-
-    //void OnEnable()
-    //{
-    //    Application.logMessageReceived += HandleLog;
-    //}
-
-    //void OnDisable()
-    //{
-    //    Application.logMessageReceived -= HandleLog;
-    //}
-
-    //void HandleLog(string logString, string stackTrace, LogType type)
-    //{
-    //    myLog = logString;
-    //    string newString = "\n [" + type + "] : " + myLog;
-    //    myLogQueue.Enqueue(newString);
-
-    //    // Å¥°¡ ÃÖ´ë ÁÙ ¼ö¸¦ ÃÊ°úÇÏ¸é Ã¹ ÁÙÀ» Á¦°ÅÇÕ´Ï´Ù.
-    //    if (myLogQueue.Count > 4)
-    //    {
-    //        myLogQueue.Dequeue();
-    //    }
-
-    //    if (type == LogType.Exception)
-    //    {
-    //        newString = "\n" + stackTrace;
-    //        myLogQueue.Enqueue(newString);
-    //    }
-
-    //    myLog = string.Empty;
-    //    foreach (string mylog in myLogQueue)
-    //    {
-    //        myLog += mylog;
-    //    }
-    //}
-
-    //void OnGUI()
-    //{
-    //    guiStyle.normal.textColor = Color.white;
-    //    guiStyle.wordWrap = true;
-    //    guiStyle.fontSize = 30; // Å« ±Û¾¾ Å©±â ¼³Á¤
-
-    //    GUILayout.BeginArea(logArea);
-    //    GUILayout.Label(myLog, guiStyle);
-    //    GUILayout.EndArea();
-    //}
-
+#endregion
 }

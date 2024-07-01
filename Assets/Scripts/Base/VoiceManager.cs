@@ -10,8 +10,6 @@ public enum VoiceMode
 
 public class VoiceManager : MonoBehaviour
 {
-    // 게임 내에 VoiceManager 인스턴스는 이 instance에 담긴 녀석만 존재
-    // 보안을 위해 private
     private static VoiceManager instance = null;
 
     private string sceneName = null;
@@ -21,12 +19,11 @@ public class VoiceManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(gameObject); // 씬 전환 시에 파괴 X
+            DontDestroyOnLoad(gameObject);
         }
         else Destroy(gameObject);
     }
 
-    // VoiceManager 인스턴스에 접근하는 프로퍼티
     public static VoiceManager Instance
     {
         get
@@ -41,48 +38,37 @@ public class VoiceManager : MonoBehaviour
 
 
 
-    [Header("보이스 패널")]
     public GameObject voicePanel;
 
-    [Header("보이스 슬라이더")]
     public Slider voiceSlider;
 
-    [Header("마이크 민감도")]
     [Range(1f, 100f)]
     public float sensitivity = 100;
 
     [SerializeField]
-    [Header("데시벨")]
     private float loudness = 0f;
 
     private AudioSource _audio;
 
     [SerializeField]
-    [Header("현재 상태")]
     private VoiceMode mode;
 
     [SerializeField]
-    [Header("타이머")]
     private float timer;
 
-    [Header("환청 이미지들 [0]: 아이방, [1]: 아이돌방, [2]: 연구원방, [3]: CEO방")]
     public GameObject[] images;
 
     [SerializeField]
-    [Header("마이크 On/Off")]
     private bool isOn = false;
 
     void Start()
     {
         _audio = GetComponent<AudioSource>();
         mode = VoiceMode.Slient;
-        Debug.Log("-----연결된 모든 디바이스-----");
         foreach (string device in Microphone.devices)
         {
             Debug.Log(device);
         }
-        Debug.Log("-----------------------------");
-
     }
 
     void Update()
@@ -99,7 +85,6 @@ public class VoiceManager : MonoBehaviour
                 loudness = GetAveragedVolume() * sensitivity;
                 voiceSlider.value = loudness / 10;
 
-                // 시간 초과 OR 환청 이벤트 성공
                 if (timer < 0 || loudness > 10)
                 {
                     voicePanel.SetActive(false);
@@ -108,15 +93,13 @@ public class VoiceManager : MonoBehaviour
                     if (loudness > 10)
                     {
                         ImageOff();
-                        Debug.Log("환청 이벤트 성공");
                     }
                     else
                     {
                         ImageOff();
-                        GameManager.Instance.MentalBreak();
-                        Debug.Log("환청 이벤트 실패 : 정신력 포인트 -1");
+                        InGameManager.Instance.MentalBreak();
                     }
-                    GameManager.Instance.FadeInOut();
+                    InGameManager.Instance.FadeInOut();
                     ToggleMic();
                     SoundManager.instance.StopEventBGM(sceneName);
 
@@ -130,38 +113,33 @@ public class VoiceManager : MonoBehaviour
     }
     public void ScreamingMode(RoomName roomName)
     {
-        GameManager.Instance.FadeInOut();
+        InGameManager.Instance.FadeInOut();
         SoundManager.instance.PlayEventBGM();
         mode = VoiceMode.Screaming;
         images[(int)roomName].SetActive(true);
-        // 마이크 On
         ToggleMic();
         switch (roomName)
         {
             case RoomName.Kid:
             {
-                // 아이방 환청 사운드 재생
                 SoundManager.instance.SFXPlay("bearCut");
                 break;
             }
                 
             case RoomName.Idol:
             {
-                // 아이돌방 환청 사운드 재생
                 SoundManager.instance.SFXPlay("posterEvent");
                 break;
             }
 
             case RoomName.Researcher:
             {
-                // 연구원방 환청 사운드 재생
                 SoundManager.instance.SFXPlay("researcherEvent");
                 break;
             }
 
             case RoomName.CEO:
             {
-                // CEO방 환청 사운드 재생
                 SoundManager.instance.SFXPlay("deerScream");
                 break;
             }
@@ -190,14 +168,13 @@ public class VoiceManager : MonoBehaviour
     [ContextMenu("ToggleMicrophone")]
     private void ToggleMic()
     {
-        isOn = !isOn; // 토글 마이크 상태 변경
+        isOn = !isOn;
 
         if (isOn)
         {
             _audio.clip = Microphone.Start(null, true, 10, 44100);
             _audio.loop = true;
             _audio.mute = false;
-            //마이크가 사용 가능할 때까지 대기
             while (!(Microphone.GetPosition(null) > 0)) { }
             _audio.Play();
 
@@ -206,7 +183,7 @@ public class VoiceManager : MonoBehaviour
         {
             Microphone.End(null);
             _audio.clip = null;
-            _audio.Stop(); // 마이크를 끌 때 오디오 정지
+            _audio.Stop();
         }
     }
 }

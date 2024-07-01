@@ -14,7 +14,7 @@ public class IdolRoomMusicBox : Trick
                 Inventory.Instance.RemoveItem(ItemName.Broom);
                 SetIsSolved(true);
                 SolvedAction();
-                GameManager.Instance.OnClickItem(this.gameObject);
+                InGameManager.Instance.OnClickItem(this.gameObject);
 
             }
             else

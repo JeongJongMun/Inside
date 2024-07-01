@@ -34,7 +34,6 @@ public class RoomManagerCEO : RoomManager
         SoundManager.instance.SFXPlay("drawerOpened");
     }
 
-    // ���� && �ݰ� ��й�ȣ Ŭ�� �� ȣ��
     public void OnClickPasswordButton(GameObject trickObject, TMP_Text password)
     {
         if (trickObject.GetComponent<Trick>().IsSolved()) return;

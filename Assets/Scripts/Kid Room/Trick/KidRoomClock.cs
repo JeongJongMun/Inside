@@ -32,12 +32,10 @@ public class KidRoomClock : Trick
 
         GetComponent<Image>().raycastTarget = false;
 
-        // �ð� ����
         gameObject.transform.position += Vector3.down * 70;
         gameObject.transform.Rotate(0, 0, 30);
     }
 
-    // ��ħ �� �ð� �̵�
     public void TicTok()
     {
         SoundManager.instance.SFXPlay("clock");

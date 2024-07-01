@@ -7,39 +7,24 @@ using static Define;
 
 public class RoomManager : MonoBehaviour
 {
-    /// <summary>
-    /// °¢ ¹æ ¸Å´ÏÀú ¿ªÇÒ
-    /// 1. º® ÀüÈ¯ ¹× È®´ë
-    /// 2. ¹æ ½ÃÀÛ ½Ã ¸ğµç È­»ìÇ¥ ÂüÁ¶
-    /// 3. ÇöÀç ¹æÀÇ ¸ğµç Æ®¸¯ ÂüÁ¶ (Æ®¸¯ ¿ÀºêÁ§Æ®¿¡ tag¸¦ TrickÀ¸·Î ¼³Á¤ÇÏ¿©¾ß ÇÔ)
-    /// 4. ¸ğµç Æ®¸¯ ÂüÁ¶ÇÏ¸é¼­ Database Manager¿¡ Æ®¸¯ ÀÚµ¿ Ãß°¡
-    /// 5. Æ®¸¯ Å¬¸¯ ½Ã ¸ğµç Æ®¸¯¿¡°Ô ¾Ë¸² (¿ÉÀú¹ö ÆĞÅÏ)
-    /// </summary>
-    [Header("1~4¹ø º®¸é")]
     public GameObject[] wallPanel;
 
     [SerializeField]
-    [Header("ÇöÀç º®¸é (+1)")]
     private int currentWallPanel = 0;
 
-    [Header("ÁÂ/¿ì/ÇÏ È­»ìÇ¥")]
     internal GameObject leftArrow;
     internal GameObject rightArrow;
     internal GameObject bottomArrow;
 
     [SerializeField]
-    [Header("ÇöÀç ¹æÀÇ Æ®¸¯ ¿ÀºêÁ§Æ®µé")]
     private HashSet<GameObject> trickObjects = new HashSet<GameObject>();
 
-    [Header("ÇöÀç ¹æÀÇ Æ®¸¯µé")]
     public List<Trick> tricks = new List<Trick>();
 
     [SerializeField]
-    [Header("º®¸é À§¿¡ ½×ÀÌ´Â ÆĞ³Î ½ºÅÃ ex) ÁÜ, ½½¶óÀÌµù Æ®¸¯")]
     internal Stack<GameObject> panels = new Stack<GameObject>();
 
     [SerializeField]
-    [Header("¹æ ÀÌ¸§")]
     private RoomName roomName;
 
     private void Awake()
@@ -58,7 +43,6 @@ public class RoomManager : MonoBehaviour
         Initialize("Trick");
     }
 
-    // Æ®¸¯À» Àç±ÍÀûÀ¸·Î Ã£±â
     internal void FindDeepChild(GameObject parent, string _tag)
     {
         Transform parentTransform = parent.transform;
@@ -74,10 +58,8 @@ public class RoomManager : MonoBehaviour
         }
     }
 
-    // ¹æ ½ÃÀÛ ½Ã ¹æ ¾ÈÀÇ ¸ğµç Æ®¸¯À» tag·Î Ã£À½
     internal void Initialize(string tag)
     {
-        // ºÎ¸ğ ¿ÀºêÁ§Æ® Ã£±â
         GameObject canvas = GameObject.Find("Canvas");
 
         FindDeepChild(canvas, tag);
@@ -95,7 +77,6 @@ public class RoomManager : MonoBehaviour
         }
     }
 
-    // ¿ŞÂÊ È­»ìÇ¥ Å¬¸¯ ½Ã
     private void OnClickLeftArrow()
     {
         SoundManager.instance.SFXPlay("arrowButton");
@@ -113,7 +94,6 @@ public class RoomManager : MonoBehaviour
         }
     }
 
-    // ¿À¸¥ÂÊ È­»ìÇ¥ Å¬¸¯ ½Ã
     internal void OnClickRightArrow()
     {
         SoundManager.instance.SFXPlay("arrowButton");
@@ -123,7 +103,6 @@ public class RoomManager : MonoBehaviour
             currentWallPanel = (currentWallPanel + 1) % 2;
             wallPanel[currentWallPanel].SetActive(true);
         }
-        // ¿£µù¹æ ¿¹¿Ü Ã³¸®
         else if (roomName == RoomName.Ending)
         {
             if (currentWallPanel == 2)
@@ -142,14 +121,12 @@ public class RoomManager : MonoBehaviour
             wallPanel[currentWallPanel].SetActive(true);
         }
     }
-    // ¿ÀºêÁ§Æ® Å¬¸¯ ½Ã È®´ë OR ½½¶óÀÌµù ÆÛÁñ ÆĞ³Î ÄÑ±â
     public void ZoomIn(GameObject panel)
     {
         panels.Push(panel);
         panel.SetActive(true);
         SetActiveArrow();
     }
-    // ¾Æ·¡ÂÊ È­»ìÇ¥ Å¬¸¯ ½Ã Ãà¼Ò OR ½½¶óÀÌµù ÆĞ³Î ²ô±â
     public void ZoomOut()
     {
         SoundManager.instance.SFXPlay("arrowButton");
@@ -166,16 +143,13 @@ public class RoomManager : MonoBehaviour
         }
     }
 
-    // Æ®¸¯ Å¬¸¯ ½Ã Æ®¸¯µé¿¡°Ô ¾Ë¸²
     public void OnClickTrick(GameObject obj)
     {
         NotifyTricks(obj);
     }
 
-    // ÁÂ¿ì È­»ìÇ¥¿Í ¾Æ·¡ È­»ìÇ¥ È°¼ºÈ­ °ü¸®
     private void SetActiveArrow()
     {
-        // ÆĞ³Î ½ºÅÃ¿¡ 1°³¶óµµ ÀÖ´Ù¸é ÁÂ¿ì È­»ìÇ¥´Â ¾ø°í ¾Æ·¡ÂÊ È­»ìÇ¥¸¸ ÀÖ¾î¾ß ÇÔ
         bool panelsExist = panels.Count > 0;
 
         leftArrow.SetActive(!panelsExist);
@@ -188,7 +162,7 @@ public class RoomManager : MonoBehaviour
     {
         if (tricks.Contains(trick))
         {
-            Debug.Log("ÀÌ¹Ì ÇØ´ç Æ®¸¯ÀÌ ¸®½ºÆ®¿¡ Á¸ÀçÇÏ°í ÀÖÀ½.");
+            Debug.Log("íŠ¸ë¦­ì´ ì´ë¯¸ ë¦¬ìŠ¤íŠ¸ì— ì¡´ì¬í•©ë‹ˆë‹¤.");
         }
         else
         {
@@ -201,7 +175,6 @@ public class RoomManager : MonoBehaviour
     }
     private IEnumerator DoRemoveTrick(Trick trick)
     {
-        // NotifyTricks() ÇÔ¼ö°¡ ½ÇÇàµÇ°í ÀÖ´Â ¿ÍÁß¿¡ »èÁ¦°¡ µÇ¾î¹ö·Á ¿¡·¯°¡ ¹ß»ıÇÒ ¼ö ÀÖÀ½. -> 0.3ÃÊ µÚ¿¡ »èÁ¦
         yield return new WaitForSeconds(0.3f);
 
         if (tricks.Contains(trick))
@@ -210,7 +183,7 @@ public class RoomManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("ÇØ´ç Æ®¸¯ÀÌ ¸®½ºÆ®¿¡ Á¸ÀçÇÏÁö ¾Ê¾Æ¼­ Á¦°ÅÇÏÁö ¸øÇÔ.");
+            Debug.Log("íŠ¸ë¦­ì´ ë¦¬ìŠ¤íŠ¸ì— ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
         }
 
         yield return null;

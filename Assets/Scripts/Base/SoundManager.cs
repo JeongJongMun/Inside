@@ -1,10 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class SoundManager : MonoBehaviour
 {
+    // TODO: Main 배경음 재생
+    // TODO: SoundManager 개선 - 모든 버튼을 찾아 자동으로 이벤트 등록
     [Header("---------Audio Source----------")]
     [SerializeField] public AudioSource bgmSound;
     [SerializeField] AudioSource SFXSource;
