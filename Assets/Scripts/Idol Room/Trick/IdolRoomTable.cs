@@ -4,16 +4,16 @@ using static Define;
 
 public class IdolRoomTable : Trick
 {
-    [Header("¿­¸° ¿À¸£°ñ")]
+    [Header("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½")]
     public GameObject musicBoxOnTable;
     public override void TrySolve(GameObject obj)
     {
         if (obj.name == this.name)
         {
-            if (Inventory.Instance.IsClicked(ItemName.MusicBox))
+            if (Inventory.instance.IsClicked(ItemName.MusicBox))
             {
                 Debug.LogFormat("{0} Solved", this.name);
-                Inventory.Instance.RemoveItem(ItemName.MusicBox);
+                Inventory.instance.RemoveItem(ItemName.MusicBox);
                 SetIsSolved(true);
                 SolvedAction();
             }

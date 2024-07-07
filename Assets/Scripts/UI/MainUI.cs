@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using PlayFab;
 /* MainUI.cs
  * 메인 화면 UI를 관리하는 스크립트
  */
@@ -34,6 +35,11 @@ public class MainUI : MonoBehaviour
     {
         errorPopup.SetActive(true);
         errorMessageText.text = _message;
+    }
+    public void OnErrorMessage(PlayFabError error)
+    {
+        errorPopup.SetActive(true);
+        errorMessageText.text = error.ErrorMessage;
     }
 #endregion
 

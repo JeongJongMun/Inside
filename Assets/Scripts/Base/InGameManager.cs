@@ -3,7 +3,9 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.Audio;
 using System.Collections;
-
+/* InGameManager.cs
+ * 게임 내부에서 발생하는 이벤트를 관리하는 스크립트
+ */
 public class InGameManager : MonoBehaviour
 {
 #region Private Variables
@@ -11,16 +13,13 @@ public class InGameManager : MonoBehaviour
 #endregion
 
 #region Public Variables
+    public static InGameManager Instance { get { return instance; } }
     [SerializeField] private AudioMixer masterMixer;
     [SerializeField] private Slider audioSlider;
     public GameObject[] mentalImage;
-
     public GameObject settingPanel;
-
     public GameObject gameoverPanel;
-
     public Image fadeImage;
-
     [SerializeField]
     [Range(0.01f, 10f)]
     private float fadeTime;
@@ -32,25 +31,17 @@ public class InGameManager : MonoBehaviour
 #region Private Methods
     private void Awake()
     {
-        if (instance == null) {
+        if (instance != null && instance != this) {
+            Destroy(gameObject);
+        }
+        else {
             instance = this;
             DontDestroyOnLoad(gameObject);
         }
-        else Destroy(gameObject);
     }
 #endregion
 
 #region Public Methods
-    public static InGameManager Instance
-    {
-        get
-        {
-            if (instance == null) {
-                return null;
-            }
-            return instance;
-        }
-    }
     // for AudioMixer Slide
     public void SetMusicVolume(Slider slider)
     {
@@ -97,7 +88,7 @@ public class InGameManager : MonoBehaviour
 
     public void OnClickItem(GameObject _item)
     {
-        Inventory.Instance.AcquireItem(_item.GetComponent<Item>());
+        Inventory.instance.AcquireItem(_item.GetComponent<Item>());
         Destroy(_item);
     }
 
@@ -106,8 +97,6 @@ public class InGameManager : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         SceneManager.LoadScene("Main");
     }
-
-    // ??? ???? ?? ?????
 
     public void FadeInOut()
     {
@@ -136,7 +125,6 @@ public class InGameManager : MonoBehaviour
         }
     }
 
-    // ????? ????? -1
     public void MentalBreak()
     {
         DatabaseManager.Instance.MentalPointData--;

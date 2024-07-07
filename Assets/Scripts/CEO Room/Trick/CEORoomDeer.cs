@@ -4,23 +4,23 @@ using static Define;
 
 public class CEORoomDeer : Trick
 {
-    [Header("ÃÑ ¸ÂÀº »ç½¿ È®´ëX")]
+    [Header("ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ç½¿ È®ï¿½ï¿½X")]
     public Sprite shotDeer;
 
-    [Header("ÃÑ ¸ÂÀº »ç½¿ È®´ë")]
+    [Header("ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ç½¿ È®ï¿½ï¿½")]
     public Sprite shotDeerZoom;
 
-    [Header("»ç½¿ È®´ë")]
+    [Header("ï¿½ç½¿ È®ï¿½ï¿½")]
     public Image deerZoom;
 
-    [Header("¹®Á¦ È®´ë ¹öÆ°")]
+    [Header("ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½ ï¿½ï¿½Æ°")]
     public GameObject questionButton;
 
     public override void TrySolve(GameObject obj)
     {
         if (obj.name == this.name)
         {
-            if (Inventory.Instance.IsClicked(ItemName.Gun) && !IsSolved())
+            if (Inventory.instance.IsClicked(ItemName.Gun) && !IsSolved())
             {
                 Debug.LogFormat("{0} Solved", this.name);
                 SoundManager.instance.SFXPlay("gunshot");

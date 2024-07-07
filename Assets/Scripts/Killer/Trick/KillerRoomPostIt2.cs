@@ -4,18 +4,18 @@ using static Define;
 
 public class KillerRoomPostIt2 : Trick
 {
-    [Header("¿¬ÇÊÀÚ±¹ ÀÌ¹ÌÁö")]
+    [Header("ï¿½ï¿½ï¿½ï¿½ï¿½Ú±ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½")]
     public Sprite postItPencilMark;
 
     public override void TrySolve(GameObject obj)
     {
         if (obj.name == this.name)
         {
-            if (Inventory.Instance.IsClicked(ItemName.Pencil2))
+            if (Inventory.instance.IsClicked(ItemName.Pencil2))
             {
                 Debug.LogFormat("{0} Solved", this.name);
                 SoundManager.instance.SFXPlay("pencil");
-                Inventory.Instance.RemoveItem(ItemName.Pencil2);
+                Inventory.instance.RemoveItem(ItemName.Pencil2);
                 SetIsSolved(true);
                 SolvedAction();
             }

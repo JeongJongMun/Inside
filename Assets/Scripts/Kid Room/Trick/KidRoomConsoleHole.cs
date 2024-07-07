@@ -9,12 +9,12 @@ public class KidRoomConsoleHole : Trick
     {
         if (obj.name == "ConsoleHole")
         {
-            if (Inventory.Instance.IsClicked(ItemName.Console))
+            if (Inventory.instance.IsClicked(ItemName.Console))
             {
                 Debug.LogFormat("{0} Solved", obj.name);
 
                 SoundManager.instance.SFXPlay("consoleInsert");
-                Inventory.Instance.RemoveItem(ItemName.Console);
+                Inventory.instance.RemoveItem(ItemName.Console);
                 SetIsSolved(true);
                 SolvedAction();
             }

@@ -4,11 +4,11 @@ using static Define;
 
 public class LatchHole : MonoBehaviour
 {
-    [Header("°É¼è ²ÈÈù ÀÌ¹ÌÁö")]
+    [Header("ï¿½É¼ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½")]
     public Sprite[] latchInputs;
 
     [SerializeField]
-    [Header("ÇöÀç ²ÈÈù °É¼è ¹øÈ£ (0 ~ 3)")]
+    [Header("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½É¼ï¿½ ï¿½ï¿½È£ (0 ~ 3)")]
     private int inputLatchNumber = -1;
 
     private Image image;
@@ -16,10 +16,10 @@ public class LatchHole : MonoBehaviour
     private Sprite startSprite;
 
     [SerializeField]
-    [Header("ÇöÀç ²ÈÈù ¾ÆÀÌÅÛ ¿­°ÅÇü ÀÌ¸§")]
+    [Header("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½")]
     private ItemName currentItemName = ItemName.None;
 
-    [Header("TrySolve È£Ãâ¿ë Hatch")]
+    [Header("TrySolve È£ï¿½ï¿½ï¿½ Hatch")]
     public GameObject hatch;
 
     private void Start()
@@ -28,23 +28,23 @@ public class LatchHole : MonoBehaviour
         startSprite = image.sprite;
         GetComponent<Button>().onClick.AddListener(OnClickLatchHole);
 
-        // °É¼è°¡ ²ÈÇôÀÖ¾ú´ÂÁö È®ÀÎ
+        // ï¿½É¼è°¡ ï¿½ï¿½ï¿½ï¿½ï¿½Ö¾ï¿½ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½
         ItemName _name = DatabaseManager.Instance.GetHatchData(int.Parse(this.name));
         if (_name != ItemName.None)
         {
-            // °É¼è ¹øÈ£ ±¸ÇÏ±â
+            // ï¿½É¼ï¿½ ï¿½ï¿½È£ ï¿½ï¿½ï¿½Ï±ï¿½
             string str = _name.ToString();
             int latchIdx = str[str.Length - 1] - '0';
-            // °É¼è ¹øÈ£¿¡ ¸Â´Â ÀÌ¹ÌÁö·Î º¯°æ
+            // ï¿½É¼ï¿½ ï¿½ï¿½È£ï¿½ï¿½ ï¿½Â´ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             image.sprite = latchInputs[latchIdx];
-            // ²ÈÈù °É¼è ÀÎµ¦½º ¼öÁ¤
+            // ï¿½ï¿½ï¿½ï¿½ ï¿½É¼ï¿½ ï¿½Îµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             inputLatchNumber = latchIdx;
-            // ¿­°ÅÇü ÀÌ¸§ ¼³Á¤
+            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½
             currentItemName = _name;
         }
     }
 
-    // Á¤´ä Ã¼Å©¿ë ÇöÀç ²ÈÈù °É¼è ¹øÈ£ ¹ÝÈ¯ ÇÔ¼ö
+    // ï¿½ï¿½ï¿½ï¿½ Ã¼Å©ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½É¼ï¿½ ï¿½ï¿½È£ ï¿½ï¿½È¯ ï¿½Ô¼ï¿½
     public int GetInputLatchNumber()
     {
         return inputLatchNumber;
@@ -59,26 +59,26 @@ public class LatchHole : MonoBehaviour
 
     private void InputLatch()
     {
-        // ÇöÀç Å¬¸¯µÈ ¾ÆÀÌÅÛ ÀÌ¸§ °¡Á®¿À±â
-        currentItemName = Inventory.Instance.GetClickedItemName();
-        // ÇöÀç Å¬¸¯µÈ ¾ÆÀÌÅÛÀÌ °É¼è°¡ ¾Æ´Ï¸é return
+        // ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+        currentItemName = Inventory.instance.GetClickedItemName();
+        // ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½É¼è°¡ ï¿½Æ´Ï¸ï¿½ return
         if (!(currentItemName == ItemName.Latch0 || currentItemName == ItemName.Latch1 || currentItemName == ItemName.Latch2 || currentItemName == ItemName.Latch3))
         {
             currentItemName = ItemName.None;
             return;
         }
-        // °É¼è ¹øÈ£ ±¸ÇÏ±â
+        // ï¿½É¼ï¿½ ï¿½ï¿½È£ ï¿½ï¿½ï¿½Ï±ï¿½
         string str = currentItemName.ToString();
         int latchIdx = str[str.Length - 1] - '0';
-        // °É¼è ¹øÈ£¿¡ ¸Â´Â ÀÌ¹ÌÁö·Î º¯°æ
+        // ï¿½É¼ï¿½ ï¿½ï¿½È£ï¿½ï¿½ ï¿½Â´ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         image.sprite = latchInputs[latchIdx];
-        // È¿°úÀ½ Ãâ·Â
+        // È¿ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
         SoundManager.instance.SFXPlay("consoleInsert");
-        // ÀÎº¥Åä¸®¿¡¼­ ²ÈÀº °É¼è »èÁ¦
-        Inventory.Instance.RemoveItem(currentItemName);
-        // °É¼è°¡ ²ÈÈù ±¸¸ÛÀÇ ¹øÈ£ ÀúÀå
+        // ï¿½Îºï¿½ï¿½ä¸®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½É¼ï¿½ ï¿½ï¿½ï¿½ï¿½
+        Inventory.instance.RemoveItem(currentItemName);
+        // ï¿½É¼è°¡ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£ ï¿½ï¿½ï¿½ï¿½
         DatabaseManager.Instance.SetHatchData(currentItemName, int.Parse(this.name));
-        // °É¼è ²ÈÈû À¯¹« ¼öÁ¤
+        // ï¿½É¼ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         inputLatchNumber = latchIdx;
         // TrySolve
         hatch.GetComponent<Trick>().TrySolve(hatch);
@@ -86,13 +86,13 @@ public class LatchHole : MonoBehaviour
 
     private void OutputLatch()
     {
-        // ¿ø·¡ ÀÌ¹ÌÁö·Î º¯°æ
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         image.sprite = startSprite;
-        // °É¼è ¾ÆÀÌÅÛ È¸¼ö
-        Inventory.Instance.AcquireItem(currentItemName);
-        // °É¼è°¡ ²ÈÈù ±¸¸ÛÀÇ ¹øÈ£ ÀúÀå
+        // ï¿½É¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È¸ï¿½ï¿½
+        Inventory.instance.AcquireItem(currentItemName);
+        // ï¿½É¼è°¡ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£ ï¿½ï¿½ï¿½ï¿½
         DatabaseManager.Instance.SetHatchData(currentItemName, -1);
-        // °É¼è ²ÈÈû À¯¹« ¼öÁ¤
+        // ï¿½É¼ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         inputLatchNumber = -1;
     }
 }

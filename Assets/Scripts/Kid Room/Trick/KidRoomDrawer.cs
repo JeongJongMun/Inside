@@ -8,11 +8,11 @@ public class KidRoomDrawer : Trick
     {
         if (obj.name == "DrawerZoom")
         {
-            if (Inventory.Instance.IsClicked(ItemName.KidRoomKey))
+            if (Inventory.instance.IsClicked(ItemName.KidRoomKey))
             {
                 SoundManager.instance.SFXPlay("drawerOpened");
                 Debug.LogFormat("{0} Solved", this.name);
-                Inventory.Instance.RemoveItem(ItemName.KidRoomKey);
+                Inventory.instance.RemoveItem(ItemName.KidRoomKey);
                 SetIsSolved(true);
                 SolvedAction();
             }

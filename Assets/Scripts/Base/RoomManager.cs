@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -7,6 +8,51 @@ using static Define;
 
 public class RoomManager : MonoBehaviour
 {
+#region Private Variables
+
+#endregion
+
+#region Public Variables
+
+#endregion
+
+#region Private Methods
+    private void Awake()
+    {
+        InitializeItems();
+
+        // leftArrow = GameObject.Find("UICanvas").transform.GetChild(0).gameObject;
+        // rightArrow = GameObject.Find("UICanvas").transform.GetChild(1).gameObject;
+        // bottomArrow = GameObject.Find("UICanvas").transform.GetChild(2).gameObject;
+
+        // leftArrow.GetComponent<Button>().onClick.AddListener(OnClickLeftArrow);
+        // rightArrow.GetComponent<Button>().onClick.AddListener(OnClickRightArrow);
+        // bottomArrow.GetComponent<Button>().onClick.AddListener(ZoomOut);
+    }
+    private void InitializeItems()
+    {
+        GameObject[] items = GameObject.FindGameObjectsWithTag("Item");
+        foreach (GameObject item in items) {
+            NewItem addedItem = item.AddComponent<NewItem>();
+            addedItem.InitializeItem();
+            item.GetComponent<Button>().onClick.AddListener(() => OnClickItem(addedItem));
+        }
+    }
+#endregion
+
+#region Public Methods
+    public void OnClickItem(NewItem _item)
+    {
+        if (NewInventory.instance.AddItem(_item)) {
+            Debug.Log($"{_item.name}을 인벤토리에 추가했습니다.");
+        }
+        else {
+            Debug.Log("인벤토리가 가득 찼습니다.");
+        }
+
+    }
+#endregion
+
     public GameObject[] wallPanel;
 
     [SerializeField]
@@ -27,16 +73,6 @@ public class RoomManager : MonoBehaviour
     [SerializeField]
     private RoomName roomName;
 
-    private void Awake()
-    {
-        leftArrow = GameObject.Find("UICanvas").transform.GetChild(0).gameObject;
-        rightArrow = GameObject.Find("UICanvas").transform.GetChild(1).gameObject;
-        bottomArrow = GameObject.Find("UICanvas").transform.GetChild(2).gameObject;
-
-        leftArrow.GetComponent<Button>().onClick.AddListener(OnClickLeftArrow);
-        rightArrow.GetComponent<Button>().onClick.AddListener(OnClickRightArrow);
-        bottomArrow.GetComponent<Button>().onClick.AddListener(ZoomOut);
-    }
     public virtual void Start()
     {
         roomName = Item.GetEnumFromName<RoomName>(this.name.Substring(11));

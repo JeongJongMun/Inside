@@ -8,16 +8,16 @@ public class KidRoomSafe : Trick
 {
     public TMP_Text display;
 
-    [Header("º®¸é2 ±Ý°í ¿­¸°°Å ½ºÇÁ¶óÀÌÆ®")]
+    [Header("ï¿½ï¿½ï¿½ï¿½2 ï¿½Ý°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®")]
     public Sprite safeOpen;
 
-    [Header("º®¸é2 ±Ý°í")]
+    [Header("ï¿½ï¿½ï¿½ï¿½2 ï¿½Ý°ï¿½")]
     public GameObject safe;
 
-    [Header("º®¸é2 È®´ë ±Ý°í ¿­¸°°Å")]
+    [Header("ï¿½ï¿½ï¿½ï¿½2 È®ï¿½ï¿½ ï¿½Ý°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½")]
     public GameObject safeOpenZoomIn;
 
-    [Header("¾ÆÀÌÅÛ")]
+    [Header("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½")]
     public GameObject latch0;
     public GameObject lego3;
 
@@ -30,7 +30,7 @@ public class KidRoomSafe : Trick
                 Debug.LogFormat("{0} Solved", this.name);
 
                 SoundManager.instance.SFXPlay("electricOKButton");
-                Inventory.Instance.RemoveItem(ItemName.Password);
+                Inventory.instance.RemoveItem(ItemName.Password);
                 SetIsSolved(true);
                 SolvedAction();
             }

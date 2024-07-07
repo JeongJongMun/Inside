@@ -12,7 +12,7 @@ public class KidRoomBear : Trick
     {
         if (obj.name == "Bear")
         {
-            if (Inventory.Instance.IsClicked(ItemName.Cutter))
+            if (Inventory.instance.IsClicked(ItemName.Cutter))
             {
                 Debug.Log("Bear Solved");
                 SetIsSolved(true);

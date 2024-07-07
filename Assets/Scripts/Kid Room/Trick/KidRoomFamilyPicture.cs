@@ -9,7 +9,7 @@ public class KidRoomFamilyPicture : Trick
     {
         if (obj.name == "FamilyPicture")
         {
-            if (Inventory.Instance.IsClicked(ItemName.Cutter))
+            if (Inventory.instance.IsClicked(ItemName.Cutter))
             {
                 SoundManager.instance.SFXPlay("cutter");
                 Debug.Log("FamilyPicture Solved");

@@ -3,20 +3,20 @@ using static Define;
 
 public class KidRoomLegoHole2 : Trick
 {
-    [Header("·¹°í 2")]
+    [Header("ï¿½ï¿½ï¿½ï¿½ 2")]
     public GameObject lego2;
-    [Header("ºÎ¸ð ·¹°í ±¸¸Û")]
+    [Header("ï¿½Î¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½")]
     public GameObject legoHole;
     public override void TrySolve(GameObject obj)
     {
         if (obj.name == name)
         {
-            if (Inventory.Instance.IsClicked(ItemName.Lego2))
+            if (Inventory.instance.IsClicked(ItemName.Lego2))
             {
                 Debug.LogFormat("{0} is Solved", name);
 
                 SoundManager.instance.SFXPlay("lego");
-                Inventory.Instance.RemoveItem(ItemName.Lego2);
+                Inventory.instance.RemoveItem(ItemName.Lego2);
                 SetIsSolved(true);
                 SolvedAction();
                 legoHole.GetComponent<KidRoomLegoHole>().TrySolve(legoHole);

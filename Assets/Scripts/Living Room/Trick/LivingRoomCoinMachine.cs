@@ -5,16 +5,16 @@ using static Define;
 
 public class LivingRoomCoinMachine : Trick
 {
-    [Header("ÅõÀÔµÈ µ¿Àü")]
+    [Header("ï¿½ï¿½ï¿½Ôµï¿½ ï¿½ï¿½ï¿½ï¿½")]
     public TMP_Text money;
 
-    [Header("CEO¹æ ¹®")]
+    [Header("CEOï¿½ï¿½ ï¿½ï¿½")]
     public Image CEODoor;
 
-    [Header("CEO¹æ ¹® ¿­¸° ÀÌ¹ÌÁö")]
+    [Header("CEOï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½")]
     public Sprite CEODoorOpen;
 
-    [Header("¹öÆ° ±×·ì")]
+    [Header("ï¿½ï¿½Æ° ï¿½×·ï¿½")]
     public Transform buttonGroup;
 
     public override void TrySolve(GameObject obj)
@@ -25,7 +25,7 @@ public class LivingRoomCoinMachine : Trick
             {
                 Debug.LogFormat("{0} Solved", this.name);
                 SoundManager.instance.SFXPlay("electricDoorOpen");
-                Inventory.Instance.RemoveItem(ItemName.Coins);
+                Inventory.instance.RemoveItem(ItemName.Coins);
                 SetIsSolved(true);
                 SolvedAction();
                 DisableAllChildButtons();
@@ -48,7 +48,7 @@ public class LivingRoomCoinMachine : Trick
     {
         int childCount = buttonGroup.childCount;
 
-        // ¸ðµç ÀÚ½Ä ¿ÀºêÁ§Æ®ÀÇ ¹öÆ° ÄÄÆ÷³ÍÆ® Ã£¾Æ¼­ interactable ¼Ó¼ºÀ» false·Î ¼³Á¤
+        // ï¿½ï¿½ï¿½ ï¿½Ú½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½Æ° ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® Ã£ï¿½Æ¼ï¿½ interactable ï¿½Ó¼ï¿½ï¿½ï¿½ falseï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         for (int i = 0; i < childCount; i++)
         {
             Transform childTransform = buttonGroup.GetChild(i);

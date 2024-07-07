@@ -5,47 +5,23 @@ using PlayFab;
 using PlayFab.ClientModels;
 using System;
 using Newtonsoft.Json;
-
+/* DatabaseManager.cs
+ * PlayFab 데이터베이스를 관리하는 스크립트
+ */
+public class Data<T>
+{
+    public T name;
+    public bool status;
+}
+public class HData
+{
+    public ItemName name;
+    public int number;
+}
 public class DatabaseManager : MonoBehaviour
 {
+#region Private Variables
     private static DatabaseManager instance = null;
-
-    private void Awake()
-    {
-        if (instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else Destroy(gameObject);
-    }
-
-    public static DatabaseManager Instance
-    {
-        get
-        {
-            if (instance == null)
-            {
-                return null;
-            }
-            return instance;
-        }
-    }
-
-    [Header("PlayFab ID")]
-    public string playfabID;
-
-    public class Data<T>
-    {
-        public T name;
-        public bool status;
-    }
-    public class HData
-    {
-        public ItemName name;
-        public int number;
-    }
-
     private List<Data<TrickName>> TrickData = new List<Data<TrickName>>();
     private List<Data<ItemName>> ItemData = new List<Data<ItemName>>();
     private List<HData> HatchData = new List<HData>()
@@ -56,11 +32,28 @@ public class DatabaseManager : MonoBehaviour
         new HData { name = ItemName.Latch3, number = -1 },
     };
     private List<ItemName> InventoryData = new List<ItemName>();
-    [HideInInspector]
-    public int MentalPointData = 3;
+#endregion
 
-    private void DisplayPlayfabError(PlayFabError error) => Debug.LogError("error : " + error.GenerateErrorReport());
+#region Public Variables
+    public static DatabaseManager Instance { get { return instance; } }
+    public string playfabID = string.Empty;
+    [HideInInspector] public int MentalPointData = 3;
+#endregion
 
+#region Private Methods
+    private void Awake()
+    {
+        if (instance != null && instance != this) {
+            Destroy(gameObject);
+        }
+        else {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+    }
+#endregion
+
+#region Public Methods
     public void SetUserData(Dictionary<string, string> data)
     {
         var request = new UpdateUserDataRequest() { Data = data, Permission = UserDataPermission.Public };
@@ -69,7 +62,7 @@ public class DatabaseManager : MonoBehaviour
             PlayFabClientAPI.UpdateUserData(request, (result) =>
             {
                 Debug.Log("Update Player Data!");
-            }, DisplayPlayfabError);
+            }, MainUI.instance.OnErrorMessage);
         }
         catch (Exception e)
         {
@@ -80,7 +73,7 @@ public class DatabaseManager : MonoBehaviour
     public void GetUserData()
     {
         var request = new GetUserDataRequest() { PlayFabId = playfabID };
-        PlayFabClientAPI.GetUserData(request, (result) =>
+        PlayFabClientAPI.GetUserData(request, (GetUserDataResult result) =>
         {
             foreach (var eachData in result.Data)
             {
@@ -112,14 +105,13 @@ public class DatabaseManager : MonoBehaviour
                     List<ItemName> content = JsonConvert.DeserializeObject<List<ItemName>>(eachData.Value.Value);
                     foreach (ItemName item in content)
                     {
-                        Inventory.Instance.AcquireItem(item);
+                        Inventory.instance.AcquireItem(item);
                     }
                     InventoryData = content;
                 }
-
             }
 
-        }, DisplayPlayfabError);
+        }, MainUI.instance.OnErrorMessage);
     }
 
     public bool GetData<T>(T dataName)
@@ -217,18 +209,6 @@ public class DatabaseManager : MonoBehaviour
         }
     }
 
-    public bool GetInventoryData(ItemName item)
-    {
-        foreach (ItemName itemName in InventoryData)
-        {
-            if (itemName == item)
-            {
-                return true;
-            }
-        }
-        return false;
-    }
-
     public void SaveData()
     {
         Dictionary<string, string> trickDic = new Dictionary<string, string>
@@ -304,8 +284,6 @@ public class DatabaseManager : MonoBehaviour
             { "HatchContent", JsonConvert.SerializeObject(HatchData) }
         };
         SetUserData(hatchDic);
-
-
     }
-
+#endregion
 }

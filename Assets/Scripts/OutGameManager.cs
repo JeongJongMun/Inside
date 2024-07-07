@@ -52,14 +52,14 @@ public class OutGameManager : MonoBehaviour
     {
         yield return StartCoroutine(OnHelpPanel());
 
-        Inventory.Instance.ClearInventory();
+        Inventory.instance.ClearInventory();
         DatabaseManager.Instance.ResetData();
         InGameManager.Instance.UICanvasSetActive();
         SceneManager.LoadScene("KidRoom");
     }
     public void LoadGame()
     {
-        Inventory.Instance.ClearInventory();
+        Inventory.instance.ClearInventory();
         DatabaseManager.Instance.GetUserData();
         InGameManager.Instance.UICanvasSetActive();
         SceneManager.LoadScene("KidRoom");

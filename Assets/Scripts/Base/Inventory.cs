@@ -2,10 +2,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using static Define;
-
+    
 static class ExtensionMethods
 {
-    // æ∆¿Ã≈€¿ª ∞°¡ˆ∞Ì ¿÷≥™ »Æ¿Œ
     public static bool IsContainsItem(this List<InventorySlot> list, ItemName itemName)
     {
         foreach(InventorySlot slot in list)
@@ -20,49 +19,31 @@ static class ExtensionMethods
 
 public class Inventory : MonoBehaviour
 {
-    // ∞‘¿” ≥ªø° Inventory ¿ŒΩ∫≈œΩ∫¥¬ ¿Ã instanceø° ¥„±‰ ≥‡ºÆ∏∏ ¡∏¿Á
-    // ∫∏æ»¿ª ¿ß«ÿ private
-    private static Inventory instance = null;
+#region Private Variables
+    private List<Toggle> toggles;
+    public List<InventorySlot> inventory;
+#endregion
 
+#region Public Variables
+    public static Inventory instance = null;
+#endregion
+
+#region Private Methods
     private void Awake()
     {
-        if (instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject); // æ¿ ¿¸»Ø Ω√ø° ∆ƒ±´ X
-        }
-        else Destroy(gameObject);
+        instance = this;
+        toggles = new List<Toggle>(GetComponentsInChildren<Toggle>());
+        inventory = new List<InventorySlot>(GetComponentsInChildren<InventorySlot>());
     }
+#endregion
 
-    // Inventory ¿ŒΩ∫≈œΩ∫ø° ¡¢±Ÿ«œ¥¬ «¡∑Œ∆€∆º
-    // ¥Ÿ∏• Ω∫≈©∏≥∆Æø°º≠ ¡¢±Ÿ πÊπ˝ : Inventory.Instanace.∏ﬁº“µÂ()
-    public static Inventory Instance
-    {
-        get
-        {
-            if (instance == null)
-            {
-                return null;
-            }
-            return instance;
-        }
-    }
-
-    [Header("æ∆¿Ã≈€ ≈‰±€ πËø≠")]
-    public List<Toggle> toggles = new List<Toggle>();
-
-    [Header("¿Œ∫•≈‰∏Æ ΩΩ∑‘ πËø≠")]
-    public List<InventorySlot> inventory = new List<InventorySlot>();
-
-
-    // «ÿ¥Á æ∆¿Ã≈€¿« ≈‰≈¨¿Ã ≈¨∏Øµ«æÓ ¿÷≥™ »Æ¿Œ
+#region Public Methods
     public bool IsClicked(ItemName _item)
     {
         if (inventory.IsContainsItem(_item))
         {
             foreach (Toggle toggle in toggles) 
             { 
-                // childCount == 3 ¿œ∂ß (æ∆¿Ã≈€¿Ã ∏‘æÓ¡Æ ¿÷¿ª∂ß) ∏∏ ¡¢±Ÿ
                 if (toggle.transform.childCount == 3 && toggle.transform.GetChild(2).GetComponent<Item>().itemName == _item && toggle.isOn)
                 {
                     toggle.isOn = false;
@@ -73,10 +54,9 @@ public class Inventory : MonoBehaviour
         return false;
     }
 
-    // «ˆ¿Á ≈¨∏Øµ» æ∆¿Ã≈€ ø≠∞≈«¸ ¿Ã∏ß π›»Ø
     public ItemName GetClickedItemName()
     {
-        for (int i = 0; i < inventory.Count; i++)
+        for (int i = 0; i < toggles.Count; i++)
         {
             if (toggles[i].isOn)
             {
@@ -87,8 +67,6 @@ public class Inventory : MonoBehaviour
         return ItemName.None;
     }
 
-
-    // æ∆¿Ã≈€ »πµÊ
     public void AcquireItem<T>(T item)
     {
         ItemName name = ItemName.None;
@@ -104,17 +82,14 @@ public class Inventory : MonoBehaviour
             name = (ItemName)(object)item;
         }
 
-        // æ∆¿Ã≈€¿Ã ¿Œ∫•≈‰∏Æø° æ¯¥Ÿ∏È
         if (!inventory.IsContainsItem(name))
         {
             foreach (InventorySlot slot in inventory)
             {
                 if (slot.item == null)
                 {
-                    // ∫ÒæÓ¿÷¥¬ ¿Œ∫•≈‰∏Æ ΩΩ∑‘ø° æ∆¿Ã≈€ ∞¥√º √ﬂ∞°
                     SoundManager.instance.SFXPlay("bedFabric");
                     slot.AddItem(name);
-                    // æ∆¿Ã≈€ »πµÊ ¡§∫∏ ¿˙¿Â
                     if (_item != null)
                         DatabaseManager.Instance.SetData(name);
                     break;
@@ -123,23 +98,19 @@ public class Inventory : MonoBehaviour
         }
         else
         {
-            Debug.LogFormat("¿ÃπÃ {0} æ∆¿Ã≈€¿Ã ¿Œ∫•≈‰∏Æø° ¡∏¿Á«œø© √ﬂ∞°«œ¡ˆ ∏¯«‘", name);
+            Debug.LogFormat("Ïù¥ÎØ∏ {0}Î•º Í∞ÄÏßÄÍ≥† ÏûàÏäµÎãàÎã§.", name);
         }
     }
 
-    // æ∆¿Ã≈€ ªË¡¶
     public void RemoveItem(ItemName itemName)
     {
-        // æ∆¿Ã≈€¿Ã ¿Œ∫•≈‰∏Æø° ¿÷¥Ÿ∏È
         if (inventory.IsContainsItem(itemName))
         {
             foreach (InventorySlot slot in inventory)
             {
                 if (slot.item.itemName == itemName)
                 {
-                    // ΩΩ∑‘ø°º≠ æ∆¿Ã≈€ ªË¡¶
                     slot.RemoveItem();
-                    // æ∆¿Ã≈€ ¡§∑ƒ
                     SortItem();
                     break;
                 }
@@ -147,11 +118,10 @@ public class Inventory : MonoBehaviour
         }
         else
         {
-            Debug.LogFormat("{0} æ∆¿Ã≈€¿Ã ¿Œ∫•≈‰∏Æø° ¡∏¿Á«œ¡ˆ æ æ∆ ªË¡¶«œ¡ˆ ∏¯«‘", itemName);
+            Debug.LogFormat("{0}Í∞Ä ÏóÜÏñ¥ ÏÇ≠Ï†úÌï† Ïàò ÏóÜÏäµÎãàÎã§. ", itemName);
         }
     }
 
-    // æ∆¿Ã≈€ ªÁøÎ/ªË¡¶ Ω√ ¡§∑ƒ
     public void SortItem()
     {
         for (int i = 0; i < inventory.Count; i++)
@@ -168,7 +138,6 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    // ¿Œ∫•≈‰∏Æ ∫ÒøÏ±‚
     public void ClearInventory()
     {
         for (int i = inventory.Count - 1; i >= 0; i--)
@@ -179,4 +148,5 @@ public class Inventory : MonoBehaviour
             }
         }
     }
+#endregion
 }

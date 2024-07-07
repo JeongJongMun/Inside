@@ -2,6 +2,7 @@ public class Define
 {
     public enum RoomName
     {
+        None,
         Kid,
         Idol,
         Researcher,
@@ -10,8 +11,6 @@ public class Define
         Killer,
         Ending,
         Credit,
-        None,
-
     }
     public enum ItemName
     {
@@ -60,7 +59,6 @@ public class Define
         Medicine,
         Pencil1,
         Pencil2,
-
     }
 
     public enum TrickName
@@ -130,7 +128,5 @@ public class Define
         PostIt1,
         PostIt2,
         LockerKiller,
-
-
     }
 }

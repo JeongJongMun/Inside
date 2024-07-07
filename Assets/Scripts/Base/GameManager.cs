@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 /* GameManager.cs
  * 게임 상태를 관리하는 스크립트
  * 전략 패턴을 사용하여 상태에 따라 UI를 변경
@@ -73,11 +74,18 @@ public class GameManager : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(gameObject);
             gameObject.AddComponent<OutGameManager>();
+            gameObject.AddComponent<AuthManager>();
+            gameObject.AddComponent<DatabaseManager>();
         }
     }
     private void Start()
     {
-        ChangeState(new LoginState());
+        if (SceneManager.GetActiveScene().name == "0. OutGame") {
+            ChangeState(new LoginState());
+        }
+        else if (SceneManager.GetActiveScene().name == "1. InGame") {
+            ChangeState(new InGameState());
+        }
     }
 #endregion
 

@@ -13,11 +13,11 @@ public class CEORoomLion : Trick
     {
         if (obj.name == this.name)
         {
-            if (Inventory.Instance.IsClicked(ItemName.DeadParrot) && !IsSolved())
+            if (Inventory.instance.IsClicked(ItemName.DeadParrot) && !IsSolved())
             {
                 Debug.LogFormat("{0} Solved", this.name);
                 SoundManager.instance.SFXPlay("lionRoar");
-                Inventory.Instance.RemoveItem(ItemName.DeadParrot);
+                Inventory.instance.RemoveItem(ItemName.DeadParrot);
                 SetIsSolved(true);
                 SolvedAction();
             }

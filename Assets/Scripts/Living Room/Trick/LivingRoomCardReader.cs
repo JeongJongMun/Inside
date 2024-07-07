@@ -4,34 +4,34 @@ using static Define;
 
 public class LivingRoomCardReader : Trick
 {
-    [Header("Ä«µå ¸®´õ±â »óÅÂ")]
+    [Header("Ä«ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½")]
     public Image status;
 
-    [Header("Ä«µå ¸®´õ±â ¿­¸° »óÅÂ")]
+    [Header("Ä«ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½")]
     public Sprite statusGreen;
 
-    [Header("¿¬±¸¿ø ¹æ ¹®")]
+    [Header("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½")]
     public Image researcherDoor;
 
-    [Header("¿¬±¸¿ø ¹æ ¹® ¿­¸° ÀÌ¹ÌÁö")]
+    [Header("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½")]
     public Sprite researcherDoorOpen;
 
     public override void TrySolve(GameObject obj)
     {
         if (obj.name == "CardReader")
         {
-            if (Inventory.Instance.IsClicked(ItemName.AccessCard))
+            if (Inventory.instance.IsClicked(ItemName.AccessCard))
             {
                 Debug.LogFormat("{0} Solved", this.name);
                 SoundManager.instance.SFXPlay("electricDoorOpen");
                 SetIsSolved(true);
                 SolvedAction();
-                Inventory.Instance.RemoveItem(ItemName.AccessCard);
+                Inventory.instance.RemoveItem(ItemName.AccessCard);
             }
             else
             {
                 Debug.LogFormat("{0} Not Solved", this.name);
-                // LivingRoom Manager ½ºÅ©¸³Æ®¿¡¼­ È¿°úÀ½ Ãß°¡ÇßÀ¸¹Ç·Î ¿©±â¼­´Â Ãß°¡ ¾È ÇÔ
+                // LivingRoom Manager ï¿½ï¿½Å©ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ È¿ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ ï¿½ï¿½ï¿½â¼­ï¿½ï¿½ ï¿½ß°ï¿½ ï¿½ï¿½ ï¿½ï¿½
             }
         }
     }

@@ -4,7 +4,7 @@ using static Define;
 
 public class CEORoomCubePuzzleEmptySlot_0 : Trick
 {
-    [Header("ºó ½½·Ô¿¡ Ã¤¿ì´Â ¼ø¼­")]
+    [Header("ï¿½ï¿½ ï¿½ï¿½ï¿½Ô¿ï¿½ Ã¤ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½")]
     [SerializeField]
     private List<ItemName> slots = new List<ItemName>()
     { ItemName.CubeBlue, ItemName.CubeRed, ItemName.CubeYellow };
@@ -25,10 +25,10 @@ public class CEORoomCubePuzzleEmptySlot_0 : Trick
     {
         if (obj.name == this.name)
         {
-            if (Inventory.Instance.IsClicked(slots[cubeNumber]))
+            if (Inventory.instance.IsClicked(slots[cubeNumber]))
             {
                 Debug.LogFormat("{0} Solved", this.name);
-                Inventory.Instance.RemoveItem(slots[cubeNumber]);
+                Inventory.instance.RemoveItem(slots[cubeNumber]);
                 SetIsSolved(true);
                 SolvedAction();
             }

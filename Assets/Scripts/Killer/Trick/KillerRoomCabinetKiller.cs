@@ -3,17 +3,17 @@ using static Define;
 
 public class KillerRoomCabinetKiller : Trick
 {
-    [Header("¿­¸° Ä³ºñ³Ý")]
+    [Header("ï¿½ï¿½ï¿½ï¿½ Ä³ï¿½ï¿½ï¿½")]
     public GameObject cabinetKillerOpen;
     public override void TrySolve(GameObject obj)
     {
         if (obj.name == this.name)
         {
-            if (Inventory.Instance.IsClicked(ItemName.ClosetKey))
+            if (Inventory.instance.IsClicked(ItemName.ClosetKey))
             {
                 Debug.LogFormat("{0} Solved", this.name);
                 SoundManager.instance.SFXPlay("lockerOpen");
-                Inventory.Instance.RemoveItem(ItemName.ClosetKey);
+                Inventory.instance.RemoveItem(ItemName.ClosetKey);
                 SetIsSolved(true);
                 SolvedAction();
             }

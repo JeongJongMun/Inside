@@ -4,9 +4,27 @@ using UnityEngine;
 using UnityEngine.UI;
 using static Define;
 
+public enum Location {
+    Field,
+    Inventory,
+}
 public class Item : MonoBehaviour
 {
+#region Private Variables
+#endregion
+
+#region Public Variables
     public ItemName itemName;
+    public Location itemType;
+#endregion
+
+#region Private Methods
+#endregion
+
+#region Public Methods
+
+#endregion
+
 
     public bool isInInventory = false;
 
@@ -27,10 +45,10 @@ public class Item : MonoBehaviour
             Destroy(gameObject);
         }
 
-        if (!need_other_item_to_acquired.Contains(itemName))
-        {
-            GetComponent<Button>().onClick.AddListener(() => InGameManager.Instance.OnClickItem(gameObject));
-        }
+        // if (!need_other_item_to_acquired.Contains(itemName))
+        // {
+        //     GetComponent<Button>().onClick.AddListener(() => InGameManager.Instance.OnClickItem(gameObject));
+        // }
     }
 
     static public T GetEnumFromName<T>(string name) where T : Enum

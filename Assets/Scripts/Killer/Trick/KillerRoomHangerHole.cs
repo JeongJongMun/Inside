@@ -2,17 +2,17 @@ using UnityEngine;
 
 public class KillerRoomHangerHole : Trick
 {
-    [Header("Hanger ²ÈÈù°Å")]
+    [Header("Hanger ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½")]
     public GameObject hangerInput;
 
     public override void TrySolve(GameObject obj)
     {
         if (obj.name == this.name)
         {
-            if (Inventory.Instance.IsClicked(Define.ItemName.Hanger))
+            if (Inventory.instance.IsClicked(Define.ItemName.Hanger))
             {
                 Debug.LogFormat("{0} Solved", this.name);
-                Inventory.Instance.RemoveItem(Define.ItemName.Hanger);
+                Inventory.instance.RemoveItem(Define.ItemName.Hanger);
                 SetIsSolved(true);
                 SolvedAction();
             }

@@ -8,10 +8,10 @@ public class IdolRoomMusicBox : Trick
     {
         if (obj.name == this.name)
         {
-            if (Inventory.Instance.IsClicked(ItemName.Broom))
+            if (Inventory.instance.IsClicked(ItemName.Broom))
             {
                 Debug.LogFormat("{0} Solved", this.name);
-                Inventory.Instance.RemoveItem(ItemName.Broom);
+                Inventory.instance.RemoveItem(ItemName.Broom);
                 SetIsSolved(true);
                 SolvedAction();
                 InGameManager.Instance.OnClickItem(this.gameObject);

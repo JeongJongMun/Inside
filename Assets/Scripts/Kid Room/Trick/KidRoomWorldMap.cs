@@ -10,7 +10,7 @@ public class KidRoomWorldMap : Trick
     {
         if (obj.name == "WorldMap")
         {
-            if (Inventory.Instance.IsClicked(ItemName.Cutter))
+            if (Inventory.instance.IsClicked(ItemName.Cutter))
             {
                 Debug.Log("WorldMap Solved");
                 

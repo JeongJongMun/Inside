@@ -1,10 +1,41 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+/* SoundManager.cs
+ * - 사운드 파일을 로드하고 재생하는 기능 담당
+ * - 배경음악, 효과음 재생
+ *
+ * Audio Source - 소리 발생 근원지
+ * Audio Listener - 소리 수신 근원지(Main Camera에 자동 부착)
+ * Audio Clip - 소리 파일
+*/
+public enum SoundType
+{
+    BGM,        // 배경음
+    EFFECT,     // 효과음
+    MAXCOUNT    // 최대 개수
+}
 public class SoundManager : MonoBehaviour
 {
+    
     // TODO: Main 배경음 재생
     // TODO: SoundManager 개선 - 모든 버튼을 찾아 자동으로 이벤트 등록
+
+#region Private Variables
+
+#endregion
+
+#region Public Variables
+
+#endregion
+
+#region Private Methods
+
+#endregion
+
+#region Public Methods
+
+#endregion
+
     [Header("---------Audio Source----------")]
     [SerializeField] public AudioSource bgmSound;
     [SerializeField] AudioSource SFXSource;

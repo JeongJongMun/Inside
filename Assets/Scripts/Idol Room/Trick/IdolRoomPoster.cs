@@ -8,7 +8,7 @@ public class IdolRoomPoster : Trick
     {
         if (obj.name == this.name)
         {
-            if (Inventory.Instance.IsClicked(ItemName.Cutter))
+            if (Inventory.instance.IsClicked(ItemName.Cutter))
             {
                 Debug.LogFormat("{0} Solved", this.name);
                 VoiceManager.Instance.ScreamingMode(RoomName.Idol);

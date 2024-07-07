@@ -3,20 +3,20 @@ using UnityEngine.UI;
 
 public class ResearcherRoomCabinet : Trick
 {
-    [Header("¿­¸° Ä³ºñ³Ý ÀÌ¹ÌÁö")]
+    [Header("ï¿½ï¿½ï¿½ï¿½ Ä³ï¿½ï¿½ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½")]
     public Sprite cabinetOpened;
 
-    [Header("½ÃÇè°üµé")]
+    [Header("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½")]
     public GameObject[] testTubes;
     public override void TrySolve(GameObject obj)
     {
         if (obj.name == this.name)
         {
-            if (Inventory.Instance.IsClicked(Define.ItemName.GoldKey))
+            if (Inventory.instance.IsClicked(Define.ItemName.GoldKey))
             {
                 Debug.LogFormat("{0} Solved", this.name);
                 SoundManager.instance.SFXPlay("closet");
-                Inventory.Instance.RemoveItem(Define.ItemName.GoldKey);
+                Inventory.instance.RemoveItem(Define.ItemName.GoldKey);
                 SetIsSolved(true);
                 SolvedAction();
             }

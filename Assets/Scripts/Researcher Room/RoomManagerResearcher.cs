@@ -11,7 +11,7 @@ public class RoomManagerResearcher : RoomManager
     }
     public void OnClickFlower(GameObject panel)
     {
-        if (Inventory.Instance.IsClicked(Define.ItemName.Magnifier))
+        if (Inventory.instance.IsClicked(Define.ItemName.Magnifier))
         {
             ZoomIn(panel);
         }

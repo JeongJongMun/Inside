@@ -7,33 +7,33 @@ using static Define;
 public class ResearcherRoomStand : Trick
 {
     [SerializeField]
-    [Header("½ÃÇè°ü ²È´Â ¼ø¼­ (Á¤´ä: ³ë¶û < »¡°­ < ÆÄ¶û ¼ø)")]
+    [Header("ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½È´ï¿½ ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½ï¿½ï¿½: ï¿½ï¿½ï¿½ < ï¿½ï¿½ï¿½ï¿½ < ï¿½Ä¶ï¿½ ï¿½ï¿½)")]
     private List<ItemName> answer = new List<ItemName>()
     {
         ItemName.TestTubeYellow, ItemName.TestTubeRed, ItemName.TestTubeBlue
     };
 
     [SerializeField]
-    [Header("½ÃÇè°ü ²ÈÈù ¼ø¼­ (ÀÔ·Â)")]
+    [Header("ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ (ï¿½Ô·ï¿½)")]
     private List<ItemName> input = new List<ItemName>();
 
     [SerializeField]
-    [Header("ÇöÀç ²ÈÀº ½ÃÇè°ü °³¼ö")]
+    [Header("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½")]
     private int currentNumber = 0;
 
-    [Header("½ÃÇè°ü ¿ÀºêÁ§Æ®")]
+    [Header("ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®")]
     public GameObject[] testTubes;
 
-    [Header("½ÃÇè°ü ÀÌ¹ÌÁö (³ë¶û < »¡°­ < ÆÄ¶û ¼øÀ¸·Î ¹èÄ¡)")]
+    [Header("ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ (ï¿½ï¿½ï¿½ < ï¿½ï¿½ï¿½ï¿½ < ï¿½Ä¶ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡)")]
     public Sprite[] testTubeSprites;
 
-    [Header("½ÃÇè°ü Æ®¸¯ ¼º°ø ½Ã Ä³ºñ³Ý ¿ÀÇÂ °¡´É")]
+    [Header("ï¿½ï¿½ï¿½ï¿½ï¿½ Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ Ä³ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½")]
     public ResearcherRoomRCloset rCloset;
 
-    [Header("½ÃÇè°ü Æ®¸¯ ¼º°ø ½Ã ÀÌ¹ÌÁö º¯°æ")]
+    [Header("ï¿½ï¿½ï¿½ï¿½ï¿½ Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½")]
     public Sprite standFull;
 
-    [Header("½ÃÇè°ü ¾ÆÀÌÅÛ")]
+    [Header("ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½")]
     public Item[] testTubeItems;
 
     ItemName[] itemNames = new ItemName[] { ItemName.TestTubeBlue, ItemName.TestTubeRed, ItemName.TestTubeYellow };
@@ -41,44 +41,44 @@ public class ResearcherRoomStand : Trick
     {
         if (obj.name == this.name)
         {
-            // ½ÃÇè°ü ÀÔ·Â
+            // ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½
             foreach (ItemName itemName in itemNames)
             {
-                if (Inventory.Instance.IsClicked(itemName))
+                if (Inventory.instance.IsClicked(itemName))
                 {
                     input.Add(itemName);
-                    Inventory.Instance.RemoveItem(itemName);
-                    // ½ÃÇè°ü È°¼ºÈ­
+                    Inventory.instance.RemoveItem(itemName);
+                    // ï¿½ï¿½ï¿½ï¿½ï¿½ È°ï¿½ï¿½È­
                     testTubes[currentNumber].SetActive(true);
-                    // È¿°úÀ½ Ãâ·Â
+                    // È¿ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
                     SoundManager.instance.SFXPlay("glssBottle");
-                    // ½ÃÇè°ü ÀÌ¹ÌÁö º¯°æ
+                    // ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
                     testTubes[currentNumber].GetComponent<Image>().sprite = testTubeSprites[answer.IndexOf(itemName)];
                     currentNumber++;
 
-                    // 3°³ÀÇ ½ÃÇè°üÀ» ¸ðµÎ ÀÔ·Â ½Ã
+                    // 3ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½ ï¿½ï¿½
                     if (currentNumber == answer.Count)
                     {
-                        // Á¤´ä
+                        // ï¿½ï¿½ï¿½ï¿½
                         if (Enumerable.SequenceEqual(input, answer))
                         {
                             Debug.LogFormat("{0} Solved", this.name);
-                            Debug.Log("¿ÊÀå ¿­¸° »ç¿îµå Àç»ý");
+                            Debug.Log("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½");
                             SoundManager.instance.SFXPlay("lockerOpen");
                             SetIsSolved(true);
                             SolvedAction();
                         }
-                        // ¿À´ä
+                        // ï¿½ï¿½ï¿½ï¿½
                         else
                         {
                             Debug.LogFormat("{0} Not Solved", this.name);
 
-                            // ÃÊ±âÈ­
+                            // ï¿½Ê±ï¿½È­
                             currentNumber = 0;
                             input.Clear();
                             foreach (Item item in testTubeItems)
                             {
-                                Inventory.Instance.AcquireItem(item);
+                                Inventory.instance.AcquireItem(item);
                             }
                             foreach (GameObject testTube in testTubes)
                                 testTube.SetActive(false);
