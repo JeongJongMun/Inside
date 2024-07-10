@@ -8,16 +8,12 @@ public class KidRoomSafe : Trick
 {
     public TMP_Text display;
 
-    [Header("����2 �ݰ� ������ ��������Ʈ")]
     public Sprite safeOpen;
 
-    [Header("����2 �ݰ�")]
     public GameObject safe;
 
-    [Header("����2 Ȯ�� �ݰ� ������")]
     public GameObject safeOpenZoomIn;
 
-    [Header("������")]
     public GameObject latch0;
     public GameObject lego3;
 

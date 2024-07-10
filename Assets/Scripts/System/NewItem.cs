@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 /* Item.cs
  * 아이템을 관리하는 스크립트
  * 아이템은 필드 or 인벤토리에 있음

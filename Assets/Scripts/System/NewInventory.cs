@@ -1,36 +1,41 @@
 using UnityEngine;
 using UnityEngine.UI;
+/* Inventory.cs
+ * 인벤토리를 관리하는 스크립트
+ * 함수 목록
+ * AddItem(NewItem _item) : 아이템 추가
+ * RemoveItem(Item _item) : 아이템 제거
+ * ClearInventory() : 인벤토리 초기화
+ * GetClickedItem() : 현재 클릭된 아이템 확인
+ * SortInventory() : 인벤토리 정렬
+ */
 public class NewInventory : MonoBehaviour    
 {
 #region Private Variables
-    private NewItem[] items;
-    private int maxCapacity = 10;
-    private ToggleGroup toggleGroup;
-    private GameObject[] slots;
+    [SerializeField] private NewItem[] items;
+    private Toggle[] toggles;
+    private NewInventorySlot[] icons;
 #endregion
 
 #region Public Variables
-    public NewItem[] Items { get { return items; } }
-    public int MaxCapacity { get { return maxCapacity; } }
     public static NewInventory instance = null;
-    public GameObject slotHolder;
 #endregion
 
 #region Private Methods
     private void Awake()
     {
         instance = this;
-        toggleGroup = GetComponentInChildren<ToggleGroup>();
 
-        items = new NewItem[maxCapacity];
-        for (int i = 0; i < items.Length; i++) {
+        int childCount = this.transform.childCount;
+
+        items = new NewItem[childCount];
+        toggles = new Toggle[childCount];
+        icons = new NewInventorySlot[childCount];
+        for (int i = 0; i < childCount; i++) {
             items[i] = null;
-        }
-        
-        int totalSlots = slotHolder.transform.childCount;
-        slots = new GameObject[totalSlots];
-        for (int i = 0; i < totalSlots; i++) {
-            slots[i] = slotHolder.transform.GetChild(i).gameObject;
+            Transform child = this.transform.GetChild(i);
+            toggles[i] = child.GetComponent<Toggle>();
+            icons[i] = child.GetComponent<NewInventorySlot>();
         }
     }
 #endregion
@@ -41,7 +46,8 @@ public class NewInventory : MonoBehaviour
         for (int i = 0; i < items.Length; i++) {
             if (items[i] == null) {
                 items[i] = _item;
-                
+                icons[i].SetIcon(_item.icon);
+                _item.gameObject.SetActive(false);
                 return true;
             }
         }
@@ -63,6 +69,15 @@ public class NewInventory : MonoBehaviour
         for (int i = 0; i < items.Length; i++) {
             items[i] = null;
         }
+    }
+    public NewItem GetClickedItem()
+    {
+        for (int i = 0; i < toggles.Length; i++) {
+            if (toggles[i].isOn) {
+                return items[i];
+            }
+        }
+        return null;
     }
 #endregion
 }
