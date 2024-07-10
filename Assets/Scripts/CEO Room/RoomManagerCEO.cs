@@ -11,9 +11,8 @@ public class RoomManagerCEO : RoomManager
     public Button[] drawerPWButtons;
     public Button[] safePWButtons;
 
-    public override void Start()
+    public void Start()
     {
-        base.Start();
         foreach (Button btn in drawerPWButtons)
         {
             btn.onClick.AddListener(() => OnClickPasswordButton(drawerCEO, btn.transform.GetChild(0).GetComponent<TMP_Text>()));
@@ -40,7 +39,6 @@ public class RoomManagerCEO : RoomManager
         
         password.text = ((int.Parse(password.text) + 1) % 10).ToString();
         SoundManager.instance.SFXPlay("electricButton");
-        OnClickTrick(trickObject);
     }
 
     public void OnClickDrawer1(GameObject drawerOpen)

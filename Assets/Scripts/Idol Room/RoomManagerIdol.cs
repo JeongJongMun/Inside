@@ -1,19 +1,11 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
-using UnityEngine.VFX;
 
 public class RoomManagerIdol : RoomManager
 {
-    [Header("MusicPlate가 풀리면 문 열림")]
     public IdolRoomMusicPlateZoom musicPlate;
 
-
-    public override void Start()
-    {
-        base.Start();
-
-    }
     public void OnClickClosetHole()
     {
         SceneManager.LoadScene("KidRoom");
@@ -32,7 +24,6 @@ public class RoomManagerIdol : RoomManager
         }
         else
         {
-            // 잠김 소리 재생
             SoundManager.instance.SFXPlay("doorLocked");
         }
     }

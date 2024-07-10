@@ -1,10 +1,9 @@
 fileFormatVersion: 2
-guid: 4d2e8392bd13618418521547ad6a3ec6
+guid: 491dd89159539c84caff033ffd0f55c9
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences:
-  - lampClip: {fileID: 8300000, guid: 70c661db1c62a6d42beae2f098464e7f, type: 3}
+  defaultReferences: []
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

@@ -97,7 +97,7 @@ public class GameManager : MonoBehaviour
         }
         gameState = newState;
         gameState.Enter();
-        Debug.Log($"현재 상태: {gameState.GetType().Name}");
+        Debug.Log($"Current State: {gameState.GetType().Name}");
     }
 #endregion
 }

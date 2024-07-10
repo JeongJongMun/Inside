@@ -70,14 +70,14 @@ public class NewInventory : MonoBehaviour
             items[i] = null;
         }
     }
-    public NewItem GetClickedItem()
+    public Define.ItemName GetClickedItemName()
     {
         for (int i = 0; i < toggles.Length; i++) {
             if (toggles[i].isOn) {
-                return items[i];
+                return items[i].itemName;
             }
         }
-        return null;
+        return Define.ItemName.None;
     }
 #endregion
 }

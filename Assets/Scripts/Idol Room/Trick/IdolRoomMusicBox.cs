@@ -1,7 +1,6 @@
 using UnityEngine;
 using static Define;
 
-
 public class IdolRoomMusicBox : Trick
 {
     public override void TrySolve(GameObject obj)
@@ -24,9 +23,8 @@ public class IdolRoomMusicBox : Trick
         }
     }
 
-
     public override void SolvedAction()
     {
-        GameObject.FindWithTag("RoomManager").GetComponent<RoomManagerIdol>().RemoveTrick(this);
+
     }
 }

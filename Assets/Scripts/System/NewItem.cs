@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.UI;
 /* Item.cs
  * 아이템을 관리하는 스크립트
  * 아이템은 필드 or 인벤토리에 있음
@@ -10,16 +9,14 @@ using UnityEngine.UI;
 public class NewItem : MonoBehaviour
 {
 #region Private Variables
-
 #endregion
 
 #region Public Variables
-    public Define.ItemName itemName = Define.ItemName.None;
-    public Sprite icon = null;
+    [HideInInspector] public Define.ItemName itemName = Define.ItemName.None;
+    [HideInInspector] public Sprite icon = null;
 #endregion
 
 #region Private Methods
-
 #endregion
 
 #region Public Methods

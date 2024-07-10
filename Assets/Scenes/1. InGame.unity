@@ -4393,6 +4393,7 @@ GameObject:
   m_Component:
   - component: {fileID: 355676671}
   - component: {fileID: 355676672}
+  - component: {fileID: 355676673}
   m_Layer: 0
   m_Name: Room Manager
   m_TagString: Untagged
@@ -4446,9 +4447,19 @@ MonoBehaviour:
   leftArrow: {fileID: 567987613}
   rightArrow: {fileID: 2000197909}
   bottomArrow: {fileID: 1237289281}
-  wallPanel: []
   tricks: []
-  roomName: 0
+--- !u!114 &355676673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 355676670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a557e62de8d87b54087c56e99d58b0f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &389795045
 GameObject:
   m_ObjectHideFlags: 0
@@ -4738,9 +4749,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f80d5027ef22ea4f856dca0423e573d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isSolved: 0
-  trickName: 0
-  curtains:
+  curtainSprites:
   - {fileID: 21300000, guid: d018b43e44af81e41bcc4d32cc298a76, type: 3}
   - {fileID: 21300000, guid: ad97e1af7d74aa24f8abf26b1b793ca4, type: 3}
 --- !u!114 &443658046
@@ -6930,8 +6939,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 443658044}
-  - {fileID: 84576718}
   - {fileID: 1978153477}
+  - {fileID: 84576718}
   m_Father: {fileID: 2141556885}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7355,6 +7364,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87adebaf1c043374aaea48284df64942, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  items: []
 --- !u!1 &677935543
 GameObject:
   m_ObjectHideFlags: 0
@@ -7654,7 +7664,7 @@ GameObject:
   - component: {fileID: 717172535}
   - component: {fileID: 717172534}
   - component: {fileID: 717172533}
-  - component: {fileID: 717172532}
+  - component: {fileID: 717172536}
   m_Layer: 5
   m_Name: Lamp
   m_TagString: Trick
@@ -7682,23 +7692,6 @@ RectTransform:
   m_AnchoredPosition: {x: -123, y: 360}
   m_SizeDelta: {x: 175, y: 360}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &717172532
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 717172530}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d2e8392bd13618418521547ad6a3ec6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isSolved: 0
-  trickName: 0
-  lamps:
-  - {fileID: 21300000, guid: 43df7296f60369d4cac41e10287774b2, type: 3}
-  - {fileID: 21300000, guid: f3d6dc334e14f2645bb9aa6cccdbe455, type: 3}
 --- !u!114 &717172533
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7742,19 +7735,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 717172534}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: RoomManager, Assembly-CSharp
-        m_MethodName: OnClickTrick
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 717172530}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &717172534
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7793,6 +7774,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 717172530}
   m_CullTransparentMesh: 1
+--- !u!114 &717172536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 717172530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc64cf04bee306147ae11d886e4d955d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lampSprites:
+  - {fileID: 21300000, guid: 43df7296f60369d4cac41e10287774b2, type: 3}
+  - {fileID: 21300000, guid: f3d6dc334e14f2645bb9aa6cccdbe455, type: 3}
 --- !u!1 &717399628
 GameObject:
   m_ObjectHideFlags: 0
@@ -13213,14 +13209,14 @@ GameObject:
   - component: {fileID: 1083115631}
   - component: {fileID: 1083115630}
   - component: {fileID: 1083115629}
-  - component: {fileID: 1083115628}
+  - component: {fileID: 1083115632}
   m_Layer: 5
   m_Name: Clock
   m_TagString: Trick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1083115627
 RectTransform:
   m_ObjectHideFlags: 0
@@ -13242,22 +13238,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 307}
   m_SizeDelta: {x: 179, y: 185}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1083115628
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1083115626}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00077647dfafc0f45a8eddfeecd59a1b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isSolved: 0
-  trickName: 0
-  hour: {fileID: 1232589656}
-  hourAngle: -90
 --- !u!114 &1083115629
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13301,19 +13281,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1083115630}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: RoomManager, Assembly-CSharp
-        m_MethodName: OnClickTrick
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 1083115626}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1083115630
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13352,6 +13320,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1083115626}
   m_CullTransparentMesh: 1
+--- !u!114 &1083115632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1083115626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 491dd89159539c84caff033ffd0f55c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1086500761
 GameObject:
   m_ObjectHideFlags: 0
@@ -14806,7 +14786,7 @@ GameObject:
   - component: {fileID: 1232589659}
   - component: {fileID: 1232589658}
   m_Layer: 5
-  m_Name: Hour
+  m_Name: Clock Hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15623,7 +15603,7 @@ GameObject:
   - component: {fileID: 1261418217}
   - component: {fileID: 1261418216}
   - component: {fileID: 1261418215}
-  - component: {fileID: 1261418214}
+  - component: {fileID: 1261418218}
   m_Layer: 5
   m_Name: Lamp
   m_TagString: Trick
@@ -15651,23 +15631,6 @@ RectTransform:
   m_AnchoredPosition: {x: 320, y: 130}
   m_SizeDelta: {x: 112, y: 278}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1261418214
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1261418212}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d2e8392bd13618418521547ad6a3ec6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isSolved: 0
-  trickName: 0
-  lamps:
-  - {fileID: 21300000, guid: 6092004b915d9ff419f085b917e7c75e, type: 3}
-  - {fileID: 21300000, guid: 59460729494edf04eb9e4b6ae200e89d, type: 3}
 --- !u!114 &1261418215
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15711,19 +15674,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1261418216}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: RoomManager, Assembly-CSharp
-        m_MethodName: OnClickTrick
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 1261418212}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1261418216
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15762,6 +15713,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1261418212}
   m_CullTransparentMesh: 1
+--- !u!114 &1261418218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1261418212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc64cf04bee306147ae11d886e4d955d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lampSprites:
+  - {fileID: 21300000, guid: 6092004b915d9ff419f085b917e7c75e, type: 3}
+  - {fileID: 21300000, guid: 59460729494edf04eb9e4b6ae200e89d, type: 3}
 --- !u!1 &1263211238
 GameObject:
   m_ObjectHideFlags: 0
@@ -25634,7 +25600,7 @@ GameObject:
   - component: {fileID: 2072437322}
   - component: {fileID: 2072437321}
   - component: {fileID: 2072437320}
-  - component: {fileID: 2072437319}
+  - component: {fileID: 2072437323}
   m_Layer: 5
   m_Name: Bear
   m_TagString: Trick
@@ -25662,23 +25628,6 @@ RectTransform:
   m_AnchoredPosition: {x: -166, y: -303}
   m_SizeDelta: {x: 190, y: 222}
   m_Pivot: {x: 0.5, y: 0}
---- !u!114 &2072437319
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2072437317}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 21dfad08bfb992843b5f2c722a417fca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isSolved: 0
-  trickName: 0
-  bearBody: {fileID: 21300000, guid: ffea2c9d9e16eb54bbccfce13f3b6d69, type: 3}
-  bearHead: {fileID: 71422574}
-  password: {fileID: 7998411830058906624}
 --- !u!114 &2072437320
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25722,19 +25671,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2072437321}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: RoomManager, Assembly-CSharp
-        m_MethodName: OnClickTrick
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 2072437317}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &2072437321
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25773,6 +25710,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2072437317}
   m_CullTransparentMesh: 1
+--- !u!114 &2072437323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2072437317}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8628b5381a9016042bbef3ed36f0a491, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bearBody: {fileID: 21300000, guid: ffea2c9d9e16eb54bbccfce13f3b6d69, type: 3}
+  bearHead: {fileID: 71422574}
+  password: {fileID: 7998411830058906624}
 --- !u!1 &2088262509
 GameObject:
   m_ObjectHideFlags: 0
