@@ -1,16 +1,13 @@
 
-# <center> Inside (RoomEscape) : 내 안에 너 있다 
-<p align="center">
-  <a href="https://play.google.com/store/apps/details?id=com.openthedoorandscream.inside&pcampaignid=web_share">
-    <img src="https://drive.google.com/uc?export=view&id=1bSy41gmg6NHskdH1k8AkPJYUdOL0ClEf" width="75%" height="75%"/>
-  </a>
-</p>
+# 내 안에 너 있다 (Inside) 
 
-> 이미지 클릭 시 플레이스토어로 연결됩니다!
->> 게임 트레일러 영상 <br>
->> https://www.youtube.com/watch?v=cYa3Jff8nXw <br>
->> 게임 플레이 영상 <br>
->> https://youtu.be/8If-fynM8xM
+![Top](https://github.com/user-attachments/assets/a976c1da-c9b8-44e3-80ed-5f704892c144)
+
+**구글 플레이스토어 : [바로가기](https://play.google.com/store/apps/details?id=com.openthedoorandscream.inside)**
+
+**트레일러 영상 : [바로가기](https://www.youtube.com/watch?v=cYa3Jff8nXw)**
+
+**게임 플레이 영상 : [바로가기](https://www.youtube.com/watch?v=8If-fynM8xM)**
 
 <br>
 
