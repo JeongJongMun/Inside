@@ -1,5 +1,5 @@
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 /* SoundManager.cs
  * - 사운드 파일을 로드하고 재생하는 기능 담당
  * - 배경음악, 효과음 재생
@@ -8,32 +8,170 @@ using UnityEngine.SceneManagement;
  * Audio Listener - 소리 수신 근원지(Main Camera에 자동 부착)
  * Audio Clip - 소리 파일
 */
+// TODO: 배경음 재생
+// TODO: SoundManager 개선 - 모든 버튼을 찾아 자동으로 이벤트 등록
 public enum SoundType
 {
     BGM,        // 배경음
     EFFECT,     // 효과음
     MAXCOUNT    // 최대 개수
 }
-public class SoundManager : MonoBehaviour
-{
-    
-    // TODO: Main 배경음 재생
-    // TODO: SoundManager 개선 - 모든 버튼을 찾아 자동으로 이벤트 등록
-
+public class SoundManager
+{    
 #region Private Variables
-
-#endregion
-
-#region Public Variables
-
+    private AudioSource[] audioSources = new AudioSource[(int)SoundType.MAXCOUNT];
+    private Dictionary<string, AudioClip> audioClips = new Dictionary<string, AudioClip>(); // 사운드 파일을 저장할 딕셔너리 <경로, 해당 오디오 클립> -> Object Pooling
+    private List<string> commonSoundPaths = new List<string> { "Stair", "Button", "ArrowButton", "Item" };
 #endregion
 
 #region Private Methods
+	private AudioClip GetOrAddAudioClip(string path, SoundType type = SoundType.EFFECT)
+    {
+        // 0. Kid Room/Clock
+        // 0. Kid Room
+        string currentRoomName = RoomManager.instance.currentRoomName;
+        if (type == SoundType.EFFECT && commonSoundPaths.Contains(path) == false)
+        {
+            path = $"{currentRoomName}/{path}";
+        }
 
+        // EFFECT/0. Kid Room/Clock
+        // BGM/0. Kid Room
+        path = $"{type}/{path}";
+
+        // Sounds/EFFECT/0. Kid Room/Clock
+        // Sounds/BGM/0. Kid Room
+		if (path.Contains("Sounds/") == false)
+			path = $"Sounds/{path}"; // Sounds 폴더 안에 저장될 수 있도록
+
+		AudioClip audioClip = null;
+
+		if (type == SoundType.BGM) // BGM 배경음악 클립 붙이기
+		{
+			audioClip = Resources.Load<AudioClip>(path);
+		}
+		else // Effect 효과음 클립 붙이기
+		{
+			if (audioClips.TryGetValue(path, out audioClip) == false)
+			{
+				audioClip = Resources.Load<AudioClip>(path);
+				audioClips.Add(path, audioClip);
+			}
+		}
+
+		if (audioClip == null)
+			Debug.LogFormat("[SoundManager] 오디오 클립이 없습니다: {0}", path);
+
+		return audioClip;
+    }
 #endregion
 
 #region Public Methods
+    public void Init()
+    {
+        GameObject root = GameObject.Find("@Sound");
+        if (root == null) 
+        {
+            root = new GameObject { name = "@Sound" };
+            Object.DontDestroyOnLoad(root);
 
+            string[] soundNames = System.Enum.GetNames(typeof(SoundType)); // "BGM", "EFFECT"
+            for (int i = 0; i < soundNames.Length - 1; i++)
+            {
+                GameObject go = new GameObject { name = soundNames[i] }; 
+                audioSources[i] = go.AddComponent<AudioSource>();
+                go.transform.parent = root.transform;
+            }
+
+            audioSources[(int)SoundType.BGM].loop = true;       // bgm 재생기는 무한 반복 재생
+            audioSources[(int)SoundType.BGM].volume = 0.7f;
+        }
+    }
+    public void Clear()
+    {
+        // 재생기 전부 재생 스탑, 음반 빼기
+        foreach (AudioSource audioSource in audioSources)
+        {
+            audioSource.clip = null;
+            audioSource.Stop();
+        }
+        // 효과음 Dictionary 비우기
+        audioClips.Clear();
+    }
+    public void Play(AudioClip audioClip, SoundType type = SoundType.EFFECT, float pitch = 1.0f, float volume = 1.0f)
+	{
+        if (audioClip == null)
+            return;
+
+		if (type == SoundType.BGM) // BGM 배경음악 재생
+		{
+			AudioSource audioSource = audioSources[(int)type];
+			if (audioSource.isPlaying)
+				audioSource.Stop();
+
+			audioSource.pitch = pitch;
+			audioSource.clip = audioClip;
+            audioSource.volume = volume;
+			audioSource.Play();
+		}
+		else // Effect 효과음 재생
+		{
+			AudioSource audioSource = audioSources[(int)type];
+			audioSource.pitch = pitch;
+			audioSource.PlayOneShot(audioClip);
+		}
+	}
+
+    public void Play(string path, SoundType type = SoundType.EFFECT, float pitch = 1.0f, float volume = 1.0f)
+    {
+        AudioClip audioClip = GetOrAddAudioClip(path, type);
+        Play(audioClip, type, pitch, volume);
+    }
+
+    public void Stop(AudioClip audioClip, SoundType type = SoundType.EFFECT)
+    {
+        if (audioClip == null)
+            return;
+
+        if (type == SoundType.BGM) // BGM 배경음악 정지
+        {
+            AudioSource audioSource = audioSources[(int)SoundType.BGM];
+            if (audioSource.clip == audioClip)
+            {
+                audioSource.Stop();
+                audioSource.clip = null;
+            }
+        }
+        else // Effect 효과음 정지
+        {
+            AudioSource audioSource = audioSources[(int)SoundType.EFFECT];
+            if (audioSource.clip == audioClip)
+            {
+                audioSource.Stop();
+                audioSource.clip = null;
+            }
+        }
+    }
+
+    public void Stop(string path, SoundType type = SoundType.EFFECT)
+    {
+        AudioClip audioClip = GetOrAddAudioClip(path, type);
+        Stop(audioClip, type);
+    }
+
+    public void Stop(AudioSource audioSource)
+    {
+        audioSource.Stop();
+    }
+
+    public void StopAll()
+    {
+        foreach (AudioSource audioSource in audioSources)
+        {
+            audioSource.Stop();
+            audioSource.clip = null;
+        }
+    }
 #endregion
 
     [Header("---------Audio Source----------")]
@@ -47,110 +185,7 @@ public class SoundManager : MonoBehaviour
     public AudioClip[] pianoList;
 
     public static SoundManager instance = null;
-
-    private string sceneName = null;
-
-    void Start()
+    public void SFXPlay(string _soundName)
     {
-        DontDestroyOnLoad(transform.gameObject);
-        sceneName = SceneManager.GetActiveScene().name;
-    }
-
-    private void Awake() 
-    {
-        if(instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-            SceneManager.sceneLoaded += OnSceneLoaded;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-        
-    }
-    
-    public void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
-    {
-        for(int i=0;i<bgmList.Length;i++) {
-            if(arg0.name == bgmList[i].name)
-                BgmSoundPlay(bgmList[i]);
-        }
-    }
-
-    // 피아노 재생
-    public void pianoPlay(string sfxName, int note)
-    {
-        toPianoPlay(sfxName, pianoList[note]);
-    }
-
-    public void toPianoPlay(string sfxName, AudioClip clip)
-    {
-        GameObject go = new GameObject(sfxName + "Sound");
-        pianoSource.clip = clip;
-        pianoSource.PlayOneShot(clip);
-
-        Destroy(go, clip.length);
-    }
-
-    // 효과음 재생
-    public void SFXPlay(string sfxName)
-    {
-        for(int i=0;i<SFXList.Length;i++) {
-            if(sfxName == SFXList[i].name)
-                toSFXPlay(sfxName, SFXList[i]);
-        }
-    }
-    
-    public void toSFXPlay(string sfxName, AudioClip clip)
-    {
-        GameObject go = new GameObject(sfxName + "Sound");
-        SFXSource.clip = clip;
-        SFXSource.PlayOneShot(clip);
-        
-        Destroy(go, clip.length);
-    }
-    // 아이돌방 오르골 브금 재생 및 배갱 브금 정지
-    public void OnMusicbox()
-    {
-        bgmSound.Stop();
-        bgmSound.clip = bgmList[6];
-        bgmSound.Play();
-    }
-
-    // 아이돌방 오르골 브금 정지 및 배경 브금 재생
-    public void OutMusicbox()
-    {
-        bgmSound.Stop();
-        bgmSound.clip = bgmList[2];
-        bgmSound.Play();
-    }
-
-    // 환청 이벤트 BGM 재생
-    public void PlayEventBGM()
-    {
-        bgmSound.Stop();
-        bgmSound.clip = bgmList[9];
-        bgmSound.Play();
-    }
-    
-    // 환청 이벤트 BGM 중지 후 원래 방 배경음 재생
-    public void StopEventBGM(string bgmName)
-    {
-        bgmSound.Stop();
-        for(int i=0;i<bgmList.Length;i++) {
-            if(bgmName == bgmList[i].name)
-                bgmSound.clip = bgmList[i];
-        }
-        bgmSound.Play();
-    }
-
-    // 배경음악 재생
-    private void BgmSoundPlay(AudioClip clip)
-    {
-        bgmSound.clip = clip;
-        bgmSound.loop = true;
-        bgmSound.Play();
     }
 }

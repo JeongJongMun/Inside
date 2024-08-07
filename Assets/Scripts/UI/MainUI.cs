@@ -7,6 +7,10 @@ using PlayFab;
  */
 public class MainUI : MonoBehaviour
 {
+#region Private Variables
+    private OutGameManager outGameManager;
+#endregion
+
 #region Public Variables
     public static MainUI instance;
     // 패널
@@ -26,23 +30,6 @@ public class MainUI : MonoBehaviour
     public TMP_Text touchToStartText; // 터치하여 시작 텍스트
 #endregion
 
-#region Private Variables
-    private OutGameManager outGameManager;
-#endregion
-
-#region Public Methods
-    public void OnErrorMessage(string _message)
-    {
-        errorPopup.SetActive(true);
-        errorMessageText.text = _message;
-    }
-    public void OnErrorMessage(PlayFabError error)
-    {
-        errorPopup.SetActive(true);
-        errorMessageText.text = error.ErrorMessage;
-    }
-#endregion
-
 #region Private Methods
     private void Awake()
     {
@@ -56,6 +43,19 @@ public class MainUI : MonoBehaviour
         newGameButton.onClick.AddListener(() => StartCoroutine(outGameManager.NewGame()));
         loadGameButton.onClick.AddListener(outGameManager.LoadGame);
         logOutButton.onClick.AddListener(outGameManager.LogOut);
+    }
+#endregion
+
+#region Public Methods
+    public void OnErrorMessage(string _message)
+    {
+        errorPopup.SetActive(true);
+        errorMessageText.text = _message;
+    }
+    public void OnErrorMessage(PlayFabError error)
+    {
+        errorPopup.SetActive(true);
+        errorMessageText.text = error.ErrorMessage;
     }
 #endregion
 }

@@ -4,64 +4,19 @@ using UnityEngine.SceneManagement;
  * 게임 상태를 관리하는 스크립트
  * 전략 패턴을 사용하여 상태에 따라 UI를 변경
  */
-public interface IState
-{
-    void Enter();
-    void Exit();
-}
-public class LoginState : IState
-{
-    public void Enter()
-    {
-        AuthUI.instance.loginPanel.SetActive(true);
-        AuthUI.instance.ClearInputFields();
-    }
-    public void Exit()
-    {
-        AuthUI.instance.loginPanel.SetActive(false);
-    }
-}
-public class SignUpState : IState
-{
-    public void Enter()
-    {
-        AuthUI.instance.signUpPanel.SetActive(true);
-        AuthUI.instance.ClearInputFields();
-    }
-    public void Exit()
-    {
-        AuthUI.instance.signUpPanel.SetActive(false);
-    }
-}
-public class MainState : IState
-{
-    public void Enter()
-    {
-        MainUI.instance.mainPanel.SetActive(true);
-    }
-    public void Exit()
-    {
-        MainUI.instance.mainPanel.SetActive(false);
-    }
-}
-public class InGameState : IState
-{
-    public void Enter()
-    {
-    }
-    public void Exit()
-    {
-    }
-}
 public class GameManager : MonoBehaviour
 {
 #region Private Variables
     private static GameManager instance = null;
-    private IState gameState;
+    private IState externalState = null;
+    private IState internalState = null;
+    private const string OutGameScene = "0. OutGame";
+    private const string InGameScene = "1. InGame";
 #endregion
 
 #region Public Variables
     public static GameManager Instance { get { return instance; } }
+    public SoundManager soundManager = new SoundManager();
 #endregion
 
 #region Private Methods
@@ -73,31 +28,49 @@ public class GameManager : MonoBehaviour
         else {
             instance = this;
             DontDestroyOnLoad(gameObject);
-            gameObject.AddComponent<OutGameManager>();
             gameObject.AddComponent<AuthManager>();
             gameObject.AddComponent<DatabaseManager>();
         }
     }
     private void Start()
     {
-        if (SceneManager.GetActiveScene().name == "0. OutGame") {
-            ChangeState(new LoginState());
+        soundManager.Init();
+        if (SceneManager.GetActiveScene().name == OutGameScene) {
+            ChangeState(new OutGameState(), true);
         }
-        else if (SceneManager.GetActiveScene().name == "1. InGame") {
-            ChangeState(new InGameState());
+        else if (SceneManager.GetActiveScene().name == InGameScene) {
+            ChangeState(new InGameState(), true);
         }
     }
 #endregion
 
 #region Public Methods
-    public void ChangeState(IState newState)
+    public void ChangeState(IState newState, bool isExternalState = false)
     {
-        if (gameState != null) {
-            gameState.Exit();
+        if (isExternalState) {
+            if (externalState != null) {
+                externalState.Exit();
+            }
+            externalState = newState;
+            externalState.Enter();
+
+            switch (externalState) {
+                case OutGameState:
+                    ChangeState(new LoginState());
+                    break;
+                case InGameState:
+                    ChangeState(new KidState());
+                    break;
+            }
+            return;
         }
-        gameState = newState;
-        gameState.Enter();
-        Debug.Log($"Current State: {gameState.GetType().Name}");
+
+        if (internalState != null) {
+            internalState.Exit();
+        }
+        internalState = newState;
+        internalState.Enter();
+        Debug.Log($"Current State - External: {externalState.GetType().Name}, Internal: {internalState.GetType().Name}");
     }
 #endregion
 }

@@ -101,7 +101,7 @@ public class VoiceManager : MonoBehaviour
                     }
                     InGameManager.Instance.FadeInOut();
                     ToggleMic();
-                    SoundManager.instance.StopEventBGM(sceneName);
+                    // SoundManager.instance.StopEventBGM(sceneName);
 
                 }
                 else
@@ -114,7 +114,7 @@ public class VoiceManager : MonoBehaviour
     public void ScreamingMode(RoomName roomName)
     {
         InGameManager.Instance.FadeInOut();
-        SoundManager.instance.PlayEventBGM();
+        // SoundManager.instance.PlayEventBGM();
         mode = VoiceMode.Screaming;
         images[(int)roomName].SetActive(true);
         ToggleMic();

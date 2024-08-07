@@ -5,25 +5,25 @@ public class IdolRoomDressingTable : Trick
 {
     private float brokenTime = 3.0f;
 
-    [Header("È­Àå´ë È®´ë ÆÐ³Î")]
+    [Header("È­ï¿½ï¿½ï¿½ È®ï¿½ï¿½ ï¿½Ð³ï¿½")]
     public GameObject dressingTableZoomPanel;
 
-    [Header("Æ®¸¯ Ç®¸é È®´ë ½Ã È­Àå´ë ÀÌ¹ÌÁö º¯°æÇÒ ÀÌ¹ÌÁö")]
+    [Header("Æ®ï¿½ï¿½ Ç®ï¿½ï¿½ È®ï¿½ï¿½ ï¿½ï¿½ È­ï¿½ï¿½ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½")]
     public Image dressingTableZoom;
 
-    [Header("È®´ë ½Ã ºÎ¼­Áø È­Àå´ë ÀÌ¹ÌÁö")]
+    [Header("È®ï¿½ï¿½ ï¿½ï¿½ ï¿½Î¼ï¿½ï¿½ï¿½ È­ï¿½ï¿½ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½")]
     public Sprite brokenDressingTableZoom;
 
-    [Header("È®´ë ¾ÈÇßÀ» ¶§ ºÎ¼­Áø È­Àå´ë ÀÌ¹ÌÁö")]
+    [Header("È®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Î¼ï¿½ï¿½ï¿½ È­ï¿½ï¿½ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½")]
     public GameObject brokenDressingTable;
 
-    [Header("½Ç·ç¿§")]
+    [Header("ï¿½Ç·ç¿§")]
     public GameObject silhouette;
 
-    [Header("½Ç·ç¿§ ¾Ö´Ï¸ÞÀÌ¼Ç ¼Óµµ")]
+    [Header("ï¿½Ç·ç¿§ ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½Óµï¿½")]
     public float pulseSpeed = 3.0f;
 
-    [Header("½Ç·ç¿§ ¾Ö´Ï¸ÞÀÌ¼Ç ÁøÆø")]
+    [Header("ï¿½Ç·ç¿§ ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½ï¿½")]
     public float pulseAmplitude = 0.5f;
 
     private Image silhouetteImage;
@@ -40,7 +40,7 @@ public class IdolRoomDressingTable : Trick
     {
         if (!IsSolved() && dressingTableZoomPanel.activeSelf)
         {
-            TrySolve(this.gameObject);
+            // TrySolve(this.gameObject);
         }
     }
     public override void TrySolve(GameObject obj)
@@ -67,7 +67,7 @@ public class IdolRoomDressingTable : Trick
         dressingTableZoom.sprite = brokenDressingTableZoom;
         silhouette.SetActive(false);
         brokenDressingTable.SetActive(true);
-        Debug.Log("È­Àå´ë SolvedAction");
+        Debug.Log("È­ï¿½ï¿½ï¿½ SolvedAction");
     }
 
     private void SilhouetteAnimation()

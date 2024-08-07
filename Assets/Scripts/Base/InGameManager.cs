@@ -17,7 +17,6 @@ public class InGameManager : MonoBehaviour
     [SerializeField] private AudioMixer masterMixer;
     [SerializeField] private Slider audioSlider;
     public GameObject[] mentalImage;
-    public GameObject settingPanel;
     public GameObject gameoverPanel;
     public Image fadeImage;
     [SerializeField]
@@ -49,43 +48,12 @@ public class InGameManager : MonoBehaviour
         masterMixer.SetFloat("BGM", Mathf.Log10(volume)*20);
     }
 #endregion
-    public void SettingPanelOnOff()
-    {
-        SoundManager.instance.SFXPlay("buttonSound");
-        settingPanel.SetActive(!settingPanel.activeSelf);
-    }
     public void OnClickExitBtn(GameObject panel)
     {
         panel.SetActive(false);
         SoundManager.instance.SFXPlay("buttonSound");
-        UICanvasSetActive();
         StartCoroutine(LoadMain());
     }
-
-    public void OnClickSaveBtn()
-    {
-        SoundManager.instance.SFXPlay("buttonSound");
-        DatabaseManager.Instance.SaveData();
-        settingPanel.SetActive(false);
-    }
-    public void OnClickReviewBtn()
-    {
-        Application.OpenURL("https://play.google.com/store/apps/details?id=com.openthedoorandscream.inside");
-    }
-
-    // UI Canvas On/Off
-    public void UICanvasSetActive()
-    {
-        if (uiCanvas.sortingOrder == 1)
-        {
-            uiCanvas.sortingOrder = -1;
-        }
-        else
-        {
-            uiCanvas.sortingOrder = 1;
-        }
-    }
-
     public void OnClickItem(GameObject _item)
     {
         Inventory.instance.AcquireItem(_item.GetComponent<Item>());

@@ -3,11 +3,14 @@ using UnityEngine.UI;
 /* Clock.cs
  * 0. Kid Room - Wall 0
  */
-public class Clock : Observer
+public class Clock : NewTrick
 {
 #region Private Variables
-    private float angle;
+    private float currentAngle;
     private Transform clockHand;
+    private const float INITIAL_ANGLE = -90f;
+    private const float ANGLE_INCREMENT = -30f;
+    private const float FINAL_ANGLE = -360f;
 #endregion
 
 #region Public Variables
@@ -17,37 +20,32 @@ public class Clock : Observer
 #endregion
 
 #region Public Methods
-    public override void OnNotify(Define.TrickName _trickName)
-    {
-        if (_trickName != this.trickName) {
-            return;
-        }
-        // SoundManager.instance.SFXPlay("clock");
-        angle -= 30f;
-        clockHand.localEulerAngles = new Vector3(0f, 0f, angle);
-        if (angle == -330f) {
-            IsComplete = true;
-        }
-
-        if (!IsComplete) {
-            return;
-        }
-        angle = -360f;
-        clockHand.localEulerAngles = new Vector3(0f, 0f, angle);
-
-        GetComponent<Image>().raycastTarget = false;
-
-        gameObject.transform.position += Vector3.down * 70;
-        gameObject.transform.Rotate(0, 0, 30);
-    }
 #endregion
 
 #region Protected Methods
     protected override void Start()
     {
         base.Start();
-        angle = -90f;
+        currentAngle = INITIAL_ANGLE;
         clockHand = transform.GetChild(0);
+    }
+    protected override bool CheckComplete(NewItem _currentClickedItem)
+    {
+        GameManager.Instance.soundManager.Play($"Clock", SoundType.EFFECT);
+        currentAngle += ANGLE_INCREMENT;
+        clockHand.localEulerAngles = new Vector3(0f, 0f, currentAngle);
+        if (currentAngle != FINAL_ANGLE) {
+            return false;
+        }
+        return true;
+    }
+    protected override void OnComplete()
+    {
+        base.OnComplete();
+
+        GetComponent<Image>().raycastTarget = false;
+        gameObject.transform.position += Vector3.down * 70;
+        gameObject.transform.Rotate(0, 0, 30);
     }
 #endregion
 }

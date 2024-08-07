@@ -12,7 +12,7 @@ public class RoomManagerEnding : RoomManager
 
     public void Start()
     {
-        nextArrow.GetComponent<Button>().onClick.AddListener(OnClickRightArrow);
+        // nextArrow.GetComponent<Button>().onClick.AddListener(OnClickRightArrow);
 
         uiCanvas = GameObject.Find("UICanvas").GetComponent<Canvas>();
         uiCanvas.sortingOrder = -1;
@@ -20,7 +20,7 @@ public class RoomManagerEnding : RoomManager
 
     public void ZoomInInEnding(GameObject panel)
     {
-        panels.Push(panel);
+        // zoomStack.Push(panel);
         panel.SetActive(true);
         zoomOutArrow.SetActive(true);
         nextArrow.GetComponent<Button>().interactable = false;
@@ -29,8 +29,8 @@ public class RoomManagerEnding : RoomManager
     public void ZoomOutInEnding()
     {
         SoundManager.instance.SFXPlay("arrowButton");
-        GameObject panel = panels.Pop();
-        panel.SetActive(false);
+        // GameObject panel = zoomStack.Pop();
+        // panel.SetActive(false);
         zoomOutArrow.SetActive(false);
         nextArrow.GetComponent<Button>().interactable = true;
     }

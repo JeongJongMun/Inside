@@ -2,12 +2,13 @@ using UnityEngine;
 using UnityEngine.UI;
 /* Lamp.cs
  * 0. Kid Room - Wall 0
- * NOT Inherited from Observer
  */
 public class Lamp : MonoBehaviour
 {
 #region Private Variables
-    private Image lampImage;
+    private Image image;
+    private Lamp[] lamps;
+    private static int status = 0;
 #endregion
 
 #region Public Variables
@@ -17,13 +18,18 @@ public class Lamp : MonoBehaviour
 #region Private Methods
     private void Awake()
     {
-        lampImage = gameObject.GetComponent<Image>();
+        image = gameObject.GetComponent<Image>();
         gameObject.GetComponent<Button>().onClick.AddListener(OnClick);
+        lamps = FindObjectsOfType<Lamp>();
     }
+    private void OnEnable() => image.sprite = lampSprites[status];
     private void OnClick()
     {
-        // SoundManager.instance.SFXPlay("lampswitch");
-        lampImage.sprite = lampImage.sprite == lampSprites[0] ? lampSprites[1] : lampSprites[0];
+        GameManager.Instance.soundManager.Play("lampswitch");
+        status = status == 0 ? 1 : 0;
+        foreach (Lamp lamp in lamps) {
+            lamp.OnEnable();
+        }
     }
 #endregion
 

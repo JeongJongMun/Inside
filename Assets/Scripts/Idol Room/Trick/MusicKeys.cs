@@ -10,6 +10,6 @@ public class MusicKeys : MonoBehaviour
 
     private void OnClickKey(int key)
     {
-        SoundManager.instance.pianoPlay("piano", key);
+        // SoundManager.instance.pianoPlay("piano", key);
     }
 }

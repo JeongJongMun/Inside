@@ -3,7 +3,7 @@ using UnityEngine.UI;
 /* Bear.cs
  * 0. Kid Room - Wall 0
  */
-public class Bear : Observer
+public class Bear : NewTrick
 {
 #region Private Variables
     private Image image;
@@ -12,29 +12,6 @@ public class Bear : Observer
 #region Public Variables
     public Sprite bearBody;
     public GameObject bearHead;
-    public GameObject password;
-#endregion
-
-#region Private Methods
-#endregion
-
-#region Public Methods
-    public override void OnNotify(Define.TrickName _trickName)
-    {
-        if (_trickName != this.trickName) {
-            return;
-        }
-        if (NewInventory.instance.GetClickedItemName() != Define.ItemName.Cutter && !IsComplete) {
-            return;
-        }
-        // VoiceManager.Instance.ScreamingMode(Define.RoomName.Kid);
-        IsComplete = true;
-
-        image.sprite = bearBody;
-        image.raycastTarget = false;
-        bearHead.SetActive(true);
-        password.SetActive(true);
-    }
 #endregion
 
 #region Protected Methods
@@ -42,6 +19,18 @@ public class Bear : Observer
     {
         base.Start();
         image = GetComponent<Image>();
+    }
+    protected override bool CheckComplete(NewItem _currentClickedItem)
+    {
+        if (_currentClickedItem.itemName != Define.ItemName.Cutter || IsComplete) return false;
+        // VoiceManager.Instance.ScreamingMode(Define.RoomName.Kid);
+        return true;
+    }
+    protected override void OnComplete()
+    {
+        base.OnComplete();
+        image.sprite = bearBody;
+        bearHead.SetActive(true);
     }
 #endregion
 }

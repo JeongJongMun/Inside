@@ -1,10 +1,10 @@
+using System.Collections.Generic;
 using UnityEngine;
 
-public class TrickManager : MonoBehaviour, ISubject
+public class TrickManager : MonoBehaviour
 {
 #region Private Variables
-    private delegate void NotifyHandler(Define.TrickName trickName);
-    private NotifyHandler notifyHandler;
+    [SerializeField] private HashSet<NewTrick> tricks = new HashSet<NewTrick>();
 #endregion
 
 #region Public Variables
@@ -14,19 +14,18 @@ public class TrickManager : MonoBehaviour, ISubject
 #endregion
 
 #region Public Methods
-    public void AddObserver(Observer observer)
+    public void AddTrick(NewTrick _trick)
     {
-        notifyHandler += observer.OnNotify;
-        Debug.Log($"{observer.name} is added to the observer list");
+        tricks.Add(_trick);
+        Debug.Log($"{_trick.name} is added to the trick list");
     }
-    public void RemoveObserver(Observer observer)
+    public void RemoveTrick(NewTrick _trick)
     {
-        notifyHandler -= observer.OnNotify;
-        Debug.Log($"{observer.name} is removed from the observer list");
-    }
-    public void Notify(Define.TrickName trickName)
-    {
-        notifyHandler(trickName);
+        if (!tricks.Contains(_trick)) {
+            return;
+        }
+        tricks.Remove(_trick);
+        Debug.Log($"{_trick.name} is removed from the trick list");
     }
 #endregion
 }

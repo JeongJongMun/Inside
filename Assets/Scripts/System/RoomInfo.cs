@@ -9,9 +9,6 @@ public class RoomInfo : MonoBehaviour
 #endregion
 
 #region Private Methods
-    private void Awake()
-    {
-        roomName = gameObject.name;
-    }
+    private void Awake() => roomName = gameObject.name;
 #endregion
 }

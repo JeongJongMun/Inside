@@ -253,7 +253,8 @@ public class DatabaseManager : MonoBehaviour
         ItemData.Clear();
         InventoryData.Clear();
         MentalPointData = 3;
-        InGameManager.Instance.MentalRecovery();
+        // TODO: 멘탈 회복
+        // InGameManager.Instance.MentalRecovery();
         Dictionary<string, string> trickDic = new Dictionary<string, string>
         {
             { "TrickContent", "" }

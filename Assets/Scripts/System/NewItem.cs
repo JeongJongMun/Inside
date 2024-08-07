@@ -13,7 +13,7 @@ public class NewItem : MonoBehaviour
 
 #region Public Variables
     [HideInInspector] public Define.ItemName itemName = Define.ItemName.None;
-    [HideInInspector] public Sprite icon = null;
+    public Sprite icon = null;
 #endregion
 
 #region Private Methods

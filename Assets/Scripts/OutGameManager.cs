@@ -9,6 +9,7 @@ public class OutGameManager : MonoBehaviour
 {
 #region Private Variables
     private GameManager gameManager;
+
 #endregion
 
 #region Public Variables
@@ -43,7 +44,6 @@ public class OutGameManager : MonoBehaviour
 
         MainUI.instance.helpPanel.SetActive(false);
         DOTween.Clear(targetText); // 깜빡임 효과 정지
-        gameManager.ChangeState(new InGameState());
     }
 #endregion
 
@@ -52,17 +52,13 @@ public class OutGameManager : MonoBehaviour
     {
         yield return StartCoroutine(OnHelpPanel());
 
-        Inventory.instance.ClearInventory();
         DatabaseManager.Instance.ResetData();
-        InGameManager.Instance.UICanvasSetActive();
-        SceneManager.LoadScene("KidRoom");
+        gameManager.ChangeState(new InGameState());
     }
     public void LoadGame()
     {
-        Inventory.instance.ClearInventory();
         DatabaseManager.Instance.GetUserData();
-        InGameManager.Instance.UICanvasSetActive();
-        SceneManager.LoadScene("KidRoom");
+        gameManager.ChangeState(new InGameState());
     }
     public void LogOut()
     {

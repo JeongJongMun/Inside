@@ -16,10 +16,10 @@ public enum Notes
 
 public class IdolRoomMusicPlateZoom : Trick
 {
-    [Header("6°³ À½Ç¥")]
+    [Header("6ï¿½ï¿½ ï¿½ï¿½Ç¥")]
     public GameObject[] notes;
 
-    [Header("À½º° Y À§Ä¡")]
+    [Header("ï¿½ï¿½ï¿½ï¿½ Y ï¿½ï¿½Ä¡")]
     Dictionary<Notes, int> notesPosition = new Dictionary<Notes, int>
     {
         { Notes.C, -65 }, // 1
@@ -30,28 +30,28 @@ public class IdolRoomMusicPlateZoom : Trick
     };
 
     [SerializeField]
-    [Header("ÇöÀç À½Ç¥ ¹øÈ£")]
+    [Header("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ç¥ ï¿½ï¿½È£")]
     private int currentNoteNumber = 0;
 
     [SerializeField]
-    [Header("ÇöÀç ÀÔ·Â °ª")]
+    [Header("ï¿½ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½ ï¿½ï¿½")]
     private List<Notes> input = new List<Notes>();
 
-    [Header("Á¤´ä: 533422")]
+    [Header("ï¿½ï¿½ï¿½ï¿½: 533422")]
     private List<Notes> answer = new List<Notes>() 
     {
         Notes.G, Notes.E, Notes.E, Notes.F, Notes.D, Notes.D
     };
 
 
-    [Header("À½Ç¥ ¹öÆ°µé")]
+    [Header("ï¿½ï¿½Ç¥ ï¿½ï¿½Æ°ï¿½ï¿½")]
     public Image[] noteButtons;
 
     public override void TrySolve(GameObject obj)
     {
         if (obj.name == this.name)
         {
-            // ÀÔ·Â°ú Á¤´äÀÌ °°À»¶§
+            // ï¿½Ô·Â°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             if (Enumerable.SequenceEqual(input, answer))
             {
                 Debug.LogFormat("{0} Solved", this.name);
@@ -75,10 +75,10 @@ public class IdolRoomMusicPlateZoom : Trick
     {
         for (int i = 0; i < notes.Length; i++)
         {
-            // À½Ç¥ È°¼ºÈ­
+            // ï¿½ï¿½Ç¥ È°ï¿½ï¿½È­
             notes[i].SetActive(true);
 
-            // À½ º° y°ª ¼³Á¤
+            // ï¿½ï¿½ ï¿½ï¿½ yï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             Vector3 _transform = notes[i].GetComponent<RectTransform>().anchoredPosition;
             _transform.y = notesPosition[answer[i]];
             notes[i].GetComponent<RectTransform>().anchoredPosition = _transform;
@@ -94,25 +94,25 @@ public class IdolRoomMusicPlateZoom : Trick
     {
         if (currentNoteNumber < 6)
         {
-            // À½Ç¥ ¿ÀºêÁ§Æ®ÀÇ ÀÌ¸§À» EnumÀ¸·Î º¯È¯
+            // ï¿½ï¿½Ç¥ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ Enumï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¯
             Notes _note = (Notes)Enum.Parse(typeof(Notes), noteButton.name);
 
-            // À½Ç¥ È°¼ºÈ­
+            // ï¿½ï¿½Ç¥ È°ï¿½ï¿½È­
             notes[currentNoteNumber].SetActive(true);
 
-            // À½ º° y°ª ¼³Á¤
+            // ï¿½ï¿½ ï¿½ï¿½ yï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             Vector3 _transform = notes[currentNoteNumber].GetComponent<RectTransform>().anchoredPosition;
             _transform.y = notesPosition[_note];
             notes[currentNoteNumber].GetComponent<RectTransform>().anchoredPosition = _transform;
 
-            // ÀÔ·Â ±â·Ï
+            // ï¿½Ô·ï¿½ ï¿½ï¿½ï¿½
             input.Add(_note);
 
-            // ´ÙÀ½ À½Ç¥·Î ÀÌµ¿
+            // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ç¥ï¿½ï¿½ ï¿½Ìµï¿½
             currentNoteNumber++;
-            SoundManager.instance.pianoPlay("piano", (int)_note);
+            // SoundManager.instance.pianoPlay("piano", (int)_note);
 
-            // À½Ç¥¸¦ ¸ðµÎ ÀÔ·ÂÇßÀ» ½Ã 0.2ÃÊ º¸¿©ÁÖ°í TrySolve
+            // ï¿½ï¿½Ç¥ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ 0.2ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ö°ï¿½ TrySolve
             if (currentNoteNumber == notes.Length)
             {
                 StartCoroutine(DoTrySolve());

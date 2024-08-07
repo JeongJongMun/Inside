@@ -9,30 +9,6 @@ EditorBuildSettings:
     path: Assets/Scenes/0. OutGame.unity
     guid: fbd7de170f169174f87e079bb781e995
   - enabled: 1
-    path: Assets/Scenes/KidRoom.unity
-    guid: e34e68e6616e0244c8a52f242315bc79
-  - enabled: 1
-    path: Assets/Scenes/IdolRoom.unity
-    guid: afd4ef492bba6e148b369f2d4f1d7897
-  - enabled: 1
-    path: Assets/Scenes/Hallway.unity
-    guid: d53081a20251d5a478499b797422b287
-  - enabled: 1
-    path: Assets/Scenes/LivingRoom.unity
-    guid: 000d5655573259e46bea7ff88ddfa699
-  - enabled: 1
-    path: Assets/Scenes/ResearcherRoom.unity
-    guid: 285ced391274e024bba629d2826d3235
-  - enabled: 1
-    path: Assets/Scenes/CEORoom.unity
-    guid: 273a952aa8c4e05428d6a09f4e33d281
-  - enabled: 1
-    path: Assets/Scenes/KillerRoom.unity
-    guid: 0e51f56e4d21563419bf2db35cfd01c4
-  - enabled: 1
-    path: Assets/Scenes/EndingRoom.unity
-    guid: 7e4481d29c20d5245b094cd33f96b66f
-  - enabled: 1
-    path: Assets/Scenes/Credit.unity
-    guid: 55624cc6ebc026f4484c21e1014020c8
+    path: Assets/Scenes/1. InGame.unity
+    guid: bed5960aa75768741931f2dc91ac8a17
   m_configObjects: {}

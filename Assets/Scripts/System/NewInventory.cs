@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 /* Inventory.cs
@@ -53,12 +54,13 @@ public class NewInventory : MonoBehaviour
         }
         return false;
     }
-    public bool RemoveItem(Item _item)
+    public bool RemoveItem(NewItem _item)
     {
         for (int i = 0; i < items.Length; i++)
         {
             if (items[i] == _item) {
                 items[i] = null;
+                icons[i].RemoveIcon();
                 return true;
             }
         }
@@ -70,14 +72,28 @@ public class NewInventory : MonoBehaviour
             items[i] = null;
         }
     }
-    public Define.ItemName GetClickedItemName()
+    public NewItem GetClickedItem()
     {
         for (int i = 0; i < toggles.Length; i++) {
             if (toggles[i].isOn) {
-                return items[i].itemName;
+                toggles[i].isOn = false;
+                return items[i];
             }
         }
-        return Define.ItemName.None;
+        GameObject emptyObject = new GameObject();
+        NewItem emptyItem = emptyObject.AddComponent<NewItem>();
+        emptyItem.itemName = Define.ItemName.None;
+        Destroy(emptyObject, 0.5f);
+        return emptyItem;
+    }
+    public NewItem GetItem(Define.ItemName _itemName)
+    {
+        for (int i = 0; i < items.Length; i++) {
+            if (items[i] != null && items[i].itemName == _itemName) {
+                return items[i];
+            }
+        }
+        return null;
     }
 #endregion
 }
