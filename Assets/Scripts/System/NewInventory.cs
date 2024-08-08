@@ -16,6 +16,7 @@ public class NewInventory : MonoBehaviour
     [SerializeField] private NewItem[] items;
     private Toggle[] toggles;
     private NewInventorySlot[] icons;
+    private GameManager gameManager;
 #endregion
 
 #region Public Variables
@@ -39,6 +40,10 @@ public class NewInventory : MonoBehaviour
             icons[i] = child.GetComponent<NewInventorySlot>();
         }
     }
+    private void Start()
+    {
+        gameManager = GameManager.Instance;
+    }
 #endregion
 
 #region Public Methods
@@ -49,6 +54,7 @@ public class NewInventory : MonoBehaviour
                 items[i] = _item;
                 icons[i].SetIcon(_item.icon);
                 _item.gameObject.SetActive(false);
+                gameManager.soundManager.Play("bedFabric");
                 return true;
             }
         }

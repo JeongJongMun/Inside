@@ -4,7 +4,7 @@ using System.Collections;
 
 public class RoomManagerIdol : RoomManager
 {
-    public IdolRoomMusicPlateZoom musicPlate;
+    public MusicPlate musicPlate;
 
     public void OnClickClosetHole()
     {

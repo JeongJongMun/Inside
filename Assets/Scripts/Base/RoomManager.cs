@@ -66,6 +66,7 @@ public class RoomManager : MonoBehaviour
             }
         }
         rooms[currentRoomIndex].walls[currentWallIndex].SetActive(true);
+        OnRoomChanged?.Invoke();
     }
     private void InitializeItems()
     {
@@ -76,7 +77,6 @@ public class RoomManager : MonoBehaviour
             item.GetComponent<Button>().onClick.AddListener(() => {
                 NewInventory.instance.AddItem(addedItem);
                 gameManager.soundManager.Play("Item", SoundType.EFFECT);
-
             });
         }
     }
@@ -121,6 +121,18 @@ public class RoomManager : MonoBehaviour
         walls[currentWallIndex].SetActive(false);
         currentWallIndex = (currentWallIndex + wallCount + _direction) % wallCount;
         walls[currentWallIndex].SetActive(true);
+    }
+    public void MoveRoom(int _direction)
+    {
+        rooms[currentRoomIndex].walls[currentWallIndex].SetActive(false);
+        currentRoomIndex += _direction;
+        // 이동한 방의 벽면 개수
+        int wallCount = rooms[currentRoomIndex].walls.Length;
+        // 앞 방으로 간다면 첫 벽면, 뒷 방으로 간다면 마지막 벽면
+        currentWallIndex = _direction == 1 ? 0 : wallCount - 1;
+
+        rooms[currentRoomIndex].walls[currentWallIndex].SetActive(true);
+        OnRoomChanged?.Invoke();
     }
     private void SetActiveArrow()
     {
