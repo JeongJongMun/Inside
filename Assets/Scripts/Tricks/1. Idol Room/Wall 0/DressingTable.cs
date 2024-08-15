@@ -5,11 +5,13 @@ using UnityEngine.UI;
 public class DressingTable : NewTrick
 {
 #region Private Variables
-    private const float brokenTime = 4.0f;
+    private const float brokenTime = 3.0f;
     private float pulseSpeed = 3.0f;
     private float pulseAmplitude = 0.5f;
     private Image silhouetteImage;
     private float timeOffset = 1.0f;
+    private GameManager gameManager;
+    private RoomManager roomManager;
 #endregion
 
 #region Public Variables
@@ -18,21 +20,30 @@ public class DressingTable : NewTrick
 #endregion
 
 #region Private Methods
+    private void Awake()
+    {
+        roomManager = FindObjectOfType<RoomManager>();
+        gameManager = GameManager.instance;
+    }
     private void OnEnable() 
     {
         if (IsComplete) return;
+        gameManager.soundManager.Play("Silhouette", SoundType.BGM);
         InvokeRepeating("SilhouetteAnimation", 0f, 0.05f);
         StartCoroutine(CheckCompleteCoroutine(brokenTime));
     }
     private IEnumerator CheckCompleteCoroutine(float time)
     {
         yield return new WaitForSeconds(time);
-        CheckComplete(null);
+        IsComplete = CheckComplete(null);
     }
     private void OnDisable() 
     {
-        CancelInvoke();
+        if (!IsComplete) {
+            gameManager.soundManager.Play(roomManager.CurrentRoomName().ToString(), SoundType.BGM);
+        }
         silhouetteImage.color = Color.white;
+        CancelInvoke();
     }
     private void SilhouetteAnimation()
     {
@@ -51,9 +62,9 @@ public class DressingTable : NewTrick
     }
     protected override bool CheckComplete(NewItem _currentClickedItem)
     {
-        GameManager.Instance.soundManager.Play("breakMirror");
+        gameManager.soundManager.Play("breakMirror");
+        gameManager.soundManager.Play(roomManager.CurrentRoomName().ToString(), SoundType.BGM);
         CancelInvoke();
-        IsComplete = true;
         return true;
     }
     protected override void OnComplete()

@@ -11,6 +11,7 @@ public abstract class NewTrick : MonoBehaviour
     private bool isComplete = false;
     private TrickManager trickManager;
     private Action OnCompleteAction;
+    private InGameManager inGameManager;
 #endregion
 
 #region Public Variables
@@ -20,7 +21,6 @@ public abstract class NewTrick : MonoBehaviour
             if (isComplete) {
                 OnCompleteAction?.Invoke();
                 // DatabaseManager.Instance.SetData(trickName);
-                // InGameManager.Instance.FadeInOut();
             }
         } 
     }
@@ -48,20 +48,23 @@ public abstract class NewTrick : MonoBehaviour
 #region Protected Methods
     protected virtual void Start()
     {
-        trickName = GetTrickNameFromName(this.name);
+        inGameManager = FindObjectOfType<InGameManager>();
         trickManager = FindObjectOfType<TrickManager>();
         trickManager.AddTrick(this);
+        trickName = GetTrickNameFromName(this.name);
 
         if (TryGetComponent(out Button button)) {
             button.onClick.AddListener(() => IsComplete = CheckComplete(NewInventory.instance.GetClickedItem()));
         }
         OnCompleteAction += OnComplete;
+
     }
     protected abstract bool CheckComplete(NewItem _currentClickedItem);
     protected virtual void OnComplete()
     {
         OnCompleteAction -= OnComplete;
         trickManager.RemoveTrick(this);
+        inGameManager.BlinkingEffect(Color.black);
         if (TryGetComponent(out Image image)) {
             image.raycastTarget = false;
         }

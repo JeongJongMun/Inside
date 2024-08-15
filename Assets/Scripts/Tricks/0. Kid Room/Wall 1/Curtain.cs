@@ -21,7 +21,7 @@ public class Curtain : MonoBehaviour
     }
     private void OnClick()
     {
-        GameManager.Instance.soundManager.Play("curtain");
+        GameManager.instance.soundManager.Play("curtain");
         curtainImage.sprite = curtainImage.sprite == curtainSprites[0] ? curtainSprites[1] : curtainSprites[0];
     }
 #endregion

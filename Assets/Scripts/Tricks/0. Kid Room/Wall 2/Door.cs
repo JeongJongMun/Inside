@@ -7,6 +7,6 @@ public class Door : MonoBehaviour
 {
 #region Private Methods
     private void Awake() => gameObject.GetComponent<Button>().onClick.AddListener(OnClick);
-    private void OnClick() => GameManager.Instance.soundManager.Play("doorLocked");
+    private void OnClick() => GameManager.instance.soundManager.Play("doorLocked");
 #endregion
 }

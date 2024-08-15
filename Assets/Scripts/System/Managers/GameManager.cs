@@ -4,10 +4,9 @@ using UnityEngine.SceneManagement;
  * 게임 상태를 관리하는 스크립트
  * 전략 패턴을 사용하여 상태에 따라 UI를 변경
  */
-public class GameManager : MonoBehaviour
+public class GameManager : Singleton<GameManager>
 {
 #region Private Variables
-    private static GameManager instance = null;
     private IState externalState = null;
     private IState internalState = null;
     private const string OutGameScene = "0. OutGame";
@@ -15,22 +14,15 @@ public class GameManager : MonoBehaviour
 #endregion
 
 #region Public Variables
-    public static GameManager Instance { get { return instance; } }
     public SoundManager soundManager = new SoundManager();
 #endregion
 
 #region Private Methods
-    private void Awake()
+    protected override void Awake()
     {
-        if (instance != null && instance != this) {
-            Destroy(gameObject);
-        }
-        else {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-            gameObject.AddComponent<AuthManager>();
-            gameObject.AddComponent<DatabaseManager>();
-        }
+        base.Awake();
+        gameObject.AddComponent<AuthManager>();
+        gameObject.AddComponent<DatabaseManager>();
     }
     private void Start()
     {

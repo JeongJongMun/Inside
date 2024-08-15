@@ -10,7 +10,7 @@ public class ClosetIdol : NewTrick
 #region Protected Methods
     protected override bool CheckComplete(NewItem _currentClickedItem)
     {
-        GameManager.Instance.soundManager.Play("closet");
+        GameManager.instance.soundManager.Play("closet");
         return true;
     }
     protected override void OnComplete()

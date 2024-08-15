@@ -21,14 +21,14 @@ public class SafeKid : NewTrick
 #region Public Methods
     public void OnClickKeypad(GameObject keypad)
     {
-        GameManager.Instance.soundManager.Play("electricButton");
+        GameManager.instance.soundManager.Play("electricButton");
         if (display.text.Length < 4) {
             display.text += keypad.name;
         }
     }
     public void OnClickDelete()
     {
-        GameManager.Instance.soundManager.Play("electricButton");
+        GameManager.instance.soundManager.Play("electricButton");
 
         if (display.text.Length > 0) {
             display.text = display.text.Substring(0, display.text.Length - 1);
@@ -51,12 +51,12 @@ public class SafeKid : NewTrick
     protected override bool CheckComplete(NewItem _currentClickedItem)
     {
         if (display.text != "0710") {
-            GameManager.Instance.soundManager.Play("electricFail");
+            GameManager.instance.soundManager.Play("electricFail");
             display.text = "";
             return false;
         }
 
-        GameManager.Instance.soundManager.Play("electricOKButton");
+        GameManager.instance.soundManager.Play("electricOKButton");
         NewItem password = NewInventory.instance.GetItem(Define.ItemName.Password);
         if (password != null) {
             NewInventory.instance.RemoveItem(password);

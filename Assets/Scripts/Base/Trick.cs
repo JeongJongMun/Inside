@@ -29,7 +29,7 @@ public abstract class Trick : MonoBehaviour
     {
         this.isSolved = _isSolved;
         DatabaseManager.Instance.SetData(trickName);
-        InGameManager.Instance.FadeInOut();
+        // InGameManager.instance.BlinkingEffect();
     }
 
     public bool IsSolved()

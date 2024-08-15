@@ -22,14 +22,11 @@ public class RoomManager : MonoBehaviour
     [SerializeField] private Transform[] subwalls;
     [SerializeField] private int roomCount = 0;
     private Stack<GameObject> zoomStack = new Stack<GameObject>();
-    private List<string> roomNames = new List<string>();
     private GameManager gameManager;
 #endregion
 
 #region Public Variables
-    public static RoomManager instance;
-    public string currentRoomName => roomNames[currentRoomIndex];
-
+    public Define.RoomName CurrentRoomName () => (Define.RoomName)currentRoomIndex;
     public Action OnRoomChanged;
     public Transform roomHolder;
     public GameObject leftArrow, rightArrow, bottomArrow;
@@ -38,24 +35,19 @@ public class RoomManager : MonoBehaviour
 #region Private Methods
     private void Awake()
     {
-        instance = this;
-        OnRoomChanged += () => gameManager.soundManager.Play($"{currentRoomName}", SoundType.BGM);
+        OnRoomChanged += () => gameManager.soundManager.Play(CurrentRoomName().ToString(), SoundType.BGM);
         InitializeItems();
         InitializeRooms();
-
-        // Initialize roomNames
-        for (int i = 0; i < roomCount; i++) {
-            roomNames.Add(roomHolder.GetChild(i).GetComponent<RoomInfo>().roomName);
-        }
 
         leftArrow.GetComponent<Button>().onClick.AddListener(() => MoveWall(-1));
         rightArrow.GetComponent<Button>().onClick.AddListener(() => MoveWall(1));
         bottomArrow.GetComponent<Button>().onClick.AddListener(ZoomOut);
 
-        gameManager = GameManager.Instance;
+        gameManager = GameManager.instance;
     }
     private void Start()
     {
+        // Disable rooms
         for (int i = 0; i < roomCount; i++) {
             for (int j = 0; j < rooms[i].walls.Length; j++) {
                 rooms[i].walls[j].SetActive(false);
@@ -76,7 +68,7 @@ public class RoomManager : MonoBehaviour
             addedItem.InitializeItem();
             item.GetComponent<Button>().onClick.AddListener(() => {
                 NewInventory.instance.AddItem(addedItem);
-                gameManager.soundManager.Play("Item", SoundType.EFFECT);
+                gameManager.soundManager.Play("Item");
             });
         }
     }
@@ -114,7 +106,7 @@ public class RoomManager : MonoBehaviour
     }
     private void MoveWall(int _direction)
     {
-        gameManager.soundManager.Play("ArrowButton", SoundType.EFFECT);
+        gameManager.soundManager.Play("ArrowButton");
         GameObject[] walls = rooms[currentRoomIndex].walls;
         int wallCount = walls.Length;
 
@@ -158,9 +150,4 @@ public class RoomManager : MonoBehaviour
         SetActiveArrow();
     }
 #endregion
-
-    [SerializeField]
-    private HashSet<GameObject> trickObjects = new HashSet<GameObject>();
-
-    public List<Trick> tricks = new List<Trick>();
 }

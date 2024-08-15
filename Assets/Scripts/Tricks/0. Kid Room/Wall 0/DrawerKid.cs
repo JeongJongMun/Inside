@@ -12,10 +12,10 @@ public class DrawerKid : NewTrick
     {
         if (_currentClickedItem.itemName != Define.ItemName.DrawerKeyKid || IsComplete) 
         {
-            GameManager.Instance.soundManager.Play("drawerLocked");
+            GameManager.instance.soundManager.Play("drawerLocked");
             return false;
         }
-        GameManager.Instance.soundManager.Play("drawerOpened");
+        GameManager.instance.soundManager.Play("drawerOpened");
         NewInventory.instance.RemoveItem(_currentClickedItem);
         return true;
     }

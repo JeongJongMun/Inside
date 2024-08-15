@@ -42,7 +42,7 @@ public class NewInventory : MonoBehaviour
     }
     private void Start()
     {
-        gameManager = GameManager.Instance;
+        gameManager = GameManager.instance;
     }
 #endregion
 

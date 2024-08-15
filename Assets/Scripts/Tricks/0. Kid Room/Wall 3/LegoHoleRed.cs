@@ -19,7 +19,7 @@ public class LegoHoleRed : NewTrick
     protected override bool CheckComplete(NewItem _currentClickedItem)
     {
         if (_currentClickedItem.itemName != Define.ItemName.LegoRed || IsComplete) return false;
-        GameManager.Instance.soundManager.Play("lego");
+        GameManager.instance.soundManager.Play("lego");
         NewInventory.instance.RemoveItem(_currentClickedItem);
         return true;
     }

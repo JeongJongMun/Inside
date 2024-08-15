@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class ResearcherRoomRCloset : Trick
 {
-    [Header("Stand Æ®¸¯ÀÌ ÇØ°á µÇ¾ú´Â°¡")]
+    [Header("Stand Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½Ø°ï¿½ ï¿½Ç¾ï¿½ï¿½Â°ï¿½")]
     public bool isStandSolved = false;
 
     [Header("Clothes")]
@@ -18,7 +18,7 @@ public class ResearcherRoomRCloset : Trick
                 SoundManager.instance.SFXPlay("closet");
                 SetIsSolved(true);
                 SolvedAction();
-                VoiceManager.Instance.ScreamingMode(Define.RoomName.Researcher);
+                // VoiceManager.instance.ScreamingMode(Define.RoomName.Researcher);
             }
             else
             {

@@ -22,8 +22,8 @@ public class NewItem : MonoBehaviour
 #region Public Methods
     public void InitializeItem()
     {
-        string roomName = this.GetComponentInParent<RoomInfo>().roomName;
-        icon = Resources.Load<Sprite>($"Sprites/Items/{roomName}/{this.name}");
+        string path = this.GetComponentInParent<RoomInfo>().roomPath;
+        icon = Resources.Load<Sprite>($"Sprites/Items/{path}/{this.name}");
         itemName = System.Enum.Parse<Define.ItemName>(this.name);
     }
 #endregion

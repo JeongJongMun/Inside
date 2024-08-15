@@ -85,7 +85,7 @@ public class Board : MonoBehaviour
 	{
 		if ( Vector3.Distance(EmptyTilePosition, tile.GetComponent<RectTransform>().localPosition) == neighborTileDistance)
 		{
-			GameManager.Instance.soundManager.Play("dragslide");
+			GameManager.instance.soundManager.Play("dragslide");
 
 			Vector3 goalPosition = EmptyTilePosition;
 

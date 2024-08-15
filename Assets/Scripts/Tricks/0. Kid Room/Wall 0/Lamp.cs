@@ -25,7 +25,7 @@ public class Lamp : MonoBehaviour
     private void OnEnable() => image.sprite = lampSprites[status];
     private void OnClick()
     {
-        GameManager.Instance.soundManager.Play("lampswitch");
+        GameManager.instance.soundManager.Play("lampswitch");
         status = status == 0 ? 1 : 0;
         foreach (Lamp lamp in lamps) {
             lamp.OnEnable();

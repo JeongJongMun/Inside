@@ -17,7 +17,6 @@ public class TrickManager : MonoBehaviour
     public void AddTrick(NewTrick _trick)
     {
         tricks.Add(_trick);
-        Debug.Log($"{_trick.name} is added to the trick list");
     }
     public void RemoveTrick(NewTrick _trick)
     {
@@ -25,7 +24,6 @@ public class TrickManager : MonoBehaviour
             return;
         }
         tricks.Remove(_trick);
-        Debug.Log($"{_trick.name} is removed from the trick list");
     }
 #endregion
 }

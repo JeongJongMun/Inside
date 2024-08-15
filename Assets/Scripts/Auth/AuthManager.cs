@@ -34,7 +34,7 @@ public class AuthManager : MonoBehaviour
         PlayFabClientAPI.GetAccountInfo(userDataRequest, OnGetUserAccountSuccess, OnGetUserAccountFailure);
 
         var mainState = new MainState();
-        GameManager.Instance.ChangeState(mainState);
+        GameManager.instance.ChangeState(mainState);
     }
     private void OnLoginFailure(PlayFabError error)
     {
@@ -44,7 +44,7 @@ public class AuthManager : MonoBehaviour
     private void OnSignUpSuccess(RegisterPlayFabUserResult result)
     {
         var loginState = new LoginState();
-        GameManager.Instance.ChangeState(loginState);
+        GameManager.instance.ChangeState(loginState);
     }
     private void OnSignUpFailure(PlayFabError error)
     {

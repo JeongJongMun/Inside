@@ -6,7 +6,7 @@ public class MusicKeys : MonoBehaviour
     private GameManager gameManager;
     private void Start()
     {
-        gameManager = GameManager.Instance;
+        gameManager = GameManager.instance;
         GetComponent<Button>().onClick.AddListener(() => OnClickKey(int.Parse(name)));
     }
 

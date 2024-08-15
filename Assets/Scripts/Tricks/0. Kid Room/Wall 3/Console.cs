@@ -14,7 +14,7 @@ public class Console : NewTrick
     {
         if (!isGameWin) return false;
 
-        GameManager.Instance.soundManager.Play("gameClear");
+        GameManager.instance.soundManager.Play("gameClear");
         StartCoroutine(DoorSlideSoundEffect());
         return true;
     }
@@ -30,7 +30,7 @@ public class Console : NewTrick
     private IEnumerator DoorSlideSoundEffect()
     {
         yield return new WaitForSeconds(2.0f);
-        GameManager.Instance.soundManager.Play("doorSlide");
+        GameManager.instance.soundManager.Play("doorSlide");
     }
     public void Clear()
     {

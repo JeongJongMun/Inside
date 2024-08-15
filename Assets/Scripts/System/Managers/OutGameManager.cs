@@ -23,7 +23,7 @@ public class OutGameManager : MonoBehaviour
     }
     private void Start()
     {
-        gameManager = GameManager.Instance;
+        gameManager = GameManager.instance;
     }
 
     private IEnumerator OnHelpPanel()
@@ -63,7 +63,7 @@ public class OutGameManager : MonoBehaviour
     public void LogOut()
     {
         PlayFabClientAPI.ForgetAllCredentials();
-        GameManager.Instance.ChangeState(new LoginState());
+        GameManager.instance.ChangeState(new LoginState());
     }
 #endregion
 }

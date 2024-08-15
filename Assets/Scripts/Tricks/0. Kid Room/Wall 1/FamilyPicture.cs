@@ -11,7 +11,7 @@ public class FamilyPicture : NewTrick
     protected override bool CheckComplete(NewItem _currentClickedItem)
     {
         if (_currentClickedItem.itemName != Define.ItemName.Cutter) return false;
-        GameManager.Instance.soundManager.Play("cutter");
+        GameManager.instance.soundManager.Play("cutter");
         return true;
     }
     protected override void OnComplete()

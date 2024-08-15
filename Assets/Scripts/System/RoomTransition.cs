@@ -5,9 +5,10 @@ public class RoomTransition : MonoBehaviour
 {
     private void Start()
     {
-        int direction = gameObject.name == "Next" ? 1 : -1;
         if (TryGetComponent(out Button button)) {
-            button.onClick.AddListener(() => RoomManager.instance.MoveRoom(direction));
+            int direction = gameObject.name == "Next" ? 1 : -1;
+            RoomManager roomManager = FindObjectOfType<RoomManager>();
+            button.onClick.AddListener(() => roomManager.MoveRoom(direction));
         }
     }
 }

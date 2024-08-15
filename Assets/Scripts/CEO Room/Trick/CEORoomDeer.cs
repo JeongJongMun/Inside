@@ -26,7 +26,7 @@ public class CEORoomDeer : Trick
                 SoundManager.instance.SFXPlay("gunshot");
                 SetIsSolved(true);
                 SolvedAction();
-                VoiceManager.Instance.ScreamingMode(RoomName.CEO);
+                // VoiceManager.instance.ScreamingMode(RoomName.CEO);
             }
             else
             {

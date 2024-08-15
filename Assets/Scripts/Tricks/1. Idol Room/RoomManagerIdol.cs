@@ -6,15 +6,6 @@ public class RoomManagerIdol : RoomManager
 {
     public MusicPlate musicPlate;
 
-    public void OnClickClosetHole()
-    {
-        SceneManager.LoadScene("KidRoom");
-    }
-    public void OnClickDrawer(GameObject desk)
-    {
-        SoundManager.instance.SFXPlay("drawerOpened");
-        desk.SetActive(false);
-    }
     public void OnClickDoor()
     {
         if (DatabaseManager.Instance.GetData(Define.TrickName.MusicPlateZoom))
@@ -26,13 +17,6 @@ public class RoomManagerIdol : RoomManager
         {
             SoundManager.instance.SFXPlay("doorLocked");
         }
-    }
-
-    public void OnclickTable()
-    {
-        if (DatabaseManager.Instance.GetData(Define.TrickName.DressingTable)) return;
-        // beep--- sound play
-        SoundManager.instance.SFXPlay("deadheart");
     }
 
     private IEnumerator LoadHallway()

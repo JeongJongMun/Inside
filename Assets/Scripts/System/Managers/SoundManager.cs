@@ -8,7 +8,6 @@ using UnityEngine;
  * Audio Listener - 소리 수신 근원지(Main Camera에 자동 부착)
  * Audio Clip - 소리 파일
 */
-// TODO: 배경음 재생
 // TODO: SoundManager 개선 - 모든 버튼을 찾아 자동으로 이벤트 등록
 public enum SoundType
 {
@@ -21,39 +20,29 @@ public class SoundManager
 #region Private Variables
     private AudioSource[] audioSources = new AudioSource[(int)SoundType.MAXCOUNT];
     private Dictionary<string, AudioClip> audioClips = new Dictionary<string, AudioClip>(); // 사운드 파일을 저장할 딕셔너리 <경로, 해당 오디오 클립> -> Object Pooling
-    private List<string> commonSoundPaths = new List<string> { "Stair", "Button", "ArrowButton", "Item" };
 #endregion
 
 #region Private Methods
 	private AudioClip GetOrAddAudioClip(string path, SoundType type = SoundType.EFFECT)
     {
-        // 0. Kid Room/Clock
-        // 0. Kid Room
-        string currentRoomName = RoomManager.instance.currentRoomName;
-        if (type == SoundType.EFFECT && commonSoundPaths.Contains(path) == false)
-        {
-            path = $"{currentRoomName}/{path}";
-        }
-
-        // EFFECT/0. Kid Room/Clock
+        // EFFECT/Clock
         // BGM/0. Kid Room
         path = $"{type}/{path}";
 
-        // Sounds/EFFECT/0. Kid Room/Clock
+        // Sounds/EFFECT/Clock
         // Sounds/BGM/0. Kid Room
 		if (path.Contains("Sounds/") == false)
 			path = $"Sounds/{path}"; // Sounds 폴더 안에 저장될 수 있도록
 
 		AudioClip audioClip = null;
 
-		if (type == SoundType.BGM) // BGM 배경음악 클립 붙이기
-		{
+        // BGM 배경음악 클립 붙이기
+		if (type == SoundType.BGM) {
 			audioClip = Resources.Load<AudioClip>(path);
 		}
-		else // Effect 효과음 클립 붙이기
-		{
-			if (audioClips.TryGetValue(path, out audioClip) == false)
-			{
+        // Effect 효과음 클립 붙이기
+		else {
+			if (audioClips.TryGetValue(path, out audioClip) == false) {
 				audioClip = Resources.Load<AudioClip>(path);
 				audioClips.Add(path, audioClip);
 			}
@@ -70,14 +59,12 @@ public class SoundManager
     public void Init()
     {
         GameObject root = GameObject.Find("@Sound");
-        if (root == null) 
-        {
+        if (root == null) {
             root = new GameObject { name = "@Sound" };
             Object.DontDestroyOnLoad(root);
 
             string[] soundNames = System.Enum.GetNames(typeof(SoundType)); // "BGM", "EFFECT"
-            for (int i = 0; i < soundNames.Length - 1; i++)
-            {
+            for (int i = 0; i < soundNames.Length - 1; i++) {
                 GameObject go = new GameObject { name = soundNames[i] }; 
                 audioSources[i] = go.AddComponent<AudioSource>();
                 go.transform.parent = root.transform;
@@ -90,8 +77,7 @@ public class SoundManager
     public void Clear()
     {
         // 재생기 전부 재생 스탑, 음반 빼기
-        foreach (AudioSource audioSource in audioSources)
-        {
+        foreach (AudioSource audioSource in audioSources) {
             audioSource.clip = null;
             audioSource.Stop();
         }
@@ -103,9 +89,11 @@ public class SoundManager
         if (audioClip == null)
             return;
 
-		if (type == SoundType.BGM) // BGM 배경음악 재생
-		{
+        // BGM 배경음악 재생
+		if (type == SoundType.BGM) {
 			AudioSource audioSource = audioSources[(int)type];
+            if (audioSource == null)
+                return;
 			if (audioSource.isPlaying)
 				audioSource.Stop();
 
@@ -114,9 +102,11 @@ public class SoundManager
             audioSource.volume = volume;
 			audioSource.Play();
 		}
-		else // Effect 효과음 재생
-		{
+        // Effect 효과음 재생
+		else {
 			AudioSource audioSource = audioSources[(int)type];
+            if (audioSource == null)
+                return;
 			audioSource.pitch = pitch;
 			audioSource.PlayOneShot(audioClip);
 		}

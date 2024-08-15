@@ -94,10 +94,10 @@ public class DatabaseManager : MonoBehaviour
                 else if (key.Contains("MentalContent"))
                 {
                     MentalPointData = JsonConvert.DeserializeObject<int>(eachData.Value.Value);
-                    InGameManager.Instance.MentalRecovery();
+                    // InGameManager.instance.MentalRecovery();
                     for (int i = MentalPointData - 1; i < 3; i++)
                     {
-                        InGameManager.Instance.MentalBreak();
+                        // InGameManager.instance.MentalBreak();
                     }
                 }
                 else if (key.Contains("InventoryContent"))
