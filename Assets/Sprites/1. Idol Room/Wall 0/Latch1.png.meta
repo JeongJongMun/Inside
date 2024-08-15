@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 53de70a89e454724f82cfcc1ff588f45
+guid: eba66be3b49248d4ea22cd3d98cab920
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -136,7 +136,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Latch2_0
+      name: Latch2_1
       rect:
         serializedVersion: 2
         x: 1
@@ -157,7 +157,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Latch2_1
+      name: Latch2_0
       rect:
         serializedVersion: 2
         x: 0
@@ -188,8 +188,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Latch2_0: -1189299206
-      Latch2_1: -471150378
+      Latch2_0: -471150378
+      Latch2_1: -1189299206
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
