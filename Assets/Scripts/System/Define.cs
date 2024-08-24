@@ -64,7 +64,7 @@ public class Define
 
     public enum TrickName
     {
-        // Kid
+        /* Kid */
         // Wall 0
         Bear,
         Clock,
@@ -75,25 +75,33 @@ public class Define
         // Wall 2
         WorldMap,
         // Wall 3
-        LegoHole,
         LegoHoleBlue,
         LegoHoleGreen,
         LegoHoleRed,
-        Console,
+        LegoHole,
         ConsoleHole,
+        Console,
 
-        // Idol
-        Bed,
+        /* Idol */
+        // Wall 0
         Closet,
         DressingTable,
-        LaptopPassword,
-        MusicBox,
-        MusicPlateZoom,
         Locker,
+        // Wall 1
+        Bed,
+        MusicBox,
         Table,
+        // Wall 2
+        MusicPlate,
+        // Wall 3
+        Laptop,
         Poster,
 
-        // Living
+        /* Living */
+        // Wall 0
+        // Wall 1
+        // Wall 2
+        // Wall 3
         CardReader,
         Carpet,
         CoinMachine,
@@ -128,6 +136,7 @@ public class Define
         PostIt1,
         PostIt2,
         LockerKiller,
+        TrickCount,
         None,
     }
 }

@@ -30,7 +30,9 @@ public class HearingEventManager : MonoBehaviour
         roomManager = FindObjectOfType<RoomManager>();
         soundManager = GameManager.instance.soundManager;
         foreach (Transform image in eventImageHolder) {
-            eventImages.Add((Define.RoomName)Enum.Parse(typeof(Define.RoomName), image.gameObject.name), image.gameObject);
+            if (Enum.TryParse<Define.RoomName>(image.gameObject.name, out var roomName)) {
+                eventImages.Add(roomName, image.gameObject);
+            }
         }
     }
     private void Update()

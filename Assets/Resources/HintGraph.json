@@ -1,0 +1,131 @@
+{
+    "__comment__": "트릭들 간의 연결 정보를 담고 있는 JSON 파일입니다. 힌트 기능을 위해 사용됩니다.",
+    "tricks": [
+        {
+            "name": "Bear",
+            "id": 0,
+            "successor": [4],
+            "hint": "칼로 곰인형을 찢어보세요."
+        },
+        {
+            "name": "Clock",
+            "id": 1,
+            "successor": [6],
+            "hint": "형광등을 끄세요."
+        },
+        {
+            "name": "DrawerKid",
+            "id": 2,
+            "successor": [10],
+            "hint": "열쇠를 찾아 서랍장을 여세요."
+        },
+        {
+            "name": "FamilyPicture",
+            "id": 3,
+            "successor": [4],
+            "hint": "칼로 가족사진을 찢어보세요."
+        },
+        {
+            "name": "SafeKid",
+            "id": 4,
+            "successor": [7],
+            "hint": "곰인형에서 나온 비밀번호를 사용하세요."
+        },
+        {
+            "name": "WorldMap",
+            "id": 5,
+            "successor": [11],
+            "hint": "칼로 세계지도를 찢어보세요."
+        },
+        {
+            "name": "LegoHoleBlue",
+            "id": 6,
+            "successor": [9],
+            "hint": "레고 조각을 넣어보세요."
+        },
+        {
+            "name": "LegoHoleGreen",
+            "id": 7,
+            "successor": [9],
+            "hint": "레고 조각을 넣어보세요."
+        },
+        {
+            "name": "LegoHoleRed",
+            "id": 8,
+            "successor": [9],
+            "hint": "레고 조각을 넣어보세요."
+        },
+        {
+            "name": "LegoHole",
+            "id": 9,
+            "successor": [10],
+            "hint": "레고 조각을 넣어보세요."
+        },
+        {
+            "name": "ConsoleHole",
+            "id": 10,
+            "successor": [11],
+            "hint": "게임기를 넣어보세요."
+        },
+        {
+            "name": "Console",
+            "id": 11,
+            "successor": [12, 13, 15, 19, 20],
+            "hint": "게임을 성공하세요."
+        },
+        {
+            "name": "Closet",
+            "id": 12,
+            "successor": [16],
+            "hint": "옷장을 열어보세요."
+        },
+        {
+            "name": "DressingTable",
+            "id": 13,
+            "successor": [14],
+            "hint": "화장대를 들여다보세요."
+        },
+        {
+            "name": "Locker",
+            "id": 14,
+            "successor": [18],
+            "hint": "달력과 노트북을 보고, 날짜를 유추하세요."
+        },
+        {
+            "name": "Bed",
+            "id": 15,
+            "successor": [16],
+            "hint": "침대를 들쳐보세요."
+        },
+        {
+            "name": "MusicBox",
+            "id": 16,
+            "successor": [17],
+            "hint": "빗자루를 사용하세요."
+        },
+        {
+            "name": "Table",
+            "id": 17,
+            "successor": [18],
+            "hint": "테이블에 오르골을 놓으세요."
+        },
+        {
+            "name": "MusicPlate",
+            "id": 18,
+            "successor": [-1],
+            "hint": "오르골에서 나오는 음악을 들어보세요."
+        },
+        {
+            "name": "Laptop",
+            "id": 19,
+            "successor": [14],
+            "hint": "책상 서랍을 열고, 방의 주인을 유추해보세요."
+        },
+        {
+            "name": "Poster",
+            "id": 20,
+            "successor": [18],
+            "hint": "칼로 포스터를 찢어보세요."
+        }
+    ]
+}

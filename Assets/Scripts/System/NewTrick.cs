@@ -1,7 +1,7 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using static Define;
 /* Trick.cs
  * Abstract class that tricks should implement
  */
@@ -24,40 +24,29 @@ public abstract class NewTrick : MonoBehaviour
             }
         } 
     }
+    public Define.TrickName trickName;
+    public int id;
+    public List<int> successor;
 #endregion
 
 #region Protected Variables
-    protected TrickName trickName;
-#endregion
-
-#region Private Methods
-    private TrickName GetTrickNameFromName(string _name)
-    {
-        foreach(TrickName value in Enum.GetValues(typeof(TrickName))) {
-            if (value.ToString() == _name) {
-                return value;
-            }
-        }
-        return default;
-    }
-#endregion
-
-#region Public Methods
 #endregion
 
 #region Protected Methods
     protected virtual void Start()
     {
+        if (Enum.TryParse<Define.TrickName>(this.name, out var trickName)) {
+            this.trickName = trickName;
+        }
+        successor = new List<int>();
         inGameManager = FindObjectOfType<InGameManager>();
         trickManager = FindObjectOfType<TrickManager>();
         trickManager.AddTrick(this);
-        trickName = GetTrickNameFromName(this.name);
 
         if (TryGetComponent(out Button button)) {
             button.onClick.AddListener(() => IsComplete = CheckComplete(NewInventory.instance.GetClickedItem()));
         }
         OnCompleteAction += OnComplete;
-
     }
     protected abstract bool CheckComplete(NewItem _currentClickedItem);
     protected virtual void OnComplete()
