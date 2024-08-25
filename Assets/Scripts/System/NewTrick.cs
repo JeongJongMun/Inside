@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 /* Trick.cs
@@ -10,7 +9,7 @@ public abstract class NewTrick : MonoBehaviour
 #region Private Variables
     private bool isComplete = false;
     private TrickManager trickManager;
-    private Action OnCompleteAction;
+    public Action OnCompleteAction;
     private InGameManager inGameManager;
 #endregion
 
@@ -24,9 +23,8 @@ public abstract class NewTrick : MonoBehaviour
             }
         } 
     }
-    public Define.TrickName trickName;
-    public int id;
-    public List<int> successor;
+    public Define.TrickName trickName { get; private set; }
+    public int id { get; private set; }
 #endregion
 
 #region Protected Variables
@@ -37,8 +35,8 @@ public abstract class NewTrick : MonoBehaviour
     {
         if (Enum.TryParse<Define.TrickName>(this.name, out var trickName)) {
             this.trickName = trickName;
+            this.id = (int)this.trickName;
         }
-        successor = new List<int>();
         inGameManager = FindObjectOfType<InGameManager>();
         trickManager = FindObjectOfType<TrickManager>();
         trickManager.AddTrick(this);
@@ -52,7 +50,7 @@ public abstract class NewTrick : MonoBehaviour
     protected virtual void OnComplete()
     {
         OnCompleteAction -= OnComplete;
-        trickManager.RemoveTrick(this);
+
         inGameManager.BlinkingEffect(Color.black);
         if (TryGetComponent(out Image image)) {
             image.raycastTarget = false;

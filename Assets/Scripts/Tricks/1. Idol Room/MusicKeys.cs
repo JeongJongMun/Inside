@@ -3,15 +3,12 @@ using UnityEngine.UI;
 
 public class MusicKeys : MonoBehaviour
 {
-    private GameManager gameManager;
+    private SoundManager soundManager;
     private void Start()
     {
-        gameManager = GameManager.instance;
-        GetComponent<Button>().onClick.AddListener(() => OnClickKey(int.Parse(name)));
-    }
-
-    private void OnClickKey(int key)
-    {
-        gameManager.soundManager.Play("piano" + key.ToString()); // TODO: 소리 너무 작음
+        soundManager = GameManager.instance.soundManager;
+        if (TryGetComponent(out Button button)) {
+            button.onClick.AddListener(() => soundManager.Play("piano" + this.name)); // TODO: 소리 너무 작음
+        }
     }
 }

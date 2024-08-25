@@ -1,9 +1,8 @@
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 [System.Serializable]
-public class TrickHintInfo
+public class TrickInfo
 {
     public string name;
     public int id;
@@ -12,29 +11,32 @@ public class TrickHintInfo
 }
 
 [System.Serializable]
-public class GraphInfo
+public class HintGraph
 {
     public string __comment__;
-    public TrickHintInfo[] tricks;
+    public List<TrickInfo> trickInfo;
 }
 public class TrickManager : MonoBehaviour
 {
 #region Private Variables
     private const string HintGraphPath = "HintGraph";
+    private Graph trickGraph;
+    private Dictionary<Define.TrickName, NewTrick> trickDict;
 #endregion
 
 #region Public Variables
-    public Graph trickGraph;
 #endregion
 
 #region Private Methods
     private void Awake()
     {
         string json = Resources.Load<TextAsset>(HintGraphPath).text;
-        GraphInfo graphInfo = JsonUtility.FromJson<GraphInfo>(json);
+        HintGraph hintGraph = JsonUtility.FromJson<HintGraph>(json);
 
-        trickGraph = new Graph((int)Define.TrickName.TrickCount);
-        foreach (var trick in graphInfo.tricks) {
+        int trickCount = (int)Define.TrickName.TrickCount;
+        trickGraph = new Graph(trickCount);
+        trickDict = new Dictionary<Define.TrickName, NewTrick>();
+        foreach (var trick in hintGraph.trickInfo) {
             trickGraph.AddEdge(trick.id, trick.successor, trick.hint);
         }
     }
@@ -43,21 +45,32 @@ public class TrickManager : MonoBehaviour
 #region Public Methods
     public void AddTrick(NewTrick _trick)
     {
-        _trick.id = (int)_trick.trickName;
-        _trick.successor = trickGraph.GetSuccessor(_trick.id).ToList();
+        if (trickDict.ContainsKey(_trick.trickName)) {
+            Debug.LogWarning($"{_trick.gameObject.name}, {_trick.trickName}이 이미 존재하여 추가할 수 없습니다.");
+            return;
+        }
+        trickDict.Add(_trick.trickName, _trick);
+        _trick.OnCompleteAction += () => trickGraph.RemoveEdge(_trick.id);
     }
     public void RemoveTrick(NewTrick _trick)
     {
-        foreach (int succ in _trick.successor) {
-            Debug.Log("Remove Edge: " + _trick.id + " -> " + succ);
-            trickGraph.RemoveEdge(_trick.id, succ);
+        if (!trickDict.ContainsKey(_trick.trickName)) {
+            Debug.LogWarning($"{_trick.gameObject.name}, {_trick.trickName}이 존재하지 않아 삭제할 수 없습니다.");
+            return;
         }
 
-        // Debugging
-        int[] inDegree = trickGraph.GetInDegree();
-        for (int i = 0; i < 12; i++) {
-            Debug.Log("InDegree[" + i + "]: " + inDegree[i]);
+        trickDict.Remove(_trick.trickName);
+        _trick.OnCompleteAction -= () => trickGraph.RemoveEdge(_trick.id);
+    }
+    public string GetHint() => trickGraph.GetHint();
+    public bool IsComplete(Define.TrickName _trickName) 
+    {
+        if (!trickDict.ContainsKey(_trickName)) {
+            Debug.LogWarning($"{_trickName}이 존재하지 않아 성공 여부를 확인할 수 없습니다.");
+            return false;
         }
+
+        return trickDict[_trickName].IsComplete;
     }
 #endregion
 }

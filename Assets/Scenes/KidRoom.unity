@@ -269,9 +269,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 957f1350c50831b43bf65eb524508f43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  switchSprite:
-  - {fileID: 21300000, guid: 489e163e8f9f1d042b6e2ef7bf0ebe00, type: 3}
-  - {fileID: 21300000, guid: 3c77ee690f6fcfc4f832212f1ea7fa46, type: 3}
+  switchSprites: []
   lightPanel: {fileID: 1085871914}
   fluorescentTime: {fileID: 527119088}
 --- !u!1 &11610574
@@ -610,9 +608,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c750aba911e38b4aba321bc9e7f6061, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isSolved: 0
-  trickName: 0
-  legoCount: 0
   book: {fileID: 993642827}
   bookDrop: {fileID: 44041164}
 --- !u!1 &112466329
@@ -1551,8 +1546,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c73fcc47edda9cd49970596b21a07efb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isSolved: 0
-  trickName: 0
+  drawerOpen: {fileID: 0}
 --- !u!114 &287621455
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1976,6 +1970,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: 0
+  itemType: 0
   isInInventory: 0
 --- !u!114 &425046404
 MonoBehaviour:
@@ -2474,14 +2469,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bf86c24b906d98458ea129c43f887c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isSolved: 0
-  trickName: 0
-  display: {fileID: 1411587121}
   safeOpen: {fileID: 21300000, guid: a735779ac102a3b42a787ca237073865, type: 3}
-  safe: {fileID: 499736111}
-  safeOpenZoomIn: {fileID: 1370987100}
-  latch0: {fileID: 589427911}
-  lego3: {fileID: 576408183}
+  display: {fileID: 1411587121}
+  numberButtons: []
+  deleteButton: {fileID: 0}
+  openButton: {fileID: 0}
 --- !u!1 &527119088
 GameObject:
   m_ObjectHideFlags: 0
@@ -2693,10 +2685,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f8bc87c8c39e0f479a46de8a840119f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isSolved: 0
-  trickName: 0
-  lego2: {fileID: 213219153}
-  legoHole: {fileID: 96359230}
+  legoInput: {fileID: 0}
 --- !u!114 &569778908
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2844,6 +2833,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: 0
+  itemType: 0
   isInInventory: 0
 --- !u!114 &576408186
 MonoBehaviour:
@@ -3073,11 +3063,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f80d5027ef22ea4f856dca0423e573d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isSolved: 0
-  trickName: 0
-  curtains:
-  - {fileID: 21300000, guid: d018b43e44af81e41bcc4d32cc298a76, type: 3}
-  - {fileID: 21300000, guid: ad97e1af7d74aa24f8abf26b1b793ca4, type: 3}
+  curtainSprites: []
 --- !u!1 &589427911
 GameObject:
   m_ObjectHideFlags: 0
@@ -3131,6 +3117,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: 0
+  itemType: 0
   isInInventory: 0
 --- !u!114 &589427914
 MonoBehaviour:
@@ -4186,6 +4173,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: 0
+  itemType: 0
   isInInventory: 0
 --- !u!114 &882136197
 MonoBehaviour:
@@ -5973,10 +5961,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7550c38a45316b64eba76f0cce4c5cd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isSolved: 0
-  trickName: 0
-  lego1: {fileID: 1776303241}
-  legoHole: {fileID: 96359230}
+  legoInput: {fileID: 0}
 --- !u!114 &1338506108
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6510,7 +6495,7 @@ MonoBehaviour:
   tilesParent: {fileID: 1379849748}
   tileList: []
   slidingPuzzlePanel: {fileID: 1150734592}
-  kidRoomConsole: {fileID: 1650822904}
+  console: {fileID: 0}
 --- !u!114 &1379849752
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6897,8 +6882,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d58196f1e2887454c8e3e73ed02c1584, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isSolved: 0
-  trickName: 0
   familyPictureTorn: {fileID: 21300000, guid: 558801a79c9ab71449358e1e08211aab, type: 3}
 --- !u!1 &1447304103
 GameObject:
@@ -7181,8 +7164,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 141578cdb23ba6245945b3d871eab954, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isSolved: 0
-  trickName: 0
 --- !u!1 &1544981328
 GameObject:
   m_ObjectHideFlags: 0
@@ -7586,8 +7567,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2756aeaa5765b364eb9d643fc5178f18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isSolved: 0
-  trickName: 0
   isGameWin: 0
   bookShelf: {fileID: 547969513}
 --- !u!114 &1650822907
@@ -7830,8 +7809,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47a32fddaf6e2a445a4f08d6205499f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isSolved: 0
-  trickName: 0
   worldMapTorn: {fileID: 21300000, guid: 70065dfb506f5e4479f4d5923aa857ec, type: 3}
 --- !u!1 &1763452994
 GameObject:
@@ -8322,10 +8299,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a917241710778f4f88b8c7306e5dceb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isSolved: 0
-  trickName: 0
-  lego3: {fileID: 22246371}
-  legoHole: {fileID: 96359230}
+  legoInput: {fileID: 0}
 --- !u!114 &1866091370
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8473,6 +8447,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: 0
+  itemType: 0
   isInInventory: 0
 --- !u!114 &1943099406
 MonoBehaviour:
@@ -8646,8 +8621,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ed09115c3fc0364cb7affeaec328cd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isSolved: 0
-  trickName: 0
 --- !u!114 &1945448298
 MonoBehaviour:
   m_ObjectHideFlags: 0

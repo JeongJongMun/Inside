@@ -37,20 +37,19 @@ public class InGameUI : MonoBehaviour
         }
         saveButton.onClick.AddListener(SaveGame);
         reviewButton.onClick.AddListener(ReviewGame);
-        hintButton.onClick.AddListener(() => ShowHint(trickManager.trickGraph.GetHint()));
+        hintButton.onClick.AddListener(ShowHint);
     }
-    private void ToggleSettingPanel()
-    {
-        settingPanel.SetActive(!settingPanel.activeSelf);
-    }
+    private void ToggleSettingPanel() => settingPanel.SetActive(!settingPanel.activeSelf);
     private void SaveGame()
     {
         DatabaseManager.Instance.SaveData();
         settingPanel.SetActive(!settingPanel.activeSelf);
     }
-    private void ReviewGame()
+    private void ReviewGame() => Application.OpenURL("https://play.google.com/store/apps/details?id=com.openthedoorandscream.inside");
+    private void ShowHint()
     {
-        Application.OpenURL("https://play.google.com/store/apps/details?id=com.openthedoorandscream.inside");
+        string hint = trickManager.GetHint();
+        StartCoroutine(HideHintAfterDelay(hint, HINT_DELAY));
     }
     private IEnumerator HideHintAfterDelay(string _hint, float delay)
     {
@@ -65,9 +64,5 @@ public class InGameUI : MonoBehaviour
 #endregion
 
 #region Public Methods
-    public void ShowHint(string _hint)
-    {
-        StartCoroutine(HideHintAfterDelay(_hint, HINT_DELAY));
-    }
 #endregion
 }

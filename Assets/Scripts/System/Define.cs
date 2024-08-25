@@ -99,10 +99,8 @@ public class Define
 
         /* Living */
         // Wall 0
-        // Wall 1
-        // Wall 2
-        // Wall 3
         CardReader,
+        // Wall 1
         Carpet,
         CoinMachine,
         Hatch,

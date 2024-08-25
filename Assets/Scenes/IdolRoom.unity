@@ -1368,6 +1368,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: 0
+  itemType: 0
   isInInventory: 0
 --- !u!114 &160846373
 MonoBehaviour:
@@ -3102,8 +3103,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abc1b5b276fd7f04faae858150d4550c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isSolved: 0
-  trickName: 0
   musicBoxOnTable: {fileID: 1568366725}
 --- !u!114 &518078462
 MonoBehaviour:
@@ -4402,13 +4401,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0eb81ff271ae27c4ea217689486df8ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isSolved: 0
-  trickName: 0
-  P:
-  - {fileID: 1261763210}
-  - {fileID: 2093990803}
-  - {fileID: 700202660}
-  - {fileID: 2032171711}
+  passwords: []
+  passwordHolder: {fileID: 0}
   lockerOpen: {fileID: 1350674161}
 --- !u!1 &733863001
 GameObject:
@@ -5696,8 +5690,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fb899b4e3fdbca429e090ab0c9537a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isSolved: 0
-  trickName: 0
+  bedOpen: {fileID: 0}
 --- !u!114 &925265163
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5783,14 +5776,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee33e8245f761d243af40ac4df257c46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wallPanel:
-  - {fileID: 109171999}
-  - {fileID: 421588967}
-  - {fileID: 847933784}
-  - {fileID: 1834252223}
-  currentWallPanel: 0
-  tricks: []
-  roomName: 0
+  currentRoomIndex: 0
+  rooms: []
+  subwalls: []
+  roomCount: 0
+  roomHolder: {fileID: 0}
+  leftArrow: {fileID: 0}
+  rightArrow: {fileID: 0}
+  bottomArrow: {fileID: 0}
   musicPlate: {fileID: 1930003833}
 --- !u!4 &951373943
 Transform:
@@ -6174,15 +6167,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fe77da18a2e6aa428a097cf1828fe15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isSolved: 0
-  trickName: 19
-  dressingTableZoomPanel: {fileID: 1546153243}
-  dressingTableZoom: {fileID: 1882917289}
-  brokenDressingTableZoom: {fileID: 21300000, guid: bc5add014adccc943af4df807e6d07e3, type: 3}
-  brokenDressingTable: {fileID: 297926715}
+  brokenMarks: []
   silhouette: {fileID: 958823373}
-  pulseSpeed: 3
-  pulseAmplitude: 0.5
 --- !u!1 &1039377901
 GameObject:
   m_ObjectHideFlags: 0
@@ -6538,10 +6524,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe1b2546e635c0c47bf5607cd54f0049, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isSolved: 0
-  trickName: 0
+  enterButton: {fileID: 0}
   passwordInputField: {fileID: 161015001}
-  script: {fileID: 633597368}
+  kakaotalk: {fileID: 0}
+  bear: {fileID: 0}
+  eyes: []
 --- !u!1 &1208081102
 GameObject:
   m_ObjectHideFlags: 0
@@ -8384,8 +8371,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff2c9806f894bc94ead04c024e3e8549, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isSolved: 0
-  trickName: 0
+  closetOpen: {fileID: 0}
 --- !u!114 &1644959088
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9395,23 +9381,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52fdccd2ab8154843a185b571a07ffea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isSolved: 0
-  trickName: 0
-  notes:
-  - {fileID: 552750420}
-  - {fileID: 59954863}
-  - {fileID: 733863001}
-  - {fileID: 354619193}
-  - {fileID: 700534865}
-  - {fileID: 839073929}
-  currentNoteNumber: 0
-  input: 
-  noteButtons:
-  - {fileID: 1383027315}
-  - {fileID: 1982743190}
-  - {fileID: 816740844}
-  - {fileID: 961248683}
-  - {fileID: 1551827792}
+  noteHolder: {fileID: 0}
+  noteButtonHolder: {fileID: 0}
 --- !u!1 &1938992960
 GameObject:
   m_ObjectHideFlags: 0
@@ -9809,6 +9780,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: 0
+  itemType: 0
   isInInventory: 0
 --- !u!114 &1987897399
 MonoBehaviour:

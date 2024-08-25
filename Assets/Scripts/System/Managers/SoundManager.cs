@@ -71,7 +71,7 @@ public class SoundManager
             }
 
             audioSources[(int)SoundType.BGM].loop = true;       // bgm 재생기는 무한 반복 재생
-            audioSources[(int)SoundType.BGM].volume = 0.7f;
+            audioSources[(int)SoundType.BGM].volume = 0.5f;
         }
     }
     public void Clear()
@@ -99,7 +99,6 @@ public class SoundManager
 
 			audioSource.pitch = pitch;
 			audioSource.clip = audioClip;
-            audioSource.volume = volume;
 			audioSource.Play();
 		}
         // Effect 효과음 재생
@@ -108,6 +107,7 @@ public class SoundManager
             if (audioSource == null)
                 return;
 			audioSource.pitch = pitch;
+            audioSource.volume = volume;
 			audioSource.PlayOneShot(audioClip);
 		}
 	}

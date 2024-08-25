@@ -1,6 +1,6 @@
 {
     "__comment__": "트릭들 간의 연결 정보를 담고 있는 JSON 파일입니다. 힌트 기능을 위해 사용됩니다.",
-    "tricks": [
+    "trickInfo": [
         {
             "name": "Bear",
             "id": 0,
