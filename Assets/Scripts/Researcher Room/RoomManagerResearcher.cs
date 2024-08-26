@@ -9,17 +9,6 @@ public class RoomManagerResearcher : RoomManager
         SoundManager.instance.SFXPlay("doorOpen");
         StartCoroutine(ForPlaySFX());
     }
-    public void OnClickFlower(GameObject panel)
-    {
-        if (Inventory.instance.IsClicked(Define.ItemName.Magnifier))
-        {
-            ZoomIn(panel);
-        }
-    }
-    public void OnclickBook()
-    {
-        SoundManager.instance.SFXPlay("turnThePage");
-    }
     private IEnumerator ForPlaySFX()
     {
         yield return new WaitForSeconds(0.5f);

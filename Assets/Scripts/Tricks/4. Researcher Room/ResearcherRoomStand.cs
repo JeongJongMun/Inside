@@ -28,7 +28,7 @@ public class ResearcherRoomStand : Trick
     public Sprite[] testTubeSprites;
 
     [Header("����� Ʈ�� ���� �� ĳ��� ���� ����")]
-    public ResearcherRoomRCloset rCloset;
+    public ClosetResearcher rCloset;
 
     [Header("����� Ʈ�� ���� �� �̹��� ����")]
     public Sprite standFull;

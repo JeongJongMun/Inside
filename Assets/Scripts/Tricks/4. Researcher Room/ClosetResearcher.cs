@@ -1,13 +1,9 @@
 using UnityEngine;
 
-public class ResearcherRoomRCloset : Trick
+public class ClosetResearcher : Trick
 {
-    [Header("Stand Ʈ���� �ذ� �Ǿ��°�")]
     public bool isStandSolved = false;
-
-    [Header("Clothes")]
     public GameObject clothes;
-
     public override void TrySolve(GameObject obj)
     {
         if (obj.name == this.name)
