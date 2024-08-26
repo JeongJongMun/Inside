@@ -105,11 +105,11 @@ public class Define
         CoinMachine,
         Hatch,
 
-        // Researher
-        RCloset,
+        // Researcher
+        ClosetResearcher,
         Clothes,
-        Cabinet,
-        DrawerLocker1,
+        CabinetResearcher,
+        LockerBlue,
         DrawerLocker2,
         Stand,
 

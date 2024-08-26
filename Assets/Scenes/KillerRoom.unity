@@ -442,6 +442,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: 0
+  itemType: 0
   isInInventory: 0
 --- !u!114 &128646404
 MonoBehaviour:
@@ -2840,15 +2841,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c428b4a311e67c4bbbd4a0ca86912bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wallPanel:
-  - {fileID: 1641663353}
-  - {fileID: 1800098881}
-  - {fileID: 438757771}
-  - {fileID: 472652756}
-  currentWallPanel: 0
-  tricks: []
-  roomName: 0
-  uiCanvas: {fileID: 0}
+  currentRoomIndex: 0
+  rooms: []
+  subwalls: []
+  roomCount: 0
+  roomHolder: {fileID: 0}
+  leftArrow: {fileID: 0}
+  rightArrow: {fileID: 0}
+  bottomArrow: {fileID: 0}
 --- !u!1 &693880406
 GameObject:
   m_ObjectHideFlags: 0
@@ -4025,7 +4025,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   locker: {fileID: 2082319023}
-  inputText: {fileID: 801818676}
 --- !u!50 &893313423
 Rigidbody2D:
   serializedVersion: 4

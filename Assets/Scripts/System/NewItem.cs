@@ -24,7 +24,13 @@ public class NewItem : MonoBehaviour
     {
         string path = this.GetComponentInParent<RoomInfo>().roomPath;
         icon = Resources.Load<Sprite>($"Sprites/Items/{path}/{this.name}");
-        itemName = System.Enum.Parse<Define.ItemName>(this.name);
+        if (System.Enum.TryParse<Define.ItemName>(this.name, out var itemName)) {
+            this.itemName = itemName;
+        }
+        else {
+            Debug.LogError($"{this.name} 아이템의 이름을 Enum으로 파싱할 수 없습니다.");
+            this.itemName = Define.ItemName.None;
+        }
     }
 #endregion
 }
