@@ -105,12 +105,15 @@ public class Define
         CoinMachine,
         Hatch,
 
-        // Researcher
+        /* Researcher */
+        // Wall 0
         ClosetResearcher,
         Clothes,
-        CabinetResearcher,
+        // Wall 2
         LockerBlue,
-        DrawerLocker2,
+        LockerGrey,
+        // Wall 3
+        CabinetResearcher,
         Stand,
 
         // CEO

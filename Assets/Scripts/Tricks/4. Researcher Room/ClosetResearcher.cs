@@ -1,31 +1,37 @@
 using UnityEngine;
+using UnityEngine.Serialization;
+using UnityEngine.UI;
 
-public class ClosetResearcher : Trick
+public class ClosetResearcher : NewTrick
 {
+    // --------------------------------------------------
+    // Components
+    // --------------------------------------------------
+    public GameObject closetOpen;
+    
+    // --------------------------------------------------
+    // Variables
+    // --------------------------------------------------
     public bool isStandSolved = false;
-    public GameObject clothes;
-    public override void TrySolve(GameObject obj)
+    
+    // --------------------------------------------------
+    // Functions
+    // --------------------------------------------------
+    protected override bool CheckComplete(NewItem _currentClickedItem)
     {
-        if (obj.name == this.name)
+        if (!Managers.Trick.IsComplete(Define.TrickName.Stand))
         {
-            if (isStandSolved)
-            {
-                Debug.LogFormat("{0} Solved", this.name);
-                SoundManager.instance.SFXPlay("closet");
-                SetIsSolved(true);
-                SolvedAction();
-                // VoiceManager.instance.ScreamingMode(Define.RoomName.Researcher);
-            }
-            else
-            {
-                Debug.LogFormat("{0} Not Solved", this.name);
-                SoundManager.instance.SFXPlay("doorLocked");
-            }
+            Managers.Sound.Play("doorLocked");
+            return false;
         }
-    }
+        Managers.Sound.Play("closet");
+        // VoiceManager.instance.ScreamingMode(Define.RoomName.Researcher);
 
-    public override void SolvedAction()
+        return true;
+    }
+    protected override void OnComplete()
     {
-        clothes.SetActive(true);
+        base.OnComplete();
+        closetOpen.GetComponent<Image>().enabled = true;
     }
 }

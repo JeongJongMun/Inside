@@ -71,10 +71,10 @@ public class Laptop : NewTrick
     protected override bool CheckComplete(NewItem _currentClickedItem)
     {
         if (passwordInputField.text != ANSWER_LOWERCASE && passwordInputField.text != ANSWER_UPPERCASE && passwordInputField.text != ANSWER_PASCALCASE) {
-            GameManager.instance.soundManager.Play("laptopFail");
+            Managers.Sound.Play("laptopFail");
             return false;
         }
-        GameManager.instance.soundManager.Play("laptopSuccess");
+        Managers.Sound.Play("laptopSuccess");
         return true;
     }
     protected override void OnComplete()

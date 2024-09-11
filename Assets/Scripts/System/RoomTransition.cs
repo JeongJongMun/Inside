@@ -7,16 +7,12 @@ public class RoomTransition : MonoBehaviour
     private const string NEXT = "Next";
     private const string PREV = "Prev";
     private RoomManager roomManager;
-    private TrickManager trickManager;
-    private SoundManager soundManager;
 #endregion
 
 #region Private Methods
     private void Start()
     {
         roomManager = FindObjectOfType<RoomManager>();
-        trickManager = FindObjectOfType<TrickManager>();
-        soundManager = GameManager.instance.soundManager;
         if (TryGetComponent(out Button button)) {
             button.onClick.AddListener(MoveRoom);
         }
@@ -28,46 +24,46 @@ public class RoomTransition : MonoBehaviour
 
         switch (currentRoomName) {
             case Define.RoomName.Kid:
-                soundManager.Play("bedFabric");
+                Managers.Sound.Play("bedFabric");
                 roomManager.MoveRoom(direction);
                 break;
             case Define.RoomName.Idol:
                 if (direction == 1) {
-                    if (trickManager.IsComplete(Define.TrickName.MusicPlate)) {
+                    if (Managers.Trick.IsComplete(Define.TrickName.MusicPlate)) {
                         roomManager.MoveRoom(direction);
-                        soundManager.Play("doorOpen");
+                        Managers.Sound.Play("doorOpen");
                     }
                     else {
-                        soundManager.Play("doorLocked");
+                        Managers.Sound.Play("doorLocked");
                     }
                 }
                 else {
                     roomManager.MoveRoom(direction);
-                    soundManager.Play("bedFabric");
+                    Managers.Sound.Play("bedFabric");
                 }
                 break;
             case Define.RoomName.Hallway:
                 roomManager.MoveRoom(direction);
                 if (direction == 1) {
-                    soundManager.Play("stair");
+                    Managers.Sound.Play("stair");
                 }
                 else {
-                    soundManager.Play("doorOpen");
+                    Managers.Sound.Play("doorOpen");
                 }
                 break;
             case Define.RoomName.Living:
                 if (direction == 1) {
-                    if (trickManager.IsComplete(Define.TrickName.CardReader)) {
+                    if (Managers.Trick.IsComplete(Define.TrickName.CardReader)) {
                         roomManager.MoveRoom(direction);
-                        soundManager.Play("doorOpen");
+                        Managers.Sound.Play("doorOpen");
                     }
                     else {
-                        soundManager.Play("doorLocked");
+                        Managers.Sound.Play("doorLocked");
                     }
                 }
                 else {
                     roomManager.MoveRoom(direction);
-                    soundManager.Play("stair");
+                    Managers.Sound.Play("stair");
                 }
                 break;
             case Define.RoomName.Researcher:

@@ -23,7 +23,7 @@ public class ConsoleHole : NewTrick
     protected override bool CheckComplete(NewItem _currentClickedItem)
     {
         if (_currentClickedItem.itemName != Define.ItemName.Console || IsComplete) return false;
-        GameManager.instance.soundManager.Play("consoleInsert");
+        Managers.Sound.Play("consoleInsert");
         NewInventory.instance.RemoveItem(_currentClickedItem);
         return true;
     }

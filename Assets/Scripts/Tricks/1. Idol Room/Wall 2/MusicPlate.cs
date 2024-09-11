@@ -83,10 +83,10 @@ public class MusicPlate : NewTrick
             }
             input.Clear();
             noteCount = 0;
-            GameManager.instance.soundManager.Play("electricFail");
+            Managers.Sound.Play("electricFail");
             return false;
         }
-        GameManager.instance.soundManager.Play("doorOpen");
+        Managers.Sound.Play("doorOpen");
 
         return true;
     }

@@ -4,30 +4,19 @@ using PlayFab.ClientModels;
 /* AuthManager.cs
  * PlayFab 로그인 및 회원가입을 관리하는 스크립트
  */
-public class AuthManager : MonoBehaviour 
+public class AuthManager 
 {
-#region Private Variables
-    private static AuthManager instance = null;
-    private const string INCORRECT_PASSWORD = "비밀번호가 일치하지 않습니다. 다시 입력해주세요.";
-    private const string SHORT_LENGTH = "비밀번호는 최소 8자 이상이어야 합니다.";
-    private const string GET_USER_ACCOUNT_FAILURE = "계정 정보를 불러오는데 실패했습니다.";
-#endregion
-
-#region Public Variables
-    public static AuthManager Instance { get { return instance; } }
-#endregion
-
-#region Private Methods
-    private void Awake() 
-    {
-        if (instance != null && instance != this) {
-            Destroy(gameObject);
-        }
-        else {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-    }
+    // --------------------------------------------------
+    // Variables
+    // --------------------------------------------------
+    // ----- Private
+    private readonly string INCORRECT_PASSWORD = "비밀번호가 일치하지 않습니다. 다시 입력해주세요.";
+    private readonly string SHORT_LENGTH = "비밀번호는 최소 8자 이상이어야 합니다.";
+    private readonly string GET_USER_ACCOUNT_FAILURE = "계정 정보를 불러오는데 실패했습니다.";
+    
+    // --------------------------------------------------
+    // Functions - Auth
+    // --------------------------------------------------
     private void OnLoginSuccess(LoginResult result)
     {
         var userDataRequest = new GetAccountInfoRequest();
@@ -81,9 +70,7 @@ public class AuthManager : MonoBehaviour
         Debug.LogError(GET_USER_ACCOUNT_FAILURE + error.GenerateErrorReport());
         MainUI.instance.OnErrorMessage(GET_USER_ACCOUNT_FAILURE);
     }
-#endregion
 
-#region Public Methods
     public void Login(string _email, string _password) 
     {
         var emailRequest = new LoginWithEmailAddressRequest {
@@ -112,5 +99,4 @@ public class AuthManager : MonoBehaviour
         };
         PlayFabClientAPI.RegisterPlayFabUser(emailRequest, OnSignUpSuccess, OnSignUpFailure);
     }
-#endregion
 }

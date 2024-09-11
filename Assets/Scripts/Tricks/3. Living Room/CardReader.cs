@@ -21,12 +21,12 @@ public class CardReader : NewTrick
     protected override bool CheckComplete(NewItem _currentClickedItem)
     {
         if (_currentClickedItem.itemName != Define.ItemName.AccessCard || IsComplete) {
-            GameManager.instance.soundManager.Play("electricFail");
+            Managers.Sound.Play("electricFail");
             return false;
         } 
 
         NewInventory.instance.RemoveItem(_currentClickedItem);
-        GameManager.instance.soundManager.Play("electricDoorOpen");
+        Managers.Sound.Play("electricDoorOpen");
         return true;
     }
     protected override void OnComplete()

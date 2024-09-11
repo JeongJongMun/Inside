@@ -31,7 +31,7 @@ public class Clock : NewTrick
     }
     protected override bool CheckComplete(NewItem _currentClickedItem)
     {
-        GameManager.instance.soundManager.Play("Clock");
+        Managers.Sound.Play("Clock");
         currentAngle += ANGLE_INCREMENT;
         clockHand.localEulerAngles = new Vector3(0f, 0f, currentAngle);
         if (currentAngle != FINAL_ANGLE) {

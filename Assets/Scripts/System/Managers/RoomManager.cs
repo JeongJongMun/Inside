@@ -22,7 +22,6 @@ public class RoomManager : MonoBehaviour
     [SerializeField] private Transform[] subwalls;
     [SerializeField] private int roomCount = 0;
     private Stack<GameObject> zoomStack = new Stack<GameObject>();
-    private SoundManager soundManager;
 #endregion
 
 #region Public Variables
@@ -35,15 +34,13 @@ public class RoomManager : MonoBehaviour
 #region Private Methods
     private void Awake()
     {
-        OnRoomChanged += () => soundManager.Play(CurrentRoomName().ToString(), SoundType.BGM);
+        OnRoomChanged += () => Managers.Sound.Play(CurrentRoomName().ToString(), SoundType.BGM);
         InitializeItems();
         InitializeRooms();
 
         leftArrow.GetComponent<Button>().onClick.AddListener(() => MoveWall(-1));
         rightArrow.GetComponent<Button>().onClick.AddListener(() => MoveWall(1));
         bottomArrow.GetComponent<Button>().onClick.AddListener(ZoomOut);
-
-        soundManager = GameManager.instance.soundManager;
     }
     private void Start()
     {
@@ -68,7 +65,7 @@ public class RoomManager : MonoBehaviour
             addedItem.InitializeItem();
             item.GetComponent<Button>().onClick.AddListener(() => {
                 NewInventory.instance.AddItem(addedItem);
-                soundManager.Play("Item");
+                Managers.Sound.Play("Item");
             });
         }
     }
@@ -106,7 +103,7 @@ public class RoomManager : MonoBehaviour
     }
     private void MoveWall(int _direction)
     {
-        soundManager.Play("ArrowButton");
+        Managers.Sound.Play("ArrowButton");
         GameObject[] walls = rooms[currentRoomIndex].walls;
         int wallCount = walls.Length;
 

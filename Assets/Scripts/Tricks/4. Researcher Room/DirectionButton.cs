@@ -11,7 +11,6 @@ public class DirectionButton : MonoBehaviour, IDragHandler, IBeginDragHandler, I
     private Vector2 offset;
     private bool isDragging;
     private List<string> directions = new List<string> { "Up", "Down", "Left", "Right" };
-    private SoundManager soundManager;
     private GameObject locker;
 #endregion
 
@@ -20,7 +19,7 @@ public class DirectionButton : MonoBehaviour, IDragHandler, IBeginDragHandler, I
     {
         rectTransform = GetComponent<RectTransform>();
         startPosition = rectTransform.anchoredPosition;
-        soundManager = GameManager.instance.soundManager;
+        
         locker = transform.parent.gameObject;
     }
     private void OnCollisionEnter2D(Collision2D collision)
@@ -47,7 +46,7 @@ public class DirectionButton : MonoBehaviour, IDragHandler, IBeginDragHandler, I
         startMousePosition = eventData.position;
         offset = rectTransform.anchoredPosition - startMousePosition;
         isDragging = true;
-        soundManager.Play("directionLock");
+        Managers.Sound.Play("directionLock");
     }
     public void OnDrag(PointerEventData eventData)
     {

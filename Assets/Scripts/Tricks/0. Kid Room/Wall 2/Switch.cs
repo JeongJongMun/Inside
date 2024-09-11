@@ -23,7 +23,7 @@ public class Switch : MonoBehaviour
     }
     private void OnClick()
     {
-        GameManager.instance.soundManager.Play("lightswitch");
+        Managers.Sound.Play("lightswitch");
         isOn = !isOn;
         image.sprite = switchSprites[Convert.ToInt32(!isOn)];
         lightPanel.SetActive(isOn);

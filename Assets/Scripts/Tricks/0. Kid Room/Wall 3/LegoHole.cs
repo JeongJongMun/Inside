@@ -37,7 +37,7 @@ public class LegoHole : NewTrick
     protected override bool CheckComplete(NewItem _currentClickedItem)
     {
         if (legoHoles.Count > 1 || IsComplete) return false;
-        GameManager.instance.soundManager.Play("bookdrop");
+        Managers.Sound.Play("bookdrop");
         return true;
     }
     protected override void OnComplete()

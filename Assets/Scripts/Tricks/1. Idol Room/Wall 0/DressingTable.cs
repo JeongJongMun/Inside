@@ -28,7 +28,7 @@ public class DressingTable : NewTrick
     private void OnEnable() 
     {
         if (IsComplete) return;
-        gameManager.soundManager.Play("Silhouette", SoundType.BGM);
+        Managers.Sound.Play("Silhouette", SoundType.BGM);
         InvokeRepeating("SilhouetteAnimation", 0f, 0.05f);
         StartCoroutine(CheckCompleteCoroutine(brokenTime));
     }
@@ -40,7 +40,7 @@ public class DressingTable : NewTrick
     private void OnDisable() 
     {
         if (!IsComplete) {
-            gameManager.soundManager.Play(roomManager.CurrentRoomName().ToString(), SoundType.BGM);
+            Managers.Sound.Play(roomManager.CurrentRoomName().ToString(), SoundType.BGM);
         }
         silhouetteImage.color = Color.white;
         CancelInvoke();
@@ -62,8 +62,8 @@ public class DressingTable : NewTrick
     }
     protected override bool CheckComplete(NewItem _currentClickedItem)
     {
-        gameManager.soundManager.Play("breakMirror");
-        gameManager.soundManager.Play(roomManager.CurrentRoomName().ToString(), SoundType.BGM);
+        Managers.Sound.Play("breakMirror");
+        Managers.Sound.Play(roomManager.CurrentRoomName().ToString(), SoundType.BGM);
         CancelInvoke();
         return true;
     }

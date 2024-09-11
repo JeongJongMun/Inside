@@ -1,4 +1,7 @@
+// ----- C#
 using System.Collections.Generic;
+
+// ----- Unity
 using UnityEngine;
 
 [System.Serializable]
@@ -16,19 +19,20 @@ public class HintGraph
     public string __comment__;
     public List<TrickInfo> trickInfo;
 }
-public class TrickManager : MonoBehaviour
+public class TrickManager
 {
-#region Private Variables
+    // --------------------------------------------------
+    // Variables
+    // --------------------------------------------------
+    // ----- Private
     private const string HintGraphPath = "HintGraph";
     private Graph trickGraph;
     private Dictionary<Define.TrickName, NewTrick> trickDict;
-#endregion
 
-#region Public Variables
-#endregion
-
-#region Private Methods
-    private void Awake()
+    // --------------------------------------------------
+    // Functions - Event
+    // --------------------------------------------------
+    public void Init()
     {
         string json = Resources.Load<TextAsset>(HintGraphPath).text;
         HintGraph hintGraph = JsonUtility.FromJson<HintGraph>(json);
@@ -40,9 +44,10 @@ public class TrickManager : MonoBehaviour
             trickGraph.AddEdge(trick.id, trick.successor, trick.hint);
         }
     }
-#endregion
-
-#region Public Methods
+    
+    // --------------------------------------------------
+    // Functions - Nomal
+    // --------------------------------------------------
     public void AddTrick(NewTrick _trick)
     {
         if (trickDict.ContainsKey(_trick.trickName)) {
@@ -72,5 +77,4 @@ public class TrickManager : MonoBehaviour
 
         return trickDict[_trickName].IsComplete;
     }
-#endregion
 }

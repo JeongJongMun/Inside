@@ -28,7 +28,6 @@ public class InGameUI : MonoBehaviour
         instance = this;
         settingPanel.SetActive(false);
         gameoverPanel.SetActive(false);
-        trickManager = FindObjectOfType<TrickManager>();
     }
     private void Start()
     {

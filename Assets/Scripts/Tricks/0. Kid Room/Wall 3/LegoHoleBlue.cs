@@ -19,10 +19,11 @@ public class LegoHoleBlue : NewTrick
     protected override bool CheckComplete(NewItem _currentClickedItem)
     {
         if (_currentClickedItem.itemName != Define.ItemName.LegoBlue || IsComplete) return false;
-        GameManager.instance.soundManager.Play("lego");
+        Managers.Sound.Play("lego");
         NewInventory.instance.RemoveItem(_currentClickedItem);
         return true;
     }
+    // ReSharper disable Unity.PerformanceAnalysis
     protected override void OnComplete()
     {
         base.OnComplete();

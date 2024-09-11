@@ -85,7 +85,7 @@ public class Board : MonoBehaviour
 	{
 		if ( Vector3.Distance(EmptyTilePosition, tile.GetComponent<RectTransform>().localPosition) == neighborTileDistance)
 		{
-			GameManager.instance.soundManager.Play("dragslide");
+			Managers.Sound.Play("dragslide");
 
 			Vector3 goalPosition = EmptyTilePosition;
 
@@ -95,6 +95,7 @@ public class Board : MonoBehaviour
 		}
 	}
 
+	// ReSharper disable Unity.PerformanceAnalysis
 	public void IsGameOver()
 	{
 		List<Tile> tiles = tileList.FindAll(x => x.IsCorrected == true);

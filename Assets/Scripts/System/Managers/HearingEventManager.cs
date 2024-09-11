@@ -9,7 +9,6 @@ public class HearingEventManager : MonoBehaviour
     [SerializeField] private float timer = 10.0f;
     [SerializeField] private bool isEvent = false;
     private InGameManager inGameManager;
-    private SoundManager soundManager;
     private MicrophoneManager micManager;
     private RoomManager roomManager;
     private Dictionary<Define.RoomName, GameObject> eventImages = new Dictionary<Define.RoomName, GameObject>();
@@ -28,7 +27,6 @@ public class HearingEventManager : MonoBehaviour
         micManager = FindObjectOfType<MicrophoneManager>();
         inGameManager = FindObjectOfType<InGameManager>();
         roomManager = FindObjectOfType<RoomManager>();
-        soundManager = GameManager.instance.soundManager;
         foreach (Transform image in eventImageHolder) {
             if (Enum.TryParse<Define.RoomName>(image.gameObject.name, out var roomName)) {
                 eventImages.Add(roomName, image.gameObject);
@@ -43,7 +41,7 @@ public class HearingEventManager : MonoBehaviour
         timer -= Time.deltaTime;
 
         if (timer <= 0 || _loudness >= 10) {
-            soundManager.Play(roomManager.CurrentRoomName().ToString(), SoundType.BGM);
+            Managers.Sound.Play(roomManager.CurrentRoomName().ToString(), SoundType.BGM);
             micManager.ToggleMic();
             eventImages[eventRoom].SetActive(false);
             hearingPanel.SetActive(false);
@@ -65,7 +63,7 @@ public class HearingEventManager : MonoBehaviour
         inGameManager.BlinkingEffect(Color.black);
         eventImages[roomName].SetActive(true);
         hearingPanel.SetActive(true);
-        soundManager.Play($"Hearing{roomName}", SoundType.BGM);
+        Managers.Sound.Play($"Hearing{roomName}", SoundType.BGM);
         micManager.ToggleMic();
         isEvent = true;
     }

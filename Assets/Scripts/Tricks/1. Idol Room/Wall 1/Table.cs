@@ -11,7 +11,7 @@ public class Table : NewTrick
     {
         if (_currentClickedItem.itemName != Define.ItemName.MusicBox || IsComplete) return false;
         NewInventory.instance.RemoveItem(_currentClickedItem);
-        GameManager.instance.soundManager.Play("bedFabric");
+        Managers.Sound.Play("bedFabric");
         return true;
     }
     protected override void OnComplete()

@@ -49,8 +49,8 @@ public class AuthUI : MonoBehaviour
         goToLoginButton.onClick.AddListener(() => GameManager.instance.ChangeState(new LoginState()));
         goToSignUpButton.onClick.AddListener(() => GameManager.instance.ChangeState(new SignUpState()));
 
-        loginButton.onClick.AddListener(() => AuthManager.Instance.Login(loginEmailField.text, loginPasswordField.text));
-        signUpButton.onClick.AddListener(() => AuthManager.Instance.SignUp(signUpEmailField.text, signUpPasswordField.text, signUpPasswordCheckField.text));
+        loginButton.onClick.AddListener(() => Managers.Auth.Login(loginEmailField.text, loginPasswordField.text));
+        signUpButton.onClick.AddListener(() => Managers.Auth.SignUp(signUpEmailField.text, signUpPasswordField.text, signUpPasswordCheckField.text));
         loginPanel.SetActive(false);
         signUpPanel.SetActive(false);
     }

@@ -20,7 +20,7 @@ public class LegoHoleGreen : NewTrick
     protected override bool CheckComplete(NewItem _currentClickedItem)
     {
         if (_currentClickedItem.itemName != Define.ItemName.LegoGreen || IsComplete) return false;
-        GameManager.instance.soundManager.Play("lego");
+        Managers.Sound.Play("lego");
         NewInventory.instance.RemoveItem(_currentClickedItem);
         return true;
     }

@@ -54,7 +54,7 @@ public class NewInventory : MonoBehaviour
                 items[i] = _item;
                 icons[i].SetIcon(_item.icon);
                 _item.gameObject.SetActive(false);
-                gameManager.soundManager.Play("bedFabric");
+                Managers.Sound.Play("bedFabric");
                 return true;
             }
         }

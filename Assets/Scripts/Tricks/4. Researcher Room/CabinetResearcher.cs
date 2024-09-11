@@ -15,11 +15,11 @@ public class CabinetResearcher : NewTrick
     protected override bool CheckComplete(NewItem _currentClickedItem)
     {
         if (_currentClickedItem.itemName != Define.ItemName.GoldKey) {
-            GameManager.instance.soundManager.Play("drawerLocked");
+            Managers.Sound.Play("drawerLocked");
             return false;
         }
         NewInventory.instance.RemoveItem(_currentClickedItem);
-        GameManager.instance.soundManager.Play("closet");
+        Managers.Sound.Play("closet");
         return true;
     }
     protected override void OnComplete()

@@ -8,7 +8,6 @@ public abstract class NewTrick : MonoBehaviour
 {
 #region Private Variables
     private bool isComplete = false;
-    private TrickManager trickManager;
     public Action OnCompleteAction;
     private InGameManager inGameManager;
 #endregion
@@ -38,8 +37,7 @@ public abstract class NewTrick : MonoBehaviour
             this.id = (int)this.trickName;
         }
         inGameManager = FindObjectOfType<InGameManager>();
-        trickManager = FindObjectOfType<TrickManager>();
-        trickManager.AddTrick(this);
+        Managers.Trick.AddTrick(this);
 
         if (TryGetComponent(out Button button)) {
             button.onClick.AddListener(() => IsComplete = CheckComplete(NewInventory.instance.GetClickedItem()));

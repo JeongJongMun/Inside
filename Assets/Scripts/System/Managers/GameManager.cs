@@ -1,32 +1,29 @@
+// ----- Unity
 using UnityEngine;
 using UnityEngine.SceneManagement;
-/* GameManager.cs
- * 게임 상태를 관리하는 스크립트
- * 전략 패턴을 사용하여 상태에 따라 UI를 변경
- */
+
 public class GameManager : Singleton<GameManager>
 {
-#region Private Variables
+    // --------------------------------------------------
+    // Variables
+    // --------------------------------------------------
+    // ----- Private
     private IState externalState = null;
     private IState internalState = null;
     private const string OutGameScene = "0. OutGame";
     private const string InGameScene = "1. InGame";
-#endregion
-
-#region Public Variables
-    public SoundManager soundManager = new SoundManager();
-#endregion
-
-#region Private Methods
+    
+    // --------------------------------------------------
+    // Functions - Event
+    // --------------------------------------------------
     protected override void Awake()
     {
         base.Awake();
-        gameObject.AddComponent<AuthManager>();
         gameObject.AddComponent<DatabaseManager>();
     }
     private void Start()
     {
-        soundManager.Init();
+        Managers.Sound.Init();
         if (SceneManager.GetActiveScene().name == OutGameScene) {
             ChangeState(new OutGameState(), true);
         }
@@ -34,9 +31,10 @@ public class GameManager : Singleton<GameManager>
             ChangeState(new InGameState(), true);
         }
     }
-#endregion
 
-#region Public Methods
+    // --------------------------------------------------
+    // Functions - Normal
+    // --------------------------------------------------
     public void ChangeState(IState newState, bool isExternalState = false)
     {
         if (isExternalState) {
@@ -64,5 +62,4 @@ public class GameManager : Singleton<GameManager>
         internalState.Enter();
         Debug.Log($"Current State - External: {externalState.GetType().Name}, Internal: {internalState.GetType().Name}");
     }
-#endregion
 }

@@ -10,7 +10,7 @@ public class Bed : NewTrick
 #region Protected Methods
     protected override bool CheckComplete(NewItem _currentClickedItem)
     {
-        GameManager.instance.soundManager.Play("bedFabric");
+        Managers.Sound.Play("bedFabric");
         return true;
     }
     protected override void OnComplete()

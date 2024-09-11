@@ -12,7 +12,7 @@ public class DeskDrawer : MonoBehaviour
     }
     private void OnClick()
     {
-        GameManager.instance.soundManager.Play("drawerOpened");
+        Managers.Sound.Play("drawerOpened");
         desk.sprite = deskOpen;
         paperHint.SetActive(true);
     }

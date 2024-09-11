@@ -13,7 +13,7 @@ public class Poster : NewTrick
     protected override bool CheckComplete(NewItem _currentClickedItem)
     {
         if (_currentClickedItem.itemName != Define.ItemName.Cutter) return false;
-        GameManager.instance.soundManager.Play("cutter");
+        Managers.Sound.Play("cutter");
         hearingEventManager.OnHearingEvent(Define.RoomName.Idol);
         return true;
     }

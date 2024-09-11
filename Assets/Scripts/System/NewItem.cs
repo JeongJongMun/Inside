@@ -8,18 +8,9 @@ using UnityEngine;
  */
 public class NewItem : MonoBehaviour
 {
-#region Private Variables
-#endregion
-
-#region Public Variables
     [HideInInspector] public Define.ItemName itemName = Define.ItemName.None;
     public Sprite icon = null;
-#endregion
 
-#region Private Methods
-#endregion
-
-#region Public Methods
     public void InitializeItem()
     {
         string path = this.GetComponentInParent<RoomInfo>().roomPath;
@@ -32,5 +23,4 @@ public class NewItem : MonoBehaviour
             this.itemName = Define.ItemName.None;
         }
     }
-#endregion
 }
