@@ -3,7 +3,7 @@ public class MusicBox : NewTrick
 #region Protected Methods
     protected override bool CheckComplete(NewItem _currentClickedItem)
     {
-        if (_currentClickedItem.itemName != Define.ItemName.Broom || IsComplete) return false;
+        if (_currentClickedItem.eItemType != Define.EItemType.Broom || IsComplete) return false;
         NewInventory.instance.RemoveItem(_currentClickedItem);
 
         NewItem item = this.gameObject.AddComponent<NewItem>();

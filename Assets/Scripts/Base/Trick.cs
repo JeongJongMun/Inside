@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 using static Define;
 
 public abstract class Trick : MonoBehaviour
@@ -6,19 +7,19 @@ public abstract class Trick : MonoBehaviour
     [SerializeField]
     internal bool isSolved = false;
 
-    [SerializeField]
-    internal TrickName trickName;
+    [FormerlySerializedAs("trickName")] [SerializeField]
+    internal ETrickType eTrickType;
 
     public virtual void Start()
     {
         if (name.Contains("(Clone)"))
         {
             int cloneIdx = name.IndexOf("(Clone)");
-            trickName = Item.GetEnumFromName<TrickName>(name.Substring(0, cloneIdx));
+            eTrickType = Item.GetEnumFromName<ETrickType>(name.Substring(0, cloneIdx));
         }
-        else trickName = Item.GetEnumFromName<TrickName>(this.name);
+        else eTrickType = Item.GetEnumFromName<ETrickType>(this.name);
 
-        if (DatabaseManager.Instance.GetData(trickName))
+        if (DatabaseManager.Instance.GetData(eTrickType))
         {
             isSolved = true;
             SolvedAction();
@@ -28,7 +29,7 @@ public abstract class Trick : MonoBehaviour
     public void SetIsSolved(bool _isSolved)
     {
         this.isSolved = _isSolved;
-        DatabaseManager.Instance.SetData(trickName);
+        DatabaseManager.Instance.SetData(eTrickType);
         // InGameManager.instance.BlinkingEffect();
     }
 

@@ -9,7 +9,7 @@ public class Table : NewTrick
 #region Protected Methods
     protected override bool CheckComplete(NewItem _currentClickedItem)
     {
-        if (_currentClickedItem.itemName != Define.ItemName.MusicBox || IsComplete) return false;
+        if (_currentClickedItem.eItemType != Define.EItemType.MusicBox || IsComplete) return false;
         NewInventory.instance.RemoveItem(_currentClickedItem);
         Managers.Sound.Play("bedFabric");
         return true;

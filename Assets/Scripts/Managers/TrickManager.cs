@@ -27,7 +27,7 @@ public class TrickManager
     // ----- Private
     private const string HintGraphPath = "HintGraph";
     private Graph trickGraph;
-    private Dictionary<Define.TrickName, NewTrick> trickDict;
+    private Dictionary<Define.ETrickType, NewTrick> trickDict;
 
     // --------------------------------------------------
     // Functions - Event
@@ -37,9 +37,9 @@ public class TrickManager
         string json = Resources.Load<TextAsset>(HintGraphPath).text;
         HintGraph hintGraph = JsonUtility.FromJson<HintGraph>(json);
 
-        int trickCount = (int)Define.TrickName.TrickCount;
+        int trickCount = (int)Define.ETrickType.TrickCount;
         trickGraph = new Graph(trickCount);
-        trickDict = new Dictionary<Define.TrickName, NewTrick>();
+        trickDict = new Dictionary<Define.ETrickType, NewTrick>();
         foreach (var trick in hintGraph.trickInfo) {
             trickGraph.AddEdge(trick.id, trick.successor, trick.hint);
         }
@@ -50,31 +50,31 @@ public class TrickManager
     // --------------------------------------------------
     public void AddTrick(NewTrick _trick)
     {
-        if (trickDict.ContainsKey(_trick.trickName)) {
-            Debug.LogWarning($"{_trick.gameObject.name}, {_trick.trickName}이 이미 존재하여 추가할 수 없습니다.");
+        if (trickDict.ContainsKey(_trick.ETrickType)) {
+            Debug.LogWarning($"{_trick.gameObject.name}, {_trick.ETrickType}이 이미 존재하여 추가할 수 없습니다.");
             return;
         }
-        trickDict.Add(_trick.trickName, _trick);
+        trickDict.Add(_trick.ETrickType, _trick);
         _trick.OnCompleteAction += () => trickGraph.RemoveEdge(_trick.id);
     }
     public void RemoveTrick(NewTrick _trick)
     {
-        if (!trickDict.ContainsKey(_trick.trickName)) {
-            Debug.LogWarning($"{_trick.gameObject.name}, {_trick.trickName}이 존재하지 않아 삭제할 수 없습니다.");
+        if (!trickDict.ContainsKey(_trick.ETrickType)) {
+            Debug.LogWarning($"{_trick.gameObject.name}, {_trick.ETrickType}이 존재하지 않아 삭제할 수 없습니다.");
             return;
         }
 
-        trickDict.Remove(_trick.trickName);
+        trickDict.Remove(_trick.ETrickType);
         _trick.OnCompleteAction -= () => trickGraph.RemoveEdge(_trick.id);
     }
     public string GetHint() => trickGraph.GetHint();
-    public bool IsComplete(Define.TrickName _trickName) 
+    public bool IsComplete(Define.ETrickType eTrickType) 
     {
-        if (!trickDict.ContainsKey(_trickName)) {
-            Debug.LogWarning($"{_trickName}이 존재하지 않아 성공 여부를 확인할 수 없습니다.");
+        if (!trickDict.ContainsKey(eTrickType)) {
+            Debug.LogWarning($"{eTrickType}이 존재하지 않아 성공 여부를 확인할 수 없습니다.");
             return false;
         }
 
-        return trickDict[_trickName].IsComplete;
+        return trickDict[eTrickType].IsComplete;
     }
 }

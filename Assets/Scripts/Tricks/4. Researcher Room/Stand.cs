@@ -6,19 +6,19 @@ using static Define;
 
 public class Stand : NewTrick
 {
-    private List<ItemName> answer = new()
+    private List<EItemType> answer = new()
     {
-        ItemName.TestTubeYellow, ItemName.TestTubeRed, ItemName.TestTubeBlue
+        EItemType.TestTubeYellow, EItemType.TestTubeRed, EItemType.TestTubeBlue
     };
 
-    private List<ItemName> input = new List<ItemName>();
+    private List<EItemType> input = new List<EItemType>();
     private int currentNumber = 0;
     public GameObject[] testTubes;
     public Sprite[] testTubeSprites;
     public Sprite standFull;
     public NewItem[] testTubeItems;
 
-    ItemName[] itemNames = new[] { ItemName.TestTubeBlue, ItemName.TestTubeRed, ItemName.TestTubeYellow };
+    EItemType[] itemNames = new[] { EItemType.TestTubeBlue, EItemType.TestTubeRed, EItemType.TestTubeYellow };
     
     protected override void Start()
     {
@@ -26,9 +26,9 @@ public class Stand : NewTrick
     }
     protected override bool CheckComplete(NewItem _currentClickedItem)
     {
-        foreach (ItemName itemName in itemNames)
+        foreach (EItemType itemName in itemNames)
         {
-            if (itemName == _currentClickedItem.itemName)
+            if (itemName == _currentClickedItem.eItemType)
             {
                 input.Add(itemName);
                 NewInventory.instance.RemoveItem(_currentClickedItem);

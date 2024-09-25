@@ -20,7 +20,7 @@ public class CardReader : NewTrick
     }
     protected override bool CheckComplete(NewItem _currentClickedItem)
     {
-        if (_currentClickedItem.itemName != Define.ItemName.AccessCard || IsComplete) {
+        if (_currentClickedItem.eItemType != Define.EItemType.AccessCard || IsComplete) {
             Managers.Sound.Play("electricFail");
             return false;
         } 

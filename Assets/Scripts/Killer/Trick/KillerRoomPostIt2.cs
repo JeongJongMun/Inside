@@ -11,11 +11,11 @@ public class KillerRoomPostIt2 : Trick
     {
         if (obj.name == this.name)
         {
-            if (Inventory.instance.IsClicked(ItemName.Pencil2))
+            if (Inventory.instance.IsClicked(EItemType.Pencil2))
             {
                 Debug.LogFormat("{0} Solved", this.name);
                 SoundManager.instance.SFXPlay("pencil");
-                Inventory.instance.RemoveItem(ItemName.Pencil2);
+                Inventory.instance.RemoveItem(EItemType.Pencil2);
                 SetIsSolved(true);
                 SolvedAction();
             }

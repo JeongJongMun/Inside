@@ -14,7 +14,7 @@ public class CabinetResearcher : NewTrick
 #region Protected Methods
     protected override bool CheckComplete(NewItem _currentClickedItem)
     {
-        if (_currentClickedItem.itemName != Define.ItemName.GoldKey) {
+        if (_currentClickedItem.eItemType != Define.EItemType.GoldKey) {
             Managers.Sound.Play("drawerLocked");
             return false;
         }

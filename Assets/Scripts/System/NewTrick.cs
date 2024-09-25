@@ -22,7 +22,7 @@ public abstract class NewTrick : MonoBehaviour
             }
         } 
     }
-    public Define.TrickName trickName { get; private set; }
+    public Define.ETrickType ETrickType { get; private set; }
     public int id { get; private set; }
 #endregion
 
@@ -32,9 +32,9 @@ public abstract class NewTrick : MonoBehaviour
 #region Protected Methods
     protected virtual void Start()
     {
-        if (Enum.TryParse<Define.TrickName>(this.name, out var trickName)) {
-            this.trickName = trickName;
-            this.id = (int)this.trickName;
+        if (Enum.TryParse<Define.ETrickType>(this.name, out var trickName)) {
+            this.ETrickType = trickName;
+            this.id = (int)this.ETrickType;
         }
         inGameManager = FindObjectOfType<InGameManager>();
         Managers.Trick.AddTrick(this);

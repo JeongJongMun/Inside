@@ -23,7 +23,7 @@ public class Flower : MonoBehaviour
     }
     private void OnClick()
     {
-        if (inventory.GetClickedItem().itemName != Define.ItemName.Magnifier) return;
+        if (inventory.GetClickedItem().eItemType != Define.EItemType.Magnifier) return;
         roomManager.ZoomIn(flowerZoom);
     }
 #endregion

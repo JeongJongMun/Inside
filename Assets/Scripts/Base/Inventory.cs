@@ -5,13 +5,13 @@ using static Define;
     
 static class ExtensionMethods
 {
-    public static bool IsContainsItem(this List<InventorySlot> list, ItemName itemName)
+    public static bool IsContainsItem(this List<InventorySlot> list, EItemType eItemType)
     {
         foreach(InventorySlot slot in list)
         {
             if (slot == null) continue;
             if (slot.item == null) continue;
-            if (slot.GetItemName() ==  itemName) return true;
+            if (slot.GetItemName() ==  eItemType) return true;
         }
         return false;
     }
@@ -38,13 +38,13 @@ public class Inventory : MonoBehaviour
 #endregion
 
 #region Public Methods
-    public bool IsClicked(ItemName _item)
+    public bool IsClicked(EItemType eItem)
     {
-        if (inventory.IsContainsItem(_item))
+        if (inventory.IsContainsItem(eItem))
         {
             foreach (Toggle toggle in toggles) 
             { 
-                if (toggle.transform.childCount == 3 && toggle.transform.GetChild(2).GetComponent<Item>().itemName == _item && toggle.isOn)
+                if (toggle.transform.childCount == 3 && toggle.transform.GetChild(2).GetComponent<Item>().eItemType == eItem && toggle.isOn)
                 {
                     toggle.isOn = false;
                     return true;
@@ -54,7 +54,7 @@ public class Inventory : MonoBehaviour
         return false;
     }
 
-    public ItemName GetClickedItemName()
+    public EItemType GetClickedItemName()
     {
         for (int i = 0; i < toggles.Count; i++)
         {
@@ -64,51 +64,51 @@ public class Inventory : MonoBehaviour
                 return inventory[i].GetItemName();
             }
         }
-        return ItemName.None;
+        return EItemType.None;
     }
 
     public void AcquireItem<T>(T item)
     {
-        ItemName name = ItemName.None;
+        EItemType type = EItemType.None;
         Item _item = null;
 
         if (typeof(T) == typeof(Item))
         {
             _item = item as Item;
-            name = _item.itemName;
+            type = _item.eItemType;
         }
-        else if (typeof(T) == typeof(ItemName))
+        else if (typeof(T) == typeof(EItemType))
         {
-            name = (ItemName)(object)item;
+            type = (EItemType)(object)item;
         }
 
-        if (!inventory.IsContainsItem(name))
+        if (!inventory.IsContainsItem(type))
         {
             foreach (InventorySlot slot in inventory)
             {
                 if (slot.item == null)
                 {
                     SoundManager.instance.SFXPlay("bedFabric");
-                    slot.AddItem(name);
+                    slot.AddItem(type);
                     if (_item != null)
-                        DatabaseManager.Instance.SetData(name);
+                        DatabaseManager.Instance.SetData(type);
                     break;
                 }
             }
         }
         else
         {
-            Debug.LogFormat("이미 {0}를 가지고 있습니다.", name);
+            Debug.LogFormat("이미 {0}를 가지고 있습니다.", type);
         }
     }
 
-    public void RemoveItem(ItemName itemName)
+    public void RemoveItem(EItemType eItemType)
     {
-        if (inventory.IsContainsItem(itemName))
+        if (inventory.IsContainsItem(eItemType))
         {
             foreach (InventorySlot slot in inventory)
             {
-                if (slot.item.itemName == itemName)
+                if (slot.item.eItemType == eItemType)
                 {
                     slot.RemoveItem();
                     SortItem();
@@ -118,7 +118,7 @@ public class Inventory : MonoBehaviour
         }
         else
         {
-            Debug.LogFormat("{0}가 없어 삭제할 수 없습니다. ", itemName);
+            Debug.LogFormat("{0}가 없어 삭제할 수 없습니다. ", eItemType);
         }
     }
 

@@ -37,14 +37,16 @@ public class GameManager : Singleton<GameManager>
     // --------------------------------------------------
     public void ChangeState(IState newState, bool isExternalState = false)
     {
-        if (isExternalState) {
-            if (externalState != null) {
+        if (isExternalState) 
+        {
+            if (externalState != null) 
                 externalState.Exit();
-            }
+            
             externalState = newState;
             externalState.Enter();
 
-            switch (externalState) {
+            switch (externalState) 
+            {
                 case OutGameState:
                     ChangeState(new LoginState());
                     break;
@@ -55,9 +57,9 @@ public class GameManager : Singleton<GameManager>
             return;
         }
 
-        if (internalState != null) {
+        if (internalState != null) 
             internalState.Exit();
-        }
+        
         internalState = newState;
         internalState.Enter();
         Debug.Log($"Current State - External: {externalState.GetType().Name}, Internal: {internalState.GetType().Name}");

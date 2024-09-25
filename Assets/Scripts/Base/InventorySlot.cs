@@ -27,10 +27,10 @@ public class InventorySlot : MonoBehaviour
         if (_item is Item)
         {
             Item item = _item as Item;
-            addedItem = Resources.Load<GameObject>("Prefabs/Items/" + item.itemName);
-            DatabaseManager.Instance.SetInventoryData(item.itemName, true);
+            addedItem = Resources.Load<GameObject>("Prefabs/Items/" + item.eItemType);
+            DatabaseManager.Instance.SetInventoryData(item.eItemType, true);
         }
-        else if (_item is ItemName)
+        else if (_item is EItemType)
         {
             addedItem = Resources.Load<GameObject>("Prefabs/Items/" + _item);
             DatabaseManager.Instance.SetInventoryData(_item, true);
@@ -48,10 +48,10 @@ public class InventorySlot : MonoBehaviour
 
     public void RemoveItem()
     {
-        DatabaseManager.Instance.SetInventoryData(item.itemName, false);
+        DatabaseManager.Instance.SetInventoryData(item.eItemType, false);
         Destroy(itemObject);
         item = null;
     }
-    public ItemName GetItemName() => item.itemName;
+    public EItemType GetItemName() => item.eItemType;
 #endregion
 }

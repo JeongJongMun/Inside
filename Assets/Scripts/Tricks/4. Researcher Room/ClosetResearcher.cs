@@ -19,7 +19,7 @@ public class ClosetResearcher : NewTrick
     // --------------------------------------------------
     protected override bool CheckComplete(NewItem _currentClickedItem)
     {
-        if (!Managers.Trick.IsComplete(Define.TrickName.Stand))
+        if (!Managers.Trick.IsComplete(Define.ETrickType.Stand))
         {
             Managers.Sound.Play("doorLocked");
             return false;

@@ -7,7 +7,7 @@ public class CEORoomParrot : Trick
     {
         if (obj.name == this.name)
         {
-            if (Inventory.instance.IsClicked(Define.ItemName.Gun))
+            if (Inventory.instance.IsClicked(Define.EItemType.Gun))
             {
                 Debug.LogFormat("{0} Solved", this.name);
                 SoundManager.instance.SFXPlay("parrotDead");

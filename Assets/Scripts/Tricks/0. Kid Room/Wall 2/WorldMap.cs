@@ -12,7 +12,7 @@ public class WorldMap : NewTrick
 #region Protected Methods
     protected override bool CheckComplete(NewItem _currentClickedItem)
     {
-        if (_currentClickedItem.itemName != Define.ItemName.Cutter || IsComplete) return false;
+        if (_currentClickedItem.eItemType != Define.EItemType.Cutter || IsComplete) return false;
         Managers.Sound.Play("cutter");
         return true;
     }

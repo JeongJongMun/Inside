@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 using static Define;
 
@@ -14,7 +15,7 @@ public class Item : MonoBehaviour
 #endregion
 
 #region Public Variables
-    public ItemName itemName;
+    [FormerlySerializedAs("itemName")] public EItemType eItemType;
     public Location itemType;
 #endregion
 
@@ -28,9 +29,9 @@ public class Item : MonoBehaviour
 
     public bool isInInventory = false;
 
-    private List<ItemName> need_other_item_to_acquired = new List<ItemName>()
+    private List<EItemType> need_other_item_to_acquired = new List<EItemType>()
     {
-        ItemName.MusicBox,
+        EItemType.MusicBox,
     };
 
     private void Start()
@@ -38,9 +39,9 @@ public class Item : MonoBehaviour
         string objectName = gameObject.name;
         int index = objectName.IndexOf("(Clone)");
         if (index > 0) objectName = objectName.Substring(0, index);
-        itemName = GetEnumFromName<ItemName>(objectName);
+        eItemType = GetEnumFromName<EItemType>(objectName);
 
-        if (!isInInventory && DatabaseManager.Instance.GetData(itemName))
+        if (!isInInventory && DatabaseManager.Instance.GetData(eItemType))
         {
             Destroy(gameObject);
         }

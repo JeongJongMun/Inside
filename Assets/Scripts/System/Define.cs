@@ -1,6 +1,28 @@
-public class Define
+public static class Define
 {
-    public enum RoomName
+    public enum ESceneType
+    {
+        OutGameScene,
+        InGameScene,
+    }
+    
+    public enum EUIEvent
+    {
+        Click,
+        Drag,
+        Drop,
+        PointUp,
+        PointEnter,
+        PointExit,
+    }
+    
+    public enum ELoadType
+    {
+        Global,
+        Stage,
+    }
+    
+    public enum ERoomType
     {
         Kid,
         Idol,
@@ -13,7 +35,7 @@ public class Define
         Credit,
         None,
     }
-    public enum ItemName
+    public enum EItemType
     {
         None,
 
@@ -62,7 +84,7 @@ public class Define
         Pencil2,
     }
 
-    public enum TrickName
+    public enum ETrickType
     {
         /* Kid */
         // Wall 0

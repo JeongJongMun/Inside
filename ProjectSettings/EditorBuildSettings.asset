@@ -9,9 +9,10 @@ EditorBuildSettings:
     path: Assets/Scenes/GameInitializer.unity
     guid: bbef1c873e464e847b753f6814f9b92a
   - enabled: 1
-    path: Assets/Scenes/0. OutGame.unity
+    path: Assets/Scenes/OutGameScene.unity
     guid: fbd7de170f169174f87e079bb781e995
   - enabled: 1
-    path: Assets/Scenes/1. InGame.unity
+    path: Assets/Scenes/InGameScene.unity
     guid: bed5960aa75768741931f2dc91ac8a17
-  m_configObjects: {}
+  m_configObjects:
+    com.unity.addressableassets: {fileID: 11400000, guid: 2d7e8d1252d4b134e84c6632eece527b, type: 2}

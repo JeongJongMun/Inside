@@ -20,7 +20,7 @@ public class CEORoomDeer : Trick
     {
         if (obj.name == this.name)
         {
-            if (Inventory.instance.IsClicked(ItemName.Gun) && !IsSolved())
+            if (Inventory.instance.IsClicked(EItemType.Gun) && !IsSolved())
             {
                 Debug.LogFormat("{0} Solved", this.name);
                 SoundManager.instance.SFXPlay("gunshot");

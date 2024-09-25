@@ -12,9 +12,9 @@ public class Poster : NewTrick
     }
     protected override bool CheckComplete(NewItem _currentClickedItem)
     {
-        if (_currentClickedItem.itemName != Define.ItemName.Cutter) return false;
+        if (_currentClickedItem.eItemType != Define.EItemType.Cutter) return false;
         Managers.Sound.Play("cutter");
-        hearingEventManager.OnHearingEvent(Define.RoomName.Idol);
+        hearingEventManager.OnHearingEvent(Define.ERoomType.Idol);
         return true;
     }
     protected override void OnComplete()

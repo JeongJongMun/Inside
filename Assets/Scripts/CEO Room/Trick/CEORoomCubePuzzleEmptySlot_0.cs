@@ -6,8 +6,8 @@ public class CEORoomCubePuzzleEmptySlot_0 : Trick
 {
     [Header("�� ���Կ� ä��� ����")]
     [SerializeField]
-    private List<ItemName> slots = new List<ItemName>()
-    { ItemName.CubeBlue, ItemName.CubeRed, ItemName.CubeYellow };
+    private List<EItemType> slots = new List<EItemType>()
+    { EItemType.CubeBlue, EItemType.CubeRed, EItemType.CubeYellow };
 
     [Header("Cube slot 0~2")]
     public GameObject[] cubeSlots;

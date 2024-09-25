@@ -24,8 +24,8 @@ public class Bear : NewTrick
     }
     protected override bool CheckComplete(NewItem _currentClickedItem)
     {
-        if (_currentClickedItem.itemName != Define.ItemName.Cutter || IsComplete) return false;
-        hearingEventManager.OnHearingEvent(Define.RoomName.Kid);
+        if (_currentClickedItem.eItemType != Define.EItemType.Cutter || IsComplete) return false;
+        hearingEventManager.OnHearingEvent(Define.ERoomType.Kid);
         return true;
     }
     protected override void OnComplete()

@@ -9,11 +9,11 @@ public class KillerRoomCabinetKiller : Trick
     {
         if (obj.name == this.name)
         {
-            if (Inventory.instance.IsClicked(ItemName.ClosetKey))
+            if (Inventory.instance.IsClicked(EItemType.ClosetKey))
             {
                 Debug.LogFormat("{0} Solved", this.name);
                 SoundManager.instance.SFXPlay("lockerOpen");
-                Inventory.instance.RemoveItem(ItemName.ClosetKey);
+                Inventory.instance.RemoveItem(EItemType.ClosetKey);
                 SetIsSolved(true);
                 SolvedAction();
             }

@@ -25,7 +25,7 @@ public class LivingRoomCoinMachine : Trick
             {
                 Debug.LogFormat("{0} Solved", this.name);
                 SoundManager.instance.SFXPlay("electricDoorOpen");
-                Inventory.instance.RemoveItem(ItemName.Coins);
+                Inventory.instance.RemoveItem(EItemType.Coins);
                 SetIsSolved(true);
                 SolvedAction();
                 DisableAllChildButtons();

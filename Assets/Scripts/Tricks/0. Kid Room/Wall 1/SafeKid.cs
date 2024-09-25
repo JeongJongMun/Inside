@@ -56,7 +56,7 @@ public class SafeKid : NewTrick
         }
 
         Managers.Sound.Play("electricOKButton");
-        NewItem password = NewInventory.instance.GetItem(Define.ItemName.Password);
+        NewItem password = NewInventory.instance.GetItem(Define.EItemType.Password);
         if (password != null) {
             NewInventory.instance.RemoveItem(password);
         }

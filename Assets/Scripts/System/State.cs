@@ -25,8 +25,9 @@ public class OutGameState : IState
     public void Enter()
     {
         // TODO: 메인 브금 재생
-        if (SceneManager.GetActiveScene().name != "0. OutGame") {
-            SceneManager.LoadScene("0. OutGame");
+        if (SceneManager.GetActiveScene().name != "0. OutGame") 
+        {
+            
         }
     }
     public void Exit()
@@ -37,8 +38,9 @@ public class InGameState : IState
 {
     public void Enter()
     {
-        if (SceneManager.GetActiveScene().name != "1. InGame") {
-            SceneManager.LoadScene("1. InGame");
+        if (SceneManager.GetActiveScene().name != "1. InGame") 
+        {
+            
         }
         // TODO: 인벤토리 초기화
         // Inventory.instance.ClearInventory();

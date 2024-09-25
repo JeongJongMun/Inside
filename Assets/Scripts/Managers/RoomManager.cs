@@ -25,7 +25,7 @@ public class RoomManager : MonoBehaviour
 #endregion
 
 #region Public Variables
-    public Define.RoomName CurrentRoomName () => (Define.RoomName)currentRoomIndex;
+    public Define.ERoomType CurrentRoomName () => (Define.ERoomType)currentRoomIndex;
     public Action OnRoomChanged;
     public Transform roomHolder;
     public GameObject leftArrow, rightArrow, bottomArrow;

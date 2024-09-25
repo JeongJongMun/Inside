@@ -20,16 +20,16 @@ public class RoomTransition : MonoBehaviour
     private void MoveRoom()
     {
         int direction = gameObject.name == NEXT ? 1 : -1;
-        Define.RoomName currentRoomName = roomManager.CurrentRoomName();
+        Define.ERoomType currentERoomType = roomManager.CurrentRoomName();
 
-        switch (currentRoomName) {
-            case Define.RoomName.Kid:
+        switch (currentERoomType) {
+            case Define.ERoomType.Kid:
                 Managers.Sound.Play("bedFabric");
                 roomManager.MoveRoom(direction);
                 break;
-            case Define.RoomName.Idol:
+            case Define.ERoomType.Idol:
                 if (direction == 1) {
-                    if (Managers.Trick.IsComplete(Define.TrickName.MusicPlate)) {
+                    if (Managers.Trick.IsComplete(Define.ETrickType.MusicPlate)) {
                         roomManager.MoveRoom(direction);
                         Managers.Sound.Play("doorOpen");
                     }
@@ -42,7 +42,7 @@ public class RoomTransition : MonoBehaviour
                     Managers.Sound.Play("bedFabric");
                 }
                 break;
-            case Define.RoomName.Hallway:
+            case Define.ERoomType.Hallway:
                 roomManager.MoveRoom(direction);
                 if (direction == 1) {
                     Managers.Sound.Play("stair");
@@ -51,9 +51,9 @@ public class RoomTransition : MonoBehaviour
                     Managers.Sound.Play("doorOpen");
                 }
                 break;
-            case Define.RoomName.Living:
+            case Define.ERoomType.Living:
                 if (direction == 1) {
-                    if (Managers.Trick.IsComplete(Define.TrickName.CardReader)) {
+                    if (Managers.Trick.IsComplete(Define.ETrickType.CardReader)) {
                         roomManager.MoveRoom(direction);
                         Managers.Sound.Play("doorOpen");
                     }
@@ -66,15 +66,15 @@ public class RoomTransition : MonoBehaviour
                     Managers.Sound.Play("stair");
                 }
                 break;
-            case Define.RoomName.Researcher:
+            case Define.ERoomType.Researcher:
                 break;
-            case Define.RoomName.CEO:
+            case Define.ERoomType.CEO:
                 break;
-            case Define.RoomName.Killer:
+            case Define.ERoomType.Killer:
                 break;
-            case Define.RoomName.Ending:
+            case Define.ERoomType.Ending:
                 break;
-            case Define.RoomName.Credit:
+            case Define.ERoomType.Credit:
                 break;
         }
     }

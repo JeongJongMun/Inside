@@ -10,7 +10,7 @@ public class DrawerKid : NewTrick
 #region Protected Methods
     protected override bool CheckComplete(NewItem _currentClickedItem)
     {
-        if (_currentClickedItem.itemName != Define.ItemName.DrawerKeyKid || IsComplete) 
+        if (_currentClickedItem.eItemType != Define.EItemType.DrawerKeyKid || IsComplete) 
         {
             Managers.Sound.Play("drawerLocked");
             return false;

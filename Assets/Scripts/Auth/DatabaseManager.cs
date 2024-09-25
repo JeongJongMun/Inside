@@ -1,13 +1,16 @@
+// ----- C#
+using System;
 using System.Collections.Generic;
+
+// ----- Unity
 using UnityEngine;
-using static Define;
 using PlayFab;
 using PlayFab.ClientModels;
-using System;
 using Newtonsoft.Json;
-/* DatabaseManager.cs
- * PlayFab 데이터베이스를 관리하는 스크립트
- */
+
+// ----- User Defined
+using static Define;
+
 public class Data<T>
 {
     public T name;
@@ -15,32 +18,35 @@ public class Data<T>
 }
 public class HData
 {
-    public ItemName name;
+    public EItemType Type;
     public int number;
 }
 public class DatabaseManager : MonoBehaviour
 {
-#region Private Variables
+    // --------------------------------------------------
+    // Variables
+    // --------------------------------------------------
+    // ----- Private
     private static DatabaseManager instance = null;
-    private List<Data<TrickName>> TrickData = new List<Data<TrickName>>();
-    private List<Data<ItemName>> ItemData = new List<Data<ItemName>>();
+    private List<Data<ETrickType>> TrickData = new List<Data<ETrickType>>();
+    private List<Data<EItemType>> ItemData = new List<Data<EItemType>>();
     private List<HData> HatchData = new List<HData>()
     {
-        new HData { name = ItemName.Latch0, number = -1 },
-        new HData { name = ItemName.Latch1, number = -1 },
-        new HData { name = ItemName.Latch2, number = -1 },
-        new HData { name = ItemName.Latch3, number = -1 },
+        new HData { Type = EItemType.Latch0, number = -1 },
+        new HData { Type = EItemType.Latch1, number = -1 },
+        new HData { Type = EItemType.Latch2, number = -1 },
+        new HData { Type = EItemType.Latch3, number = -1 },
     };
-    private List<ItemName> InventoryData = new List<ItemName>();
-#endregion
+    private List<EItemType> InventoryData = new List<EItemType>();
 
-#region Public Variables
+    // ----- Public
     public static DatabaseManager Instance { get { return instance; } }
     public string playfabID = string.Empty;
     [HideInInspector] public int MentalPointData = 3;
-#endregion
 
-#region Private Methods
+    // --------------------------------------------------
+    // Functions - Event
+    // --------------------------------------------------
     private void Awake()
     {
         if (instance != null && instance != this) {
@@ -51,9 +57,11 @@ public class DatabaseManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
         }
     }
-#endregion
 
-#region Public Methods
+    
+    // --------------------------------------------------
+    // Functions - Normal
+    // --------------------------------------------------
     public void SetUserData(Dictionary<string, string> data)
     {
         var request = new UpdateUserDataRequest() { Data = data, Permission = UserDataPermission.Public };
@@ -81,11 +89,11 @@ public class DatabaseManager : MonoBehaviour
 
                 if (key.Contains("TrickContent"))
                 {
-                    TrickData = JsonConvert.DeserializeObject<List<Data<TrickName>>>(eachData.Value.Value);
+                    TrickData = JsonConvert.DeserializeObject<List<Data<ETrickType>>>(eachData.Value.Value);
                 }
                 else if (key.Contains("ItemContent"))
                 {
-                    ItemData = JsonConvert.DeserializeObject<List<Data<ItemName>>>(eachData.Value.Value);
+                    ItemData = JsonConvert.DeserializeObject<List<Data<EItemType>>>(eachData.Value.Value);
                 }
                 else if (key.Contains("HatchContent"))
                 {
@@ -102,8 +110,8 @@ public class DatabaseManager : MonoBehaviour
                 }
                 else if (key.Contains("InventoryContent"))
                 {
-                    List<ItemName> content = JsonConvert.DeserializeObject<List<ItemName>>(eachData.Value.Value);
-                    foreach (ItemName item in content)
+                    List<EItemType> content = JsonConvert.DeserializeObject<List<EItemType>>(eachData.Value.Value);
+                    foreach (EItemType item in content)
                     {
                         Inventory.instance.AcquireItem(item);
                     }
@@ -116,21 +124,21 @@ public class DatabaseManager : MonoBehaviour
 
     public bool GetData<T>(T dataName)
     {
-        if (typeof(T) == typeof(TrickName))
+        if (typeof(T) == typeof(ETrickType))
         {
-            foreach (Data<TrickName> trick in TrickData)
+            foreach (Data<ETrickType> trick in TrickData)
             {
-                if (EqualityComparer<TrickName>.Default.Equals(trick.name, (TrickName)(object)dataName))
+                if (EqualityComparer<ETrickType>.Default.Equals(trick.name, (ETrickType)(object)dataName))
                 {
                     return trick.status;
                 }
             }
         }
-        else if (typeof(T) == typeof(ItemName))
+        else if (typeof(T) == typeof(EItemType))
         {
-            foreach (Data<ItemName> item in ItemData)
+            foreach (Data<EItemType> item in ItemData)
             {
-                if (EqualityComparer<ItemName>.Default.Equals(item.name, (ItemName)(object)dataName))
+                if (EqualityComparer<EItemType>.Default.Equals(item.name, (EItemType)(object)dataName))
                 {
                     return item.status;
                 }
@@ -144,11 +152,11 @@ public class DatabaseManager : MonoBehaviour
     {
         List<Data<T>> dataList;
 
-        if (typeof(T) == typeof(TrickName))
+        if (typeof(T) == typeof(ETrickType))
         {
             dataList = TrickData as List<Data<T>>;
         }
-        else if (typeof(T) == typeof(ItemName))
+        else if (typeof(T) == typeof(EItemType))
         {
             dataList = ItemData as List<Data<T>>;
         }
@@ -165,47 +173,47 @@ public class DatabaseManager : MonoBehaviour
         dataList.Add(data);
     }
 
-    public void SetHatchData(ItemName name, int index)
+    public void SetHatchData(EItemType type, int index)
     {
-        string str = name.ToString();
+        string str = type.ToString();
         int latchIdx = str[str.Length - 1] - '0';
         HatchData[latchIdx].number = index;
     }
 
-    public ItemName GetHatchData(int num)
+    public EItemType GetHatchData(int num)
     {
         foreach (var item in HatchData)
         {
             if (item.number == num)
             {
-                return item.name;
+                return item.Type;
             }
         }
 
-        return ItemName.None;
+        return EItemType.None;
     }
 
     public void SetInventoryData<T>(T name, bool isDelete)
     {
-        ItemName item = ItemName.None;
+        EItemType eItem = EItemType.None;
 
         if (name is Item)
         {
             Item _item = name as Item;
-            item = _item.itemName;
+            eItem = _item.eItemType;
         }
-        else if (name is ItemName)
+        else if (name is EItemType)
         {
-            item = (ItemName)(object)name;
+            eItem = (EItemType)(object)name;
         }
 
         if (isDelete)
         {
-            InventoryData.Add(item);
+            InventoryData.Add(eItem);
         }
         else
         {
-            InventoryData.Remove(item);
+            InventoryData.Remove(eItem);
         }
     }
 
@@ -286,5 +294,4 @@ public class DatabaseManager : MonoBehaviour
         };
         SetUserData(hatchDic);
     }
-#endregion
 }

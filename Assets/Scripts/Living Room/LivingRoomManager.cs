@@ -13,7 +13,7 @@ public class LivingRoomManager : RoomManager
     }
     public void OnClickResearcherDoor()
     {
-        if (DatabaseManager.Instance.GetData(TrickName.CardReader))
+        if (DatabaseManager.Instance.GetData(ETrickType.CardReader))
         {
             SoundManager.instance.SFXPlay("doorOpen");
             StartCoroutine(LoadResearcherRoom());
@@ -23,7 +23,7 @@ public class LivingRoomManager : RoomManager
     }
     public void OnClickCEODoor()
     {
-        if (DatabaseManager.Instance.GetData(TrickName.CoinMachine))
+        if (DatabaseManager.Instance.GetData(ETrickType.CoinMachine))
         {
             SoundManager.instance.SFXPlay("doorOpen");
             StartCoroutine(LoadCEORoom());
@@ -42,7 +42,7 @@ public class LivingRoomManager : RoomManager
     }
     public void OnClick500Button(TMP_Text money)
     {
-        if (Inventory.instance.inventory.IsContainsItem(ItemName.Coins))
+        if (Inventory.instance.inventory.IsContainsItem(EItemType.Coins))
         {
             SoundManager.instance.SFXPlay("insertCoin");
             money.text = (int.Parse(money.text) + 500).ToString();
@@ -50,7 +50,7 @@ public class LivingRoomManager : RoomManager
     }
     public void OnClick100Button(TMP_Text money)
     {
-        if (Inventory.instance.inventory.IsContainsItem(ItemName.Coins))
+        if (Inventory.instance.inventory.IsContainsItem(EItemType.Coins))
         {
             SoundManager.instance.SFXPlay("insertCoin");
             money.text = (int.Parse(money.text) + 100).ToString();

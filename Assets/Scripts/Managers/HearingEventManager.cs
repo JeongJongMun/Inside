@@ -11,8 +11,8 @@ public class HearingEventManager : MonoBehaviour
     private InGameManager inGameManager;
     private MicrophoneManager micManager;
     private RoomManager roomManager;
-    private Dictionary<Define.RoomName, GameObject> eventImages = new Dictionary<Define.RoomName, GameObject>();
-    private Define.RoomName eventRoom = Define.RoomName.None;
+    private Dictionary<Define.ERoomType, GameObject> eventImages = new Dictionary<Define.ERoomType, GameObject>();
+    private Define.ERoomType _eventERoom = Define.ERoomType.None;
 #endregion
 
 #region Public Variables
@@ -28,7 +28,7 @@ public class HearingEventManager : MonoBehaviour
         inGameManager = FindObjectOfType<InGameManager>();
         roomManager = FindObjectOfType<RoomManager>();
         foreach (Transform image in eventImageHolder) {
-            if (Enum.TryParse<Define.RoomName>(image.gameObject.name, out var roomName)) {
+            if (Enum.TryParse<Define.ERoomType>(image.gameObject.name, out var roomName)) {
                 eventImages.Add(roomName, image.gameObject);
             }
         }
@@ -43,7 +43,7 @@ public class HearingEventManager : MonoBehaviour
         if (timer <= 0 || _loudness >= 10) {
             Managers.Sound.Play(roomManager.CurrentRoomName().ToString(), SoundType.BGM);
             micManager.ToggleMic();
-            eventImages[eventRoom].SetActive(false);
+            eventImages[_eventERoom].SetActive(false);
             hearingPanel.SetActive(false);
             isEvent = false;
 
@@ -57,13 +57,13 @@ public class HearingEventManager : MonoBehaviour
 #endregion
 
 #region Public Methods
-    public void OnHearingEvent(Define.RoomName roomName)
+    public void OnHearingEvent(Define.ERoomType eRoomType)
     {
-        eventRoom = roomName;
+        _eventERoom = eRoomType;
         inGameManager.BlinkingEffect(Color.black);
-        eventImages[roomName].SetActive(true);
+        eventImages[eRoomType].SetActive(true);
         hearingPanel.SetActive(true);
-        Managers.Sound.Play($"Hearing{roomName}", SoundType.BGM);
+        Managers.Sound.Play($"Hearing{eRoomType}", SoundType.BGM);
         micManager.ToggleMic();
         isEvent = true;
     }

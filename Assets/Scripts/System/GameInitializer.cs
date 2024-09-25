@@ -5,10 +5,16 @@ using System.Collections.Generic;
 
 // ----- Unity
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameInitializer : MonoBehaviour
 {
+    // --------------------------------------------------
+    // Components
+    // --------------------------------------------------
+    [Header("1. Loading Group")]
+    [SerializeField] private UI_Loading _UI_Loading = null;
+    
     // --------------------------------------------------
     // Variables
     // --------------------------------------------------
@@ -23,6 +29,10 @@ public class GameInitializer : MonoBehaviour
     // --------------------------------------------------
     private IEnumerator Start()
     {
+        _UI_Loading.SetActiveStartButton(false);
+        _UI_Loading.SetPercent(0f);
+        _UI_Loading.SetProgress(0f);
+        
         SetAction();
         _totalActionCount = _actions.Count;
         StartInitialize();
@@ -43,6 +53,36 @@ public class GameInitializer : MonoBehaviour
             InitDone();
         });
         
+        // #2 CoroutineHelper Init
+        _actions.Add(() =>
+        {
+            Debug.Log($"[GameInitializer.Action...] Action {_actionIndex + 1} Start | CoroutineHelper Init");
+            CoroutineHelper.Init();
+            InitDone();
+        });
+        
+        // #3 Global Addressable Load
+        _actions.Add(() =>
+        {
+            Debug.Log($"[GameInitializer.Action...] Action {_actionIndex + 1} Start | Global Addressable Load");
+            Managers.Resource.LoadAllAsync<GameObject>("global", Define.ELoadType.Global, (asset, current, total) =>
+            {
+                if (current == total)
+                    InitDone();
+            });
+        });
+        
+        // #4 Sprite Addressable Load
+        // _actions.Add(() =>
+        // {
+        //     Debug.Log($"[GameInitializer.Action...] Action {_actionIndex + 1} Start | Sprite Addressable Load");
+        //     Managers.Resource.LoadAllAsync<Sprite>("sprite", Define.ELoadType.Global, (asset, current, total) =>
+        //     {
+        //         if (current == total)
+        //             InitDone();
+        //     });
+        // });
+        
         // #2 Trick Init
         _actions.Add(() =>
         {
@@ -59,6 +99,7 @@ public class GameInitializer : MonoBehaviour
     
         if (_actionIndex < _actions.Count)
         {
+            SetLoadingText();
             _actions[_actionIndex].Invoke();
         }
         else
@@ -83,7 +124,23 @@ public class GameInitializer : MonoBehaviour
 
     private void OnInit()
     {
-        SceneManager.LoadScene("1. InGame");
+        _UI_Loading.SetActiveStartButton(true);
+        _UI_Loading.SetPercent(100f);
+        _UI_Loading.SetProgress(1f);
+        _UI_Loading.SetStartButtonEvent(OnClickStart);
+    }
+
+    private void OnClickStart()
+    {
+        Managers.LoadingScene.LoadScene(Define.ESceneType.OutGameScene.ToString());
+    }
+    
+    private void SetLoadingText()
+    {
+        var progressValue = (int)(_actionIndex / (float)_totalActionCount);
+        
+        _UI_Loading.SetPercent(progressValue);
+        _UI_Loading.SetProgress(progressValue);
     }
     
     // --------------------------------------------------

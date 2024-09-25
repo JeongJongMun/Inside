@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 using static Define;
 
@@ -15,9 +16,10 @@ public class LatchHole : MonoBehaviour
 
     private Sprite startSprite;
 
+    [FormerlySerializedAs("currentItemName")]
     [SerializeField]
     [Header("���� ���� ������ ������ �̸�")]
-    private ItemName currentItemName = ItemName.None;
+    private EItemType currentEItemType = EItemType.None;
 
     [Header("TrySolve ȣ��� Hatch")]
     public GameObject hatch;
@@ -29,18 +31,18 @@ public class LatchHole : MonoBehaviour
         GetComponent<Button>().onClick.AddListener(OnClickLatchHole);
 
         // �ɼ谡 �����־����� Ȯ��
-        ItemName _name = DatabaseManager.Instance.GetHatchData(int.Parse(this.name));
-        if (_name != ItemName.None)
+        EItemType type = DatabaseManager.Instance.GetHatchData(int.Parse(this.name));
+        if (type != EItemType.None)
         {
             // �ɼ� ��ȣ ���ϱ�
-            string str = _name.ToString();
+            string str = type.ToString();
             int latchIdx = str[str.Length - 1] - '0';
             // �ɼ� ��ȣ�� �´� �̹����� ����
             image.sprite = latchInputs[latchIdx];
             // ���� �ɼ� �ε��� ����
             inputLatchNumber = latchIdx;
             // ������ �̸� ����
-            currentItemName = _name;
+            currentEItemType = type;
         }
     }
 
@@ -60,24 +62,24 @@ public class LatchHole : MonoBehaviour
     private void InputLatch()
     {
         // ���� Ŭ���� ������ �̸� ��������
-        currentItemName = Inventory.instance.GetClickedItemName();
+        currentEItemType = Inventory.instance.GetClickedItemName();
         // ���� Ŭ���� �������� �ɼ谡 �ƴϸ� return
-        if (!(currentItemName == ItemName.Latch0 || currentItemName == ItemName.Latch1 || currentItemName == ItemName.Latch2 || currentItemName == ItemName.Latch3))
+        if (!(currentEItemType == EItemType.Latch0 || currentEItemType == EItemType.Latch1 || currentEItemType == EItemType.Latch2 || currentEItemType == EItemType.Latch3))
         {
-            currentItemName = ItemName.None;
+            currentEItemType = EItemType.None;
             return;
         }
         // �ɼ� ��ȣ ���ϱ�
-        string str = currentItemName.ToString();
+        string str = currentEItemType.ToString();
         int latchIdx = str[str.Length - 1] - '0';
         // �ɼ� ��ȣ�� �´� �̹����� ����
         image.sprite = latchInputs[latchIdx];
         // ȿ���� ���
         SoundManager.instance.SFXPlay("consoleInsert");
         // �κ��丮���� ���� �ɼ� ����
-        Inventory.instance.RemoveItem(currentItemName);
+        Inventory.instance.RemoveItem(currentEItemType);
         // �ɼ谡 ���� ������ ��ȣ ����
-        DatabaseManager.Instance.SetHatchData(currentItemName, int.Parse(this.name));
+        DatabaseManager.Instance.SetHatchData(currentEItemType, int.Parse(this.name));
         // �ɼ� ���� ���� ����
         inputLatchNumber = latchIdx;
         // TrySolve
@@ -89,9 +91,9 @@ public class LatchHole : MonoBehaviour
         // ���� �̹����� ����
         image.sprite = startSprite;
         // �ɼ� ������ ȸ��
-        Inventory.instance.AcquireItem(currentItemName);
+        Inventory.instance.AcquireItem(currentEItemType);
         // �ɼ谡 ���� ������ ��ȣ ����
-        DatabaseManager.Instance.SetHatchData(currentItemName, -1);
+        DatabaseManager.Instance.SetHatchData(currentEItemType, -1);
         // �ɼ� ���� ���� ����
         inputLatchNumber = -1;
     }

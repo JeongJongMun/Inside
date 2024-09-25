@@ -88,14 +88,14 @@ public class NewInventory : MonoBehaviour
         }
         GameObject emptyObject = new GameObject();
         NewItem emptyItem = emptyObject.AddComponent<NewItem>();
-        emptyItem.itemName = Define.ItemName.None;
+        emptyItem.eItemType = Define.EItemType.None;
         Destroy(emptyObject, 0.5f);
         return emptyItem;
     }
-    public NewItem GetItem(Define.ItemName _itemName)
+    public NewItem GetItem(Define.EItemType eItemType)
     {
         for (int i = 0; i < items.Length; i++) {
-            if (items[i] != null && items[i].itemName == _itemName) {
+            if (items[i] != null && items[i].eItemType == eItemType) {
                 return items[i];
             }
         }

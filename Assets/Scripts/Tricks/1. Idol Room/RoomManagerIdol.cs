@@ -8,7 +8,7 @@ public class RoomManagerIdol : RoomManager
 
     public void OnClickDoor()
     {
-        if (DatabaseManager.Instance.GetData(Define.TrickName.MusicPlate))
+        if (DatabaseManager.Instance.GetData(Define.ETrickType.MusicPlate))
         {
             SoundManager.instance.SFXPlay("doorOpen");
             StartCoroutine(LoadHallway());
